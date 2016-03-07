@@ -22,7 +22,7 @@ public class RejseafregningDAO implements IRejseafregningDAO{
 	}
 
 	@Override
-	public List<RejseafregningDTO> getRejseafregningLidt() throws DALException {
+	public List<RejseafregningDTO> getRejseafregningList() throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
