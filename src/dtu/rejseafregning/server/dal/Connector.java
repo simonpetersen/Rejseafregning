@@ -16,7 +16,7 @@ public class Connector {
 		return (Connection) DriverManager.getConnection(url, username, password);
 	}
 
-	private static Connection conn;
+	public static Connection conn;
 	private static Statement stmt;
 
 	public Connector(String server, int port, String database, String username, String password)

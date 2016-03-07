@@ -1,5 +1,6 @@
 package dtu.rejseafregning.server.dal;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import dtu.rejseafregning.shared.BilagDTO;
 import dtu.rejseafregning.shared.DALException;
 
 public class BilagDAO implements IBilagDAO{
-
+	
 	private PreparedStatement getBilagStmt = null;
 	private PreparedStatement getBilagListStmt = null;
 	private PreparedStatement createBilagStmt = null;
@@ -16,7 +17,18 @@ public class BilagDAO implements IBilagDAO{
 	private PreparedStatement deleteBilagStmt = null;
 	
 	public BilagDAO() throws Exception{
-		
+		try{
+			new Connector();
+			
+			//GetBilag Statement
+			getBilagStmt = Connector.conn.prepareStatement("SELECT * FROM Bilag WHERE Bilag_ID = ?");
+			
+			//GetBilagList Statement
+			getBilagListStmt = Connector.conn.prepareStatement("SELECT * FROM Bilag");
+		}
+		catch(Exception e){
+			
+		}
 	}
 	
 	@Override
