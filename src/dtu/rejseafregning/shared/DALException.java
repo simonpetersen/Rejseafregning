@@ -9,4 +9,8 @@ public class DALException extends Exception {
 	public DALException(String s) {
 		super(s);
 	}
+	
+	public DALException(Exception e){
+		super(e);
+	}
 }
