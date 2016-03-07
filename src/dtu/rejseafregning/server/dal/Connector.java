@@ -1,4 +1,4 @@
-package dtu.rejseafregning.shared;
+package dtu.rejseafregning.server.dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,20 +28,4 @@ public class Connector {
 	public Connector() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		this(Constant.server, Constant.port, Constant.database, Constant.username, Constant.password);
 	}
-	
-	public static ResultSet doQuery(String cmd) throws DALException {
-		try {
-			return stmt.executeQuery(cmd);
-		} catch (SQLException e) {
-			throw new DALException(e);
-		}
-	}
-	
-		public static int doUpdate(String cmd) throws DALException {
-			try {
-				return stmt.executeUpdate(cmd);
-			} catch (SQLException e) {
-				throw new DALException(e);
-			}
-		}
 }

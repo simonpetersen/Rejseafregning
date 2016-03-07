@@ -1,4 +1,4 @@
-package dtu.rejseafregning.shared;
+package dtu.rejseafregning.server.dal;
 
 public class Constant {
 	public static final String

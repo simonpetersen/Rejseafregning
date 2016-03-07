@@ -15,6 +15,10 @@ public class BilagDAO implements IBilagDAO{
 	private PreparedStatement updateBilagStmt = null;
 	private PreparedStatement deleteBilagStmt = null;
 	
+	public BilagDAO() throws Exception{
+		
+	}
+	
 	@Override
 	public BilagDTO getBilag(int bilagID) throws DALException {
 		// TODO Auto-generated method stub
