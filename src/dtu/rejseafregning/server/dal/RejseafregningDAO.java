@@ -1,11 +1,18 @@
 package dtu.rejseafregning.server.dal;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 import dtu.rejseafregning.shared.DALException;
 
 public class RejseafregningDAO implements IRejseafregningDAO{
 
+	private PreparedStatement getRejseafregningStmt = null;
+	private PreparedStatement getRejseafregningListStmt = null;
+	private PreparedStatement createRejseafregningStmt = null;
+	private PreparedStatement updateRejseafregningStmt = null;
+	private PreparedStatement deleteRejseafregningStmt = null;
+	
 	@Override
 	public RejseafregningDTO getRejseafregning(int rejseafregningID) throws DALException {
 		// TODO Auto-generated method stub

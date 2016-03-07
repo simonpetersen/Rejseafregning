@@ -1,11 +1,18 @@
 package dtu.rejseafregning.server.dal;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 import dtu.rejseafregning.shared.DALException;
 
 public class UdgiftDAO implements IUdgiftDAO{
 
+	private PreparedStatement getUdgiftStmt = null;
+	private PreparedStatement getUdgiftListStmt = null;
+	private PreparedStatement createUdgiftStmt = null;
+	private PreparedStatement updateUdgiftStmt = null;
+	private PreparedStatement deleteUdgiftStmt = null;
+	
 	@Override
 	public UdgiftDTO getUdgift(int udgiftID) throws DALException {
 		// TODO Auto-generated method stub

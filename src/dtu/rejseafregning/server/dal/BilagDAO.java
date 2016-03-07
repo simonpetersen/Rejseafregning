@@ -1,11 +1,18 @@
 package dtu.rejseafregning.server.dal;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 import dtu.rejseafregning.shared.DALException;
 
 public class BilagDAO implements IBilagDAO{
 
+	private PreparedStatement getBilagStmt = null;
+	private PreparedStatement getBilagListStmt = null;
+	private PreparedStatement createBilagStmt = null;
+	private PreparedStatement updateBilagStmt = null;
+	private PreparedStatement deleteBilagStmt = null;
+	
 	@Override
 	public BilagDTO getBilag(int bilagID) throws DALException {
 		// TODO Auto-generated method stub
