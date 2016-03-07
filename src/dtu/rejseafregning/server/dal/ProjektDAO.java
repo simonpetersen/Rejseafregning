@@ -1,11 +1,18 @@
 package dtu.rejseafregning.server.dal;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 import dtu.rejseafregning.shared.DALException;
 
 public class ProjektDAO implements IProjektDAO{
 
+	private PreparedStatement getProjektStmt = null;
+	private PreparedStatement getProjektListStmt = null;
+	private PreparedStatement createProjektStmt = null;
+	private PreparedStatement updateProjektStmt = null;
+	private PreparedStatement deleteProjektStmt = null;
+	
 	@Override
 	public ProjektDTO getProjekt(int projektID) throws DALException {
 		// TODO Auto-generated method stub
