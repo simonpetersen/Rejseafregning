@@ -3,7 +3,9 @@ package dtu.rejseafregning.server.dal;
 import java.sql.PreparedStatement;
 import java.util.List;
 
+import dtu.rejseafregning.client.services.IProjektDAO;
 import dtu.rejseafregning.shared.DALException;
+import dtu.rejseafregning.shared.ProjektDTO;
 
 public class ProjektDAO implements IProjektDAO{
 

@@ -1,4 +1,4 @@
-package dtu.rejseafregning.server.dal;
+package dtu.rejseafregning.shared;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,6 +8,8 @@ public class RejsedagDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private boolean morgenmad, frokost, aftensmad;
 	private Date start, slut;
+	
+	public RejsedagDTO() { }
 	
 	public RejsedagDTO(boolean morgenmad, boolean frokost, boolean aftensmad, Date start, Date slut) {
 		setMorgenmad(morgenmad);

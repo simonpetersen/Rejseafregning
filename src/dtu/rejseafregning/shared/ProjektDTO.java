@@ -1,4 +1,4 @@
-package dtu.rejseafregning.server.dal;
+package dtu.rejseafregning.shared;
 
 import java.io.Serializable;
 
@@ -6,6 +6,8 @@ public class ProjektDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String projektNavn, opgaveNavn;
+	
+	public ProjektDTO() { }
 	
 	public ProjektDTO(String projektNavn, String opgaveNavn) {
 		setProjektNavn(projektNavn);
