@@ -3,6 +3,8 @@ package dtu.rejseafregning.server.dal;
 import java.sql.PreparedStatement;
 import java.util.List;
 
+import dtu.rejseafregning.client.services.IBilagDAO;
+import dtu.rejseafregning.shared.BilagDTO;
 import dtu.rejseafregning.shared.DALException;
 
 public class BilagDAO implements IBilagDAO{

@@ -1,4 +1,4 @@
-package dtu.rejseafregning.server.dal;
+package dtu.rejseafregning.shared;
 
 import java.io.Serializable;
 

@@ -1,8 +1,9 @@
-package dtu.rejseafregning.server.dal;
+package dtu.rejseafregning.client.services;
 
 import java.util.List;
 
 import dtu.rejseafregning.shared.DALException;
+import dtu.rejseafregning.shared.OpgaveDTO;
 
 public interface IOpgaveDAO {
 	OpgaveDTO getOpgave(int opgaveID) throws DALException;
