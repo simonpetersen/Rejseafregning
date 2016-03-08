@@ -26,7 +26,7 @@ public class MedarbejderDAO implements IMedarbejderDAO {
 		// getMedarbejderList statement
 		getMedarbejderListStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder");
 
-		// createMedarbjeder statement
+		// createMedarbejder statement
 		createMedarbejderStmt = Connector.conn.prepareStatement("INSERT INTO Medarbejder VALUES(?, ?, ?, ?)");
 
 		// updateMedarbejder statement
@@ -79,7 +79,7 @@ public class MedarbejderDAO implements IMedarbejderDAO {
 	@Override
 	public void createMedarbejder(MedarbejderDTO medarbejder) throws DALException {
 		try {
-			//Argumenter indsættes i statement
+			//Argumenter indsï¿½ttes i statement
 			createMedarbejderStmt.setString(1, medarbejder.getNavn());
 			createMedarbejderStmt.setString(2, medarbejder.getBrugernavn());
 			createMedarbejderStmt.setString(3, medarbejder.getAdgangskode());
@@ -95,7 +95,7 @@ public class MedarbejderDAO implements IMedarbejderDAO {
 	@Override
 	public void updateMedarbejder(MedarbejderDTO medarbejder) throws DALException {
 		try {
-			// Argumenter indsættes i statement
+			// Argumenter indsï¿½ttes i statement
 			updateMedarbejderStmt.setString(1, medarbejder.getNavn());
 			updateMedarbejderStmt.setString(2, medarbejder.getBrugernavn());
 			updateMedarbejderStmt.setString(3, medarbejder.getAdgangskode());
@@ -113,7 +113,7 @@ public class MedarbejderDAO implements IMedarbejderDAO {
 	@Override
 	public void deleteMedarbejder(MedarbejderDTO medarbejder) throws DALException {
 		try {
-			// MedarbejderID indsættes i statement
+			// MedarbejderID indsï¿½ttes i statement
 			deleteMedarbejderStmt.setInt(1, medarbejder.getID());
 
 			// Kald til databasen
