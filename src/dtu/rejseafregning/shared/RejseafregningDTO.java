@@ -8,11 +8,13 @@ public class RejseafregningDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String medarbejderNavn, godkenderNavn, anviserNavn, anledning, land, by;
 	private Date startDato, slutDato;
+	private int rejseafregningID;
 	
 	public RejseafregningDTO() { }
 	
-	public RejseafregningDTO(String medarbejderNavn, String godkenderNavn, String anviserNavn, String land, String by, Date startDato, Date slutDato) {
+	public RejseafregningDTO(int rejseafregningID, String medarbejderNavn, String godkenderNavn, String anviserNavn, String land, String by, Date startDato, Date slutDato) {
 		super();
+		setRejseafregningID(rejseafregningID);
 		setMedarbejderNavn(medarbejderNavn);
 		setGodkenderNavn(godkenderNavn);
 		setAnviserNavn(anviserNavn);
@@ -22,6 +24,14 @@ public class RejseafregningDTO implements Serializable {
 		setSlutDato(slutDato);
 	}
 
+	public int getRejseafregningID(){
+		return rejseafregningID;
+	}
+	
+	public void setRejseafregningID(int rejseafregningID){
+		this.rejseafregningID = rejseafregningID;
+	}
+	
 	public String getMedarbejderNavn() {
 		return medarbejderNavn;
 	}

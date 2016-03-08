@@ -8,10 +8,12 @@ public class RejsedagDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private boolean morgenmad, frokost, aftensmad;
 	private Date start, slut;
+	private int rejsedagID;
 	
 	public RejsedagDTO() { }
 	
-	public RejsedagDTO(boolean morgenmad, boolean frokost, boolean aftensmad, Date start, Date slut) {
+	public RejsedagDTO(int rejsedagID, boolean morgenmad, boolean frokost, boolean aftensmad, Date start, Date slut) {
+		setRejsedagID(rejsedagID);
 		setMorgenmad(morgenmad);
 		setFrokost(frokost);
 		setAftensmad(aftensmad);
@@ -19,6 +21,14 @@ public class RejsedagDTO implements Serializable {
 		setSlut(slut);
 	}
 
+	public int getRejsedagID(){
+		return rejsedagID;
+	}
+	
+	public void setRejsedagID(int rejsedagID){
+		this.rejsedagID = rejsedagID;
+	}
+	
 	public boolean harMorgenmad() {
 		return morgenmad;
 	}
