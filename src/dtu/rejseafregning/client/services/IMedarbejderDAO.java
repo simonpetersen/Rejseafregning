@@ -9,7 +9,7 @@ import dtu.rejseafregning.shared.MedarbejderDTO;
 
 public interface IMedarbejderDAO extends RemoteService{
 
-	MedarbejderDTO getMedarbejder(int medarbejderID) throws DALException;
+	MedarbejderDTO getMedarbejder(String Brugernavn) throws DALException;
 	List<MedarbejderDTO> getMedarbejderList() throws DALException;
 	void createMedarbejder(MedarbejderDTO medarbejder) throws DALException;
 	void updateMedarbejder(MedarbejderDTO medarbejder) throws DALException;

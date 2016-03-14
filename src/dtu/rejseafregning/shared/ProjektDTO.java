@@ -6,22 +6,12 @@ public class ProjektDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String projektNavn, opgaveNavn;
-	private int projektID;
 	
 	public ProjektDTO() { }
 	
-	public ProjektDTO(int projektID, String projektNavn, String opgaveNavn) {
-		setProjektID(projektID);
+	public ProjektDTO(String projektNavn, String opgaveNavn) {
 		setProjektNavn(projektNavn);
 		setOpgaveNavn(opgaveNavn);
-	}
-	
-	public int getProjektID(){
-		return projektID;
-	}
-	
-	public void setProjektID(int projektID){
-		this.projektID = projektID;
 	}
 
 	public String getProjektNavn() {

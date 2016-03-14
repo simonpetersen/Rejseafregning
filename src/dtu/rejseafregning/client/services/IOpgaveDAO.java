@@ -8,7 +8,7 @@ import dtu.rejseafregning.shared.DALException;
 import dtu.rejseafregning.shared.OpgaveDTO;
 
 public interface IOpgaveDAO extends RemoteService{
-	OpgaveDTO getOpgave(int opgaveID) throws DALException;
+	OpgaveDTO getOpgave(String OpgaveNavn) throws DALException;
 	List<OpgaveDTO> getOpgaveList() throws DALException;
 	void createOpgave(OpgaveDTO opgave) throws DALException;
 	void updateOpgave(OpgaveDTO opgave) throws DALException;

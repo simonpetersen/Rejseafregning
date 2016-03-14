@@ -7,7 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import dtu.rejseafregning.shared.OpgaveDTO;
 
 public interface IOpgaveDAOAsync {
-	void getOpgave(int opgaveID, AsyncCallback<OpgaveDTO> callback);
+	void getOpgave(String OpgaveNavn, AsyncCallback<OpgaveDTO> callback);
 	void getOpgaveList(AsyncCallback<List<OpgaveDTO>> callback);
 	void createOpgave(OpgaveDTO opgave, AsyncCallback<Void> callback);
 	void updateOpgave(OpgaveDTO opgave, AsyncCallback<Void> callback);

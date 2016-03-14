@@ -21,7 +21,7 @@ public class MedarbejderDAO implements IMedarbejderDAO {
 	public MedarbejderDAO() throws Exception {
 
 		// getMedarbejder statement
-		getMedarbejderStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder WHERE Medarbejder_ID = ?");
+		getMedarbejderStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder WHERE Brugernavn = ?");
 
 		// getMedarbejderList statement
 		getMedarbejderListStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder");
@@ -31,20 +31,20 @@ public class MedarbejderDAO implements IMedarbejderDAO {
 
 		// updateMedarbejder statement
 		updateMedarbejderStmt = Connector.conn.prepareStatement(
-				"UPDATE Medarbejder SET Navn = ?, Brugernav = ?, Password = ?, Email = ? WHERE Medarbejder_ID = ?");
+				"UPDATE Medarbejder SET Navn = ?, Password = ?, Email = ? WHERE Brugernavn = ?");
 
 		// deleteMedarbejder statement
-		deleteMedarbejderStmt = Connector.conn.prepareStatement("DELETE FROM Medarbejder WHERE Medarbejder_ID = ?");
+		deleteMedarbejderStmt = Connector.conn.prepareStatement("DELETE FROM Medarbejder WHERE Brugernavn = ?");
 	}
 
 	@Override
-	public MedarbejderDTO getMedarbejder(int medarbejderID) throws DALException {
+	public MedarbejderDTO getMedarbejder(String Brugernavn) throws DALException {
 		ResultSet rs = null;
 		try {
-			getMedarbejderStmt.setInt(1, medarbejderID);
+			getMedarbejderStmt.setString(1, Brugernavn);
 			rs = getMedarbejderStmt.executeQuery();
 
-			return new MedarbejderDTO(rs.getInt("medarbejder_ID"), rs.getString("Navn"), rs.getString("Brugernavn"),
+			return new MedarbejderDTO(rs.getString("Navn"), rs.getString("Brugernavn"),
 					rs.getString("Password"), rs.getString("Email"));
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getMedarbejder fejlede");
@@ -60,7 +60,7 @@ public class MedarbejderDAO implements IMedarbejderDAO {
 			MedarbejderListe = new ArrayList<MedarbejderDTO>();
 
 			while (rs.next()) {
-				MedarbejderListe.add(new MedarbejderDTO(rs.getInt("Medarbejder_ID"), rs.getString("Navn"),
+				MedarbejderListe.add(new MedarbejderDTO(rs.getString("Navn"),
 						rs.getString("Brugernavn"), rs.getString("Password"), rs.getString("Email")));
 			}
 		} catch (SQLException e) {
@@ -97,10 +97,9 @@ public class MedarbejderDAO implements IMedarbejderDAO {
 		try {
 			// Argumenter inds�ttes i statement
 			updateMedarbejderStmt.setString(1, medarbejder.getNavn());
-			updateMedarbejderStmt.setString(2, medarbejder.getBrugernavn());
-			updateMedarbejderStmt.setString(3, medarbejder.getAdgangskode());
-			updateMedarbejderStmt.setString(4, medarbejder.getEmail());
-			updateMedarbejderStmt.setInt(5, medarbejder.getID());
+			updateMedarbejderStmt.setString(2, medarbejder.getAdgangskode());
+			updateMedarbejderStmt.setString(3, medarbejder.getEmail());
+			updateMedarbejderStmt.setString(4, medarbejder.getBrugernavn());
 
 			// Kald til databasen
 			updateMedarbejderStmt.executeUpdate();
@@ -114,7 +113,7 @@ public class MedarbejderDAO implements IMedarbejderDAO {
 	public void deleteMedarbejder(MedarbejderDTO medarbejder) throws DALException {
 		try {
 			// MedarbejderID inds�ttes i statement
-			deleteMedarbejderStmt.setInt(1, medarbejder.getID());
+			deleteMedarbejderStmt.setString(1, medarbejder.getBrugernavn());
 
 			// Kald til databasen
 			deleteMedarbejderStmt.executeUpdate();

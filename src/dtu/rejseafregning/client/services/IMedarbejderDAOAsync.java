@@ -8,7 +8,7 @@ import dtu.rejseafregning.shared.MedarbejderDTO;
 
 public interface IMedarbejderDAOAsync {
 	//Async-interface.
-	void getMedarbejder(int medarbejderID, AsyncCallback<MedarbejderDTO> callback);
+	void getMedarbejder(String Brugernavn, AsyncCallback<MedarbejderDTO> callback);
 	void getMedarbejderList(AsyncCallback<List<MedarbejderDTO>> callback);
 	void createMedarbejder(MedarbejderDTO medarbejder, AsyncCallback<Void> callback);
 	void updateMedarbejder(MedarbejderDTO medarbejder, AsyncCallback<Void> callback);

@@ -21,29 +21,29 @@ public class OpgaveDAO implements IOpgaveDAO {
 	public OpgaveDAO() throws Exception {
 
 		// getOpgave statement
-		getOpgaveStmt = Connector.conn.prepareStatement("SELECT * FROM Opgave WHERE Opgave_ID = ?");
+		getOpgaveStmt = Connector.conn.prepareStatement("SELECT * FROM Opgave WHERE Navn = ?");
 
 		// getOpgaveList statement
 		getOpgaveListStmt = Connector.conn.prepareStatement("SELECT * FROM Opgave");
 
 		// createOpgave statement
-		createOpgaveStmt = Connector.conn.prepareStatement("INSERT INTO Opgave VALUES (?, ?)");
+		createOpgaveStmt = Connector.conn.prepareStatement("INSERT INTO Opgave VALUES (?)");
 
 		// updateOpgave statement
-		updateOpgaveStmt = Connector.conn.prepareStatement("UPDATE Opgave SET Opgavenavn = ? WHERE Opgave_ID = ?");
+		updateOpgaveStmt = Connector.conn.prepareStatement("UPDATE Opgave SET Navn = ? WHERE Navn = ?");
 
 		// deleteOpgave statement
-		deleteOpgaveStmt = Connector.conn.prepareStatement("DELETE FROM Opgave WHERE Opgave_ID = ?");
+		deleteOpgaveStmt = Connector.conn.prepareStatement("DELETE FROM Opgave WHERE Navn = ?");
 	}
 
 	@Override
-	public OpgaveDTO getOpgave(int opgaveID) throws DALException {
+	public OpgaveDTO getOpgave(String opgaveNavn) throws DALException {
 		ResultSet rs = null;
 		try {
-			getOpgaveStmt.setInt(1, opgaveID);
+			getOpgaveStmt.setString(1, opgaveNavn);
 			rs = getOpgaveStmt.executeQuery();
 
-			return new OpgaveDTO(rs.getInt("Opgave_ID"), rs.getString("Navn"));
+			return new OpgaveDTO(rs.getString("Navn"));
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getOpgave fejlede");
 		}
@@ -58,7 +58,7 @@ public class OpgaveDAO implements IOpgaveDAO {
 			OpgaveListe = new ArrayList<OpgaveDTO>();
 
 			while (rs.next()) {
-				OpgaveListe.add(new OpgaveDTO(rs.getInt("Opgave_ID"), rs.getString("Navn")));
+				OpgaveListe.add(new OpgaveDTO(rs.getString("Navn")));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getOpgaveList fejlede");
@@ -77,8 +77,7 @@ public class OpgaveDAO implements IOpgaveDAO {
 	public void createOpgave(OpgaveDTO opgave) throws DALException {
 		try {
 			// Argumenter til statement
-			createOpgaveStmt.setInt(1, opgave.getOpgaveID());
-			createOpgaveStmt.setString(2, opgave.getOpgaveNavn());
+			createOpgaveStmt.setString(1, opgave.getOpgaveNavn());
 
 			// Kald til databasen
 			createOpgaveStmt.executeUpdate();
@@ -92,7 +91,6 @@ public class OpgaveDAO implements IOpgaveDAO {
 		try {
 			// Argumenter til statement
 			updateOpgaveStmt.setString(1, opgave.getOpgaveNavn());
-			updateOpgaveStmt.setInt(2, opgave.getOpgaveID());
 
 			// Kald til database
 			updateOpgaveStmt.executeUpdate();
@@ -105,7 +103,7 @@ public class OpgaveDAO implements IOpgaveDAO {
 	public void deleteOpgave(OpgaveDTO opgave) throws DALException {
 		try {
 			// Argumenter til statement
-			deleteOpgaveStmt.setInt(1, opgave.getOpgaveID());
+			deleteOpgaveStmt.setString(1, opgave.getOpgaveNavn());
 
 			// Kald til database
 			deleteOpgaveStmt.executeUpdate();

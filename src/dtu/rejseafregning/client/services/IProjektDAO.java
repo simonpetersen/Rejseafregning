@@ -8,7 +8,7 @@ import dtu.rejseafregning.shared.DALException;
 import dtu.rejseafregning.shared.ProjektDTO;
 
 public interface IProjektDAO extends RemoteService{
-	ProjektDTO getProjekt(int projektID) throws DALException;
+	ProjektDTO getProjekt(String ProjektNavn) throws DALException;
 	List<ProjektDTO> getProjektList() throws DALException;
 	void createProjekt(ProjektDTO projekt) throws DALException;
 	void updateProjekt(ProjektDTO projekt) throws DALException;
