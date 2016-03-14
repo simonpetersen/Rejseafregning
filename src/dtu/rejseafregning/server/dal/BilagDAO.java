@@ -12,11 +12,13 @@ import java.util.List;
 
 import org.omg.CORBA.portable.InputStream;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import dtu.rejseafregning.client.services.IBilagDAO;
 import dtu.rejseafregning.shared.BilagDTO;
 import dtu.rejseafregning.shared.DALException;
 
-public class BilagDAO implements IBilagDAO {
+public class BilagDAO extends RemoteServiceServlet implements IBilagDAO {
 
 	private PreparedStatement getBilagStmt = null;
 	private PreparedStatement getBilagListStmt = null;

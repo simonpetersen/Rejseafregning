@@ -24,6 +24,7 @@ public class MainView extends Composite {
 	TextBox Name;
 	Button btnOK, btnHent;
 	Label Opgaver;
+	VerticalPanel vPanel2;
 	
 	private IOpgaveDAOAsync OpgaveDAO = GWT.create(IOpgaveDAO.class);
 	
@@ -41,10 +42,12 @@ public class MainView extends Composite {
 		
 
 		HorizontalPanel hPanel2 = new HorizontalPanel();
+		vPanel2 = new VerticalPanel();
 		Opgaver = new Label("Her vises opgaverne:");
 		btnHent = new Button("Hent opgaver");
 		
-		hPanel2.add(Opgaver);
+		vPanel2.add(Opgaver);
+		hPanel2.add(vPanel2);
 		hPanel2.add(btnHent);
 		vPanel.add(hPanel2);
 		
@@ -86,11 +89,11 @@ public class MainView extends Composite {
 
 					@Override
 					public void onSuccess(List<OpgaveDTO> result) {
-						String resultat = null;
+						String resultat = "";
+						vPanel2.clear();
 						for(OpgaveDTO opgave : result){
-							resultat += opgave.getOpgaveNavn() + "\n";
+							vPanel2.add(new Label(opgave.getOpgaveNavn()));
 						}
-						Opgaver.setText(resultat);
 					}	
 				});
 			}

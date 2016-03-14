@@ -6,11 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import dtu.rejseafregning.client.services.IMedarbejderDAO;
 import dtu.rejseafregning.shared.DALException;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 
-public class MedarbejderDAO implements IMedarbejderDAO {
+public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejderDAO {
 
 	private PreparedStatement getMedarbejderStmt = null;
 	private PreparedStatement getMedarbejderListStmt = null;
