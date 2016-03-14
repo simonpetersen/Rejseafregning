@@ -74,6 +74,7 @@ public class MainView extends Composite {
 					}					
 				});
 			}
+			
 			if(event.getSource() == btnHent){
 				OpgaveDAO.getOpgaveList(new AsyncCallback<List<OpgaveDTO>>(){
 
@@ -90,8 +91,7 @@ public class MainView extends Composite {
 							resultat += opgave.getOpgaveNavn() + "\n";
 						}
 						Opgaver.setText(resultat);
-					}
-					
+					}	
 				});
 			}
 		}
