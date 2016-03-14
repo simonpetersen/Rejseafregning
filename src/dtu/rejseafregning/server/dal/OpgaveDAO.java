@@ -6,11 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import dtu.rejseafregning.client.services.IOpgaveDAO;
 import dtu.rejseafregning.shared.DALException;
 import dtu.rejseafregning.shared.OpgaveDTO;
 
-public class OpgaveDAO implements IOpgaveDAO {
+public class OpgaveDAO extends RemoteServiceServlet implements IOpgaveDAO {
 
 	private PreparedStatement getOpgaveStmt = null;
 	private PreparedStatement getOpgaveListStmt = null;
@@ -19,7 +21,8 @@ public class OpgaveDAO implements IOpgaveDAO {
 	private PreparedStatement deleteOpgaveStmt = null;
 
 	public OpgaveDAO() throws Exception {
-
+		new Connector();
+		
 		// getOpgave statement
 		getOpgaveStmt = Connector.conn.prepareStatement("SELECT * FROM Opgave WHERE Navn = ?");
 

@@ -11,7 +11,13 @@ import dtu.rejseafregning.client.ui.MainView;
 public class Rejseafregning implements EntryPoint {
 		
 	public void onModuleLoad() {
-//		MainView mView = new MainView();
-//		RootPanel.get().add(mView);
+		MainView mView = null;
+		try {
+			mView = new MainView();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		RootPanel.get().add(mView);
 	}
 }

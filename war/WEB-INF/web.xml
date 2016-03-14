@@ -12,12 +12,12 @@
   </servlet> 
   <servlet-mapping>
     <servlet-name>opgaveServlet</servlet-name>
-    <url-pattern>/1_Rejseafregning/opgaveservice</url-pattern>
+    <url-pattern>/__rejseafregning/opgaveservice</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>__Rejseafregning.html</welcome-file>
+    <welcome-file>1_Rejseafregning.html</welcome-file>
   </welcome-file-list>
 
 </web-app>
