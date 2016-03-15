@@ -15,6 +15,15 @@
     <url-pattern>/__rejseafregning/opgaveservice</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>projektServlet</servlet-name>
+  	<servlet-class>dtu.rejseafregning.server.dal.ProjektDAO</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>projektServlet</servlet-name>
+  	<url-pattern>/__rejseafregning/projektservice</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>1_Rejseafregning.html</welcome-file>
