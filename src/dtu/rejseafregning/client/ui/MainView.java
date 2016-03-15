@@ -4,7 +4,6 @@ package dtu.rejseafregning.client.ui;
 import java.util.List;
 
 import com.google.gwt.core.shared.GWT;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
@@ -15,7 +14,9 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.web.bindery.event.shared.EventBus;
 
+import dtu.rejseafregning.client.events.AddOpgaveEvent;
 import dtu.rejseafregning.client.services.IOpgaveDAO;
 import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
 import dtu.rejseafregning.shared.OpgaveDTO;
@@ -27,9 +28,10 @@ public class MainView extends Composite {
 	VerticalPanel vPanel2;
 	
 	private IOpgaveDAOAsync OpgaveDAO = GWT.create(IOpgaveDAO.class);
+	private final EventBus eventBus;
 	
-	public MainView(){
-		
+	public MainView(EventBus eventBus) {
+		this.eventBus = eventBus;
 		VerticalPanel vPanel = new VerticalPanel();
 		
 		HorizontalPanel hPanel1 = new HorizontalPanel();
@@ -62,20 +64,8 @@ public class MainView extends Composite {
 		@Override
 		public void onClick(ClickEvent event) {
 			if(event.getSource() == btnOK){
-			OpgaveDTO opg = new OpgaveDTO(Name.getText());
-				OpgaveDAO.createOpgave(opg, new AsyncCallback<Void>(){
-
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert("ServerFejl: " + caught.getMessage());
-						
-					}
-
-					@Override
-					public void onSuccess(Void result) {
-						Window.alert("Opgaven er gemt");
-					}					
-				});
+				OpgaveDTO opg = new OpgaveDTO(Name.getText());
+				eventBus.fireEvent(new AddOpgaveEvent(opg));
 			}
 			
 			if(event.getSource() == btnHent){

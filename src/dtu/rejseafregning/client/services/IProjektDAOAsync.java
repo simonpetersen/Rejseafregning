@@ -7,7 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import dtu.rejseafregning.shared.ProjektDTO;
 
 public interface IProjektDAOAsync {
-	void getProjekt(String ProjektNavn, AsyncCallback<ProjektDTO> callback);
+	void getProjekt(int projektID, AsyncCallback<ProjektDTO> callback);
 	void getProjektList(AsyncCallback<List<ProjektDTO>> callback);
 	void createProjekt(ProjektDTO projekt, AsyncCallback<Void> callback);
 	void updateProjekt(ProjektDTO projekt, AsyncCallback<Void> callback);

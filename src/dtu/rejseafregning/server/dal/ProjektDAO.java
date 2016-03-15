@@ -23,30 +23,30 @@ public class ProjektDAO extends RemoteServiceServlet implements IProjektDAO {
 	public ProjektDAO() throws Exception {
 
 		// getProjekt statement
-		getProjektStmt = Connector.conn.prepareStatement("SELECT * FROM Projekt WHERE Navn = ?");
+		getProjektStmt = Connector.conn.prepareStatement("SELECT * FROM Projekt WHERE projektID = ?");
 
 		// getProjektList statement
 		getProjektListStmt = Connector.conn.prepareStatement("SELECT * FROM Projekt");
 
 		// createProjekt statement
-		createProjektStmt = Connector.conn.prepareStatement("INSERT INTO Projekt VALUES ( ?, ?)");
+		createProjektStmt = Connector.conn.prepareStatement("INSERT INTO Projekt VALUES ( ?, ?, ?)");
 
 		// updateProjekt statement
 		updateProjektStmt = Connector.conn
-				.prepareStatement("UPDATE Projekt SET OpgaveNavn = ? WHERE Navn = ?");
+				.prepareStatement("UPDATE Projekt SET OpgaveNavn = ? WHERE projektID = ?");
 
 		// deleteProjekt statement
-		deleteProjektStmt = Connector.conn.prepareStatement("DELETE FROM Projekt WHERE Navn = ?");
+		deleteProjektStmt = Connector.conn.prepareStatement("DELETE FROM Projekt WHERE projektID = ?");
 	}
 
 	@Override
-	public ProjektDTO getProjekt(String Navn) throws DALException {
+	public ProjektDTO getProjekt(int ID) throws DALException {
 		ResultSet rs = null;
 		try {
-			getProjektStmt.setString(1, Navn);
+			getProjektStmt.setInt(1, ID);
 			rs = getProjektStmt.executeQuery();
 
-			return new ProjektDTO(rs.getString("Navn"), rs.getString("OpgaveNavn"));
+			return new ProjektDTO(rs.getInt("projektID"), rs.getString("Navn"), rs.getString("OpgaveNavn"));
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getProjekt fejlede");
 		}
@@ -62,7 +62,7 @@ public class ProjektDAO extends RemoteServiceServlet implements IProjektDAO {
 
 			while (rs.next()) {
 				ProjektListe
-						.add(new ProjektDTO(rs.getString("Navn"), rs.getString("OpgaveNavn")));
+						.add(new ProjektDTO(rs.getInt("projektID"), rs.getString("Navn"), rs.getString("OpgaveNavn")));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getProjektList fejlede");
@@ -81,8 +81,9 @@ public class ProjektDAO extends RemoteServiceServlet implements IProjektDAO {
 	public void createProjekt(ProjektDTO projekt) throws DALException {
 		try {
 			// Argumenter til statement
-			createProjektStmt.setString(1, projekt.getProjektNavn());
-			createProjektStmt.setString(2, projekt.getOpgaveNavn());
+			createProjektStmt.setInt(1, projekt.getProjektID());
+			createProjektStmt.setString(2, projekt.getProjektNavn());
+			createProjektStmt.setString(3, projekt.getOpgaveNavn());
 
 			// Kald til database
 			createProjektStmt.executeUpdate();
@@ -95,8 +96,9 @@ public class ProjektDAO extends RemoteServiceServlet implements IProjektDAO {
 	public void updateProjekt(ProjektDTO projekt) throws DALException {
 		try {
 			// Argumenter til statement
-			updateProjektStmt.setString(1, projekt.getProjektNavn());
-			updateProjektStmt.setString(2, projekt.getOpgaveNavn());
+			updateProjektStmt.setInt(1, projekt.getProjektID());
+			updateProjektStmt.setString(2, projekt.getProjektNavn());
+			updateProjektStmt.setString(3, projekt.getOpgaveNavn());
 
 			// Kald til database
 			updateProjektStmt.executeUpdate();
@@ -110,7 +112,7 @@ public class ProjektDAO extends RemoteServiceServlet implements IProjektDAO {
 	public void deleteProjekt(ProjektDTO projekt) throws DALException {
 		try {
 			// Argumenter til statement
-			deleteProjektStmt.setString(1, projekt.getProjektNavn());
+			deleteProjektStmt.setInt(1, projekt.getProjektID());
 
 			// Kald til database
 			deleteProjektStmt.executeUpdate();

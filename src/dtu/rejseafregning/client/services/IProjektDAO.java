@@ -10,7 +10,7 @@ import dtu.rejseafregning.shared.ProjektDTO;
 
 @RemoteServiceRelativePath("projektservice")
 public interface IProjektDAO extends RemoteService{
-	ProjektDTO getProjekt(String ProjektNavn) throws DALException;
+	ProjektDTO getProjekt(int projektID) throws DALException;
 	List<ProjektDTO> getProjektList() throws DALException;
 	void createProjekt(ProjektDTO projekt) throws DALException;
 	void updateProjekt(ProjektDTO projekt) throws DALException;
