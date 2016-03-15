@@ -7,6 +7,24 @@
 
   <!-- Servlets -->
   <servlet>
+  	<servlet-name>bilagServlet</servlet-name>
+  	<servlet-class>dtu.rejseafregning.server.dal.BilagDAO</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>bilagServlet</servlet-name>
+  	<url-pattern>/__rejseafregning/bilagservice</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>medarbejderServlet</servlet-name>
+  	<servlet-class>dtu.rejseafregning.server.dal.MedarbejderDAO</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>medarbejderServlet</servlet-name>
+  	<url-pattern>/__rejseafregning/medarbejderservice</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>opgaveServlet</servlet-name>
     <servlet-class>dtu.rejseafregning.server.dal.OpgaveDAO</servlet-class>
   </servlet> 
@@ -22,6 +40,33 @@
   <servlet-mapping>
   	<servlet-name>projektServlet</servlet-name>
   	<url-pattern>/__rejseafregning/projektservice</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>rejseafregningServlet</servlet-name>
+  	<servlet-class>dtu.rejseafregning.server.dal.RejseafregningDAO</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>rejseafregningServlet</servlet-name>
+  	<url-pattern>/__rejseafregning/rejseafregningservice</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>rejsedagServlet</servlet-name>
+  	<servlet-class>dtu.rejseafregning.server.dal.RejsedagDAO</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>rejsedagServlet</servlet-name>
+  	<url-pattern>/__rejseafregning/rejsedagservice</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>udgiftServlet</servlet-name>
+  	<servlet-class>dtu.rejseafregning.server.dal.UdgiftDAO</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>udgiftServlet</servlet-name>
+  	<url-pattern>/__rejseafregning/udgiftservice</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
