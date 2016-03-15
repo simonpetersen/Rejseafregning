@@ -10,13 +10,14 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.web.bindery.event.shared.EventBus;
 
 import dtu.rejseafregning.client.events.AddOpgaveEvent;
+import dtu.rejseafregning.client.events.GetOpgaveListEvent;
 import dtu.rejseafregning.client.services.IOpgaveDAO;
 import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
 import dtu.rejseafregning.shared.OpgaveDTO;
@@ -24,8 +25,7 @@ import dtu.rejseafregning.shared.OpgaveDTO;
 public class MainView extends Composite {
 	TextBox Name;
 	Button btnOK, btnHent;
-	Label Opgaver;
-	VerticalPanel vPanel2;
+	FlexTable opgaverTable;
 	
 	private IOpgaveDAOAsync OpgaveDAO = GWT.create(IOpgaveDAO.class);
 	private final EventBus eventBus;
@@ -37,26 +37,26 @@ public class MainView extends Composite {
 		HorizontalPanel hPanel1 = new HorizontalPanel();
 		btnOK = new Button("OK");
 		Name = new TextBox();
+		opgaverTable = new FlexTable();
+		btnHent = new Button("Hent opgaver");
 		
 		hPanel1.add(Name);
 		hPanel1.add(btnOK);
+		hPanel1.add(btnHent);
 		vPanel.add(hPanel1);
-		
-
-		HorizontalPanel hPanel2 = new HorizontalPanel();
-		vPanel2 = new VerticalPanel();
-		Opgaver = new Label("Her vises opgaverne:");
-		btnHent = new Button("Hent opgaver");
-		
-		vPanel2.add(Opgaver);
-		hPanel2.add(vPanel2);
-		hPanel2.add(btnHent);
-		vPanel.add(hPanel2);
+		vPanel.add(opgaverTable);
 		
 		btnOK.addClickHandler(new btnClickHandler());
 		btnHent.addClickHandler(new btnClickHandler());
 		
 		initWidget(vPanel);
+	}
+	
+	public void setOpgaveList(List<OpgaveDTO> opgaver) {
+		opgaverTable.clear();
+		for(int i = 0; i < opgaver.size(); i++){
+			opgaverTable.setText(i,0, opgaver.get(i).getOpgaveNavn());
+		}
 	}
 
 	private class btnClickHandler implements ClickHandler{
@@ -69,23 +69,7 @@ public class MainView extends Composite {
 			}
 			
 			if(event.getSource() == btnHent){
-				OpgaveDAO.getOpgaveList(new AsyncCallback<List<OpgaveDTO>>(){
-
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert("Serverfejl: " + caught.getMessage());
-						
-					}
-
-					@Override
-					public void onSuccess(List<OpgaveDTO> result) {
-						String resultat = "";
-						vPanel2.clear();
-						for(OpgaveDTO opgave : result){
-							vPanel2.add(new Label(opgave.getOpgaveNavn()));
-						}
-					}	
-				});
+				eventBus.fireEvent(new GetOpgaveListEvent());
 			}
 		}
 	}

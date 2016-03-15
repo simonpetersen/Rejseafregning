@@ -1,5 +1,7 @@
 package dtu.rejseafregning.client.logic;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -10,9 +12,11 @@ import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.AddOpgaveEvent;
+import dtu.rejseafregning.client.events.GetOpgaveListEvent;
 import dtu.rejseafregning.client.services.IOpgaveDAO;
 import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
 import dtu.rejseafregning.client.ui.MainView;
+import dtu.rejseafregning.shared.OpgaveDTO;
 
 public class Controller {
 
@@ -39,13 +43,27 @@ public class Controller {
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("ServerFejl: " + caught.getMessage());
-				
 			}
 
 			@Override
 			public void onSuccess(Void result) {
 				Window.alert("Opgaven er gemt");
 			}					
+		});
+	}
+	
+	@EventHandler
+	public void onGetOpgaveListEvent(GetOpgaveListEvent e) {
+		OpgaveDAO.getOpgaveList(new AsyncCallback<List<OpgaveDTO>>(){
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Serverfejl: " + caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(List<OpgaveDTO> result) {
+				mainView.setOpgaveList(result);
+			}	
 		});
 	}
 }
