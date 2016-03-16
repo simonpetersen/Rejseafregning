@@ -27,7 +27,6 @@ public class MainView extends Composite {
 	Button btnOK, btnHent;
 	FlexTable opgaverTable;
 	
-	private IOpgaveDAOAsync OpgaveDAO = GWT.create(IOpgaveDAO.class);
 	private final EventBus eventBus;
 	
 	public MainView(EventBus eventBus) {
