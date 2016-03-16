@@ -7,5 +7,16 @@
 	}
 	</ui:style>
 	<g:VerticalPanel>
+		<g:HTML>DTU Rejseafregning</g:HTML>
+		<g:HTML><br/></g:HTML>
+		<g:HorizontalPanel>
+			<g:Label text="Brugernavn: "/>
+			<g:TextBox ui:field="brugernavnTextBox"/>
+		</g:HorizontalPanel>
+		<g:HorizontalPanel>
+			<g:Label text="Adgangskode: "/>
+			<g:PasswordTextBox ui:field="adgangskodeTextBox"/>
+		</g:HorizontalPanel>
+		<g:Button ui:field="button">Login</g:Button>
 	</g:VerticalPanel>
 </ui:UiBinder> 

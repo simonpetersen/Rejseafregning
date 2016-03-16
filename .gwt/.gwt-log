@@ -199,3 +199,519 @@ Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTim
       Compiling...
          Compilation completed in 0,01 seconds
       Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 2771 cached/archived units.  Used 2771 / 2773 units from cache.
+Compiling...
+   Compilation completed in 0,04 seconds
+Validating units:
+   Errors in 'file:/Users/Simon/git/Rejseafregning/src/dtu/rejseafregning/shared/BilagDTO.java'
+      Line 10: No source code is available for type java.io.File; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160638143_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160638973_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160669103.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160669103.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160669103_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160682516.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160682516.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160682516_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160691496.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160691496.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160691496_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160711553.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160711553.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160711553_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160711617.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160711617.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160711617_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160725259.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160725259.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160725259_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160725329.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160725329.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160725329_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160748349.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160748349.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160748349_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160763484.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160763484.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160763484_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160781792.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160781792.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160781792_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160783496.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160783496.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160783496_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160816273.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160816273.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160816273_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160820266.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160820266.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160820266_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160821874.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160821874.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160821874_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160834392.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160834392.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160834392_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160840762.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160840762.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160840762_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160843906.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160843906.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160843906_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160855006.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160855006.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160855006_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160856969.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160856969.Template
+         Generating method body for html1()
+         Generating method body for html2()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160856969_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160868275.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160868275.Template
+         Generating method body for html1()
+         Generating method body for html2()
+         Generating method body for html3()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160868275_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160871985.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160871985.Template
+         Generating method body for html1()
+         Generating method body for html2()
+         Generating method body for html3()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160871985_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160909625.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160909625.Template
+         Generating method body for html1()
+         Generating method body for html2()
+         Generating method body for html3()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160909625_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160921832.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160921832.Template
+         Generating method body for html1()
+         Generating method body for html2()
+         Generating method body for html3()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,00 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160921832_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView.LoginViewUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160934054.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160934054.Template
+         Generating method body for html1()
+         Generating method body for html2()
+         Generating method body for html3()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.LoginView_LoginViewUiBinderImpl_designTime1458160934054_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
