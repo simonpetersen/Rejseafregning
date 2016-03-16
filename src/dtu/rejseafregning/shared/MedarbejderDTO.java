@@ -6,7 +6,9 @@ public class MedarbejderDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 private String navn, brugernavn, adgangskode, email;
-	
+
+	public MedarbejderDTO() {}
+
 	public MedarbejderDTO(String navn, String brugernavn, String adgangskode, String email) {
 		setNavn(navn);
 		setBrugernavn(brugernavn);

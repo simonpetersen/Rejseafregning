@@ -13,16 +13,20 @@ import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.AddOpgaveEvent;
 import dtu.rejseafregning.client.events.GetOpgaveListEvent;
+import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
 import dtu.rejseafregning.client.services.IOpgaveDAO;
 import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
 import dtu.rejseafregning.client.ui.MainView;
+import dtu.rejseafregning.shared.MedarbejderDTO;
 import dtu.rejseafregning.shared.OpgaveDTO;
 
 public class Controller {
 
 	private MainView mainView;
+	private LoginController loginController;
 	
 	private EventBus eventBus;
+	private MedarbejderDTO medarbejder;
 	
 	private IOpgaveDAOAsync OpgaveDAO = GWT.create(IOpgaveDAO.class);
 	
@@ -33,8 +37,8 @@ public class Controller {
 		eventBus = new SimpleEventBus();
 		eventBinder.bindEventHandlers(this, eventBus);
 		mainView = new MainView(eventBus);
-		
-		RootPanel.get().add(mainView);
+		loginController = new LoginController(eventBus);
+//		RootPanel.get().add(mainView);
 	}
 	
 	@EventHandler
@@ -65,5 +69,12 @@ public class Controller {
 				mainView.setOpgaveList(result);
 			}	
 		});
+	}
+	
+	@EventHandler
+	public void onLoginSuccessfullEvent(LoginSuccessfullEvent e) {
+		medarbejder = e.getMedarbejder();
+		RootPanel.get().add(mainView);
+		Window.alert(medarbejder.getNavn());
 	}
 }
