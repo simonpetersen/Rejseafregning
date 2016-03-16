@@ -23,7 +23,7 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 	public MedarbejderDAO() throws Exception {
 
 		// getMedarbejder statement
-		getMedarbejderStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder WHERE Brugernavn = ?");
+		getMedarbejderStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder WHERE Brugernavn = '?'");
 
 		// getMedarbejderList statement
 		getMedarbejderListStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder");

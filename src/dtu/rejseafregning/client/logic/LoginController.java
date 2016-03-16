@@ -37,7 +37,7 @@ public class LoginController {
 		medarbejderDAO.getMedarbejder(e.getBrugernavn(), new AsyncCallback<MedarbejderDTO>(){
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Fejl i login");
+				Window.alert("Fejl i login: "+caught.getMessage());
 			}
 
 			@Override
