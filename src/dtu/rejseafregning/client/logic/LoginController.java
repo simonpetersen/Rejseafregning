@@ -17,7 +17,7 @@ import dtu.rejseafregning.shared.MedarbejderDTO;
 
 public class LoginController {
 	
-	IMedarbejderDAOAsync medarbejderDAO = GWT.create(IMedarbejderDAO.class);
+	private IMedarbejderDAOAsync medarbejderDAO = GWT.create(IMedarbejderDAO.class);
 	
 	private LoginView loginView;
 	private EventBus eventBus;

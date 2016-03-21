@@ -45,8 +45,9 @@ public class ProjektDAO extends RemoteServiceServlet implements IProjektDAO {
 		try {
 			getProjektStmt.setInt(1, ID);
 			rs = getProjektStmt.executeQuery();
-
-			return new ProjektDTO(rs.getInt("projektID"), rs.getString("Navn"), rs.getString("OpgaveNavn"));
+			if (rs.first())
+				return new ProjektDTO(rs.getInt("projektID"), rs.getString("Navn"), rs.getString("OpgaveNavn"));
+			throw new DALException("Projekt findes ikke");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getProjekt fejlede");
 		}

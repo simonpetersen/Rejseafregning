@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import dtu.rejseafregning.client.services.IMedarbejderDAO;
@@ -23,7 +24,7 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 	public MedarbejderDAO() throws Exception {
 
 		// getMedarbejder statement
-		getMedarbejderStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder WHERE Brugernavn = '?'");
+		getMedarbejderStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder WHERE Brugernavn = ?");
 
 		// getMedarbejderList statement
 		getMedarbejderListStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder");
@@ -45,11 +46,12 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 		try {
 			getMedarbejderStmt.setString(1, Brugernavn);
 			rs = getMedarbejderStmt.executeQuery();
-
-			return new MedarbejderDTO(rs.getString("Navn"), rs.getString("Brugernavn"),
-					rs.getString("Password"), rs.getString("Email"));
+			if (rs.first())
+				return new MedarbejderDTO(rs.getString("navn"), rs.getString("brugernavn"),
+						rs.getString("adgangskode"), rs.getString("email"));
+			throw new DALException("Medarbejder findes ikke!");
 		} catch (SQLException e) {
-			throw new DALException("Kaldet getMedarbejder fejlede");
+			throw new DALException(e.getMessage());
 		}
 	}
 

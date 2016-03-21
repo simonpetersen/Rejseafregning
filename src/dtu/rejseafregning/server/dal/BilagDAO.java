@@ -57,7 +57,7 @@ public class BilagDAO extends RemoteServiceServlet implements IBilagDAO {
 
 			rs = getBilagStmt.executeQuery();
 			
-			//File oprettes og outputstream indlæser billedet til filen.
+			//File oprettes og outputstream indlï¿½ser billedet til filen.
 			File image = new File("D:\\java.png");
 			FileOutputStream fos = new FileOutputStream(image);
 
@@ -67,7 +67,9 @@ public class BilagDAO extends RemoteServiceServlet implements IBilagDAO {
 				fos.write(buffer);
 			}
 			fos.close();
-			return new BilagDTO(rs.getInt("Bilag_ID"), image);
+			if (rs.first())
+				return new BilagDTO(rs.getInt("Bilag_ID"), image);
+			throw new DALException("Bilag findes ikke");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet: getBilag fejlede");
 		}
@@ -110,7 +112,7 @@ public class BilagDAO extends RemoteServiceServlet implements IBilagDAO {
 		try {
 			createBilagStmt.setInt(1, bilag.getBilagID());
 
-			// Billede oprettes og sættes som argument i statement
+			// Billede oprettes og sï¿½ttes som argument i statement
 			File image = bilag.getBillede();
 			FileInputStream fis = new FileInputStream(image);
 			createBilagStmt.setBinaryStream(2, fis, (int) image.length());
@@ -132,7 +134,7 @@ public class BilagDAO extends RemoteServiceServlet implements IBilagDAO {
 			File image = bilag.getBillede();
 			FileInputStream fis = new FileInputStream(image);
 			
-			//argumenter sættes i statement
+			//argumenter sï¿½ttes i statement
 			updateBilagStmt.setBinaryStream(1, fis, (int) image.length());
 			updateBilagStmt.setInt(1, bilag.getBilagID());
 			
@@ -150,7 +152,7 @@ public class BilagDAO extends RemoteServiceServlet implements IBilagDAO {
 	@Override
 	public void deleteBilag(BilagDTO bilag) throws DALException {
 		try {
-			//BilagID indsættes i statement
+			//BilagID indsï¿½ttes i statement
 			deleteBilagStmt.setInt(1, bilag.getBilagID());
 		} catch (SQLException e) {
 			throw new DALException("Kaldet deleteBilag fejlede.");

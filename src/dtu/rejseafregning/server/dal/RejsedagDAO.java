@@ -47,9 +47,10 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 			getRejsedagStmt.setInt(1, rejsedagID);
 
 			rs = getRejsedagStmt.executeQuery();
-
-			return new RejsedagDTO(rs.getInt("Rejsedag_ID"), rs.getBoolean("Morgenmad"), rs.getBoolean("Frokost"),
+			if (rs.first())
+				return new RejsedagDTO(rs.getInt("Rejsedag_ID"), rs.getBoolean("Morgenmad"), rs.getBoolean("Frokost"),
 					rs.getBoolean("Aftensmad"), rs.getDate("Start"), rs.getDate("Slut"));
+			throw new DALException("Rejsedag findes ikke");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getRejsedag fejlede");
 		}

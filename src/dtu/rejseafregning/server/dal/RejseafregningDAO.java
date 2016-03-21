@@ -46,14 +46,15 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 	public RejseafregningDTO getRejseafregning(int rejseafregningID) throws DALException {
 		ResultSet rs = null;
 		try {
-			// Argument indsættes i stmt
+			// Argument indsï¿½ttes i stmt
 			getRejseafregningStmt.setInt(1, rejseafregningID);
-			// rs sættes fra databasen
+			// rs sï¿½ttes fra databasen
 			rs = getRejseafregningStmt.executeQuery();
-
-			return new RejseafregningDTO(rs.getInt("Rejseafregning_ID"), rs.getString("Medarbejdernavn"),
+			if (rs.first())
+				return new RejseafregningDTO(rs.getInt("Rejseafregning_ID"), rs.getString("Medarbejdernavn"),
 					rs.getString("Godkendernavn"), rs.getString("Anvisernavn"), rs.getString("Land"),
 					rs.getString("By"), rs.getDate("Startdato"), rs.getDate("Slutdato"));
+			throw new DALException("Rejseafregning findes ikke");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getRejseafregning fejlede");
 		}
@@ -88,7 +89,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 	@Override
 	public void createRejseafregning(RejseafregningDTO rejseafregning) throws DALException {
 		try {
-			// Argumenter insættes
+			// Argumenter insï¿½ttes
 			createRejseafregningStmt.setInt(1, rejseafregning.getRejseafregningID());
 			createRejseafregningStmt.setString(2, rejseafregning.getMedarbejderNavn());
 			createRejseafregningStmt.setString(3, rejseafregning.getGodkenderNavn());
