@@ -9,3 +9,12 @@ h1 {
   margin: 40px 0px 70px;
   text-align: center;
 }
+
+.loginPanel {
+	color: #777777;
+	width: 100%;
+}
+
+.loginHPanel {
+	padding: 5px;
+}

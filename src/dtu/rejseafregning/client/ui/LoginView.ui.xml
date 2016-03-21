@@ -5,15 +5,14 @@
 	.important {
 		font-weight: bold;
 	}
-	</ui:style>
-	<g:VerticalPanel>
-		<g:HTML>DTU Rejseafregning</g:HTML>
-		<g:HTML><br/></g:HTML>
-		<g:HorizontalPanel>
+	</ui:style>	
+	<g:VerticalPanel styleName="loginPanel" horizontalAlignment="ALIGN_CENTER">
+		<g:HTML styleName="h1">DTU Rejseafregning</g:HTML>
+		<g:HorizontalPanel styleName="loginHPanel">
 			<g:Label text="Brugernavn: "/>
 			<g:TextBox ui:field="brugernavnTextBox"/>
 		</g:HorizontalPanel>
-		<g:HorizontalPanel>
+		<g:HorizontalPanel styleName="loginHPanel">
 			<g:Label text="Adgangskode: "/>
 			<g:PasswordTextBox ui:field="adgangskodeTextBox"/>
 		</g:HorizontalPanel>
