@@ -24,7 +24,7 @@ public class OpgaveDAO extends RemoteServiceServlet implements IOpgaveDAO {
 		new Connector();
 		
 		// getOpgave statement
-		getOpgaveStmt = Connector.conn.prepareStatement("SELECT * FROM Opgave WHERE Navn = ?");
+		getOpgaveStmt = Connector.conn.prepareStatement("SELECT * FROM Opgave WHERE opgaveNavn = ?");
 
 		// getOpgaveList statement
 		getOpgaveListStmt = Connector.conn.prepareStatement("SELECT * FROM Opgave");
@@ -33,10 +33,10 @@ public class OpgaveDAO extends RemoteServiceServlet implements IOpgaveDAO {
 		createOpgaveStmt = Connector.conn.prepareStatement("INSERT INTO Opgave VALUES (?)");
 
 		// updateOpgave statement
-		updateOpgaveStmt = Connector.conn.prepareStatement("UPDATE Opgave SET Navn = ? WHERE Navn = ?");
+		updateOpgaveStmt = Connector.conn.prepareStatement("UPDATE Opgave SET opgaveNavn = ? WHERE opgaveNavn = ?");
 
 		// deleteOpgave statement
-		deleteOpgaveStmt = Connector.conn.prepareStatement("DELETE FROM Opgave WHERE Navn = ?");
+		deleteOpgaveStmt = Connector.conn.prepareStatement("DELETE FROM Opgave WHERE opgaveNavn = ?");
 	}
 
 	@Override
