@@ -8,7 +8,7 @@
 <module rename-to='__rejseafregning'>
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User'/>
-
+  <inherits name='com.google.web.bindery.event.EventBinder'/>
   <!-- Inherit the default GWT style sheet.  You can change       -->
   <!-- the theme of your GWT application by uncommenting          -->
   <!-- any one of the following lines.                            -->

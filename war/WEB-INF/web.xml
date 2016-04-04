@@ -5,8 +5,6 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
-<inherits name='com.google.web.bindery.event.EventBinder'/>
-
   <!-- Servlets -->
   <servlet>
     <servlet-name>opgaveServlet</servlet-name>

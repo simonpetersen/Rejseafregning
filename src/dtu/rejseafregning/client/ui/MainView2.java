@@ -2,30 +2,22 @@ package dtu.rejseafregning.client.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.i18n.client.Constants;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ScrollPanel;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 
-import dtu.rejseafregning.client.Rejseafregning;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
 
-public class MainView2 extends Composite implements HasText {
+public class MainView2 extends Composite {
 
 	private static MainView2UiBinder uiBinder = GWT.create(MainView2UiBinder.class);
 	@UiField Label navn;
@@ -46,8 +38,8 @@ public class MainView2 extends Composite implements HasText {
 	
 	private final EventBus eventBus;
 	
-	interface logudEventBinder extends EventBinder<MainView2> {}
-	private final logudEventBinder eventBinder = GWT.create(logudEventBinder.class);
+	interface MyEventBinder extends EventBinder<MainView2> {}
+ 	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
 
 	interface MainView2UiBinder extends UiBinder<Widget, MainView2> {
 	}
@@ -105,13 +97,5 @@ public class MainView2 extends Composite implements HasText {
 	@UiHandler("btnLogud")
 	public void onButtonClick(ClickEvent event) {
 		eventBus.fireEvent(new LogudButtonEvent());
-	}
-
-	@Override
-	public String getText() {
-		return null;
-	}
-	@Override
-	public void setText(String text) {
 	}
 }
