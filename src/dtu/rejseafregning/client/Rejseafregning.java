@@ -1,7 +1,6 @@
 package dtu.rejseafregning.client;
 
 import com.google.gwt.core.client.EntryPoint;
-
 import dtu.rejseafregning.client.logic.Controller;
 
 /**
