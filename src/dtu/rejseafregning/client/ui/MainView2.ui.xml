@@ -1,0 +1,54 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	.nothPanel {
+		background-color: #BDEDFF;
+	}
+	.westPanel {
+		background-color: #E5E4E2;
+	}
+	.centerPanel {
+		background-color: #FEFCFF;
+		padding: 5px;
+		margin: 5px;
+	}
+	</ui:style>
+		<g:DockPanel borderWidth="0" width="100%" height="100%" horizontalAlignment="ALIGN_LEFT">
+			<g:Dock direction="NORTH">
+				<g:HorizontalPanel styleName="{style.nothPanel}" width="100%">
+					<g:Label text="beware" width="10%" styleName="{style.nothPanel}" />
+					<g:Cell horizontalAlignment="ALIGN_CENTER">
+						<g:VerticalPanel width="40%" styleName="{style.nothPanel}" >
+						<g:Label text="Navn:" ui:field="navn"/>
+						<g:Label text="Afdeling:" ui:field="afdeling"/>
+					</g:VerticalPanel>
+					</g:Cell><g:Cell horizontalAlignment="ALIGN_RIGHT">
+					
+						<g:Button ui:field="btnLogaf" text="Log ind" ></g:Button>
+					</g:Cell>
+				</g:HorizontalPanel>
+			</g:Dock>
+			<g:Dock direction="WEST">
+				<g:VerticalPanel width="20%" styleName="{style.westPanel}">
+					<g:Label ui:field="velkommen" text="Velkommen"/>
+					<g:Label text="Mine opgaver"/>
+					<g:Label text="Dokumenter"/>
+					<g:Label text="Rapporter"/>
+					<g:Label text="Mine oplysninger"/>
+					<g:Label text="Indstillinger"/>
+					<g:Label text="Intranet Link"/>
+					<g:Label text="Hjælp"/>
+				</g:VerticalPanel>
+			</g:Dock>
+			<g:Dock direction="CENTER" width="">
+				<g:VerticalPanel horizontalAlignment="ALIGN_LEFT" width="80%" height="80%" styleName="{style.centerPanel}">
+					<g:Label text="Test"/>
+				</g:VerticalPanel>
+			</g:Dock>
+		</g:DockPanel>
+		
+</ui:UiBinder> 

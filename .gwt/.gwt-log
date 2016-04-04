@@ -6826,3 +6826,23 @@ Rebinding dtu.rejseafregning.client.ui.MainView2_MainView2UiBinderImpl_designTim
       Compiling...
          Compilation completed in 0,00 seconds
       Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.MainView2.MainView2UiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.MainView2_MainView2UiBinderImpl_designTime1459770942949_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,01 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.MainView2.MainView2UiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0,03 seconds
+      Removing invalidated units
+Rebinding dtu.rejseafregning.client.ui.MainView2_MainView2UiBinderImpl_designTime1459770945049_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0,02 seconds
+      Removing invalidated units
