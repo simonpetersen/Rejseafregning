@@ -10,6 +10,7 @@ import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.LoginButtonEvent;
 import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
+import dtu.rejseafregning.client.events.OpdaterOplysningerEvent;
 import dtu.rejseafregning.client.services.IMedarbejderDAO;
 import dtu.rejseafregning.client.services.IMedarbejderDAOAsync;
 import dtu.rejseafregning.client.ui.LoginView;
@@ -47,4 +48,20 @@ public class LoginController {
  			}
  		});
   	}
+  	
+  	@EventHandler
+ 	public void onOplysningerOpdateret(OpdaterOplysningerEvent e) {
+ 		medarbejderDAO.updateMedarbejder(e.getMedarbejder(), new AsyncCallback<Void>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl: "+caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				Window.alert("Bruger er opdateret!");
+			}
+ 			
+ 		});
+ 	}
 }

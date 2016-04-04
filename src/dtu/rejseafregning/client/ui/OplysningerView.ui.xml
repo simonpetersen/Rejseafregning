@@ -1,0 +1,58 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:d="urn:import:com.google.gwt.dom.client">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	</ui:style>
+	<g:VerticalPanel>
+		<g:Grid>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Navn: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:TextBox ui:field="navnTextBox"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Brugernavn: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label ui:field="brugerNavnLabel" />
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Email: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:TextBox ui:field="emailTextBox"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Ny adgangskode:  "/>
+				</g:customCell>
+				<g:customCell>
+					<g:PasswordTextBox ui:field="adgangskodeTextBox"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Gentag adgangskode:  "/>
+				</g:customCell>
+				<g:customCell>
+					<g:PasswordTextBox ui:field="adgangskode2TextBox"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Button text="Opdater" ui:field="gemKnap" />
+				</g:customCell>
+			</g:row>
+		</g:Grid>
+	</g:VerticalPanel>
+</ui:UiBinder> 

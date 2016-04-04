@@ -14,6 +14,12 @@ private String navn, brugernavn, adgangskode, email;
 		setEmail(email);
 	}
 	
+	public MedarbejderDTO(String navn, String adgangskode, String email) {
+		setNavn(navn);
+		setAdgangskode(adgangskode);
+		setEmail(email);
+	}
+	
 	public String getNavn() {
 		return navn;
 	}
