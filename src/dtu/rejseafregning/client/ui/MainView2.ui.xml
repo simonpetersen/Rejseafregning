@@ -19,33 +19,32 @@
 	</ui:style>
 		<g:DockPanel borderWidth="0" width="100%" height="100%" horizontalAlignment="ALIGN_LEFT">
 			<g:Dock direction="NORTH">
-				<g:HorizontalPanel styleName="{style.nothPanel}" width="100%">
-					<g:Label text="beware" width="10%" styleName="{style.nothPanel}" />
+				<g:HorizontalPanel styleName="{style.nothPanel}" width="100%" ui:field="hPanel">
 					<g:Cell horizontalAlignment="ALIGN_CENTER">
-						<g:VerticalPanel width="40%" styleName="{style.nothPanel}" >
-						<g:Label text="Navn:" ui:field="navn"/>
-						<g:Label text="Afdeling:" ui:field="afdeling"/>
+						<g:VerticalPanel width="40%" styleName="{style.nothPanel}" ui:field="vPanel1" horizontalAlignment="ALIGN_LEFT" >
+						<g:Label text="Navn:" ui:field="navn" width="100%"/>
+						<g:Label text="Afdeling:" ui:field="afdeling" width="100%"/>
 					</g:VerticalPanel>
 					</g:Cell><g:Cell horizontalAlignment="ALIGN_RIGHT">
 					
-						<g:Button ui:field="btnLogaf" text="Log ind" ></g:Button>
+						<g:Button ui:field="btnLogud" text="Log ud" ></g:Button>
 					</g:Cell>
 				</g:HorizontalPanel>
 			</g:Dock>
 			<g:Dock direction="WEST">
-				<g:VerticalPanel width="20%" styleName="{style.westPanel}">
+				<g:VerticalPanel width="30%" styleName="{style.westPanel}" ui:field="vPanel2">
 					<g:Label ui:field="velkommen" text="Velkommen"/>
-					<g:Label text="Mine opgaver"/>
-					<g:Label text="Dokumenter"/>
-					<g:Label text="Rapporter"/>
-					<g:Label text="Mine oplysninger"/>
-					<g:Label text="Indstillinger"/>
-					<g:Label text="Intranet Link"/>
-					<g:Label text="Hjælp"/>
+					<g:Label text="Mine opgaver" ui:field="mineopgaver"/>
+					<g:Label text="Dokumentarkiv" ui:field="dokumentarkiv"/>
+					<g:Label text="Rapporter" ui:field="rapporter"/>
+					<g:Label text="Mine oplysninger" ui:field="mineoplysninger"/>
+					<g:Label text="Indstillinger" ui:field="indstillinger"/>
+					<g:Label text="Intranet link" ui:field="intralink"/>
+					<g:Label text="Hjælp" ui:field="hjelp"/>
 				</g:VerticalPanel>
 			</g:Dock>
 			<g:Dock direction="CENTER" width="">
-				<g:VerticalPanel horizontalAlignment="ALIGN_LEFT" width="80%" height="80%" styleName="{style.centerPanel}">
+				<g:VerticalPanel horizontalAlignment="ALIGN_LEFT" width="70%" height="80%" styleName="{style.centerPanel}" ui:field="vPanel3">
 					<g:Label text="Test"/>
 				</g:VerticalPanel>
 			</g:Dock>
