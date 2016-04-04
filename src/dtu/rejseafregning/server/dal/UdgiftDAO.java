@@ -41,13 +41,14 @@ public class UdgiftDAO implements IUdgiftDAO {
 	public UdgiftDTO getUdgift(int udgiftID) throws DALException {
 		ResultSet rs = null;
 		try {
-			// Argument indsættes i statement
+			// Argument indsï¿½ttes i statement
 			getUdgiftStmt.setInt(1, udgiftID);
 			// rs lig kald fra database
 			rs = getUdgiftStmt.executeQuery();
-
-			return new UdgiftDTO(rs.getInt("Udgift_ID"), rs.getInt("Bilag_ID"), rs.getString("Udgifttype"),
+			if (rs.next())
+				return new UdgiftDTO(rs.getInt("Udgift_ID"), rs.getInt("Bilag_ID"), rs.getString("Udgifttype"),
 					rs.getString("Betalingtype"), rs.getString("forklaring"), rs.getDate("Dato"));
+			throw new DALException("Udgift findes ikke!");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getUdgift fejlede");
 		}

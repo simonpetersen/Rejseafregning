@@ -43,9 +43,11 @@ public class MedarbejderDAO implements IMedarbejderDAO {
 		try {
 			getMedarbejderStmt.setString(1, Brugernavn);
 			rs = getMedarbejderStmt.executeQuery();
-
-			return new MedarbejderDTO(rs.getString("Navn"), rs.getString("Brugernavn"),
+			if (rs.next()) {
+				return new MedarbejderDTO(rs.getString("Navn"), rs.getString("Brugernavn"),
 					rs.getString("Password"), rs.getString("Email"));
+			}
+			throw new DALException("Medarbejder findes ikke!");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getMedarbejder fejlede");
 		}

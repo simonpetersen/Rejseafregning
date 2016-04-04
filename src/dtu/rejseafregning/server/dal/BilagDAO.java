@@ -55,11 +55,15 @@ public class BilagDAO implements IBilagDAO {
 
 			rs = getBilagStmt.executeQuery();
 			
-			//File oprettes og outputstream indlæser billedet til filen.
+			//File oprettes og outputstream indlï¿½ser billedet til filen.
 			File image = new File("D:\\java.png");
 			FileOutputStream fos = new FileOutputStream(image);
 
 			byte[] buffer = new byte[1];
+			if (rs.next()) {
+				fos.close();
+				throw new DALException("Bilag findes ikke");
+			}
 			InputStream is = (InputStream) rs.getBinaryStream("Billed");
 			while (is.read(buffer) > 0) {
 				fos.write(buffer);
@@ -108,7 +112,7 @@ public class BilagDAO implements IBilagDAO {
 		try {
 			createBilagStmt.setInt(1, bilag.getBilagID());
 
-			// Billede oprettes og sættes som argument i statement
+			// Billede oprettes og sï¿½ttes som argument i statement
 			File image = bilag.getBillede();
 			FileInputStream fis = new FileInputStream(image);
 			createBilagStmt.setBinaryStream(2, fis, (int) image.length());
@@ -130,7 +134,7 @@ public class BilagDAO implements IBilagDAO {
 			File image = bilag.getBillede();
 			FileInputStream fis = new FileInputStream(image);
 			
-			//argumenter sættes i statement
+			//argumenter sï¿½ttes i statement
 			updateBilagStmt.setBinaryStream(1, fis, (int) image.length());
 			updateBilagStmt.setInt(1, bilag.getBilagID());
 			
@@ -148,7 +152,7 @@ public class BilagDAO implements IBilagDAO {
 	@Override
 	public void deleteBilag(BilagDTO bilag) throws DALException {
 		try {
-			//BilagID indsættes i statement
+			//BilagID indsï¿½ttes i statement
 			deleteBilagStmt.setInt(1, bilag.getBilagID());
 		} catch (SQLException e) {
 			throw new DALException("Kaldet deleteBilag fejlede.");

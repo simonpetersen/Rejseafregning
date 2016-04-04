@@ -43,8 +43,9 @@ public class ProjektDAO implements IProjektDAO {
 		try {
 			getProjektStmt.setString(1, Navn);
 			rs = getProjektStmt.executeQuery();
-
-			return new ProjektDTO(rs.getString("Navn"), rs.getString("OpgaveNavn"));
+			if (rs.next())
+				return new ProjektDTO(rs.getString("Navn"), rs.getString("OpgaveNavn"));
+			throw new DALException("Projekt findes ikke!");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getProjekt fejlede");
 		}

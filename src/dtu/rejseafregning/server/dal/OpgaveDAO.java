@@ -45,8 +45,9 @@ public class OpgaveDAO extends RemoteServiceServlet implements IOpgaveDAO {
 		try {
 			getOpgaveStmt.setString(1, opgaveNavn);
 			rs = getOpgaveStmt.executeQuery();
-
-			return new OpgaveDTO(rs.getString("Navn"));
+			if (rs.next())
+				return new OpgaveDTO(rs.getString("Navn"));
+			throw new DALException("Opgave findes ikke!");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getOpgave fejlede");
 		}
