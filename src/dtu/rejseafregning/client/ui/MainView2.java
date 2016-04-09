@@ -34,7 +34,6 @@ public class MainView2 extends Composite {
 	@UiField HorizontalPanel hPanel;
 	@UiField VerticalPanel vPanel1;
 	@UiField VerticalPanel vPanel2;
-	@UiField VerticalPanel vPanel3;
 	
 	private final EventBus eventBus;
 	
@@ -46,39 +45,8 @@ public class MainView2 extends Composite {
 
 	public MainView2(EventBus eventBus) {
 		
-		initWidget(uiBinder.createAndBindUi(this));
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this,eventBus);
-		
-		vPanel1 = new VerticalPanel();
-		vPanel2 = new VerticalPanel();
-		vPanel3 = new VerticalPanel();
-		hPanel = new HorizontalPanel();
-		
-		navn = new Label("navn");
-		afdeling = new Label("afdeling");
-		velkommen = new Label("velkommen");
-		mineopgaver = new Label("mineopgaver");
-		dokumentarkiv = new Label("dokumenter");
-		rapporter = new Label("rapporter");
-		mineoplysninger = new Label("mineoplysninger");
-		indstillinger = new Label("indstillinger");
-		intralink = new Label("intralink");
-		hjelp = new Label("hjelp");
-		btnLogud = new Button("btnLogud");
-		
-		hPanel.add(vPanel1);
-		hPanel.add(btnLogud);
-		vPanel1.add(navn);
-		vPanel1.add(afdeling);
-		vPanel2.add(velkommen);
-		vPanel2.add(mineopgaver);
-		vPanel2.add(dokumentarkiv);
-		vPanel2.add(rapporter);
-		vPanel2.add(mineoplysninger);
-		vPanel2.add(indstillinger);
-		vPanel2.add(intralink);
-		vPanel2.add(hjelp);
 	
 		initWidget(uiBinder.createAndBindUi(this));
 	}
@@ -86,9 +54,6 @@ public class MainView2 extends Composite {
 	public Widget onInitialize() {
 		
 		DockPanel dock = new DockPanel();
-		dock.add(hPanel);
-		dock.add(vPanel2);
-		dock.add(vPanel3);
 		
 		dock.ensureDebugId("cwDockPanel");
 		return dock;

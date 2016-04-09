@@ -31,6 +31,11 @@
 					</g:Cell>
 				</g:HorizontalPanel>
 			</g:Dock>
+			<g:Dock direction="CENTER" >
+				<g:VerticalPanel styleName="{style.centerPanel}" ui:field="vPanel3">
+					<g:Label text="Test" horizontalAlignment="ALIGN_LEFT"/>
+				</g:VerticalPanel>
+			</g:Dock>
 			<g:Dock direction="WEST">
 				<g:VerticalPanel width="30%" styleName="{style.westPanel}" ui:field="vPanel2">
 					<g:Label ui:field="velkommen" text="Velkommen"/>
@@ -43,11 +48,7 @@
 					<g:Label text="Hjælp" ui:field="hjelp"/>
 				</g:VerticalPanel>
 			</g:Dock>
-			<g:Dock direction="CENTER" width="">
-				<g:VerticalPanel horizontalAlignment="ALIGN_LEFT" width="70%" height="80%" styleName="{style.centerPanel}" ui:field="vPanel3">
-					<g:Label text="Test"/>
-				</g:VerticalPanel>
-			</g:Dock>
+			
 		</g:DockPanel>
 		
 </ui:UiBinder> 
