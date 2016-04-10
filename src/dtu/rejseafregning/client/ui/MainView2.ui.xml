@@ -10,6 +10,7 @@
 	}
 	.westPanel {
 		background-color: #E5E4E2;
+		width: 5%;
 	}
 	.centerPanel {
 		background-color: #FEFCFF;
@@ -32,12 +33,10 @@
 				</g:HorizontalPanel>
 			</g:Dock>
 			<g:Dock direction="CENTER" >
-				<g:VerticalPanel styleName="{style.centerPanel}" ui:field="vPanel3">
-					<g:Label text="Test" horizontalAlignment="ALIGN_LEFT"/>
-				</g:VerticalPanel>
+				<g:DeckPanel ui:field="contentPanel" />
 			</g:Dock>
 			<g:Dock direction="WEST">
-				<g:VerticalPanel width="30%" styleName="{style.westPanel}" ui:field="vPanel2">
+				<g:VerticalPanel width="30%" styleName="{style.westPanel}">
 					<g:Anchor ui:field="velkommen" text="Velkommen"/>
 					<g:Anchor text="Mine opgaver" ui:field="mineopgaver"/>
 					<g:Anchor text="Dokumentarkiv" ui:field="dokumentarkiv"/>
