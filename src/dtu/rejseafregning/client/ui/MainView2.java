@@ -5,6 +5,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
@@ -20,17 +22,7 @@ import dtu.rejseafregning.client.events.LogudButtonEvent;
 public class MainView2 extends Composite {
 
 	private static MainView2UiBinder uiBinder = GWT.create(MainView2UiBinder.class);
-	@UiField Label navn;
-	@UiField Label afdeling;
-	@UiField Label velkommen;
 	@UiField Button btnLogud;
-	@UiField Label mineopgaver;
-	@UiField Label dokumentarkiv;
-	@UiField Label rapporter;
-	@UiField Label mineoplysninger;
-	@UiField Label indstillinger;
-	@UiField Label intralink;
-	@UiField Label hjelp;
 	@UiField HorizontalPanel hPanel;
 	@UiField VerticalPanel vPanel1;
 	@UiField VerticalPanel vPanel2;
@@ -62,5 +54,10 @@ public class MainView2 extends Composite {
 	@UiHandler("btnLogud")
 	public void onButtonClick(ClickEvent event) {
 		eventBus.fireEvent(new LogudButtonEvent());
+	}
+	
+	@UiHandler("mineoplysninger")
+	void onMineoplysningerClick(ClickEvent event) {
+		Window.alert("Der er valgt Mine oplysninger");
 	}
 }

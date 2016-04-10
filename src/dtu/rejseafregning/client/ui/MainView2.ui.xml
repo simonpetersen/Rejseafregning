@@ -5,7 +5,7 @@
 	.important {
 		font-weight: bold;
 	}
-	.nothPanel {
+	.northPanel {
 		background-color: #BDEDFF;
 	}
 	.westPanel {
@@ -19,9 +19,9 @@
 	</ui:style>
 		<g:DockPanel borderWidth="0" width="100%" height="100%" horizontalAlignment="ALIGN_LEFT">
 			<g:Dock direction="NORTH">
-				<g:HorizontalPanel styleName="{style.nothPanel}" width="100%" ui:field="hPanel">
+				<g:HorizontalPanel styleName="{style.northPanel}" width="100%" ui:field="hPanel">
 					<g:Cell horizontalAlignment="ALIGN_CENTER">
-						<g:VerticalPanel width="40%" styleName="{style.nothPanel}" ui:field="vPanel1" horizontalAlignment="ALIGN_LEFT" >
+						<g:VerticalPanel width="40%" styleName="{style.northPanel}" ui:field="vPanel1" horizontalAlignment="ALIGN_LEFT" >
 						<g:Label text="Navn:" ui:field="navn" width="100%"/>
 						<g:Label text="Afdeling:" ui:field="afdeling" width="100%"/>
 					</g:VerticalPanel>
@@ -38,14 +38,14 @@
 			</g:Dock>
 			<g:Dock direction="WEST">
 				<g:VerticalPanel width="30%" styleName="{style.westPanel}" ui:field="vPanel2">
-					<g:Label ui:field="velkommen" text="Velkommen"/>
-					<g:Label text="Mine opgaver" ui:field="mineopgaver"/>
-					<g:Label text="Dokumentarkiv" ui:field="dokumentarkiv"/>
-					<g:Label text="Rapporter" ui:field="rapporter"/>
-					<g:Label text="Mine oplysninger" ui:field="mineoplysninger"/>
-					<g:Label text="Indstillinger" ui:field="indstillinger"/>
-					<g:Label text="Intranet link" ui:field="intralink"/>
-					<g:Label text="Hjælp" ui:field="hjelp"/>
+					<g:Anchor ui:field="velkommen" text="Velkommen"/>
+					<g:Anchor text="Mine opgaver" ui:field="mineopgaver"/>
+					<g:Anchor text="Dokumentarkiv" ui:field="dokumentarkiv"/>
+					<g:Anchor text="Rapporter" ui:field="rapporter"/>
+					<g:Anchor text="Mine oplysninger" ui:field="mineoplysninger"/>
+					<g:Anchor text="Indstillinger" ui:field="indstillinger"/>
+					<g:Anchor text="Intranet link" ui:field="intralink"/>
+					<g:Anchor text="Hjælp" ui:field="hjelp"/>
 				</g:VerticalPanel>
 			</g:Dock>
 			
