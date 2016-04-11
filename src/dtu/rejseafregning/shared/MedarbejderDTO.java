@@ -20,6 +20,8 @@ private String navn, brugernavn, adgangskode, email;
 		setEmail(email);
 	}
 	
+	public MedarbejderDTO() {}
+	
 	public String getNavn() {
 		return navn;
 	}

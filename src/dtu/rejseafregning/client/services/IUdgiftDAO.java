@@ -3,10 +3,12 @@ package dtu.rejseafregning.client.services;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import dtu.rejseafregning.shared.DALException;
 import dtu.rejseafregning.shared.UdgiftDTO;
 
+@RemoteServiceRelativePath("udgiftservice")
 public interface IUdgiftDAO extends RemoteService{
 	UdgiftDTO getUdgift(int udgiftID) throws DALException;
 	List<UdgiftDTO> getUdgiftList() throws DALException;

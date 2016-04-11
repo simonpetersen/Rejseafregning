@@ -3,6 +3,7 @@ package dtu.rejseafregning.client.logic;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
@@ -10,6 +11,7 @@ import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.LoginButtonEvent;
 import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
+import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.client.events.OpdaterOplysningerEvent;
 import dtu.rejseafregning.client.services.IMedarbejderDAO;
 import dtu.rejseafregning.client.services.IMedarbejderDAOAsync;
@@ -29,21 +31,20 @@ public class LoginController {
   		this.eventBus = eventBus;
   		eventBinder.bindEventHandlers(this, eventBus);
   		loginView = new LoginView(eventBus);
- 		RootPanel.get().add(loginView);
+ 		RootLayoutPanel.get().add(loginView);
   	}
   	
   	@EventHandler
   	public void onLoginButtonEvent(LoginButtonEvent e) {
- 		Window.alert("Brugernavn: "+e.getBrugernavn()+"\nAdgangskode: "+e.getAdgangskode());
  		medarbejderDAO.getMedarbejder(e.getBrugernavn(), new AsyncCallback<MedarbejderDTO>(){
  			@Override
  			public void onFailure(Throwable caught) {
- 				Window.alert("Fejl i login");
+ 				Window.alert("Fejl i login: "+caught.getMessage());
  			}
  
  			@Override
  			public void onSuccess(MedarbejderDTO result) {
- 				RootPanel.get().remove(loginView);
+ 				RootLayoutPanel.get().remove(loginView);
  				eventBus.fireEvent(new LoginSuccessfullEvent(result));
  			}
  		});
@@ -64,4 +65,10 @@ public class LoginController {
  			
  		});
  	}
+  	
+  	@EventHandler
+  	public void onLogudButtonEvent(LogudButtonEvent e) {
+  		RootLayoutPanel.get().add(loginView);
+  		loginView.clearTextBoxes();
+  	}
 }

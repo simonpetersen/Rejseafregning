@@ -7,10 +7,9 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DeckPanel;
-import com.google.gwt.user.client.ui.DockPanel;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.DeckLayoutPanel;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
@@ -22,12 +21,13 @@ public class MainView2 extends Composite {
 
 	private static MainView2UiBinder uiBinder = GWT.create(MainView2UiBinder.class);
 	@UiField Button btnLogud;
-	@UiField HorizontalPanel hPanel;
-	@UiField VerticalPanel vPanel1;
-	@UiField DeckPanel contentPanel;
+	@UiField DeckLayoutPanel contentPanel;
+	@UiField Label navnLabel;
+	@UiField Label afdelingLabel;
 	
 	private MedarbejderDTO bruger;
 	private OplysningerView oplysningerView;
+	private VelkommenView velkommenView;
 	
 	private final EventBus eventBus;
 	
@@ -38,22 +38,31 @@ public class MainView2 extends Composite {
 	}
 
 	public MainView2(EventBus eventBus) {
-		
+		initWidget(uiBinder.createAndBindUi(this));
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this,eventBus);
 		
-		bruger = new MedarbejderDTO("SIMPE", "", "");
+		bruger = new MedarbejderDTO("SIMON", "", "");
 		oplysningerView = new OplysningerView(eventBus, bruger);
+		velkommenView = new VelkommenView(eventBus);
+		contentPanel.add(velkommenView);
+		contentPanel.add(oplysningerView);
+		contentPanel.showWidget(velkommenView);
 	
-		initWidget(uiBinder.createAndBindUi(this));
+		
 	}
 	
-	public Widget onInitialize() {
-		
-		DockPanel dock = new DockPanel();
-		
-		dock.ensureDebugId("cwDockPanel");
-		return dock;
+//	public Widget onInitialize() {
+//		
+//		DockPanel dock = new DockPanel();
+//		
+//		dock.ensureDebugId("cwDockPanel");
+//		return dock;
+//	}
+	
+	public void setNavLabels(String navn, String afdeling) {
+		navnLabel.setText(navn);
+		afdelingLabel.setText(afdeling);
 	}
 	
 	@UiHandler("btnLogud")
@@ -61,8 +70,12 @@ public class MainView2 extends Composite {
 		eventBus.fireEvent(new LogudButtonEvent());
 	}
 	
-	@UiHandler("mineoplysninger")
-	void onMineoplysningerClick(ClickEvent event) {
-		contentPanel.showWidget(0);
+	@UiHandler("oplysninger")
+	void onOplysningerClick(ClickEvent event) {
+		contentPanel.showWidget(oplysningerView);
+	}
+	@UiHandler("velkommen")
+	void onVelkommenClick(ClickEvent event) {
+		contentPanel.showWidget(velkommenView);
 	}
 }

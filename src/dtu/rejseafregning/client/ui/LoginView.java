@@ -36,6 +36,11 @@ public class LoginView extends Composite {
  		this.eventBus = eventBus;
   		eventBinder.bindEventHandlers(this, eventBus);
   	}
+ 	
+ 	public void clearTextBoxes() {
+ 		brugernavnTextBox.setText("");
+ 		adgangskodeTextBox.setText("");
+ 	}
   
  	@UiHandler("button")
  	void onButtonClick(ClickEvent event) {

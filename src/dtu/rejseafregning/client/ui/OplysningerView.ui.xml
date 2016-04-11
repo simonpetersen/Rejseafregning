@@ -2,12 +2,13 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:d="urn:import:com.google.gwt.dom.client">
 	<ui:style>
-	.important {
-		font-weight: bold;
+	.oplysningerGrid {
+		border: 1px solid #666666;
 	}
 	</ui:style>
-	<g:VerticalPanel>
-		<g:Grid>
+	<g:VerticalPanel styleName="h2">
+		<g:Label text="Mine oplysninger" styleName="h2"/>
+		<g:Grid styleName="{style.oplysningerGrid}">
 			<g:row>
 				<g:customCell>
 					<g:Label text="Navn: "/>

@@ -21,7 +21,6 @@ public class OpgaveDAO extends RemoteServiceServlet implements IOpgaveDAO {
 	private PreparedStatement deleteOpgaveStmt = null;
 
 	public OpgaveDAO() throws Exception {
-		new Connector();
 		
 		// getOpgave statement
 		getOpgaveStmt = Connector.conn.prepareStatement("SELECT * FROM Opgave WHERE Navn = ?");
