@@ -6,11 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import dtu.rejseafregning.client.services.IProjektDAO;
 import dtu.rejseafregning.shared.DALException;
 import dtu.rejseafregning.shared.ProjektDTO;
 
-public class ProjektDAO implements IProjektDAO {
+public class ProjektDAO extends RemoteServiceServlet implements IProjektDAO {
 
 	private PreparedStatement getProjektStmt = null;
 	private PreparedStatement getProjektListStmt = null;

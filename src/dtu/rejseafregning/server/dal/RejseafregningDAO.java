@@ -7,11 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import dtu.rejseafregning.client.services.IRejseafregningDAO;
 import dtu.rejseafregning.shared.DALException;
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
-public class RejseafregningDAO implements IRejseafregningDAO {
+public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafregningDAO {
 
 	private PreparedStatement getRejseafregningStmt = null;
 	private PreparedStatement getRejseafregningListStmt = null;
