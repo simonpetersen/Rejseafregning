@@ -50,12 +50,12 @@ public class Controller {
 		eventBinder.bindEventHandlers(this, eventBus);
 
 		loginController = new LoginController(eventBus);
-		mainView = new MainView2(eventBus);
 	}
 
 	@EventHandler
 	public void onLoginButtonEvent(LoginSuccessfullEvent e) {
 		bruger = e.getMedarbejder();
+		mainView = new MainView2(eventBus, bruger);
 		mainView.setNavLabels(bruger.getNavn(), "Økonomi & Regnskab");
 		RootLayoutPanel.get().add(mainView);
 	}
@@ -63,7 +63,7 @@ public class Controller {
 	@EventHandler
 	public void onLogudButtonEvent(LogudButtonEvent e) {
 		bruger = null;
-		RootPanel.get().remove(mainView);
+		RootLayoutPanel.get().remove(mainView);
 	}
 
 	@EventHandler

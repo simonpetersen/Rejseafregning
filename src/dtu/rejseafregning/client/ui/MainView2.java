@@ -38,12 +38,12 @@ public class MainView2 extends Composite {
 	interface MainView2UiBinder extends UiBinder<Widget, MainView2> {
 	}
 
-	public MainView2(EventBus eventBus) {
+	public MainView2(EventBus eventBus, MedarbejderDTO bruger) {
 		initWidget(uiBinder.createAndBindUi(this));
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this,eventBus);
 		
-		bruger = new MedarbejderDTO("SIMON", "", "");
+		this.bruger = bruger;
 		oplysningerView = new OplysningerView(eventBus, bruger);
 		velkommenView = new VelkommenView(eventBus);
 		dokumentView = new DokArkivView(eventBus);
@@ -54,14 +54,6 @@ public class MainView2 extends Composite {
 	
 		
 	}
-	
-//	public Widget onInitialize() {
-//		
-//		DockPanel dock = new DockPanel();
-//		
-//		dock.ensureDebugId("cwDockPanel");
-//		return dock;
-//	}
 	
 	public void setNavLabels(String navn, String afdeling) {
 		navnLabel.setText(navn);

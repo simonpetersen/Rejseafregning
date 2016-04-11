@@ -60,6 +60,15 @@
     <url-pattern>/__rejseafregning/udgiftservice</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <servlet-name>brugerautorisationServlet</servlet-name>
+    <servlet-class>dtu.rejseafregning.server.dal.BrugerautorisationDAO</servlet-class>
+  </servlet> 
+  <servlet-mapping>
+    <servlet-name>brugerautorisationServlet</servlet-name>
+    <url-pattern>/__rejseafregning/brugerautorisationservice</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>1_Rejseafregning.html</welcome-file>

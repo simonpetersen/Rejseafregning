@@ -38,13 +38,18 @@ public class OplysningerView extends Composite {
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
 		this.bruger = bruger;
+		navnTextBox.setText(bruger.getNavn());
 		brugerNavnLabel.setText(bruger.getBrugernavn());
+		emailTextBox.setText(bruger.getEmail());
 	}
 
 	private MedarbejderDTO setNyMedarbejderInfo() {
 		if (!navnTextBox.getText().isEmpty()) bruger.setNavn(navnTextBox.getText());
 		if (!emailTextBox.getText().isEmpty()) bruger.setEmail(emailTextBox.getText());
-		if (!adgangskodeTextBox.getText().isEmpty()) bruger.setAdgangskode(adgangskodeTextBox.getText());
+		if (!adgangskodeTextBox.getText().isEmpty()) {
+			if (!bruger.erDtuBruger()) bruger.setNyAdgangskode(adgangskodeTextBox.getText());
+			else bruger.setAdgangskode(adgangskodeTextBox.getText());
+		}
 		return bruger;
 	}
 	
