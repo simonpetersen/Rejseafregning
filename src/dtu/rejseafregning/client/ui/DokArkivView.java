@@ -14,8 +14,10 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
+import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.SearchDokArkivEvent;
+import dtu.rejseafregning.client.events.SearchDokArkivSuccessEvent;
 import dtu.rejseafregning.client.ui.OplysningerView.MyEventBinder;
 
 public class DokArkivView extends Composite {
@@ -69,6 +71,11 @@ public class DokArkivView extends Composite {
 	void onSearchKnapKlik(ClickEvent event) {
 		eventBus.fireEvent(new SearchDokArkivEvent(medarbejdere[dropboxNavn.getSelectedIndex()],
 				status[dropboxStatus.getSelectedIndex()], type[dropboxType.getSelectedIndex()]));
+	}
+	
+	@EventHandler
+	public void onSearchSuccessEvent(SearchDokArkivSuccessEvent e){
+		
 	}
 
 }

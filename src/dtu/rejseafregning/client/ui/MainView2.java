@@ -28,6 +28,7 @@ public class MainView2 extends Composite {
 	private MedarbejderDTO bruger;
 	private OplysningerView oplysningerView;
 	private VelkommenView velkommenView;
+	private DokArkivView dokumentView;
 	
 	private final EventBus eventBus;
 	
@@ -45,8 +46,10 @@ public class MainView2 extends Composite {
 		bruger = new MedarbejderDTO("SIMON", "", "");
 		oplysningerView = new OplysningerView(eventBus, bruger);
 		velkommenView = new VelkommenView(eventBus);
+		dokumentView = new DokArkivView(eventBus);
 		contentPanel.add(velkommenView);
 		contentPanel.add(oplysningerView);
+		contentPanel.add(dokumentView);
 		contentPanel.showWidget(velkommenView);
 	
 		
@@ -77,5 +80,10 @@ public class MainView2 extends Composite {
 	@UiHandler("velkommen")
 	void onVelkommenClick(ClickEvent event) {
 		contentPanel.showWidget(velkommenView);
+	}
+	
+	@UiHandler("dokumentArkiv")
+	void onDokumentArkivClick(ClickEvent event){
+		contentPanel.showWidget(dokumentView);
 	}
 }

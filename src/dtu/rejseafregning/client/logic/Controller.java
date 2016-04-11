@@ -1,8 +1,10 @@
 package dtu.rejseafregning.client.logic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -14,6 +16,7 @@ import com.google.web.bindery.event.shared.binder.EventHandler;
 import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivEvent;
+import dtu.rejseafregning.client.events.SearchDokArkivSuccessEvent;
 import dtu.rejseafregning.client.services.IOpgaveDAO;
 import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
 import dtu.rejseafregning.client.services.IRejseafregningDAO;
@@ -65,22 +68,21 @@ public class Controller {
 
 	@EventHandler
 	public void onSearchDokArkivEvent(SearchDokArkivEvent e) {
-		ArrayList<RejseafregningDTO> resultat = (ArrayList<RejseafregningDTO>) rejseafregningDAO
-				.getRejseafregningList(e.getMedarbejder(), new AsyncCallback<List<RejseafregningDTO>>() {
+		rejseafregningDAO.getRejseafregningList(e.getMedarbejder(), new AsyncCallback<List<RejseafregningDTO>>() {
 
-					@Override
-					public void onFailure(Throwable caught) {
-						// TODO Auto-generated method stub
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				Window.alert("Fejl i getRejseafregningList " + caught.getMessage());
 
-					}
+			}
 
-					@Override
-					public void onSuccess(List<RejseafregningDTO> result) {
-						// TODO Auto-generated method stub
-						
-					}
+			@Override
+			public void onSuccess(List<RejseafregningDTO> result) {
+				eventBus.fireEvent(new SearchDokArkivSuccessEvent(result));
+			}
 
-				});
+		});
 	}
 
 }
