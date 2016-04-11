@@ -14,9 +14,7 @@
 } */
 
 h2 {
-	width: 80%;
-	hight: 80%;
-	color: #FEFCFF;
-	padding 20px;
-	text-align: ALIGN_LEFT;
+	font-weight: bold;
+	font-size: 2em;
+	color: #666666
 }
