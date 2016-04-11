@@ -1,18 +1,55 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.datepicker.client">
 	<ui:style>
 	.important {
 		font-weight: bold;
 	}
 	</ui:style>
 	<g:VerticalPanel>
-		<g:Grid>
+		<g:Grid cellPadding="5">
 			<g:row>
 				<g:customCell>
-					<g:ListBox visibleItemCount="1" multipleSelect="true" ui:field="DropBoxName"/>
+					<g:Label text="Person:"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Status:"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Dokument type:"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Startdato:"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Slutdato:"/>
 				</g:customCell>
 			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:ListBox visibleItemCount="1" ui:field="dropboxNavn"/>
+				</g:customCell>
+				<g:customCell>
+					<g:ListBox visibleItemCount="1" ui:field="dropboxStatus"/>
+				</g:customCell>
+				<g:customCell>
+					<g:ListBox visibleItemCount="1" ui:field="dropboxType"/>
+				</g:customCell>
+				<g:customCell>
+					<p1:DateBox ui:field="startDato"/>
+				</g:customCell>
+				<g:customCell>
+					<p1:DateBox ui:field="slutDato"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Button ui:field="searchKnap">Søg</g:Button>
+				</g:customCell>
+			</g:row>
+		</g:Grid>
+		<g:Grid>
+			<g:row/>
 		</g:Grid>
 		
 	</g:VerticalPanel>

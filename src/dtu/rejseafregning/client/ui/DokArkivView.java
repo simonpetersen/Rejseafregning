@@ -11,28 +11,64 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.datepicker.client.DateBox;
+import com.google.web.bindery.event.shared.EventBus;
+import com.google.web.bindery.event.shared.binder.EventBinder;
 
-public class DokArkivView extends Composite{
+import dtu.rejseafregning.client.events.SearchDokArkivEvent;
+import dtu.rejseafregning.client.ui.OplysningerView.MyEventBinder;
+
+public class DokArkivView extends Composite {
 
 	private static DokArkivViewUiBinder uiBinder = GWT.create(DokArkivViewUiBinder.class);
-	@UiField ListBox DropBoxName;
+	@UiField
+	ListBox dropboxNavn;
+	@UiField
+	ListBox dropboxStatus;
+	@UiField
+	ListBox dropboxType;
+	@UiField
+	DateBox startDato;
+	@UiField
+	DateBox slutDato;
+	@UiField
+	Button searchKnap;
 
 	interface DokArkivViewUiBinder extends UiBinder<Widget, DokArkivView> {
 	}
-	
-	String[] Medarbejdere = {"Peter", "Mads", "Arne", "Poul", "Jens", "Verner", "Anders"};
 
-	public DokArkivView() {
+	private EventBus eventBus;
+
+	interface MyEventBinder extends EventBinder<DokArkivView> {
+	}
+
+	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
+
+	String[] medarbejdere = { "", "Peter", "Mads", "Arne", "Poul", "Jens", "Verner", "Anders" };
+	String[] status = { "", "Udkast", "Til Godkendelse", "Til Anvisning", "Anvist", "Venter på Data", "Behandlet",
+			"Overført til Oracle", "Arkiveret" };
+	String[] type = { "", "Rejseafregning" };
+
+	public DokArkivView(EventBus eventBus) {
+		this.eventBus = eventBus;
+		eventBinder.bindEventHandlers(this, eventBus);
+
 		initWidget(uiBinder.createAndBindUi(this));
-		for(int i = 0; i < Medarbejdere.length; i++){
-			DropBoxName.addItem(Medarbejdere[i]);
+		for (int i = 0; i < medarbejdere.length; i++) {
+			dropboxNavn.addItem(medarbejdere[i]);
+		}
+		for (int i = 0; i < status.length; i++) {
+			dropboxStatus.addItem(status[i]);
+		}
+		for (int i = 0; i < type.length; i++) {
+			dropboxType.addItem(type[i]);
 		}
 	}
 
-	public DokArkivView(String firstName) {
-		initWidget(uiBinder.createAndBindUi(this));
-		
+	@UiHandler("searchKnap")
+	void onSearchKnapKlik(ClickEvent event) {
+		eventBus.fireEvent(new SearchDokArkivEvent(medarbejdere[dropboxNavn.getSelectedIndex()],
+				status[dropboxStatus.getSelectedIndex()], type[dropboxType.getSelectedIndex()]));
 	}
-
 
 }
