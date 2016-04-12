@@ -5,14 +5,25 @@ import java.io.Serializable;
 public class MedarbejderDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private String navn, brugernavn, adgangskode, nyAdgangskode, email;
+	private String navn, brugernavn, adgangskode, nyAdgangskode, email, afdeling;
 	private boolean administrator, dtuBruger;
+	
+	public MedarbejderDTO(String navn, String brugernavn, String adgangskode, String email, String afdeling, boolean administrator, boolean dtuBruger) {
+		setNavn(navn);
+		setBrugernavn(brugernavn);
+		setAdgangskode(adgangskode);
+		setEmail(email);
+		setAfdeling(afdeling);
+		setAdministrator(administrator);
+		setDtuBruger(dtuBruger);
+	}
 	
 	public MedarbejderDTO(String navn, String brugernavn, String adgangskode, String email, boolean administrator, boolean dtuBruger) {
 		setNavn(navn);
 		setBrugernavn(brugernavn);
 		setAdgangskode(adgangskode);
 		setEmail(email);
+		setAfdeling("Økonomi & Regnskab");
 		setAdministrator(administrator);
 		setDtuBruger(dtuBruger);
 	}
@@ -79,6 +90,14 @@ public class MedarbejderDTO implements Serializable {
 
 	public void setNyAdgangskode(String nyAdgangskode) {
 		this.nyAdgangskode = nyAdgangskode;
+	}
+
+	public String getAfdeling() {
+		return afdeling;
+	}
+
+	public void setAfdeling(String afdeling) {
+		this.afdeling = afdeling;
 	}
 
 

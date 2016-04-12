@@ -55,7 +55,7 @@ public class Controller {
 	public void onLoginButtonEvent(LoginSuccessfullEvent e) {
 		bruger = e.getMedarbejder();
 		mainView = new MainView2(eventBus, bruger);
-		mainView.setNavLabels(bruger.getNavn(), "Økonomi & Regnskab");
+		mainView.setNavLabels(bruger.getNavn(), bruger.getAfdeling());
 		RootLayoutPanel.get().add(mainView);
 	}
 
