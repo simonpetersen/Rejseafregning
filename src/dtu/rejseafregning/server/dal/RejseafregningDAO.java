@@ -22,12 +22,15 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 	private PreparedStatement deleteRejseafregningStmt = null;
 
 	public RejseafregningDAO() throws Exception {
+		
+		new Connector();
+		
 		// getRejseafregning statement
 		getRejseafregningStmt = Connector.conn
 				.prepareStatement("SELECT * FROM Rejseafregning WHERE Rejseafregning_ID = ?");
 
 		// getRejseafregningList statement
-		getRejseafregningListStmt = Connector.conn.prepareStatement("SELECT * FROM Rejseafregning WHERE Medarbejdernavn = ?");
+		getRejseafregningListStmt = Connector.conn.prepareStatement("SELECT * FROM Rejseafregning WHERE brugernavn = ?");
 
 		// createRejseafregning statement
 		createRejseafregningStmt = Connector.conn
@@ -71,8 +74,8 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 
 			while (rs.next()) {
 				RejseafregningListe.add(new RejseafregningDTO(rs.getInt("Rejseafregning_ID"),
-						rs.getString("Medarbejdernavn"), rs.getString("Godkendernavn"), rs.getString("Anvisernavn"),
-						rs.getString("Land"), rs.getString("By"), rs.getDate("Startdato"), rs.getDate("Slutdato")));
+						rs.getString("brugernavn"), rs.getString("Godkender"), rs.getString("Anviser"),
+						rs.getString("Land"), rs.getString("City"), rs.getDate("datoStart"), rs.getDate("datoSlut")));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getRejseafregningList fejlede");

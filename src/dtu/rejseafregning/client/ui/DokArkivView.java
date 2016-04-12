@@ -1,5 +1,7 @@
 package dtu.rejseafregning.client.ui;
 
+import java.util.ArrayList;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -19,6 +21,9 @@ import com.google.web.bindery.event.shared.binder.EventHandler;
 import dtu.rejseafregning.client.events.SearchDokArkivEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivSuccessEvent;
 import dtu.rejseafregning.client.ui.OplysningerView.MyEventBinder;
+import dtu.rejseafregning.shared.RejseafregningDTO;
+
+import com.google.gwt.user.client.ui.Grid;
 
 public class DokArkivView extends Composite {
 
@@ -35,6 +40,7 @@ public class DokArkivView extends Composite {
 	DateBox slutDato;
 	@UiField
 	Button searchKnap;
+	@UiField Grid searchResultat;
 
 	interface DokArkivViewUiBinder extends UiBinder<Widget, DokArkivView> {
 	}
@@ -46,7 +52,7 @@ public class DokArkivView extends Composite {
 
 	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
 
-	String[] medarbejdere = { "", "Peter", "Mads", "Arne", "Poul", "Jens", "Verner", "Anders" };
+	String[] medarbejdere = { "", "Rasmus", "Peter", "Mads", "Arne", "Poul", "Jens", "Verner", "Anders" };
 	String[] status = { "", "Udkast", "Til Godkendelse", "Til Anvisning", "Anvist", "Venter på Data", "Behandlet",
 			"Overført til Oracle", "Arkiveret" };
 	String[] type = { "", "Rejseafregning" };
@@ -75,7 +81,13 @@ public class DokArkivView extends Composite {
 	
 	@EventHandler
 	public void onSearchSuccessEvent(SearchDokArkivSuccessEvent e){
-		
+		ArrayList<RejseafregningDTO> result = (ArrayList<RejseafregningDTO>) e.getRejseafregningsliste();
+		for(int i = 0; i < result.size(); i++){
+			searchResultat.insertRow(searchResultat.getRowCount());
+			searchResultat.setText(searchResultat.getRowCount(), 0, Integer.toString((result.get(i).getRejseafregningID())));
+			searchResultat.setText(searchResultat.getRowCount(), 1, result.get(i).getLand());
+		}
+		Window.alert("Resultat modtaget!");
 	}
 
 }

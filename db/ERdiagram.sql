@@ -2,6 +2,7 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
+DROP TABLE IF EXISTS new_table;
 DROP TABLE IF EXISTS Udgift;
 DROP TABLE IF EXISTS Bilag;
 DROP TABLE IF EXISTS Rejseafregning;
@@ -26,14 +27,19 @@ CREATE TABLE Bilag
 CREATE TABLE Medarbejder
 (
 	brugernavn varchar(10) NOT NULL,
-	name varchar(50) NOT NULL,
+	navn varchar(50) NOT NULL,
 	email varchar(50) NOT NULL,
 	adgangskode varchar(20) NOT NULL,
-	medarbejder boolean NOT NULL,
-	godkender boolean,
-	anviser boolean,
-	adminstrator boolean,
+	afdeling varchar(30) NOT NULL,
+	administrator boolean NOT NULL,
 	PRIMARY KEY (brugernavn)
+);
+
+
+CREATE TABLE new_table
+(
+	rejseafregning_ID int NOT NULL,
+	udgift_ID int NOT NULL
 );
 
 
@@ -58,13 +64,15 @@ CREATE TABLE Rejseafregning
 	brugernavn varchar(10) NOT NULL,
 	rejsedag_ID int NOT NULL,
 	nameProjekt varchar(50) NOT NULL,
-	godkendt boolean NOT NULL,
+	status varchar(15) NOT NULL,
 	datoStart date NOT NULL,
 	datoSlut date NOT NULL,
 	land varchar(20) NOT NULL,
 	city varchar(20) NOT NULL,
 	anledning varchar(100) NOT NULL,
 	sum int NOT NULL,
+	anviser varchar(35) NOT NULL,
+	godkender varchar(35) NOT NULL,
 	PRIMARY KEY (rejseafregning_ID)
 );
 
@@ -85,7 +93,6 @@ CREATE TABLE Udgift
 (
 	udgift_ID int NOT NULL,
 	bilag_ID int NOT NULL,
-	rejseafregning_ID int NOT NULL,
 	udgiftType varchar(50) NOT NULL,
 	betalingsType varchar(50) NOT NULL,
 	forklaring varchar(300) NOT NULL,
@@ -129,7 +136,7 @@ ALTER TABLE Rejseafregning
 ;
 
 
-ALTER TABLE Udgift
+ALTER TABLE new_table
 	ADD FOREIGN KEY (rejseafregning_ID)
 	REFERENCES Rejseafregning (rejseafregning_ID)
 	ON UPDATE RESTRICT
@@ -140,6 +147,14 @@ ALTER TABLE Udgift
 ALTER TABLE Rejseafregning
 	ADD FOREIGN KEY (rejsedag_ID)
 	REFERENCES Rejsedag (rejsedag_ID)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE new_table
+	ADD FOREIGN KEY (udgift_ID)
+	REFERENCES Udgift (udgift_ID)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
