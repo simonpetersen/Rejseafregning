@@ -16,6 +16,7 @@ import com.google.web.bindery.event.shared.binder.EventBinder;
 
 import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.shared.MedarbejderDTO;
+import com.google.gwt.user.client.ui.Anchor;
 
 public class MainView2 extends Composite {
 
@@ -29,6 +30,8 @@ public class MainView2 extends Composite {
 	private OplysningerView oplysningerView;
 	private VelkommenView velkommenView;
 	private DokArkivView dokumentView;
+	
+	private DokumenterView dokView;
 	
 	private final EventBus eventBus;
 	
@@ -47,9 +50,11 @@ public class MainView2 extends Composite {
 		oplysningerView = new OplysningerView(eventBus, bruger);
 		velkommenView = new VelkommenView(eventBus);
 		dokumentView = new DokArkivView(eventBus);
+		dokView = new DokumenterView(eventBus);
 		contentPanel.add(velkommenView);
 		contentPanel.add(oplysningerView);
 		contentPanel.add(dokumentView);
+		contentPanel.add(dokView);
 		contentPanel.showWidget(velkommenView);
 	
 		
@@ -77,5 +82,10 @@ public class MainView2 extends Composite {
 	@UiHandler("dokumentArkiv")
 	void onDokumentArkivClick(ClickEvent event){
 		contentPanel.showWidget(dokumentView);
+	}
+	
+	@UiHandler("opgaver")
+	void onAnchorClick(ClickEvent event) {
+		contentPanel.showWidget(dokView);
 	}
 }
