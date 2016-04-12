@@ -1,18 +1,18 @@
 package dtu.rejseafregning.client.logic;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
+import dtu.rejseafregning.client.events.GetDokumenterUdkastEvent;
+import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
 import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivEvent;
@@ -22,7 +22,6 @@ import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
 import dtu.rejseafregning.client.services.IRejseafregningDAO;
 import dtu.rejseafregning.client.services.IRejseafregningDAOAsync;
 import dtu.rejseafregning.client.ui.MainView2;
-import dtu.rejseafregning.server.dal.RejseafregningDAO;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
@@ -82,6 +81,22 @@ public class Controller {
 				eventBus.fireEvent(new SearchDokArkivSuccessEvent(result));
 			}
 
+		});
+	}
+	
+	@EventHandler
+	public void onGetDokumenterUdkastEvent(GetDokumenterUdkastEvent e) {
+		rejseafregningDAO.getRejseafregningList(bruger.getBrugernavn(), new AsyncCallback<List<RejseafregningDTO>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl ved hent af dokumenter: "+caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(List<RejseafregningDTO> result) {
+				eventBus.fireEvent(new GetUdkastSuccessfullEvent(result));
+			}
 		});
 	}
 

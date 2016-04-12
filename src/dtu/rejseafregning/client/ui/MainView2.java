@@ -54,7 +54,6 @@ public class MainView2 extends Composite {
 		contentPanel.add(velkommenView);
 		contentPanel.add(oplysningerView);
 		contentPanel.add(dokumentView);
-		contentPanel.add(dokView);
 		contentPanel.showWidget(velkommenView);
 	
 		
@@ -85,7 +84,8 @@ public class MainView2 extends Composite {
 	}
 	
 	@UiHandler("opgaver")
-	void onAnchorClick(ClickEvent event) {
+	void onOpgaverClick(ClickEvent event) {
+		contentPanel.add(dokView);
 		contentPanel.showWidget(dokView);
 	}
 }
