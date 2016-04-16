@@ -18,16 +18,6 @@ public class MedarbejderDTO implements Serializable {
 		setDtuBruger(dtuBruger);
 	}
 	
-	public MedarbejderDTO(String navn, String brugernavn, String adgangskode, String email, boolean administrator, boolean dtuBruger) {
-		setNavn(navn);
-		setBrugernavn(brugernavn);
-		setAdgangskode(adgangskode);
-		setEmail(email);
-		setAfdeling("Økonomi & Regnskab");
-		setAdministrator(administrator);
-		setDtuBruger(dtuBruger);
-	}
-	
 	public MedarbejderDTO(String navn, String adgangskode, String email) {
 		setNavn(navn);
 		setAdgangskode(adgangskode);

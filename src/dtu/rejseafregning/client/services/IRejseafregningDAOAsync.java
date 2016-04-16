@@ -9,6 +9,8 @@ import dtu.rejseafregning.shared.RejseafregningDTO;
 public interface IRejseafregningDAOAsync {
 	void getRejseafregning(int rejseafregningID, AsyncCallback<RejseafregningDTO> callback);
 	void getRejseafregningList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
+	void getRejseafregningUdkastList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
+	void getRejseafregningCirkulationList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
 	void createRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);
 	void updateRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);
 	void deleteRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);

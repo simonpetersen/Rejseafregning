@@ -3,23 +3,25 @@
  	xmlns:g="urn:import:com.google.gwt.user.client.ui">
  	<ui:style>
  	.loginPanel {
-		margin: auto;
-    	width: 20%;
-    	border: 2px solid #666666;
-    	padding: 10px;
+    	spacing: 5px;
+ 		margin: auto;
+ 		padding: 5px;
+ 		border: 2px solid #666666;
+ 		width: 20%;
+ 	}
+ 	
+ 	.textBox {
+    	spacing: 5px;
+ 		padding: 5px;
  	}
   	</ui:style>
-  	<g:VerticalPanel styleName="{style.loginPanel}" >
+  	<g:VerticalPanel styleName="{style.loginPanel}" horizontalAlignment="ALIGN_CENTER" >
  		<g:HTML styleName="h2">DTU Rejseafregning</g:HTML>
  		<g:HTML />
- 		<g:HorizontalPanel spacing="5" >
- 			<g:Label text="Brugernavn: "/>
- 			<g:TextBox ui:field="brugernavnTextBox"/>
- 		</g:HorizontalPanel>
- 		<g:HorizontalPanel spacing="5" >
- 			<g:Label text="Adgangskode: "/>
- 			<g:PasswordTextBox ui:field="adgangskodeTextBox"/>
- 		</g:HorizontalPanel>
- 		<g:Button ui:field="button">Login</g:Button>
+ 		<g:Label text="Brugernavn:" />
+ 		<g:TextBox ui:field="brugernavnTextBox" width='96%' />
+ 		<g:Label text="Adgangskode: "/>
+ 		<g:PasswordTextBox ui:field="adgangskodeTextBox" width='96%' />
+ 		<g:Button ui:field="button" width='100%'>Login</g:Button>
   	</g:VerticalPanel>
   </ui:UiBinder>  
