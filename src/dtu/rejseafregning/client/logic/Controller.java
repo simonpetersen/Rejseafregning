@@ -11,6 +11,8 @@ import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
+import dtu.rejseafregning.client.events.GetAfsluttedeDokumenterEvent;
+import dtu.rejseafregning.client.events.GetAfsluttedeSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetCirkulationSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetDokumenterCirkulationEvent;
 import dtu.rejseafregning.client.events.GetDokumenterUdkastEvent;
@@ -112,6 +114,21 @@ public class Controller {
 			@Override
 			public void onSuccess(List<RejseafregningDTO> result) {
 				eventBus.fireEvent(new GetCirkulationSuccessfullEvent(result));
+			}
+		});
+	}
+	
+	@EventHandler
+	public void onGetAfsluttedeDokumenterEvent(GetAfsluttedeDokumenterEvent e) {
+		rejseafregningDAO.getRejseafregningAfsluttedeList(bruger.getBrugernavn(), new AsyncCallback<List<RejseafregningDTO>>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl ved hent af dokumenter: "+caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(List<RejseafregningDTO> result) {
+				eventBus.fireEvent(new GetAfsluttedeSuccessfullEvent(result));
 			}
 		});
 	}

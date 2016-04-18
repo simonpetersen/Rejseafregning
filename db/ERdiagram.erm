@@ -10,9 +10,9 @@
 		<right_margin>30</right_margin>
 	</page_setting>
 	<category_index>0</category_index>
-	<zoom>0.75</zoom>
-	<x>0</x>
-	<y>176</y>
+	<zoom>1.0</zoom>
+	<x>160</x>
+	<y>217</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2016-03-07 14:13:19</creation_date>
-			<updated_date>2016-04-12 10:36:04</updated_date>
+			<updated_date>2016-04-18 14:25:16</updated_date>
 			<model_property>
 				<name>Project Name</name>
 				<value></value>
@@ -606,7 +606,7 @@
 		</word>
 		<word>
 			<id>27</id>
-			<length>15</length>
+			<length>20</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>

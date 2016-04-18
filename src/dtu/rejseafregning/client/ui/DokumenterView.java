@@ -9,19 +9,19 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
+import dtu.rejseafregning.client.events.GetAfsluttedeDokumenterEvent;
+import dtu.rejseafregning.client.events.GetAfsluttedeSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetCirkulationSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetDokumenterCirkulationEvent;
 import dtu.rejseafregning.client.events.GetDokumenterUdkastEvent;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
-import dtu.rejseafregning.client.ui.celltables.CirkulationCellTable;
-import dtu.rejseafregning.client.ui.celltables.UdkastCellTable;
+import dtu.rejseafregning.client.ui.celltables.MineDokumenterCellTable;
 
 public class DokumenterView extends Composite {
 
 	DateTimeFormat fmt = DateTimeFormat.getFormat("dd/MM-yyyy");
 	private TabLayoutPanel tabPanel;
-	private UdkastCellTable udkastCellTable;
-	private CirkulationCellTable cirkulationCellTable;
+	private MineDokumenterCellTable cirkulationCellTable, udkastCellTable, afsluttetCellTable;
 	
 	private final EventBus eventBus;
 	
@@ -36,18 +36,24 @@ public class DokumenterView extends Composite {
 		eventBinder.bindEventHandlers(this, eventBus);
 		eventBus.fireEvent(new GetDokumenterUdkastEvent());
 		eventBus.fireEvent(new GetDokumenterCirkulationEvent());
-		
+		eventBus.fireEvent(new GetAfsluttedeDokumenterEvent());
 	}
 	
 	@EventHandler
 	public void onGetUdkastSuccessfullEvent(GetUdkastSuccessfullEvent e) {
-		udkastCellTable = new UdkastCellTable(eventBus, e.getList());
+		udkastCellTable = new MineDokumenterCellTable(eventBus, e.getList());
 		tabPanel.add(udkastCellTable, "Udkast");
 	}
 	
 	@EventHandler
 	public void onGetCirkulationSuccessfullEvent(GetCirkulationSuccessfullEvent e) {
-		cirkulationCellTable = new CirkulationCellTable(eventBus, e.getList());
+		cirkulationCellTable = new MineDokumenterCellTable(eventBus, e.getList());
 		tabPanel.add(cirkulationCellTable, "I cirkulation");
+	}
+	
+	@EventHandler
+	public void onGetAfsluttedeSuccessfullEvent(GetAfsluttedeSuccessfullEvent e) {
+		afsluttetCellTable = new MineDokumenterCellTable(eventBus, e.getList());
+		tabPanel.add(afsluttetCellTable, "Afsluttet");
 	}
 }

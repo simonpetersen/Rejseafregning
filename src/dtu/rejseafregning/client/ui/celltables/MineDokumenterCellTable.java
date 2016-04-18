@@ -14,7 +14,7 @@ import com.google.web.bindery.event.shared.binder.EventBinder;
 
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
-public class UdkastCellTable extends Composite {
+public class MineDokumenterCellTable extends Composite {
 
 	DateTimeFormat fmt = DateTimeFormat.getFormat("dd/MM-yyyy");
 	private CellTable<RejseafregningDTO> cellTable;
@@ -22,7 +22,7 @@ public class UdkastCellTable extends Composite {
 
 	private final EventBus eventBus;
 
-	interface MyEventBinder extends EventBinder<UdkastCellTable> {
+	interface MyEventBinder extends EventBinder<MineDokumenterCellTable> {
 	}
 
 	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
@@ -34,7 +34,7 @@ public class UdkastCellTable extends Composite {
 		}
 	};
 
-	public UdkastCellTable(EventBus eventBus, List<RejseafregningDTO> dokumenter) {
+	public MineDokumenterCellTable(EventBus eventBus, List<RejseafregningDTO> dokumenter) {
 		this.dokumenter = dokumenter;
 		cellTable = new CellTable<RejseafregningDTO>(KEY_PROVIDER);
 		cellTable.setWidth("100%");
@@ -71,7 +71,17 @@ public class UdkastCellTable extends Composite {
 			}
 		};
 		cellTable.addColumn(typeColumn, "Type");
-		
+
+		// Tilføjet type-celle
+		final TextCell statusCell = new TextCell();
+		Column<RejseafregningDTO, String> statusColumn = new Column<RejseafregningDTO, String>(statusCell) {
+			@Override
+			public String getValue(RejseafregningDTO object) {
+				return object.getStatus();
+			}
+		};
+		cellTable.addColumn(statusColumn, "Status");
+
 		// Tilføjet land-celle
 		final TextCell landCell = new TextCell();
 		Column<RejseafregningDTO, String> landColumn = new Column<RejseafregningDTO, String>(landCell) {
@@ -111,7 +121,7 @@ public class UdkastCellTable extends Composite {
 			}
 		};
 		cellTable.addColumn(sumColumn, "Sum");
-
+		
 		cellTable.setRowCount(dokumenter.size(), true);
 		cellTable.setRowData(0, dokumenter);
 	}

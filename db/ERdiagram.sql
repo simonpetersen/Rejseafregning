@@ -64,7 +64,7 @@ CREATE TABLE Rejseafregning
 	brugernavn varchar(10) NOT NULL,
 	rejsedag_ID int NOT NULL,
 	nameProjekt varchar(50) NOT NULL,
-	status varchar(15) NOT NULL,
+	status varchar(20) NOT NULL,
 	datoStart date NOT NULL,
 	datoSlut date NOT NULL,
 	land varchar(20) NOT NULL,

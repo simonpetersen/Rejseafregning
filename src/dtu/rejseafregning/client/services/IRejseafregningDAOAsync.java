@@ -11,6 +11,7 @@ public interface IRejseafregningDAOAsync {
 	void getRejseafregningList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
 	void getRejseafregningUdkastList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
 	void getRejseafregningCirkulationList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
+	void getRejseafregningAfsluttedeList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
 	void createRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);
 	void updateRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);
 	void deleteRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);

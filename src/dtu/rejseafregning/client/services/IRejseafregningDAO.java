@@ -14,6 +14,7 @@ public interface IRejseafregningDAO extends RemoteService{
 	List<RejseafregningDTO> getRejseafregningList(String navn) throws DALException;
 	List<RejseafregningDTO> getRejseafregningUdkastList(String navn) throws DALException;
 	List<RejseafregningDTO> getRejseafregningCirkulationList(String navn) throws DALException;
+	List<RejseafregningDTO> getRejseafregningAfsluttedeList(String navn) throws DALException;
 	void createRejseafregning(RejseafregningDTO rejseafregning) throws DALException;
 	void updateRejseafregning(RejseafregningDTO rejseafregning) throws DALException;
 	void deleteRejseafregning(RejseafregningDTO rejseafregning) throws DALException;
