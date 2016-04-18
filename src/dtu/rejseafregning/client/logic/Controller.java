@@ -16,16 +16,20 @@ import dtu.rejseafregning.client.events.GetAfsluttedeSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetCirkulationSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetDokumenterCirkulationEvent;
 import dtu.rejseafregning.client.events.GetDokumenterUdkastEvent;
+import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
+import dtu.rejseafregning.client.events.GetMedarbejderNavnListSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
 import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivSuccessEvent;
+import dtu.rejseafregning.client.services.IMedarbejderDAOAsync;
 import dtu.rejseafregning.client.services.IOpgaveDAO;
 import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
 import dtu.rejseafregning.client.services.IRejseafregningDAO;
 import dtu.rejseafregning.client.services.IRejseafregningDAOAsync;
 import dtu.rejseafregning.client.ui.MainView;
+import dtu.rejseafregning.server.dal.MedarbejderDAO;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
@@ -42,6 +46,7 @@ public class Controller {
 	private RejseafregningDTO rejseafregning;
 
 	private IRejseafregningDAOAsync rejseafregningDAO = GWT.create(IRejseafregningDAO.class);
+	private IMedarbejderDAOAsync medarbejderDAO = GWT.create(MedarbejderDAO.class);
 
 	interface MyEventBinder extends EventBinder<Controller> {
 	}
@@ -131,5 +136,24 @@ public class Controller {
 				eventBus.fireEvent(new GetAfsluttedeSuccessfullEvent(result));
 			}
 		});
+	}
+	
+	@EventHandler
+	public void onGetMedarbejderNavnListEvent(GetMedarbejderNavnListEvent e){
+		medarbejderDAO.getMedarbejderList(new AsyncCallback<List<MedarbejderDTO>>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl ved hent af Medarbejder liste: " + caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(List<MedarbejderDTO> result) {
+				eventBus.fireEvent(new GetMedarbejderNavnListSuccessfullEvent(result));
+				
+			}
+			
+		});	
 	}
 }
