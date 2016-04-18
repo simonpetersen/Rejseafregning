@@ -25,14 +25,14 @@ import dtu.rejseafregning.client.services.IOpgaveDAO;
 import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
 import dtu.rejseafregning.client.services.IRejseafregningDAO;
 import dtu.rejseafregning.client.services.IRejseafregningDAOAsync;
-import dtu.rejseafregning.client.ui.MainView2;
+import dtu.rejseafregning.client.ui.MainView;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
 public class Controller {
 
 	private EventBus eventBus;
-	private MainView2 mainView;
+	private MainView mainView;
 	private LoginController loginController;
 
 	private MedarbejderDTO bruger;
@@ -58,7 +58,7 @@ public class Controller {
 	@EventHandler
 	public void onLoginButtonEvent(LoginSuccessfullEvent e) {
 		bruger = e.getMedarbejder();
-		mainView = new MainView2(eventBus, bruger);
+		mainView = new MainView(eventBus, bruger);
 		mainView.setNavLabels(bruger.getNavn(), bruger.getAfdeling());
 		RootLayoutPanel.get().add(mainView);
 	}
