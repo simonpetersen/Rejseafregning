@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 
-import dtu.rejseafregning.client.ui.MainView2.MyEventBinder;
+import dtu.rejseafregning.client.ui.MainView.MyEventBinder;
 
 public class VelkommenView extends Composite {
 
