@@ -13,11 +13,14 @@ import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.GetAfsluttedeDokumenterEvent;
 import dtu.rejseafregning.client.events.GetAfsluttedeSuccessfullEvent;
+import dtu.rejseafregning.client.events.GetAnvisningDokumenterEvent;
+import dtu.rejseafregning.client.events.GetAnvisningerSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetCirkulationSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetDokumenterCirkulationEvent;
 import dtu.rejseafregning.client.events.GetDokumenterUdkastEvent;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
 import dtu.rejseafregning.client.ui.celltables.MineDokumenterCellTable;
+import dtu.rejseafregning.client.ui.celltables.TilGodkendelseCellTable;
 
 public class DokumenterView extends Composite {
 
@@ -29,6 +32,7 @@ public class DokumenterView extends Composite {
 	
 	DateTimeFormat fmt = DateTimeFormat.getFormat("dd/MM-yyyy");
 	private MineDokumenterCellTable cirkulationCellTable, udkastCellTable, afsluttetCellTable;
+	private TilGodkendelseCellTable godkendelseCellTable, anvisningCellTable;
 	
 	private final EventBus eventBus;
 	
@@ -47,6 +51,7 @@ public class DokumenterView extends Composite {
 		eventBus.fireEvent(new GetDokumenterUdkastEvent());
 		eventBus.fireEvent(new GetDokumenterCirkulationEvent());
 		eventBus.fireEvent(new GetAfsluttedeDokumenterEvent());
+		eventBus.fireEvent(new GetAnvisningDokumenterEvent());
 	}
 	
 	@EventHandler
@@ -65,5 +70,11 @@ public class DokumenterView extends Composite {
 	public void onGetAfsluttedeSuccessfullEvent(GetAfsluttedeSuccessfullEvent e) {
 		afsluttetCellTable = new MineDokumenterCellTable(eventBus, e.getList());
 		afsluttetPanel.add(afsluttetCellTable);
+	}
+	
+	@EventHandler
+	public void onGetAnivsningerSuccessfullEvent(GetAnvisningerSuccessfullEvent e) {
+		anvisningCellTable = new TilGodkendelseCellTable(eventBus, e.getListe());
+		anvisningPanel.add(anvisningCellTable);
 	}
 }

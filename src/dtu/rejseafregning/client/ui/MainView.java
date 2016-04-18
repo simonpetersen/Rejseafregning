@@ -31,7 +31,6 @@ public class MainView extends Composite {
 	private VelkommenView velkommenView;
 	private DokArkivView dokumentView;
 	private DokumenterView dokView;
-	private OpgaverView opgView;
 	
 	private final EventBus eventBus;
 	

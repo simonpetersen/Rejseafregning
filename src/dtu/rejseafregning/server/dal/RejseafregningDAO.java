@@ -11,6 +11,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import dtu.rejseafregning.client.services.IRejseafregningDAO;
 import dtu.rejseafregning.shared.DALException;
+import dtu.rejseafregning.shared.GodkendelseJoinDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
 public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafregningDAO {
@@ -23,6 +24,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 	private PreparedStatement getRejseafregningUdkastListStmt = null;
 	private PreparedStatement getRejseafregningCirkulationListStmt = null;
 	private PreparedStatement getRejseafregningAfsluttedeListStmt = null;
+	private PreparedStatement getRejseafregningAnvisningJoinListStmt = null;
 	private PreparedStatement createRejseafregningStmt = null;
 	private PreparedStatement updateRejseafregningStmt = null;
 	private PreparedStatement deleteRejseafregningStmt = null;
@@ -59,6 +61,8 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 				+ "sum, rejseafregning.anviser, rejseafregning.godkender "
 				+ "FROM medarbejder, Rejseafregning "
 				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND rejseafregning.brugernavn = ? AND status = ?");
+		
+		getRejseafregningAnvisningJoinListStmt = Connector.conn.prepareStatement("Select m.navn, r.* from medarbejder m, rejseafregning r WHERE r.anviser = ?");
 		
 		// getRejseafregningsUdkastList statement
 		getRejseafregningUdkastListStmt = Connector.conn
@@ -362,5 +366,32 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			}
 		}
 		return RejseafregningListe;
+	}
+
+	@Override
+	public List<GodkendelseJoinDTO> getRejseafregningAnvisningList(String navn) throws DALException {
+		List<GodkendelseJoinDTO> rejseafregningListe = null;
+		ResultSet rs = null;
+		try {
+			rejseafregningListe = new ArrayList<GodkendelseJoinDTO>();
+			getRejseafregningAnvisningJoinListStmt.setString(1, navn);
+			rs = getRejseafregningAnvisningJoinListStmt.executeQuery();
+			
+			while (rs.next()) {
+				rejseafregningListe.add(new GodkendelseJoinDTO(rs.getString("navn"), rs.getInt("Rejseafregning_ID"),
+						rs.getString("nameProjekt"), rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getString("Land"), 
+						rs.getString("City"), rs.getString("Anledning"), rs.getDouble("Sum")));
+			}
+		} catch (SQLException e) {
+			throw new DALException("Kaldet getAnvisninerJoin fejlede");
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				close();
+			}
+		}
+		return rejseafregningListe;
 	}
 }

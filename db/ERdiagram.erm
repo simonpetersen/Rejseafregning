@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2016-03-07 14:13:19</creation_date>
-			<updated_date>2016-04-18 14:25:16</updated_date>
+			<updated_date>2016-04-18 21:00:19</updated_date>
 			<model_property>
 				<name>Project Name</name>
 				<value></value>
@@ -622,8 +622,8 @@
 		</word>
 		<word>
 			<id>28</id>
-			<length>null</length>
-			<decimal>null</decimal>
+			<length>9</length>
+			<decimal>2</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
 			<unsigned>false</unsigned>
@@ -634,7 +634,7 @@
 			<description></description>
 			<logical_name>sum</logical_name>
 			<physical_name>sum</physical_name>
-			<type>integer</type>
+			<type>double precision(m,d)</type>
 		</word>
 		<word>
 			<id>29</id>
@@ -1850,12 +1850,12 @@
 			<connections>
 				<relation>
 					<id>4</id>
-					<source>6</source>
+					<source>4</source>
 					<target>7</target>
-						<source_xp>100</source_xp>
-						<source_yp>18</source_yp>
-						<target_xp>0</target_xp>
-						<target_yp>16</target_yp>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
 						<color>
 							<r>0</r>
 							<g>0</g>
@@ -1894,12 +1894,12 @@
 				</relation>
 				<relation>
 					<id>6</id>
-					<source>4</source>
+					<source>6</source>
 					<target>7</target>
-						<source_xp>-1</source_xp>
-						<source_yp>-1</source_yp>
-						<target_xp>-1</target_xp>
-						<target_yp>-1</target_yp>
+						<source_xp>100</source_xp>
+						<source_yp>18</source_yp>
+						<target_xp>0</target_xp>
+						<target_yp>16</target_yp>
 						<color>
 							<r>0</r>
 							<g>0</g>
@@ -1958,7 +1958,7 @@
 				<normal_column>
 					<id>26</id>
 					<referenced_column>19</referenced_column>
-					<relation>4</relation>
+					<relation>6</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1992,7 +1992,7 @@
 				<normal_column>
 					<id>27</id>
 					<referenced_column>11</referenced_column>
-					<relation>6</relation>
+					<relation>4</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2262,7 +2262,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>integer</type>
+					<type>double precision(m,d)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
