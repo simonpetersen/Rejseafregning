@@ -230,7 +230,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 		try {
 			rejseafregningListe = new ArrayList<RejseafregningDTO>();
 			getRejseafregningAfsluttedeListStmt.setString(1, navn);
-			rs = getRejseafregningCirkulationListStmt.executeQuery();
+			rs = getRejseafregningAfsluttedeListStmt.executeQuery();
 
 			while (rs.next()) {
 				rejseafregningListe.add(new RejseafregningDTO(rs.getInt("Rejseafregning_ID"),
