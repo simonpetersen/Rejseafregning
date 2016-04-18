@@ -1,6 +1,7 @@
 package dtu.rejseafregning.client.ui;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -20,6 +21,8 @@ import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.SearchDokArkivEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivSuccessEvent;
+import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
+import dtu.rejseafregning.client.events.GetMedarbejderNavnListSuccessfullEvent;
 import dtu.rejseafregning.client.ui.OplysningerView.MyEventBinder;
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
@@ -32,8 +35,6 @@ public class DokArkivView extends Composite {
 	ListBox dropboxNavn;
 	@UiField
 	ListBox dropboxStatus;
-	@UiField
-	ListBox dropboxType;
 	@UiField
 	DateBox startDato;
 	@UiField
@@ -52,7 +53,7 @@ public class DokArkivView extends Composite {
 
 	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
 
-	String[] medarbejdere = { "", "Rasmus", "Peter", "Mads", "Arne", "Poul", "Jens", "Verner", "Anders" };
+	List<String> medarbejdere = new ArrayList<String>();
 	String[] status = { "", "Udkast", "Til Godkendelse", "Til Anvisning", "Anvist", "Venter på Data", "Behandlet",
 			"Overført til Oracle", "Arkiveret" };
 	String[] type = { "", "Rejseafregning" };
@@ -60,23 +61,28 @@ public class DokArkivView extends Composite {
 	public DokArkivView(EventBus eventBus) {
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
+		eventBus.fireEvent(new GetMedarbejderNavnListEvent());
 
 		initWidget(uiBinder.createAndBindUi(this));
-		for (int i = 0; i < medarbejdere.length; i++) {
-			dropboxNavn.addItem(medarbejdere[i]);
+		for (int i = 0; i < medarbejdere.size(); i++) {
+			dropboxNavn.addItem(medarbejdere.get(i));
 		}
 		for (int i = 0; i < status.length; i++) {
 			dropboxStatus.addItem(status[i]);
 		}
-		for (int i = 0; i < type.length; i++) {
-			dropboxType.addItem(type[i]);
+	}
+	
+	@EventHandler
+	public void onGetMedarbejderNavnListSuccessEvent(GetMedarbejderNavnListSuccessfullEvent e){
+		for(int i = 0; i < e.getList().size(); i++){
+			medarbejdere.add(e.getList().get(i).getNavn());
 		}
 	}
 
 	@UiHandler("searchKnap")
 	void onSearchKnapKlik(ClickEvent event) {
-		eventBus.fireEvent(new SearchDokArkivEvent(medarbejdere[dropboxNavn.getSelectedIndex()],
-				status[dropboxStatus.getSelectedIndex()], type[dropboxType.getSelectedIndex()]));
+		eventBus.fireEvent(new SearchDokArkivEvent(medarbejdere.get(dropboxNavn.getSelectedIndex()),
+				status[dropboxStatus.getSelectedIndex()]));
 	}
 	
 	@EventHandler

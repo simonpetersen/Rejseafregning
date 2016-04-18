@@ -4,12 +4,11 @@ import com.google.web.bindery.event.shared.binder.GenericEvent;
 
 public class SearchDokArkivEvent extends GenericEvent{
 	
-	private String medarbejder, status, type;
+	private String medarbejder, status;
 		
-	public SearchDokArkivEvent(String Medarbejder, String Status, String Type){
+	public SearchDokArkivEvent(String Medarbejder, String Status){
 		this.medarbejder = Medarbejder;
 		this.status = Status;
-		this.type = Type;
 	}
 	
 	public String getMedarbejder(){
@@ -27,13 +26,4 @@ public class SearchDokArkivEvent extends GenericEvent{
 	public void setStatus(String status){
 		this.status = status;
 	}
-	
-	public String getType(){
-		return type;
-	}
-	
-	public void setType(String type){
-		this.type = type;
-	}
-
 }

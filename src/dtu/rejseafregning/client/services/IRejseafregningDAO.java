@@ -12,6 +12,9 @@ import dtu.rejseafregning.shared.RejseafregningDTO;
 public interface IRejseafregningDAO extends RemoteService{
 	RejseafregningDTO getRejseafregning(int rejseafregningID) throws DALException;
 	List<RejseafregningDTO> getRejseafregningList(String navn) throws DALException;
+	List<RejseafregningDTO> getRejseafregningListNavn(String navn) throws DALException;
+	List<RejseafregningDTO> getRejseafregningListStat(String status) throws DALException;
+	List<RejseafregningDTO> getRejseafregningListNavnStat(String navn, String status) throws DALException;
 	List<RejseafregningDTO> getRejseafregningUdkastList(String navn) throws DALException;
 	List<RejseafregningDTO> getRejseafregningCirkulationList(String navn) throws DALException;
 	List<RejseafregningDTO> getRejseafregningAfsluttedeList(String navn) throws DALException;

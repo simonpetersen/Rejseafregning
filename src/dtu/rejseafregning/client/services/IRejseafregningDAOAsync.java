@@ -9,6 +9,9 @@ import dtu.rejseafregning.shared.RejseafregningDTO;
 public interface IRejseafregningDAOAsync {
 	void getRejseafregning(int rejseafregningID, AsyncCallback<RejseafregningDTO> callback);
 	void getRejseafregningList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
+	void getRejseafregningListNavn(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
+	void getRejseafregningListStat(String status, AsyncCallback<List<RejseafregningDTO>> callback);
+	void getRejseafregningListNavnStat(String navn, String status, AsyncCallback<List<RejseafregningDTO>> callback);
 	void getRejseafregningUdkastList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
 	void getRejseafregningCirkulationList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
 	void getRejseafregningAfsluttedeList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
