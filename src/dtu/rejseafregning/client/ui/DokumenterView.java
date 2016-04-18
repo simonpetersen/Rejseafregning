@@ -1,10 +1,12 @@
 package dtu.rejseafregning.client.ui;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.TabLayoutPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
@@ -19,18 +21,26 @@ import dtu.rejseafregning.client.ui.celltables.MineDokumenterCellTable;
 
 public class DokumenterView extends Composite {
 
+	@UiField VerticalPanel udkastPanel;
+	@UiField VerticalPanel cirkulationPanel;
+	@UiField VerticalPanel afsluttetPanel;
+	@UiField VerticalPanel godkendelsePanel;
+	@UiField VerticalPanel anvisningPanel;
+	
 	DateTimeFormat fmt = DateTimeFormat.getFormat("dd/MM-yyyy");
-	private TabLayoutPanel tabPanel;
 	private MineDokumenterCellTable cirkulationCellTable, udkastCellTable, afsluttetCellTable;
 	
 	private final EventBus eventBus;
+	
+	private static DokumenterViewUiBinder uiBinder = GWT.create(DokumenterViewUiBinder.class);
+	interface DokumenterViewUiBinder extends UiBinder<Widget, DokumenterView> {
+	}
 	
 	interface MyEventBinder extends EventBinder<DokumenterView> {}
  	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
 	
 	public DokumenterView(EventBus eventBus) {
-		tabPanel = new TabLayoutPanel(2.5, Unit.EM);
-		initWidget(tabPanel);
+		initWidget(uiBinder.createAndBindUi(this));
 		
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
@@ -42,18 +52,18 @@ public class DokumenterView extends Composite {
 	@EventHandler
 	public void onGetUdkastSuccessfullEvent(GetUdkastSuccessfullEvent e) {
 		udkastCellTable = new MineDokumenterCellTable(eventBus, e.getList());
-		tabPanel.add(udkastCellTable, "Udkast");
+		udkastPanel.add(udkastCellTable);
 	}
 	
 	@EventHandler
 	public void onGetCirkulationSuccessfullEvent(GetCirkulationSuccessfullEvent e) {
 		cirkulationCellTable = new MineDokumenterCellTable(eventBus, e.getList());
-		tabPanel.add(cirkulationCellTable, "I cirkulation");
+		cirkulationPanel.add(cirkulationCellTable);
 	}
 	
 	@EventHandler
 	public void onGetAfsluttedeSuccessfullEvent(GetAfsluttedeSuccessfullEvent e) {
 		afsluttetCellTable = new MineDokumenterCellTable(eventBus, e.getList());
-		tabPanel.add(afsluttetCellTable, "Afsluttet");
+		afsluttetPanel.add(afsluttetCellTable);
 	}
 }

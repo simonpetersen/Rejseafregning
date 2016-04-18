@@ -51,11 +51,9 @@ public class MainView extends Composite {
 		velkommenView = new VelkommenView(eventBus);
 		dokumentView = new DokArkivView(eventBus);
 		dokView = new DokumenterView(eventBus);
-		opgView = new OpgaverView();
 		contentPanel.add(velkommenView);
 		contentPanel.add(oplysningerView);
 		contentPanel.add(dokumentView);
-		contentPanel.add(opgView);
 		contentPanel.add(dokView);
 		contentPanel.showWidget(velkommenView);	
 	}
@@ -84,12 +82,8 @@ public class MainView extends Composite {
 		contentPanel.showWidget(dokumentView);
 	}
 	
-	@UiHandler("dokumenter")
+	@UiHandler("opgaver")
 	void onOpgaverClick(ClickEvent event) {
 		contentPanel.showWidget(dokView);
-	}
-	@UiHandler("opgaver")
-	void onOpgaverClick_1(ClickEvent event) {
-		contentPanel.showWidget(opgView);
 	}
 }

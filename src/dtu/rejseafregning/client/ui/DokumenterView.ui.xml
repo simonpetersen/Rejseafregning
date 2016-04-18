@@ -1,0 +1,31 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	</ui:style>
+	<g:TabLayoutPanel barHeight="32">
+		<g:tab>
+			<g:header>Udkast</g:header>
+			<g:VerticalPanel ui:field="udkastPanel" width="100%" />
+		</g:tab>
+		<g:tab>
+			<g:header>I cirkulation</g:header>
+			<g:VerticalPanel ui:field="cirkulationPanel" width="100%" />
+		</g:tab>
+		<g:tab>
+			<g:header>Afsluttet</g:header>
+			<g:VerticalPanel ui:field="afsluttetPanel" width="100%" />
+		</g:tab>
+		<g:tab>
+			<g:header>Til godkendelse</g:header>
+			<g:VerticalPanel ui:field="godkendelsePanel" width="100%" />
+		</g:tab>
+		<g:tab>
+			<g:header>Til anvisning</g:header>
+			<g:VerticalPanel ui:field="anvisningPanel" width="100%" />
+		</g:tab>
+	</g:TabLayoutPanel>
+</ui:UiBinder> 

@@ -36,7 +36,6 @@
 			<g:west size="140">
 				<g:VerticalPanel  styleName="{style.westPanel}" width="100%" >
 					<g:Anchor text="Velkommen" ui:field="velkommen" />
-					<g:Anchor text="Mine dokumenter" ui:field="dokumenter"/>
 					<g:Anchor text="Mine opgaver" ui:field="opgaver"/>
 					<g:Anchor text="Dokumentarkiv" ui:field="dokumentArkiv"/>
 					<g:Anchor text="Rapporter" />

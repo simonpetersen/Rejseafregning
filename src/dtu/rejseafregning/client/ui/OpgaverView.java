@@ -13,13 +13,13 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class OpgaverView extends Composite{
 
-	private static OpgaverViewUiBinder uiBinder = GWT.create(OpgaverViewUiBinder.class);
+//	private static OpgaverViewUiBinder uiBinder = GWT.create(OpgaverViewUiBinder.class);
 
-	interface OpgaverViewUiBinder extends UiBinder<Widget, OpgaverView> {
-	}
+//	interface OpgaverViewUiBinder extends UiBinder<Widget, OpgaverView> {
+//	}
 
 	public OpgaverView() {
-		initWidget(uiBinder.createAndBindUi(this));
+//		initWidget(uiBinder.createAndBindUi(this));
 	}
 
 }
