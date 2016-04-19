@@ -13,6 +13,8 @@ import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.GetAfsluttedeDokumenterEvent;
 import dtu.rejseafregning.client.events.GetAfsluttedeSuccessfullEvent;
+import dtu.rejseafregning.client.events.GetAnvisningDokumenterEvent;
+import dtu.rejseafregning.client.events.GetAnvisningerSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetCirkulationSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetDokumenterCirkulationEvent;
 import dtu.rejseafregning.client.events.GetDokumenterUdkastEvent;
@@ -30,7 +32,7 @@ import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
 import dtu.rejseafregning.client.services.IRejseafregningDAO;
 import dtu.rejseafregning.client.services.IRejseafregningDAOAsync;
 import dtu.rejseafregning.client.ui.MainView;
-import dtu.rejseafregning.server.dal.MedarbejderDAO;
+import dtu.rejseafregning.shared.GodkendelseJoinDTO;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
@@ -156,5 +158,22 @@ public class Controller {
 			}
 			
 		});	
+	}
+	
+	@EventHandler
+	public void onGetAnvisningDokumenterEvent(GetAnvisningDokumenterEvent e) {
+		rejseafregningDAO.getRejseafregningAnvisningList(bruger.getNavn(), new AsyncCallback<List<GodkendelseJoinDTO>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl: "+caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(List<GodkendelseJoinDTO> result) {
+				eventBus.fireEvent(new GetAnvisningerSuccessfullEvent(result));
+			}
+		});
 	}
 }

@@ -8,7 +8,7 @@ import dtu.rejseafregning.shared.RejseafregningDTO;
 
 public class GetAfsluttedeSuccessfullEvent extends GenericEvent {
 	
-List<RejseafregningDTO> list;
+	List<RejseafregningDTO> list;
 	
 	public GetAfsluttedeSuccessfullEvent(List<RejseafregningDTO> list) {
 		this.list = list;
