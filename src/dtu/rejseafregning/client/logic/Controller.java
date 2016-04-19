@@ -23,6 +23,7 @@ import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivSuccessEvent;
+import dtu.rejseafregning.client.services.IMedarbejderDAO;
 import dtu.rejseafregning.client.services.IMedarbejderDAOAsync;
 import dtu.rejseafregning.client.services.IOpgaveDAO;
 import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
@@ -46,7 +47,7 @@ public class Controller {
 	private RejseafregningDTO rejseafregning;
 
 	private IRejseafregningDAOAsync rejseafregningDAO = GWT.create(IRejseafregningDAO.class);
-	private IMedarbejderDAOAsync medarbejderDAO = GWT.create(MedarbejderDAO.class);
+	private IMedarbejderDAOAsync medarbejderDAO = GWT.create(IMedarbejderDAO.class);
 
 	interface MyEventBinder extends EventBinder<Controller> {
 	}

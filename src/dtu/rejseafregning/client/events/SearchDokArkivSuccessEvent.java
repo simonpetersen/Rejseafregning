@@ -9,10 +9,10 @@ import dtu.rejseafregning.shared.RejseafregningDTO;
 
 public class SearchDokArkivSuccessEvent extends GenericEvent{
 
-	ArrayList<RejseafregningDTO> rejseafregningsliste;
+	List<RejseafregningDTO> rejseafregningsliste;
 	
 	public SearchDokArkivSuccessEvent(List<RejseafregningDTO> liste){
-		this.rejseafregningsliste = (ArrayList<RejseafregningDTO>) liste;
+		this.rejseafregningsliste = liste;
 	}
 	
 	public List<RejseafregningDTO> getRejseafregningsliste(){
@@ -20,7 +20,7 @@ public class SearchDokArkivSuccessEvent extends GenericEvent{
 	}
 	
 	public void setRejseafregningsliste(List<RejseafregningDTO> liste){
-		this.rejseafregningsliste = (ArrayList<RejseafregningDTO>) liste;
+		this.rejseafregningsliste = liste;
 	}
 	
 	public RejseafregningDTO getRejseafregningIndex(int index){
