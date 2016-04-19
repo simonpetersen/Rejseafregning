@@ -62,15 +62,15 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 		List<MedarbejderDTO> MedarbejderListe = null;
 		ResultSet rs = null;
 		try {
-			rs = getMedarbejderListStmt.executeQuery();
 			MedarbejderListe = new ArrayList<MedarbejderDTO>();
+			rs = getMedarbejderListStmt.executeQuery();
 
 			while (rs.next()) {
 				MedarbejderListe.add(new MedarbejderDTO(rs.getString("Navn"),
 						rs.getString("Brugernavn"), rs.getString("adgangskode"), rs.getString("Email"), "studerende" , rs.getBoolean("administrator"), true));
 			}
 		} catch (SQLException e) {
-			throw new DALException("Kaldet getMedarbejderList fejlede");
+			throw new DALException("Kaldet getMedarbejderList fejlede" + e);
 		} finally {
 			try {
 				rs.close();

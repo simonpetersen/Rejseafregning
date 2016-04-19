@@ -64,9 +64,9 @@ public class DokArkivView extends Composite {
 		eventBus.fireEvent(new GetMedarbejderNavnListEvent());
 
 		initWidget(uiBinder.createAndBindUi(this));
-		for (int i = 0; i < medarbejdere.size(); i++) {
-			dropboxNavn.addItem(medarbejdere.get(i));
-		}
+		dropboxNavn.addItem("");
+		medarbejdere.add("");
+		
 		for (int i = 0; i < status.length; i++) {
 			dropboxStatus.addItem(status[i]);
 		}
@@ -76,6 +76,7 @@ public class DokArkivView extends Composite {
 	public void onGetMedarbejderNavnListSuccessEvent(GetMedarbejderNavnListSuccessfullEvent e){
 		for(int i = 0; i < e.getList().size(); i++){
 			medarbejdere.add(e.getList().get(i).getNavn());
+			dropboxNavn.addItem(e.getList().get(i).getNavn());
 		}
 	}
 
@@ -93,7 +94,7 @@ public class DokArkivView extends Composite {
 			searchResultat.setText(searchResultat.getRowCount(), 0, Integer.toString((result.get(i).getRejseafregningID())));
 			searchResultat.setText(searchResultat.getRowCount(), 1, result.get(i).getLand());
 		}
-		Window.alert("Resultat modtaget!");
+		Window.alert("Resultat modtaget for: " + result.get(1).getMedarbejderNavn());
 	}
 
 }
