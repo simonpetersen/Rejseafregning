@@ -25,6 +25,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 	private PreparedStatement getRejseafregningCirkulationListStmt = null;
 	private PreparedStatement getRejseafregningAfsluttedeListStmt = null;
 	private PreparedStatement getRejseafregningAnvisningJoinListStmt = null;
+	private PreparedStatement getRejseafregningGodkendelseJoinListStmt = null;
 	private PreparedStatement createRejseafregningStmt = null;
 	private PreparedStatement updateRejseafregningStmt = null;
 	private PreparedStatement deleteRejseafregningStmt = null;
@@ -62,7 +63,15 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 				+ "FROM medarbejder, Rejseafregning "
 				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND rejseafregning.brugernavn = ? AND status = ?");
 		
-		getRejseafregningAnvisningJoinListStmt = Connector.conn.prepareStatement("Select m.navn, r.* from medarbejder m, rejseafregning r WHERE r.anviser = ?");
+		// getRejseafregningAnvisningJoinList
+		getRejseafregningAnvisningJoinListStmt = Connector.conn.prepareStatement("SELECT medarbejder.navn, rejseafregning.* "
+				+ "FROM medarbejder, rejseafregning "
+				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND anviser = ? AND status = 'Til Anvisning'");
+		
+		// getRejseafregningAnvisningJoinList
+		getRejseafregningGodkendelseJoinListStmt = Connector.conn.prepareStatement("SELECT medarbejder.navn, rejseafregning.* "
+				+ "FROM medarbejder, rejseafregning "
+				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND godkender = ? AND status = 'Til Godkendelse'");
 		
 		// getRejseafregningsUdkastList statement
 		getRejseafregningUdkastListStmt = Connector.conn
@@ -377,6 +386,32 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			getRejseafregningAnvisningJoinListStmt.setString(1, navn);
 			rs = getRejseafregningAnvisningJoinListStmt.executeQuery();
 			
+			while (rs.next()) {
+				rejseafregningListe.add(new GodkendelseJoinDTO(rs.getString("navn"), rs.getInt("Rejseafregning_ID"),
+						rs.getString("nameProjekt"), rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getString("Land"), 
+						rs.getString("City"), rs.getString("Anledning"), rs.getDouble("Sum")));
+			}
+		} catch (SQLException e) {
+			throw new DALException("Kaldet getAnvisninerJoin fejlede");
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				close();
+			}
+		}
+		return rejseafregningListe;
+	}
+
+	@Override
+	public List<GodkendelseJoinDTO> getRejseafregningGodkendelseList(String navn) throws DALException {
+		List<GodkendelseJoinDTO> rejseafregningListe = null;
+		ResultSet rs = null;
+		try {
+			rejseafregningListe = new ArrayList<GodkendelseJoinDTO>();
+			getRejseafregningGodkendelseJoinListStmt.setString(1, navn);
+			rs = getRejseafregningGodkendelseJoinListStmt.executeQuery();
 			while (rs.next()) {
 				rejseafregningListe.add(new GodkendelseJoinDTO(rs.getString("navn"), rs.getInt("Rejseafregning_ID"),
 						rs.getString("nameProjekt"), rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getString("Land"), 

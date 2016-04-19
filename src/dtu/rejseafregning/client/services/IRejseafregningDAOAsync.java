@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import dtu.rejseafregning.shared.DALException;
 import dtu.rejseafregning.shared.GodkendelseJoinDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
@@ -17,6 +18,7 @@ public interface IRejseafregningDAOAsync {
 	void getRejseafregningCirkulationList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
 	void getRejseafregningAfsluttedeList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
 	void getRejseafregningAnvisningList(String navn, AsyncCallback<List<GodkendelseJoinDTO>> callback);
+	void getRejseafregningGodkendelseList(String navn, AsyncCallback<List<GodkendelseJoinDTO>> callback);
 	void createRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);
 	void updateRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);
 	void deleteRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);

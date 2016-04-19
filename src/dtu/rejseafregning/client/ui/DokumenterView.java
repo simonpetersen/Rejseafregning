@@ -18,6 +18,8 @@ import dtu.rejseafregning.client.events.GetAnvisningerSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetCirkulationSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetDokumenterCirkulationEvent;
 import dtu.rejseafregning.client.events.GetDokumenterUdkastEvent;
+import dtu.rejseafregning.client.events.GetGodkendelseDokumenterEvent;
+import dtu.rejseafregning.client.events.GetGodkendelseSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
 import dtu.rejseafregning.client.ui.celltables.MineDokumenterCellTable;
 import dtu.rejseafregning.client.ui.celltables.TilGodkendelseCellTable;
@@ -52,6 +54,7 @@ public class DokumenterView extends Composite {
 		eventBus.fireEvent(new GetDokumenterCirkulationEvent());
 		eventBus.fireEvent(new GetAfsluttedeDokumenterEvent());
 		eventBus.fireEvent(new GetAnvisningDokumenterEvent());
+		eventBus.fireEvent(new GetGodkendelseDokumenterEvent());
 	}
 	
 	@EventHandler
@@ -76,5 +79,11 @@ public class DokumenterView extends Composite {
 	public void onGetAnivsningerSuccessfullEvent(GetAnvisningerSuccessfullEvent e) {
 		anvisningCellTable = new TilGodkendelseCellTable(eventBus, e.getListe());
 		anvisningPanel.add(anvisningCellTable);
+	}
+	
+	@EventHandler
+	public void onGetGodkendelseSuccessfullEvent(GetGodkendelseSuccessfullEvent e) {
+		godkendelseCellTable = new TilGodkendelseCellTable(eventBus, e.getListe());
+		godkendelsePanel.add(godkendelseCellTable);
 	}
 }

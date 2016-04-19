@@ -18,6 +18,8 @@ import dtu.rejseafregning.client.events.GetAnvisningerSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetCirkulationSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetDokumenterCirkulationEvent;
 import dtu.rejseafregning.client.events.GetDokumenterUdkastEvent;
+import dtu.rejseafregning.client.events.GetGodkendelseDokumenterEvent;
+import dtu.rejseafregning.client.events.GetGodkendelseSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
@@ -173,6 +175,22 @@ public class Controller {
 			@Override
 			public void onSuccess(List<GodkendelseJoinDTO> result) {
 				eventBus.fireEvent(new GetAnvisningerSuccessfullEvent(result));
+			}
+		});
+	}
+	
+	@EventHandler
+	public void onGetGodkendelseDokumenterEvent(GetGodkendelseDokumenterEvent e) {
+		rejseafregningDAO.getRejseafregningGodkendelseList(bruger.getNavn(), new AsyncCallback<List<GodkendelseJoinDTO>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl: "+caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(List<GodkendelseJoinDTO> result) {
+				eventBus.fireEvent(new GetGodkendelseSuccessfullEvent(result));
 			}
 		});
 	}
