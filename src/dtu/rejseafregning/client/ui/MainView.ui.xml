@@ -17,6 +17,9 @@
 		margin: 5px;
 		background-color: #FEFCFF;
 	}
+	.anchor {
+		cursor: pointer;
+	}
 	</ui:style>
 		<g:DockLayoutPanel unit="PX" width="100%" height="100%">
 			<g:north size="50">
@@ -35,14 +38,14 @@
 			</g:center>
 			<g:west size="140">
 				<g:VerticalPanel  styleName="{style.westPanel}" width="100%" >
-					<g:Anchor text="Velkommen" ui:field="velkommen" />
-					<g:Anchor text="Mine opgaver" ui:field="opgaver"/>
-					<g:Anchor text="Dokumentarkiv" ui:field="dokumentArkiv"/>
-					<g:Anchor text="Rapporter" />
-					<g:Anchor text="Mine oplysninger" ui:field="oplysninger" />
-					<g:Anchor text="Indstillinger" />
-					<g:Anchor text="Intranet link" />
-					<g:Anchor text="Hjælp" />
+					<g:Anchor text="Velkommen" ui:field="velkommen" styleName="{style.anchor}"/>
+					<g:Anchor text="Mine opgaver" ui:field="opgaver" styleName="{style.anchor}"/>
+					<g:Anchor text="Dokumentarkiv" ui:field="dokumentArkiv" styleName="{style.anchor}"/>
+					<g:Anchor text="Rapporter"  styleName="{style.anchor}"/>
+					<g:Anchor text="Mine oplysninger" ui:field="oplysninger" styleName="{style.anchor}"/>
+					<g:Anchor text="Indstillinger" styleName="{style.anchor}"/>
+					<g:Anchor text="Intranet link" styleName="{style.anchor}"/>
+					<g:Anchor text="Hjælp" styleName="{style.anchor}"/>
 				</g:VerticalPanel>
 			</g:west>
 		</g:DockLayoutPanel>
