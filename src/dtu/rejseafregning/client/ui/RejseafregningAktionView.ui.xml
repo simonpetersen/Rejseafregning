@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.important {
+		font-weight: bold;
+		font-size: 1.2em;
+	}
+	.panel {
+		padding: 5px;
+	}
+	</ui:style>
+	<g:VerticalPanel styleName="{style.panel}">
+		<g:Label text="Vælg handling" ui:field="handlingLabel" styleName="{style.important}"/>
+		<g:RadioButton name="valg" text="Acceptér" ui:field="accepterRadioB"/>
+		<g:RadioButton name="valg" text="Afvis"/>
+		<g:RadioButton name="valg" text="Videresend"/>
+		<g:Button ui:field="button">Bekræft</g:Button>
+	</g:VerticalPanel>
+</ui:UiBinder> 

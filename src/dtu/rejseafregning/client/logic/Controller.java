@@ -27,6 +27,8 @@ import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivSuccessEvent;
+import dtu.rejseafregning.client.events.UpdateAnvisningStatusEvent;
+import dtu.rejseafregning.client.events.UpdateGodkendelseStatusEvent;
 import dtu.rejseafregning.client.services.IMedarbejderDAO;
 import dtu.rejseafregning.client.services.IMedarbejderDAOAsync;
 import dtu.rejseafregning.client.services.IOpgaveDAO;
@@ -191,6 +193,36 @@ public class Controller {
 			@Override
 			public void onSuccess(List<GodkendelseJoinDTO> result) {
 				eventBus.fireEvent(new GetGodkendelseSuccessfullEvent(result));
+			}
+		});
+	}
+	
+	@EventHandler
+	public void onUpdateGodkendelseEvent(UpdateGodkendelseStatusEvent e) {
+		rejseafregningDAO.updateRejseafregningStatus(e.getRejseafregningID(), "Til Anvisning", new AsyncCallback<Void>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl: "+caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				Window.alert("Rejseafregning er godkendt!");
+			}
+		});
+	}
+	
+	@EventHandler
+	public void onUpdateAnvisningEvent(UpdateAnvisningStatusEvent e) {
+		rejseafregningDAO.updateRejseafregningStatus(e.getRejseafregningID(), "Anvist", new AsyncCallback<Void>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl: "+caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				Window.alert("Rejseafregning er anvist!");
 			}
 		});
 	}

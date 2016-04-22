@@ -7,8 +7,11 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
+import com.google.gwt.user.cellview.client.RowStyles;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.view.client.ProvidesKey;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 
@@ -43,6 +46,7 @@ public class TilGodkendelseCellTable extends Composite {
 	public TilGodkendelseCellTable(EventBus eventBus, List<GodkendelseJoinDTO> dokumenter) {
 		cellTable = new CellTable<GodkendelseJoinDTO>(KEY_PROVIDER);
 		cellTable.setWidth("100%");
+		cellTable.addStyleName("cursorClick");
 		initWidget(cellTable);
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
@@ -110,6 +114,17 @@ public class TilGodkendelseCellTable extends Composite {
 
 		cellTable.setRowCount(dokumenter.size(), true);
 		cellTable.setRowData(0, dokumenter);
+		
+//		final SingleSelectionModel<GodkendelseJoinDTO> selectionModel 
+//	      = new SingleSelectionModel<GodkendelseJoinDTO>();
+//	      cellTable.setSelectionModel(selectionModel);
+//	      selectionModel.addSelectionChangeHandler(
+	     
+	}
+	
+	public void setSelectiongChangeHandler(SingleSelectionModel<GodkendelseJoinDTO> selectionModel, SelectionChangeEvent.Handler handler) {
+	    cellTable.setSelectionModel(selectionModel);
+	    selectionModel.addSelectionChangeHandler(handler);
 	}
 
 }

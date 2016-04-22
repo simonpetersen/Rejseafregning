@@ -22,4 +22,5 @@ public interface IRejseafregningDAOAsync {
 	void createRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);
 	void updateRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);
 	void deleteRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);
+	void updateRejseafregningStatus(int rejseafregningID, String status, AsyncCallback<Void> callback);
 }

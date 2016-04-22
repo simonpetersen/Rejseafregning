@@ -4,9 +4,12 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
@@ -23,6 +26,7 @@ import dtu.rejseafregning.client.events.GetGodkendelseSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
 import dtu.rejseafregning.client.ui.celltables.MineDokumenterCellTable;
 import dtu.rejseafregning.client.ui.celltables.TilGodkendelseCellTable;
+import dtu.rejseafregning.shared.GodkendelseJoinDTO;
 
 public class DokumenterView extends Composite {
 
@@ -79,11 +83,31 @@ public class DokumenterView extends Composite {
 	public void onGetAnivsningerSuccessfullEvent(GetAnvisningerSuccessfullEvent e) {
 		anvisningCellTable = new TilGodkendelseCellTable(eventBus, e.getListe());
 		anvisningPanel.add(anvisningCellTable);
+		final SingleSelectionModel<GodkendelseJoinDTO> selectionModel = new SingleSelectionModel<GodkendelseJoinDTO>();
+		anvisningCellTable.setSelectiongChangeHandler(selectionModel, new SelectionChangeEvent.Handler() {
+	         public void onSelectionChange(SelectionChangeEvent event) {
+	        	GodkendelseJoinDTO selected = selectionModel.getSelectedObject();
+	            if (selected != null) {
+	               RejseafregningAktionView anvisningView = new RejseafregningAktionView(eventBus, "Vælg anvisningshandling", selected);
+	               anvisningPanel.add(anvisningView);
+	            }
+	         }
+	      });
 	}
 	
 	@EventHandler
 	public void onGetGodkendelseSuccessfullEvent(GetGodkendelseSuccessfullEvent e) {
 		godkendelseCellTable = new TilGodkendelseCellTable(eventBus, e.getListe());
 		godkendelsePanel.add(godkendelseCellTable);
+		final SingleSelectionModel<GodkendelseJoinDTO> selectionModel = new SingleSelectionModel<GodkendelseJoinDTO>();
+		godkendelseCellTable.setSelectiongChangeHandler(selectionModel, new SelectionChangeEvent.Handler() {
+	         public void onSelectionChange(SelectionChangeEvent event) {
+	        	GodkendelseJoinDTO selected = selectionModel.getSelectedObject();
+	            if (selected != null) {
+	            	RejseafregningAktionView godkendelseView = new RejseafregningAktionView(eventBus, "Vælg godkendelseshandling", selected);
+		            godkendelsePanel.add(godkendelseView);
+	            }
+	         }
+	      });
 	}
 }

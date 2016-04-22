@@ -28,6 +28,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 	private PreparedStatement getRejseafregningGodkendelseJoinListStmt = null;
 	private PreparedStatement createRejseafregningStmt = null;
 	private PreparedStatement updateRejseafregningStmt = null;
+	private PreparedStatement updateStatusStmt = null;
 	private PreparedStatement deleteRejseafregningStmt = null;
 
 	public RejseafregningDAO() throws Exception {
@@ -91,8 +92,11 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 
 		// updateRejseafregning statement
 		updateRejseafregningStmt = Connector.conn.prepareStatement(
-				"UPDATE Rejseafregning SET Medarbejdernavn = ?, Godkendernavn = ?, Anvisernavn = ?, Land = ?, By = ?, Startdato = ?, Slutdato = ? WHERE Rejseafregning_ID = ?");
+				"UPDATE Rejseafregning SET Medarbejdernavn = ?, Godkendernavn = ?, Anvisernavn = ?, Land = ?, By = ?, Startdato = ?, "
+				+ "Slutdato = ? WHERE Rejseafregning_ID = ?");
 
+		updateStatusStmt = Connector.conn.prepareStatement("UPDATE Rejseafregning SET status = ? WHERE rejseafregning_ID = ?");
+		
 		// deleteRejseafregning statement
 		deleteRejseafregningStmt = Connector.conn
 				.prepareStatement("DELETE FROM Rejseafregning WHERE Rejseafregning_ID = ?");
@@ -428,5 +432,19 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			}
 		}
 		return rejseafregningListe;
+	}
+
+	@Override
+	public void updateRejseafregningStatus(int rejseafregningID, String status) throws DALException {
+		try {
+			// Argumenter til statement
+			updateStatusStmt.setString(1, status);
+			updateStatusStmt.setInt(2, rejseafregningID);
+
+			// Kald til database
+			updateStatusStmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException("Kaldet updateStatus fejlede");
+		}
 	}
 }
