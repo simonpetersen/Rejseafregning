@@ -2,14 +2,13 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
-DROP TABLE IF EXISTS new_table;
 DROP TABLE IF EXISTS Udgift;
 DROP TABLE IF EXISTS Bilag;
+DROP TABLE IF EXISTS Rejsedag;
 DROP TABLE IF EXISTS Rejseafregning;
 DROP TABLE IF EXISTS Medarbejder;
 DROP TABLE IF EXISTS Projekt;
 DROP TABLE IF EXISTS Opgave;
-DROP TABLE IF EXISTS Rejsedag;
 
 
 
@@ -36,13 +35,6 @@ CREATE TABLE Medarbejder
 );
 
 
-CREATE TABLE new_table
-(
-	rejseafregning_ID int NOT NULL,
-	udgift_ID int NOT NULL
-);
-
-
 CREATE TABLE Opgave
 (
 	nameOp varchar(50) NOT NULL,
@@ -62,7 +54,6 @@ CREATE TABLE Rejseafregning
 (
 	rejseafregning_ID int NOT NULL,
 	brugernavn varchar(10) NOT NULL,
-	rejsedag_ID int NOT NULL,
 	nameProjekt varchar(50) NOT NULL,
 	status varchar(20) NOT NULL,
 	datoStart date NOT NULL,
@@ -70,7 +61,7 @@ CREATE TABLE Rejseafregning
 	land varchar(20) NOT NULL,
 	city varchar(20) NOT NULL,
 	anledning varchar(100) NOT NULL,
-	sum int NOT NULL,
+	sum double(9,2) NOT NULL,
 	anviser varchar(35) NOT NULL,
 	godkender varchar(35) NOT NULL,
 	PRIMARY KEY (rejseafregning_ID)
@@ -80,6 +71,7 @@ CREATE TABLE Rejseafregning
 CREATE TABLE Rejsedag
 (
 	rejsedag_ID int NOT NULL,
+	rejseafregning_ID int NOT NULL,
 	start time NOT NULL,
 	slut time NOT NULL,
 	morgenmad boolean NOT NULL,
@@ -92,6 +84,7 @@ CREATE TABLE Rejsedag
 CREATE TABLE Udgift
 (
 	udgift_ID int NOT NULL,
+	rejseafregning_ID int NOT NULL,
 	bilag_ID int NOT NULL,
 	udgiftType varchar(50) NOT NULL,
 	betalingsType varchar(50) NOT NULL,
@@ -136,7 +129,7 @@ ALTER TABLE Rejseafregning
 ;
 
 
-ALTER TABLE new_table
+ALTER TABLE Rejsedag
 	ADD FOREIGN KEY (rejseafregning_ID)
 	REFERENCES Rejseafregning (rejseafregning_ID)
 	ON UPDATE RESTRICT
@@ -144,17 +137,9 @@ ALTER TABLE new_table
 ;
 
 
-ALTER TABLE Rejseafregning
-	ADD FOREIGN KEY (rejsedag_ID)
-	REFERENCES Rejsedag (rejsedag_ID)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE new_table
-	ADD FOREIGN KEY (udgift_ID)
-	REFERENCES Udgift (udgift_ID)
+ALTER TABLE Udgift
+	ADD FOREIGN KEY (rejseafregning_ID)
+	REFERENCES Rejseafregning (rejseafregning_ID)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
