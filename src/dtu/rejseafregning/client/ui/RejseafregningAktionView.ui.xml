@@ -16,5 +16,36 @@
 		<g:RadioButton name="valg" text="Afvis"/>
 		<g:RadioButton name="valg" text="Videresend"/>
 		<g:Button ui:field="button">Bekræft</g:Button>
-	</g:VerticalPanel>
+		<g:TabLayoutPanel barHeight="2" barUnit="EM" width="250px" height="150px"> 
+			<g:tab>
+				<g:header>Stamdata</g:header>
+					<g:Grid>
+						<g:row>
+							<g:customCell>
+								<g:Label text="Nummer: "/>
+							</g:customCell>
+							<g:customCell>
+								<g:Label ui:field="idField" />
+							</g:customCell>
+						</g:row>
+						<g:row>
+							<g:customCell>
+								<g:Label text="Startdato: "/>
+							</g:customCell>
+							<g:customCell>
+								<g:Label ui:field="datoStartField" />
+							</g:customCell>
+						</g:row>
+						<g:row>
+							<g:customCell>
+								<g:Label text="Slutdato: "/>
+							</g:customCell>
+							<g:customCell>
+								<g:Label ui:field="datoSlutField" />
+							</g:customCell>
+						</g:row>
+					</g:Grid>
+			</g:tab>
+		</g:TabLayoutPanel>
+		</g:VerticalPanel>
 </ui:UiBinder> 

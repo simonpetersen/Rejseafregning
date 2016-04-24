@@ -2,6 +2,7 @@ package dtu.rejseafregning.client.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -22,7 +23,7 @@ public class RejseafregningAktionView extends Composite {
 	private GodkendelseJoinDTO dto;
 	
 	private static RejseafregningAktionViewUiBinder uiBinder = GWT.create(RejseafregningAktionViewUiBinder.class);
-	@UiField Label handlingLabel;
+	@UiField Label handlingLabel, idField, datoStartField, datoSlutField;
 	@UiField Button button;
 	@UiField RadioButton accepterRadioB;
 
@@ -34,6 +35,8 @@ public class RejseafregningAktionView extends Composite {
 	interface MyEventBinder extends EventBinder<RejseafregningAktionView> {}
  	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
 
+	private DateTimeFormat dateFormat;
+
 	public RejseafregningAktionView(EventBus eventBus, String handlingText, GodkendelseJoinDTO dto) {
 		initWidget(uiBinder.createAndBindUi(this));
 		this.handlingLabel.setText(handlingText);
@@ -41,7 +44,13 @@ public class RejseafregningAktionView extends Composite {
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
 		
+		this.dateFormat = DateTimeFormat.getFormat("dd//MM-yyyy");
 		this.dto = dto;
+		
+		idField.setText(String.valueOf(dto.getRejseafregningID()));
+		datoStartField.setText(dateFormat.format(dto.getStart()));
+		datoSlutField.setText(dateFormat.format(dto.getSlut()));
+		
 	}
 	@UiHandler("button")
 	void onButtonClick(ClickEvent event) {

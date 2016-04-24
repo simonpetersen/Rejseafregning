@@ -54,8 +54,8 @@ public class DokArkivView extends Composite {
 	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
 
 	List<String> medarbejdere = new ArrayList<String>();
-	String[] status = { "", "Udkast", "Til Godkendelse", "Til Anvisning", "Anvist", "Venter på Data", "Behandlet",
-			"Overført til Oracle", "Arkiveret" };
+	String[] status = { "", "Udkast", "Til Godkendelse", "Til Anvisning", "Anvist", "Venter pï¿½ Data", "Behandlet",
+			"Overfï¿½rt til Oracle", "Arkiveret" };
 	String[] type = { "", "Rejseafregning" };
 
 	public DokArkivView(EventBus eventBus) {
