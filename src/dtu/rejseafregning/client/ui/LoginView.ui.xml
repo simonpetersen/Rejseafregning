@@ -9,7 +9,6 @@
  		border: 2px solid #666666;
  		width: 20%;
  	}
- 	
  	.textBox {
     	spacing: 5px;
  		padding: 5px;
@@ -22,6 +21,9 @@
  		<g:TextBox ui:field="brugernavnTextBox" width='96%' />
  		<g:Label text="Adgangskode: "/>
  		<g:PasswordTextBox ui:field="adgangskodeTextBox" width='96%' />
- 		<g:Button ui:field="button" width='100%'>Login</g:Button>
+ 		<g:HorizontalPanel width="100%">
+ 			<g:Button ui:field="login" width='100%'>Login</g:Button>
+ 			<g:Button ui:field="glemtButton" width='100%' >Glemt Adgangskode</g:Button>
+ 		</g:HorizontalPanel>
   	</g:VerticalPanel>
   </ui:UiBinder>  

@@ -10,4 +10,5 @@ public interface IBrugerautorisationDAO extends RemoteService {
 	
 	public MedarbejderDTO getBruger(String brugernavn, String adgangskode) throws Exception;
 	public void skiftBrugerAdgangskode(String bruger, String adgangskode, String nyAdgangskode) throws Exception;
+	public void glemtAdgangskode(String bruger) throws Exception;
 }
