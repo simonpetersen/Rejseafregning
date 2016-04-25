@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS Udgift;
 DROP TABLE IF EXISTS Bilag;
 DROP TABLE IF EXISTS Rejsedag;
 DROP TABLE IF EXISTS Rejseafregning;
+DROP TABLE IF EXISTS Godtgoerelse;
 DROP TABLE IF EXISTS Medarbejder;
 DROP TABLE IF EXISTS Projekt;
 DROP TABLE IF EXISTS Opgave;
@@ -23,6 +24,16 @@ CREATE TABLE Bilag
 );
 
 
+CREATE TABLE Godtgoerelse
+(
+	Land varchar(20) NOT NULL,
+	Dagpengesats double(5,2) NOT NULL,
+	Timepengesats double(5,2) NOT NULL,
+	Hoteldisposition int NOT NULL,
+	PRIMARY KEY (Land)
+);
+
+
 CREATE TABLE Medarbejder
 (
 	brugernavn varchar(10) NOT NULL,
@@ -30,7 +41,7 @@ CREATE TABLE Medarbejder
 	email varchar(50) NOT NULL,
 	adgangskode varchar(20) NOT NULL,
 	afdeling varchar(30) NOT NULL,
-	administrator boolean NOT NULL,
+	studienr varchar(7) NOT NULL,
 	PRIMARY KEY (brugernavn)
 );
 
@@ -55,13 +66,12 @@ CREATE TABLE Rejseafregning
 	rejseafregning_ID int NOT NULL,
 	brugernavn varchar(10) NOT NULL,
 	nameProjekt varchar(50) NOT NULL,
+	land varchar(20) NOT NULL,
 	status varchar(20) NOT NULL,
 	datoStart date NOT NULL,
 	datoSlut date NOT NULL,
-	land varchar(20) NOT NULL,
 	city varchar(20) NOT NULL,
 	anledning varchar(100) NOT NULL,
-	sum double(9,2) NOT NULL,
 	anviser varchar(35) NOT NULL,
 	godkender varchar(35) NOT NULL,
 	PRIMARY KEY (rejseafregning_ID)
@@ -95,11 +105,19 @@ CREATE TABLE Udgift
 
 
 
-/* Create Foreign Keys! */
+/* Create Foreign Keys */
 
 ALTER TABLE Udgift
 	ADD FOREIGN KEY (bilag_ID)
 	REFERENCES Bilag (bilag_ID)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE Rejseafregning
+	ADD FOREIGN KEY (land)
+	REFERENCES Godtgoerelse (Land)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
