@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
@@ -24,6 +25,7 @@ import dtu.rejseafregning.client.events.SearchDokArkivSuccessEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListSuccessfullEvent;
 import dtu.rejseafregning.client.ui.OplysningerView.MyEventBinder;
+import dtu.rejseafregning.client.ui.celltables.DokumentArkivCellTable;
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
 import com.google.gwt.user.client.ui.Grid;
@@ -41,11 +43,14 @@ public class DokArkivView extends Composite {
 	DateBox slutDato;
 	@UiField
 	Button searchKnap;
-	@UiField Grid searchResultat;
+	@UiField 
+	VerticalPanel searchResult;
 
 	interface DokArkivViewUiBinder extends UiBinder<Widget, DokArkivView> {
 	}
 
+	private DokumentArkivCellTable dokArkivCellTable;
+	
 	private EventBus eventBus;
 
 	interface MyEventBinder extends EventBinder<DokArkivView> {
@@ -89,12 +94,9 @@ public class DokArkivView extends Composite {
 	@EventHandler
 	public void onSearchSuccessEvent(SearchDokArkivSuccessEvent e){
 		ArrayList<RejseafregningDTO> result = (ArrayList<RejseafregningDTO>) e.getRejseafregningsliste();
-		for(int i = 0; i < result.size(); i++){
-			searchResultat.insertRow(searchResultat.getRowCount());
-			searchResultat.setText(searchResultat.getRowCount(), 0, Integer.toString((result.get(i).getRejseafregningID())));
-			searchResultat.setText(searchResultat.getRowCount(), 1, result.get(i).getLand());
-		}
-		Window.alert("Resultat modtaget for: " + result.get(1).getMedarbejderNavn());
+		dokArkivCellTable = new DokumentArkivCellTable(eventBus, result);
+		searchResult.clear();
+		searchResult.add(dokArkivCellTable);
 	}
 
 }

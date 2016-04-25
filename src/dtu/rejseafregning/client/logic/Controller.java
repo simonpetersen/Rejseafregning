@@ -83,7 +83,7 @@ public class Controller {
 
 	@EventHandler
 	public void onSearchDokArkivEvent(SearchDokArkivEvent e) {
-		rejseafregningDAO.getRejseafregningList(e.getMedarbejder(), new AsyncCallback<List<RejseafregningDTO>>() {
+		rejseafregningDAO.getRejseafregningListNavn(e.getMedarbejder(), new AsyncCallback<List<RejseafregningDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {

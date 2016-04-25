@@ -48,7 +48,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 				"SELECT rejseafregning_id, navn, rejsedag_id, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
 				+ "sum, rejseafregning.anviser, rejseafregning.godkender "
 				+ "FROM medarbejder, Rejseafregning "
-				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND rejseafregning.brugernavn = ?");
+				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND medarbejder.navn = ?");
 
 		// getRejseafregningStatList statement
 		getRejseafregningListStatStmt = Connector.conn.prepareStatement(
