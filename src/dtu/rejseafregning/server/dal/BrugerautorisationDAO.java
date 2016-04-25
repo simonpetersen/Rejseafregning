@@ -34,4 +34,9 @@ public class BrugerautorisationDAO extends RemoteServiceServlet implements IBrug
 		ba.ændrAdgangskode(brugernavn, adgangskode, nyAdgangskode);	
 	}
 
+	@Override
+	public void glemtAdgangskode(String bruger) throws Exception {
+		ba.sendGlemtAdgangskodeEmail(bruger, "DTU Rejseafregning: Glemt adgangskode");
+	}
+
 }

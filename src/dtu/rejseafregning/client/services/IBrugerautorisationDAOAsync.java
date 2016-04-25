@@ -8,4 +8,5 @@ public interface IBrugerautorisationDAOAsync {
 	
 	public void getBruger(String brugernavn, String adgangskode, AsyncCallback<MedarbejderDTO> callback);
 	public void skiftBrugerAdgangskode(String bruger, String adgangskode, String nyAdgangskode, AsyncCallback<Void> callback);
+	public void glemtAdgangskode(String bruger, AsyncCallback<Void> callback);
 }

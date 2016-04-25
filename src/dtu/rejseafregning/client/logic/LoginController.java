@@ -8,6 +8,7 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
+import dtu.rejseafregning.client.events.GlemtAdgangskodeEvent;
 import dtu.rejseafregning.client.events.LoginButtonEvent;
 import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
@@ -104,5 +105,23 @@ public class LoginController {
   	public void onLogudButtonEvent(LogudButtonEvent e) {
   		RootLayoutPanel.get().add(loginView);
   		loginView.clearTextBoxes();
+  	}
+  	
+  	@EventHandler
+  	public void onGlemtAdgangskodeEvent(GlemtAdgangskodeEvent e) {
+  		brugerDAO.glemtAdgangskode(e.getBrugernavn(), new AsyncCallback<Void>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl: "+caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				Window.alert("En mail er blevet sendt til din studiemail!");
+				RootLayoutPanel.get().remove(0);
+				RootLayoutPanel.get().add(loginView);
+			}
+  		});
   	}
 }

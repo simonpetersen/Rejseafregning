@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.panel {
+		spacing: 5px;
+ 		margin: auto;
+ 		padding: 5px;
+ 		border: 2px solid #666666;
+ 		width: 20%;
+	}
+	</ui:style>
+	<g:VerticalPanel styleName="{style.panel}" horizontalAlignment="ALIGN_CENTER" >
+ 		<g:HTML styleName="h2">Glemt Adgangskode</g:HTML>
+ 		<g:HTML />
+ 		<g:Label text="Brugernavn:" />
+ 		<g:TextBox ui:field="brugernavnTextBox" width='96%' />
+ 		<g:Button ui:field="send" width='100%'>Send adgangskode</g:Button>
+  	</g:VerticalPanel>
+</ui:UiBinder> 
