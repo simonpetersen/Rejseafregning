@@ -14,6 +14,8 @@ import dtu.rejseafregning.shared.MedarbejderDTO;
 
 public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejderDAO {
 
+	private static final long serialVersionUID = 1L;
+	
 	private PreparedStatement getMedarbejderStmt = null;
 	private PreparedStatement getMedarbejderListStmt = null;
 	private PreparedStatement createMedarbejderStmt = null;
