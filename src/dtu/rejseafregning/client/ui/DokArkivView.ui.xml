@@ -43,7 +43,8 @@
 			</g:row>
 			<g:row/>
 		</g:Grid>
-		<g:Grid ui:field="searchResultat" cellPadding="5" cellSpacing="5"/>
+		<g:VerticalPanel ui:field="searchResult">
 		
+		</g:VerticalPanel>
 	</g:VerticalPanel>
 </ui:UiBinder> 
