@@ -98,5 +98,5 @@ public class DokArkivView extends Composite {
 		searchResult.clear();
 		searchResult.add(dokArkivCellTable);
 	}
-
+//Test
 }
