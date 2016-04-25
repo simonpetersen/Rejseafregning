@@ -95,7 +95,7 @@ CREATE TABLE Udgift
 
 
 
-/* Create Foreign Keys */
+/* Create Foreign Keys! */
 
 ALTER TABLE Udgift
 	ADD FOREIGN KEY (bilag_ID)
