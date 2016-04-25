@@ -11,9 +11,9 @@
 	}
 	</ui:style>
 	<g:HTMLPanel width="100%" height="100%">
-		<g:ScrollPanel height="100%" width="100%" ui:field="scPanel1">
+		<g:ScrollPanel height="1235px" width="758px" ui:field="scPanel1">
 			<g:VerticalPanel ui:field="vPanel" width="100%" height="100%">
-			<g:Label text="Basis information: " styleName="{style.overskrift}"/>
+			<g:Label text="Basis information: " styleName="{style.overskrift}" ui:field="basis"/>
 			<g:HorizontalPanel ui:field="hPanel1">
 				<g:Label text="Land: " ui:field="land"/>
 				<g:ListBox ui:field="dropDownLand"/>
@@ -24,7 +24,7 @@
 			</g:HorizontalPanel>
 			<g:HorizontalPanel ui:field="hPanel3">
 				<g:Label text="Rejseformål: " ui:field="rejseformål"/>
-				<g:ListBox ui:field="dropDownRejseformål"/>
+				<g:ListBox ui:field="dropDownRejseform"/>
 			</g:HorizontalPanel>
 			<g:HorizontalPanel ui:field="hPanel4">
 				<g:Label text="Start dato: " ui:field="startDato"/>
@@ -52,7 +52,7 @@
 				<g:HorizontalPanel ui:field="hPanel7">
 				<g:Label text="Udgiftsorganisation: " ui:field="udgiftsOrg"/>
 				<g:ListBox ui:field="dropDownUdg"/>
-				<g:Button text="Søg" ui:field="seach3"/>
+				<g:Button text="Søg" ui:field="search3"/>
 			</g:HorizontalPanel>
 				<g:HorizontalPanel ui:field="hPanel8">
 				<g:Label text="Underkonto: " ui:field="underkonto"/>
@@ -73,7 +73,7 @@
 				<g:HorizontalPanel ui:field="hPanel12">
 				<g:Label text="Periode" ui:field="periode"/>
 				<g:ListBox ui:field="dropDownPer"/>
-				<g:Button ui:field="seach4">Søg</g:Button>
+				<g:Button ui:field="search4">Søg</g:Button>
 			</g:HorizontalPanel>
 				<g:HorizontalPanel ui:field="hPanel13">
 				<g:Label text="Opdeling %" ui:field="opdeling"/>
