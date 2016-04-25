@@ -103,7 +103,7 @@ public class NyAlmRejseafregning extends Composite {
 	/*@UiHandler("gemogneste")
  	void onButtonClick7(ClickEvent event) {
  		eventBus.fireEvent(//Gem og næste side i rejseafregningen. Næste side ikke lavet endnu.);
- 		
+ 		/Test
  	}
  	
 	
