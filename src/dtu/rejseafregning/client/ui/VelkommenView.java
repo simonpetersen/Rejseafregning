@@ -13,11 +13,14 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 
+import dtu.rejseafregning.client.events.LoginButtonEvent;
+import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
 import dtu.rejseafregning.client.ui.MainView.MyEventBinder;
 
 public class VelkommenView extends Composite {
 
 	private static VelkommenViewUiBinder uiBinder = GWT.create(VelkommenViewUiBinder.class);
+	@UiField Button opret;
 
 	interface VelkommenViewUiBinder extends UiBinder<Widget, VelkommenView> {
 	}
@@ -32,4 +35,9 @@ public class VelkommenView extends Composite {
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
 	}
+	
+	@UiHandler("opret")
+ 	void onButtonClick(ClickEvent event) {
+ 		eventBus.fireEvent(new NyAlmRejseafregningEvent());
+ 	}
 }

@@ -7,6 +7,6 @@
 	}
 	</ui:style>
 	<g:VerticalPanel>
-		<g:Button text="Opret ny rejseafregning" height="40px" width="180px"/>
+		<g:Button text="Opret ny rejseafregning" height="40px" width="180px" ui:field="opret"/>
 	</g:VerticalPanel>
 </ui:UiBinder> 

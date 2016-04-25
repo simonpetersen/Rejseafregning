@@ -13,8 +13,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
+import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.LogudButtonEvent;
+import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 import com.google.gwt.user.client.ui.Anchor;
 
@@ -31,6 +33,7 @@ public class MainView extends Composite {
 	private VelkommenView velkommenView;
 	private DokArkivView dokumentView;
 	private DokumenterView dokView;
+	private NyAlmRejseafregning nyalmrejseafregningView;
 	
 	private final EventBus eventBus;
 	
@@ -49,10 +52,12 @@ public class MainView extends Composite {
 		oplysningerView = new OplysningerView(eventBus, bruger);
 		velkommenView = new VelkommenView(eventBus);
 		dokumentView = new DokArkivView(eventBus);
+		nyalmrejseafregningView = new NyAlmRejseafregning(eventBus);
 		contentPanel.add(velkommenView);
 		contentPanel.add(oplysningerView);
 		contentPanel.add(dokumentView);
-		contentPanel.showWidget(velkommenView);	
+		contentPanel.showWidget(velkommenView);
+		contentPanel.add(nyalmrejseafregningView);
 	}
 	
 	public void setNavLabels(String navn, String afdeling) {
@@ -85,4 +90,9 @@ public class MainView extends Composite {
 		contentPanel.add(dokView);
 		contentPanel.showWidget(dokView);
 	}
+	@EventHandler
+	public void getNyAlmRejseafregningEvent(NyAlmRejseafregningEvent e) {
+		contentPanel.showWidget(nyalmrejseafregningView);
+	}
+	
 }

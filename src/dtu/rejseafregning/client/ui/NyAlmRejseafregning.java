@@ -5,15 +5,20 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DoubleBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.IntegerBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DatePicker;
+import com.google.web.bindery.event.shared.Event;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListSuccessfullEvent;
 import dtu.rejseafregning.client.events.LoginButtonEvent;
+import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
+import dtu.rejseafregning.client.events.NyKontostrengEvent;
 import dtu.rejseafregning.client.ui.LoginView.MyEventBinder;
 
 import com.google.gwt.uibinder.client.UiField;
@@ -23,24 +28,28 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.Grid;
 
 public class NyAlmRejseafregning extends Composite {
 
 	private static NyAlmRejseafregningUiBinder uiBinder = GWT.create(NyAlmRejseafregningUiBinder.class);
+	@UiField Label rejseform;
 	@UiField ScrollPanel scPanel1;
-	@UiField VerticalPanel vPanel, vPanel2, vPanel3, vPanel4, vPanel5, vPanel6, vPanel17, vPanel18, vPanel19, vPanel20, vPanel21, vPanel22;
-	@UiField HorizontalPanel hPanel1, hPanel2, hPanel3, hPanel4, hPanel5, hPanel6, hPanel7, hPanel8, hPanel9, hPanel10, hPanel11, hPanel12, hPanel13, hPanel14, hPanel15, hPanel16;
+	@UiField VerticalPanel vPanel1, vPanel2, vPanel3, vPanel4, vPanel6, vPanel17, vPanel18, vPanel19, vPanel20, vPanel21, vPanel22;
+	@UiField HorizontalPanel hPanel15;
 	@UiField Button seach1, search2, search3, search4, nyopdkonto, addOpdeling, gemogneste;
-	@UiField ListBox dropDownLand, dropDownBy, dropDownRejseform, dropDownPro, dropDownOpg1, dropDownUdg, dropDownUnd, dropDownSted, dropDownAnalyse, dropDownMoms, dropDownPer, numberandname2, dropDownOpg2, dropDownOpg3;
+	@UiField ListBox dropDownLand, dropDownBy, dropDownRejseform1, dropDownPro, dropDownOpg1, dropDownUdg, dropDownUnd, dropDownSted, dropDownAnalyse, dropDownMoms, dropDownPer, numberandname2, dropDownOpg2;
 	@UiField DatePicker datePicker1, datePicker2;
-	@UiField TextBox andledText, forklaringText, opdelingInt1, name2, number2, opgaveInt2, opgaveDoub2;
+	@UiField DoubleBox opgaveDoub2;
 	@UiField Label basis;
+	@UiField TextBox opgaveInt2;
+	@UiField Grid grid1;
 	
 	
 	private final EventBus eventBus;
 	
-	interface MyEventBinder extends EventBinder<LoginView> {
-		void bindEventHandlers(NyAlmRejseafregning nyAlmRejseafregning, EventBus eventBus);}
+	interface MyEventBinder extends EventBinder<NyAlmRejseafregning> {
+	}
  	
 	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
  	
@@ -57,43 +66,45 @@ public class NyAlmRejseafregning extends Composite {
 		initWidget(uiBinder.createAndBindUi(this));
 	} */
 	
+	public void visibility() {
+		vPanel3.setVisible(false);
+		hPanel15.setVisible(false);
+		addOpdeling.setVisible(false);
+	}
+	
 	@UiHandler("seach1")
  	void onButtonClick1(ClickEvent event) {
- 		eventBus.fireEvent() //Visible søgekriterier);
  		vPanel3.setVisible(true);
  	}
 	@UiHandler("search2")
  	void onButtonClick2(ClickEvent event) {
- 		eventBus.fireEvent()//Visible søgekriterier);
  		vPanel3.setVisible(true);
  	}
 	@UiHandler("search3")
  	void onButtonClick3(ClickEvent event) {
- 		eventBus.fireEvent()//Visible søgekriterier);
  		vPanel3.setVisible(true);
  	}
 	@UiHandler("search4")
  	void onButtonClick4(ClickEvent event) {
- 		eventBus.fireEvent()//Visible søgekriterier);
  		vPanel3.setVisible(true);
  	}
 	
 	@UiHandler("nyopdkonto")
  	void onButtonClick5(ClickEvent event) {
- 		eventBus.fireEvent()//Visible opdeling af procent og kroner + tilføj knap.);
  		vPanel6.setVisible(true);
  		addOpdeling.setVisible(true);
  	}
 	
 	@UiHandler("addOpdeling")
  	void onButtonClick6(ClickEvent event) {
- 		eventBus.fireEvent(//Tilføjelse af konto opdeling.);
+ 		eventBus.fireEvent(new NyKontostrengEvent(dropDownOpg2.getItemText(0).toString(), opgaveInt2.getText(), opgaveDoub2.getValue()));
  	}
 	
-	@UiHandler("gemogneste")
+	/*@UiHandler("gemogneste")
  	void onButtonClick7(ClickEvent event) {
- 		eventBus.fireEvent(//Gem og næste side i rejseafregningen.);
+ 		eventBus.fireEvent(//Gem og næste side i rejseafregningen. Næste side ikke lavet endnu.);
  	}
+ 	
 	
 	@EventHandler
 	public void getLandListEvent(getLandListEvent e){
@@ -215,7 +226,7 @@ public class NyAlmRejseafregning extends Composite {
 	@EventHandler
 	public void getnumber2ListEvent(getNumber2ListEvent e){
 			//Skal hente numre der påbegynder med det man taster ind.
-	}
+	} */
 }
 
 
