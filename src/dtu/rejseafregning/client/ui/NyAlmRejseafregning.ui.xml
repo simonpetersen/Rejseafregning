@@ -195,9 +195,7 @@
 				<g:Button text="Slet" ui:field="slet"/>
 			</g:HorizontalPanel>
 			<g:Button text="Ny opdelign af kontostreng" ui:field="nyopdkonto"/>
-			<g:VerticalPanel ui:field="vPanel6">
-				<g:HorizontalPanel ui:field="hPanel15">
-				<g:VerticalPanel ui:field="vPanel4">
+			<g:VerticalPanel ui:field="vPanel4">
 				<g:Label text="Opdeling i procenter (%) og i kroner : " ui:field="nyopdkonto2"/>
 				<g:Label text="Opgave: " ui:field="opgave2"/>
 				<g:ListBox ui:field="dropDownOpg2"/>
@@ -205,10 +203,8 @@
 				<g:TextBox ui:field="opgaveInt2"/>
 				<g:Label text="Opdeling kr." ui:field="opdelingKr"/>
 				<g:DoubleBox ui:field="opgaveDoub2"/>
+				<g:Button text="Tilføj" ui:field="addOpdeling"/>
 			</g:VerticalPanel>
-			</g:HorizontalPanel>
-			</g:VerticalPanel>
-			<g:Button text="Tilføj" ui:field="addOpdeling"/>
 			<g:Button text="Gem og næste" ui:field="gemogneste"/>
 		</g:VerticalPanel>
 		</g:ScrollPanel>

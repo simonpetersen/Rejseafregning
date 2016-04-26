@@ -1,5 +1,8 @@
 package dtu.rejseafregning.client.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -35,8 +38,6 @@ public class NyAlmRejseafregning extends Composite {
 	private static NyAlmRejseafregningUiBinder uiBinder = GWT.create(NyAlmRejseafregningUiBinder.class);
 	@UiField Label rejseform;
 	@UiField ScrollPanel scPanel1;
-	@UiField VerticalPanel vPanel1, vPanel2, vPanel3, vPanel4, vPanel6, vPanel17, vPanel18, vPanel19, vPanel20, vPanel21, vPanel22;
-	@UiField HorizontalPanel hPanel15;
 	@UiField Button seach1, search2, search3, search4, nyopdkonto, addOpdeling, gemogneste;
 	@UiField ListBox dropDownLand, dropDownBy, dropDownRejseform1, dropDownPro, dropDownOpg1, dropDownUdg, dropDownUnd, dropDownSted, dropDownAnalyse, dropDownMoms, dropDownPer, numberandname2, dropDownOpg2;
 	@UiField DatePicker datePicker1, datePicker2;
@@ -44,6 +45,8 @@ public class NyAlmRejseafregning extends Composite {
 	@UiField Label basis;
 	@UiField TextBox opgaveInt2;
 	@UiField Grid grid1;
+	@UiField VerticalPanel vPanel3, vPanel4;
+	@UiField HorizontalPanel hPanel1;
 	
 	
 	private final EventBus eventBus;
@@ -52,6 +55,8 @@ public class NyAlmRejseafregning extends Composite {
 	}
  	
 	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
+	
+	List<String> lande = new ArrayList<String>();
  	
  	public NyAlmRejseafregning(EventBus eventBus) {
  		initWidget(uiBinder.createAndBindUi(this));
@@ -68,7 +73,7 @@ public class NyAlmRejseafregning extends Composite {
 	
 	public void visibility() {
 		vPanel3.setVisible(false);
-		hPanel15.setVisible(false);
+		vPanel4.setVisible(false);
 		addOpdeling.setVisible(false);
 	}
 	
@@ -91,7 +96,7 @@ public class NyAlmRejseafregning extends Composite {
 	
 	@UiHandler("nyopdkonto")
  	void onButtonClick5(ClickEvent event) {
- 		vPanel6.setVisible(true);
+ 		vPanel4.setVisible(true);
  		addOpdeling.setVisible(true);
  	}
 	
@@ -100,10 +105,10 @@ public class NyAlmRejseafregning extends Composite {
  		eventBus.fireEvent(new NyKontostrengEvent(dropDownOpg2.getItemText(0).toString(), opgaveInt2.getText(), opgaveDoub2.getValue()));
  	}
 	
-	/*@UiHandler("gemogneste")
+	@UiHandler("gemogneste")
  	void onButtonClick7(ClickEvent event) {
  		eventBus.fireEvent(//Gem og næste side i rejseafregningen. Næste side ikke lavet endnu.);
- 		/Test
+ 		//Test
  	}
  	
 	
@@ -227,7 +232,7 @@ public class NyAlmRejseafregning extends Composite {
 	@EventHandler
 	public void getnumber2ListEvent(getNumber2ListEvent e){
 			//Skal hente numre der påbegynder med det man taster ind.
-	} */
+	}
 }
 
 
