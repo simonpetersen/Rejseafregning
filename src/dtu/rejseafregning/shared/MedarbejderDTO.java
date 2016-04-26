@@ -6,15 +6,14 @@ public class MedarbejderDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private String navn, brugernavn, adgangskode, nyAdgangskode, email, afdeling;
-	private boolean administrator, dtuBruger;
+	private boolean dtuBruger;
 	
-	public MedarbejderDTO(String navn, String brugernavn, String adgangskode, String email, String afdeling, boolean administrator, boolean dtuBruger) {
+	public MedarbejderDTO(String navn, String brugernavn, String adgangskode, String email, String afdeling, boolean dtuBruger) {
 		setNavn(navn);
 		setBrugernavn(brugernavn);
 		setAdgangskode(adgangskode);
 		setEmail(email);
 		setAfdeling(afdeling);
-		setAdministrator(administrator);
 		setDtuBruger(dtuBruger);
 	}
 	
@@ -58,13 +57,6 @@ public class MedarbejderDTO implements Serializable {
 		this.email = email;
 	}
 
-	public boolean erAdministrator() {
-		return administrator;
-	}
-
-	public void setAdministrator(boolean administrator) {
-		this.administrator = administrator;
-	}
 
 	public boolean erDtuBruger() {
 		return dtuBruger;

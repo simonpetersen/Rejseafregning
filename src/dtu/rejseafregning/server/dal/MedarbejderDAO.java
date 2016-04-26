@@ -14,6 +14,8 @@ import dtu.rejseafregning.shared.MedarbejderDTO;
 
 public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejderDAO {
 
+	private static final long serialVersionUID = 1L;
+	
 	private PreparedStatement getMedarbejderStmt = null;
 	private PreparedStatement getMedarbejderListStmt = null;
 	private PreparedStatement createMedarbejderStmt = null;
@@ -49,7 +51,7 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 			rs = getMedarbejderStmt.executeQuery();
 			if (rs.first()) {
 				return new MedarbejderDTO(rs.getString("Navn"), rs.getString("Brugernavn"),
-					rs.getString("adgangskode"), rs.getString("Email"), rs.getString("Afdeling") , rs.getBoolean("administrator"), true);
+					rs.getString("adgangskode"), rs.getString("Email"), rs.getString("Afdeling"), true);
 			}
 			throw new DALException("Medarbejder findes ikke!");
 		} catch (SQLException e) {
@@ -67,7 +69,7 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 
 			while (rs.next()) {
 				MedarbejderListe.add(new MedarbejderDTO(rs.getString("Navn"),
-						rs.getString("Brugernavn"), rs.getString("adgangskode"), rs.getString("Email"), "studerende" , rs.getBoolean("administrator"), true));
+						rs.getString("Brugernavn"), rs.getString("adgangskode"), rs.getString("Email"), "studerende", true));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getMedarbejderList fejlede" + e);
