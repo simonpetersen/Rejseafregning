@@ -31,7 +31,7 @@ public class BrugerautorisationDAO extends RemoteServiceServlet implements IBrug
 
 	@Override
 	public void skiftBrugerAdgangskode(String brugernavn, String adgangskode, String nyAdgangskode) throws Exception {
-		ba.Ã¦ndrAdgangskode(brugernavn, adgangskode, nyAdgangskode);	
+		ba.ændrAdgangskode(brugernavn, adgangskode, nyAdgangskode);	
 	}
 
 	@Override
