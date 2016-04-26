@@ -82,6 +82,6 @@ public class OplysningerView extends Composite {
 	
 	@UiHandler("vejTextBox")
 	void onVejTextBoxKeyUp(KeyUpEvent event) {
-		eventBus.fireEvent(new GetVejListeEvent());
+//		eventBus.fireEvent(new GetVejListeEvent());
 	}
 }
