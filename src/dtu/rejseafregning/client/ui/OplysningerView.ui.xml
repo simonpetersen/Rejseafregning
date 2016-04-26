@@ -20,7 +20,7 @@
 					<g:Label text="Postnummer: "/>
 				</g:customCell>
 				<g:customCell>
-					<g:SuggestBox ui:field="postnrTextBox"/>
+					<g:TextBox ui:field="postnrTextBox"/>
 				</g:customCell>
 			</g:row>
 			<g:row>

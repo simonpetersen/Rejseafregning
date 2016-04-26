@@ -1,11 +1,14 @@
 package dtu.rejseafregning.client.ui;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
@@ -21,28 +24,31 @@ import dtu.rejseafregning.client.events.GetByEvent;
 import dtu.rejseafregning.client.events.GetVejListeEvent;
 import dtu.rejseafregning.client.events.OpdaterOplysningerEvent;
 import dtu.rejseafregning.client.events.ReturnByEvent;
+import dtu.rejseafregning.client.events.ReturnVejListeEvent;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 
 public class OplysningerView extends Composite {
 
 	private static OplysningerViewUiBinder uiBinder = GWT.create(OplysningerViewUiBinder.class);
 	@UiField TextBox navnTextBox;
-	@UiField Label brugerNavnLabel, byLabel;
+	@UiField Label brugerNavnLabel;
+	@UiField Label byLabel;
 	@UiField TextBox emailTextBox;
 	@UiField PasswordTextBox adgangskodeTextBox;
 	@UiField PasswordTextBox adgangskode2TextBox;
-	@UiField(provided = true) SuggestBox postnrTextBox, vejTextBox;
+	@UiField TextBox postnrTextBox;
+	@UiField SuggestBox vejTextBox;
 
 	interface OplysningerViewUiBinder extends UiBinder<Widget, OplysningerView> {
 	}
 	
-	private MultiWordSuggestOracle vejSuggest;
 	private MedarbejderDTO bruger;
 	private EventBus eventBus;
 	interface MyEventBinder extends EventBinder<OplysningerView> {}
  	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
 
 	public OplysningerView(EventBus eventBus, MedarbejderDTO bruger) {
+		vejTextBox = new SuggestBox(new MultiWordSuggestOracle());
 		initWidget(uiBinder.createAndBindUi(this));
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
@@ -75,13 +81,23 @@ public class OplysningerView extends Composite {
 		}
 	}
 	
+	@UiHandler("vejTextBox")
+	void onVejTextBoxKeyUp(KeyUpEvent event) {
+		if (postnrTextBox.getText().length() > 0)
+				eventBus.fireEvent(new GetVejListeEvent(postnrTextBox.getText(), vejTextBox.getText()));
+	}
+	
 	@EventHandler
 	public void onReturnByEvent(ReturnByEvent e) {
 		byLabel.setText(e.getBy());
 	}
 	
-	@UiHandler("vejTextBox")
-	void onVejTextBoxKeyUp(KeyUpEvent event) {
-//		eventBus.fireEvent(new GetVejListeEvent());
+	@EventHandler
+	public void onReturnVejlisteEvent(ReturnVejListeEvent e) {
+		MultiWordSuggestOracle suggests = (MultiWordSuggestOracle) vejTextBox.getSuggestOracle();
+		List<String> veje = e.getVejnavneListe();
+		for (String s : veje) {
+			suggests.add(s);
+		}
 	}
 }

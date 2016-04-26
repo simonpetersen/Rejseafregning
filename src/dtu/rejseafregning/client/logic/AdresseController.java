@@ -1,5 +1,7 @@
 package dtu.rejseafregning.client.logic;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -8,7 +10,9 @@ import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.GetByEvent;
+import dtu.rejseafregning.client.events.GetVejListeEvent;
 import dtu.rejseafregning.client.events.ReturnByEvent;
+import dtu.rejseafregning.client.events.ReturnVejListeEvent;
 import dtu.rejseafregning.client.services.IAdresseDAO;
 import dtu.rejseafregning.client.services.IAdresseDAOAsync;
 
@@ -40,6 +44,24 @@ public class AdresseController {
 //				Window.alert(result);
 				eventBus.fireEvent(new ReturnByEvent(result));
 			}
+		});
+	}
+	
+	@EventHandler
+	public void onGetVejListEvent(GetVejListeEvent e) {
+		adresseDAO.getVejNavne(e.getPostnr(), e.getIndtast(), new AsyncCallback<List<String>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl: "+caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(List<String> result) {
+				eventBus.fireEvent(new ReturnVejListeEvent(result));
+			}
+			
 		});
 	}
 
