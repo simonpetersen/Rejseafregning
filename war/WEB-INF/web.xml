@@ -7,6 +7,15 @@
 
   <!-- Servlets -->
   <servlet>
+    <servlet-name>adresseServlet</servlet-name>
+    <servlet-class>dtu.rejseafregning.server.dal.AdresseDAO</servlet-class>
+  </servlet> 
+  <servlet-mapping>
+    <servlet-name>adresseServlet</servlet-name>
+    <url-pattern>/__rejseafregning/adresseservice</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>godtgoerelseServlet</servlet-name>
     <servlet-class>dtu.rejseafregning.server.dal.GodtgoerelseDAO</servlet-class>
   </servlet> 
