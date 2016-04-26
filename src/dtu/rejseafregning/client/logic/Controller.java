@@ -45,6 +45,7 @@ public class Controller {
 	private EventBus eventBus;
 	private MainView mainView;
 	private LoginController loginController;
+	private AdresseController adresseController;
 
 	private MedarbejderDTO bruger;
 
@@ -65,6 +66,7 @@ public class Controller {
 		eventBinder.bindEventHandlers(this, eventBus);
 
 		loginController = new LoginController(eventBus);
+		adresseController = new AdresseController(eventBus);
 	}
 
 	@EventHandler

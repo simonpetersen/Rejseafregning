@@ -16,6 +16,12 @@
 				<g:customCell>
 					<g:TextBox ui:field="navnTextBox"/>
 				</g:customCell>
+				<g:customCell>
+					<g:Label text="Postnummer: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:SuggestBox ui:field="postnrTextBox"/>
+				</g:customCell>
 			</g:row>
 			<g:row>
 				<g:customCell>
@@ -24,6 +30,12 @@
 				<g:customCell>
 					<g:Label ui:field="brugerNavnLabel" />
 				</g:customCell>
+				<g:customCell>
+					<g:Label text="By: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="" ui:field="byLabel"/>
+				</g:customCell>
 			</g:row>
 			<g:row>
 				<g:customCell>
@@ -31,6 +43,12 @@
 				</g:customCell>
 				<g:customCell>
 					<g:TextBox ui:field="emailTextBox"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Vej: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:SuggestBox ui:field="vejTextBox"/>
 				</g:customCell>
 			</g:row>
 			<g:row>

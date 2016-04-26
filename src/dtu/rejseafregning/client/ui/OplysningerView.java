@@ -2,32 +2,41 @@ package dtu.rejseafregning.client.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
+import com.google.web.bindery.event.shared.binder.EventHandler;
 
+import dtu.rejseafregning.client.events.GetByEvent;
+import dtu.rejseafregning.client.events.GetVejListeEvent;
 import dtu.rejseafregning.client.events.OpdaterOplysningerEvent;
+import dtu.rejseafregning.client.events.ReturnByEvent;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 
 public class OplysningerView extends Composite {
 
 	private static OplysningerViewUiBinder uiBinder = GWT.create(OplysningerViewUiBinder.class);
 	@UiField TextBox navnTextBox;
-	@UiField Label brugerNavnLabel;
+	@UiField Label brugerNavnLabel, byLabel;
 	@UiField TextBox emailTextBox;
 	@UiField PasswordTextBox adgangskodeTextBox;
 	@UiField PasswordTextBox adgangskode2TextBox;
+	@UiField(provided = true) SuggestBox postnrTextBox, vejTextBox;
 
 	interface OplysningerViewUiBinder extends UiBinder<Widget, OplysningerView> {
 	}
 	
+	private MultiWordSuggestOracle vejSuggest;
 	private MedarbejderDTO bruger;
 	private EventBus eventBus;
 	interface MyEventBinder extends EventBinder<OplysningerView> {}
@@ -56,5 +65,23 @@ public class OplysningerView extends Composite {
 	@UiHandler("gemKnap")
 	void onGemKnapClick(ClickEvent event) {
 		eventBus.fireEvent(new OpdaterOplysningerEvent(setNyMedarbejderInfo()));
+	}
+	
+	@UiHandler("postnrTextBox")
+	void onPostnrTextBoxKeyDown(KeyUpEvent event) {
+//		Window.alert("KeyUp: "+postnrTextBox.getText().length());
+		if (postnrTextBox.getText().length() == 4) {
+			eventBus.fireEvent(new GetByEvent(postnrTextBox.getText()));
+		}
+	}
+	
+	@EventHandler
+	public void onReturnByEvent(ReturnByEvent e) {
+		byLabel.setText(e.getBy());
+	}
+	
+	@UiHandler("vejTextBox")
+	void onVejTextBoxKeyUp(KeyUpEvent event) {
+//		eventBus.fireEvent(new GetVejListeEvent());
 	}
 }
