@@ -10,5 +10,5 @@ public interface IAdresseDAOAsync {
 	public void getVejNavne(String postnr, String indtast, AsyncCallback<List<String>> callback);
 	public void getHusnumre(String postnr, String vejnavn, AsyncCallback<List<String>> callback);
 	public void getEtageListe(String postnr, String husnr, String vejnavn, AsyncCallback<List<String>> callback);
-	public void getEtageListe(String postnr, String husnr, String etage, String vejnavn, AsyncCallback<List<String>> callback);
+	public void getDoerListe(String postnr, String husnr, String etage, String vejnavn, AsyncCallback<List<String>> callback);
 }

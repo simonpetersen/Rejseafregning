@@ -4,9 +4,8 @@ import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.logical.shared.SelectionEvent;
-import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -15,7 +14,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.SuggestBox;
-import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
@@ -23,16 +21,17 @@ import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.GetByEvent;
+import dtu.rejseafregning.client.events.GetDoerListeEvent;
 import dtu.rejseafregning.client.events.GetEtageListeEvent;
 import dtu.rejseafregning.client.events.GetHusnrListeEvent;
 import dtu.rejseafregning.client.events.GetVejListeEvent;
 import dtu.rejseafregning.client.events.OpdaterOplysningerEvent;
 import dtu.rejseafregning.client.events.ReturnByEvent;
+import dtu.rejseafregning.client.events.ReturnDoerListeEvent;
 import dtu.rejseafregning.client.events.ReturnEtageListeEvent;
 import dtu.rejseafregning.client.events.ReturnHusnrListeEvent;
 import dtu.rejseafregning.client.events.ReturnVejListeEvent;
 import dtu.rejseafregning.shared.MedarbejderDTO;
-import com.google.gwt.event.dom.client.KeyPressEvent;
 
 public class OplysningerView extends Composite {
 
@@ -44,7 +43,7 @@ public class OplysningerView extends Composite {
 	@UiField PasswordTextBox adgangskodeTextBox;
 	@UiField PasswordTextBox adgangskode2TextBox;
 	@UiField TextBox postnrTextBox;
-	@UiField SuggestBox vejTextBox, husnrTextBox, etageTextBox;
+	@UiField SuggestBox vejTextBox, husnrTextBox, etageTextBox, doorTextBox;
 
 	interface OplysningerViewUiBinder extends UiBinder<Widget, OplysningerView> {
 	}
@@ -58,6 +57,7 @@ public class OplysningerView extends Composite {
 		vejTextBox = new SuggestBox(new MultiWordSuggestOracle());
 		husnrTextBox = new SuggestBox(new MultiWordSuggestOracle());
 		etageTextBox = new SuggestBox(new MultiWordSuggestOracle());
+		doorTextBox = new SuggestBox(new MultiWordSuggestOracle());
 		initWidget(uiBinder.createAndBindUi(this));
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
@@ -108,13 +108,21 @@ public class OplysningerView extends Composite {
 			eventBus.fireEvent(new GetEtageListeEvent(postnrTextBox.getText(), vejTextBox.getText(), husnrTextBox.getText()));
 	}
 	
+	@UiHandler("doorTextBox")
+	void onDoorTextBoxKeyUp(KeyUpEvent event) {
+		if (!postnrTextBox.getText().isEmpty() && !vejTextBox.getText().isEmpty() && !husnrTextBox.getText().isEmpty() && 
+				!etageTextBox.getText().isEmpty())
+			eventBus.fireEvent(new GetDoerListeEvent(postnrTextBox.getText(), vejTextBox.getText(), 
+					husnrTextBox.getText(), etageTextBox.getText()));
+	}
+	
 	@EventHandler
 	public void onReturnByEvent(ReturnByEvent e) {
 		byLabel.setText(e.getBy());
 	}
 	
 	@EventHandler
-	public void onReturnVejlisteEvent(ReturnVejListeEvent e) {
+	public void onReturnVejListeEvent(ReturnVejListeEvent e) {
 		MultiWordSuggestOracle suggests = (MultiWordSuggestOracle) vejTextBox.getSuggestOracle();
 		List<String> veje = e.getVejnavneListe();
 		for (String s : veje) {
@@ -123,7 +131,7 @@ public class OplysningerView extends Composite {
 	}
 	
 	@EventHandler
-	public void onReturnHusnrlisteEvent(ReturnHusnrListeEvent e) {
+	public void onReturnHusnrListeEvent(ReturnHusnrListeEvent e) {
 		MultiWordSuggestOracle suggests = (MultiWordSuggestOracle) husnrTextBox.getSuggestOracle();
 		List<String> veje = e.getHusnrListe();
 		for (String s : veje) {
@@ -132,9 +140,18 @@ public class OplysningerView extends Composite {
 	}
 	
 	@EventHandler
-	public void onReturnEtagelisteEvent(ReturnEtageListeEvent e) {
+	public void onReturnEtageListeEvent(ReturnEtageListeEvent e) {
 		MultiWordSuggestOracle suggests = (MultiWordSuggestOracle) etageTextBox.getSuggestOracle();
 		List<String> veje = e.getEtageListe();
+		for (String s : veje) {
+			suggests.add(s);
+		}
+	}
+	
+	@EventHandler
+	public void onReturnDoerListeEvent(ReturnDoerListeEvent e) {
+		MultiWordSuggestOracle suggests = (MultiWordSuggestOracle) doorTextBox.getSuggestOracle();
+		List<String> veje = e.getDoerListe();
 		for (String s : veje) {
 			suggests.add(s);
 		}

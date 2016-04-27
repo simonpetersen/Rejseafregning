@@ -39,10 +39,10 @@
 			</g:row>
 			<g:row>
 				<g:customCell>
-					<g:Label text="Email: "/>
+					<g:Label text="Studienummer: "/>
 				</g:customCell>
 				<g:customCell>
-					<g:TextBox ui:field="emailTextBox"/>
+					<g:TextBox ui:field="studienrTextBox"/>
 				</g:customCell>
 				<g:customCell>
 					<g:Label text="Vej: "/>
@@ -52,11 +52,11 @@
 				</g:customCell>
 			</g:row>
 			<g:row>
-				<g:customCell>
-					<g:Label text="Ny adgangskode:  "/>
+			<g:customCell>
+					<g:Label text="Email: "/>
 				</g:customCell>
 				<g:customCell>
-					<g:PasswordTextBox ui:field="adgangskodeTextBox"/>
+					<g:TextBox ui:field="emailTextBox"/>
 				</g:customCell>
 				<g:customCell>
 					<g:Label text="Husnr: "/>
@@ -67,16 +67,30 @@
 			</g:row>
 			<g:row>
 				<g:customCell>
-					<g:Label text="Gentag adgangskode:  "/>
+					<g:Label text="Ny adgangskode:  "/>
 				</g:customCell>
 				<g:customCell>
-					<g:PasswordTextBox ui:field="adgangskode2TextBox"/>
+					<g:PasswordTextBox ui:field="adgangskodeTextBox"/>
 				</g:customCell>
 				<g:customCell>
 					<g:Label text="Etage: "/>
 				</g:customCell>
 				<g:customCell>
 					<g:SuggestBox ui:field="etageTextBox"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+			<g:customCell>
+					<g:Label text="Gentag adgangskode:  "/>
+				</g:customCell>
+				<g:customCell>
+					<g:PasswordTextBox ui:field="adgangskode2TextBox"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Dør: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:SuggestBox ui:field="doorTextBox"/>
 				</g:customCell>
 			</g:row>
 			<g:row>

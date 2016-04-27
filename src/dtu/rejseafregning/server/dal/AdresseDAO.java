@@ -74,7 +74,7 @@ public class AdresseDAO extends RemoteServiceServlet implements IAdresseDAO {
 		return list;
 	}
 	
-	public List<String> getEtageListe(String postnr, String husnr, String etage, String vejnavn) throws Exception {
+	public List<String> getDoerListe(String postnr, String husnr, String etage, String vejnavn) throws Exception {
 		url = "http://dawa.aws.dk/adresser?vejnavn="+vejnavn+"&husnr="+husnr+"&etage="+etage+"&postnr="+postnr;
 		List<String> list = new ArrayList<String>();
 		array = readJsonFromUrl(url);

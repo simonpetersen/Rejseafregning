@@ -10,10 +10,12 @@ import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.GetByEvent;
+import dtu.rejseafregning.client.events.GetDoerListeEvent;
 import dtu.rejseafregning.client.events.GetEtageListeEvent;
 import dtu.rejseafregning.client.events.GetHusnrListeEvent;
 import dtu.rejseafregning.client.events.GetVejListeEvent;
 import dtu.rejseafregning.client.events.ReturnByEvent;
+import dtu.rejseafregning.client.events.ReturnDoerListeEvent;
 import dtu.rejseafregning.client.events.ReturnEtageListeEvent;
 import dtu.rejseafregning.client.events.ReturnHusnrListeEvent;
 import dtu.rejseafregning.client.events.ReturnVejListeEvent;
@@ -96,6 +98,22 @@ public class AdresseController {
 				@Override
 				public void onSuccess(List<String> result) {
 					eventBus.fireEvent(new ReturnEtageListeEvent(result));
+				}
+				
+			});
+	}
+	
+	@EventHandler
+	public void onGetDoerListeEvent(GetDoerListeEvent e) {
+		adresseDAO.getDoerListe(e.getPostnr(), e.getHusnr(), e.getEtage(), e.getVej(), new AsyncCallback<List<String>>() {
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert("Fejl: "+caught.getMessage());
+				}
+
+				@Override
+				public void onSuccess(List<String> result) {
+					eventBus.fireEvent(new ReturnDoerListeEvent(result));
 				}
 				
 			});
