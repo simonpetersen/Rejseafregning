@@ -58,6 +58,12 @@
 				<g:customCell>
 					<g:PasswordTextBox ui:field="adgangskodeTextBox"/>
 				</g:customCell>
+				<g:customCell>
+					<g:Label text="Husnr: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:SuggestBox ui:field="husnrTextBox"/>
+				</g:customCell>
 			</g:row>
 			<g:row>
 				<g:customCell>
@@ -65,6 +71,12 @@
 				</g:customCell>
 				<g:customCell>
 					<g:PasswordTextBox ui:field="adgangskode2TextBox"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Etage: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:SuggestBox ui:field="etageTextBox"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
