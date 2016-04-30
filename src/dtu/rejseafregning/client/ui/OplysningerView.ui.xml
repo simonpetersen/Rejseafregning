@@ -39,10 +39,10 @@
 			</g:row>
 			<g:row>
 				<g:customCell>
-					<g:Label text="Studienummer: "/>
+					<g:Label text="Afdeling: "/>
 				</g:customCell>
 				<g:customCell>
-					<g:TextBox ui:field="studienrTextBox"/>
+					<g:TextBox ui:field="afdelingTextBox"/>
 				</g:customCell>
 				<g:customCell>
 					<g:Label text="Vej: "/>
@@ -90,7 +90,7 @@
 					<g:Label text="Dør: "/>
 				</g:customCell>
 				<g:customCell>
-					<g:SuggestBox ui:field="doorTextBox"/>
+					<g:SuggestBox ui:field="doerTextBox"/>
 				</g:customCell>
 			</g:row>
 			<g:row>

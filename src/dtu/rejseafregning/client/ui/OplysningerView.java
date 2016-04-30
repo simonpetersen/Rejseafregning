@@ -40,10 +40,11 @@ public class OplysningerView extends Composite {
 	@UiField Label brugerNavnLabel;
 	@UiField Label byLabel;
 	@UiField TextBox emailTextBox;
+	@UiField TextBox afdelingTextBox;
 	@UiField PasswordTextBox adgangskodeTextBox;
 	@UiField PasswordTextBox adgangskode2TextBox;
 	@UiField TextBox postnrTextBox;
-	@UiField SuggestBox vejTextBox, husnrTextBox, etageTextBox, doorTextBox;
+	@UiField SuggestBox vejTextBox, husnrTextBox, etageTextBox, doerTextBox;
 
 	interface OplysningerViewUiBinder extends UiBinder<Widget, OplysningerView> {
 	}
@@ -57,7 +58,7 @@ public class OplysningerView extends Composite {
 		vejTextBox = new SuggestBox(new MultiWordSuggestOracle());
 		husnrTextBox = new SuggestBox(new MultiWordSuggestOracle());
 		etageTextBox = new SuggestBox(new MultiWordSuggestOracle());
-		doorTextBox = new SuggestBox(new MultiWordSuggestOracle());
+		doerTextBox = new SuggestBox(new MultiWordSuggestOracle());
 		initWidget(uiBinder.createAndBindUi(this));
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
@@ -65,6 +66,19 @@ public class OplysningerView extends Composite {
 		navnTextBox.setText(bruger.getNavn());
 		brugerNavnLabel.setText(bruger.getBrugernavn());
 		emailTextBox.setText(bruger.getEmail());
+		afdelingTextBox.setText(bruger.getAfdeling());
+		visMedarbejderAdresse();
+	}
+	
+	private void visMedarbejderAdresse() {
+		if (bruger.getPostnr() != null) {
+			postnrTextBox.setText(bruger.getPostnr());
+			eventBus.fireEvent(new GetByEvent(bruger.getPostnr()));
+		}
+		if (bruger.getVejnavn() != null) vejTextBox.setText(bruger.getVejnavn());
+		if (bruger.getHusnr() != null) husnrTextBox.setText(bruger.getHusnr());
+		if (bruger.getEtage() != null) etageTextBox.setText(bruger.getEtage());
+		if (bruger.getDoer() != null) doerTextBox.setText(bruger.getDoer());
 	}
 
 	private MedarbejderDTO setNyMedarbejderInfo() {
@@ -74,6 +88,12 @@ public class OplysningerView extends Composite {
 			if (!bruger.erDtuBruger()) bruger.setNyAdgangskode(adgangskodeTextBox.getText());
 			else bruger.setAdgangskode(adgangskodeTextBox.getText());
 		}
+		if (!afdelingTextBox.getText().isEmpty()) bruger.setAfdeling(afdelingTextBox.getText());
+		if (!postnrTextBox.getText().isEmpty()) bruger.setPostnr(postnrTextBox.getText());
+		if (!vejTextBox.getText().isEmpty()) bruger.setVejnavn(vejTextBox.getText());
+		if (!husnrTextBox.getText().isEmpty()) bruger.setHusnr(husnrTextBox.getText());
+		if (!etageTextBox.getText().isEmpty()) bruger.setEtage(etageTextBox.getText());
+		if (!doerTextBox.getText().isEmpty()) bruger.setDoer(doerTextBox.getText());
 		return bruger;
 	}
 	
@@ -84,7 +104,6 @@ public class OplysningerView extends Composite {
 	
 	@UiHandler("postnrTextBox")
 	void onPostnrTextBoxKeyDown(KeyUpEvent event) {
-//		Window.alert("KeyUp: "+postnrTextBox.getText().length());
 		if (postnrTextBox.getText().length() == 4) {
 			eventBus.fireEvent(new GetByEvent(postnrTextBox.getText()));
 		}
@@ -108,7 +127,7 @@ public class OplysningerView extends Composite {
 			eventBus.fireEvent(new GetEtageListeEvent(postnrTextBox.getText(), vejTextBox.getText(), husnrTextBox.getText()));
 	}
 	
-	@UiHandler("doorTextBox")
+	@UiHandler("doerTextBox")
 	void onDoorTextBoxKeyUp(KeyUpEvent event) {
 		if (!postnrTextBox.getText().isEmpty() && !vejTextBox.getText().isEmpty() && !husnrTextBox.getText().isEmpty() && 
 				!etageTextBox.getText().isEmpty())
@@ -150,7 +169,7 @@ public class OplysningerView extends Composite {
 	
 	@EventHandler
 	public void onReturnDoerListeEvent(ReturnDoerListeEvent e) {
-		MultiWordSuggestOracle suggests = (MultiWordSuggestOracle) doorTextBox.getSuggestOracle();
+		MultiWordSuggestOracle suggests = (MultiWordSuggestOracle) doerTextBox.getSuggestOracle();
 		List<String> veje = e.getDoerListe();
 		for (String s : veje) {
 			suggests.add(s);

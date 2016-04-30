@@ -37,7 +37,8 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 
 		// updateMedarbejder statement
 		updateMedarbejderStmt = Connector.conn.prepareStatement(
-				"UPDATE Medarbejder SET Navn = ?, Password = ?, Email = ? WHERE Brugernavn = ?");
+				"UPDATE Medarbejder SET Navn = ?, Adgangskode = ?, Email = ?, Postnr = ?, Vejnavn = ?, Husnr = ?, Etage = ?, Doer = ? "
+				+ "WHERE Brugernavn = ?");
 
 		// deleteMedarbejder statement
 		deleteMedarbejderStmt = Connector.conn.prepareStatement("DELETE FROM Medarbejder WHERE Brugernavn = ?");
@@ -51,7 +52,8 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 			rs = getMedarbejderStmt.executeQuery();
 			if (rs.first()) {
 				return new MedarbejderDTO(rs.getString("Navn"), rs.getString("Brugernavn"),
-					rs.getString("adgangskode"), rs.getString("Email"), rs.getString("Afdeling"), true);
+					rs.getString("adgangskode"), rs.getString("Email"), rs.getString("Afdeling"), true, rs.getString("postnr"), 
+					rs.getString("vejnavn"), rs.getString("husnr"), rs.getString("etage"), rs.getString("doer"));
 			}
 			throw new DALException("Medarbejder findes ikke!");
 		} catch (SQLException e) {
@@ -68,8 +70,9 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 			rs = getMedarbejderListStmt.executeQuery();
 
 			while (rs.next()) {
-				MedarbejderListe.add(new MedarbejderDTO(rs.getString("Navn"),
-						rs.getString("Brugernavn"), rs.getString("adgangskode"), rs.getString("Email"), "studerende", true));
+				MedarbejderListe.add(new MedarbejderDTO(rs.getString("Navn"), rs.getString("Brugernavn"),
+						rs.getString("adgangskode"), rs.getString("Email"), rs.getString("Afdeling"), true, rs.getString("postnr"), 
+						rs.getString("vejnavn"), rs.getString("husnr"), rs.getString("etage"), rs.getString("doer")));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getMedarbejderList fejlede" + e);
@@ -107,12 +110,17 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 			updateMedarbejderStmt.setString(1, medarbejder.getNavn());
 			updateMedarbejderStmt.setString(2, medarbejder.getAdgangskode());
 			updateMedarbejderStmt.setString(3, medarbejder.getEmail());
-			updateMedarbejderStmt.setString(4, medarbejder.getBrugernavn());
+			updateMedarbejderStmt.setString(4, medarbejder.getPostnr());
+			updateMedarbejderStmt.setString(5, medarbejder.getVejnavn());
+			updateMedarbejderStmt.setString(6, medarbejder.getHusnr());
+			updateMedarbejderStmt.setString(7, medarbejder.getEtage());
+			updateMedarbejderStmt.setString(8, medarbejder.getDoer());
+			updateMedarbejderStmt.setString(9, medarbejder.getBrugernavn());
 
 			// Kald til databasen
 			updateMedarbejderStmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Kaldet updateMedarbejder fejlede");
+			throw new DALException("Kaldet updateMedarbejder fejlede: "+e.getMessage());
 		}
 
 	}

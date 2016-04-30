@@ -41,7 +41,11 @@ CREATE TABLE Medarbejder
 	email varchar(50) NOT NULL,
 	adgangskode varchar(20) NOT NULL,
 	afdeling varchar(30) NOT NULL,
-	studienr varchar(7) NOT NULL,
+	postnr varchar(4),
+	vejnavn varchar(50),
+	husnr varchar(4),
+	etage varchar(4),
+	doer varchar(3),
 	PRIMARY KEY (brugernavn)
 );
 
