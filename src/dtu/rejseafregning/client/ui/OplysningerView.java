@@ -85,8 +85,7 @@ public class OplysningerView extends Composite {
 		if (!navnTextBox.getText().isEmpty()) bruger.setNavn(navnTextBox.getText());
 		if (!emailTextBox.getText().isEmpty()) bruger.setEmail(emailTextBox.getText());
 		if (!adgangskodeTextBox.getText().isEmpty()) {
-			if (!bruger.erDtuBruger()) bruger.setNyAdgangskode(adgangskodeTextBox.getText());
-			else bruger.setAdgangskode(adgangskodeTextBox.getText());
+			bruger.setNyAdgangskode(adgangskodeTextBox.getText());
 		}
 		if (!afdelingTextBox.getText().isEmpty()) bruger.setAfdeling(afdelingTextBox.getText());
 		if (!postnrTextBox.getText().isEmpty()) bruger.setPostnr(postnrTextBox.getText());
