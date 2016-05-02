@@ -20,6 +20,8 @@ import dtu.rejseafregning.client.events.GetDokumenterCirkulationEvent;
 import dtu.rejseafregning.client.events.GetDokumenterUdkastEvent;
 import dtu.rejseafregning.client.events.GetGodkendelseDokumenterEvent;
 import dtu.rejseafregning.client.events.GetGodkendelseSuccessfullEvent;
+import dtu.rejseafregning.client.events.GetGodtgoerelseListEvent;
+import dtu.rejseafregning.client.events.GetGodtgoerelsesListSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
@@ -108,8 +110,8 @@ public class Controller {
 		});
 	}
 	
-	/*@EventHandler
-	public void onGetLand(GetGodtg�relseListEvent e) {
+	@EventHandler
+	public void onGetLand(GetGodtgoerelseListEvent e) {
 		godtgoerelseDAO.getGodtgoerelseList(new AsyncCallback<List<GodtgoerelseDTO>>() {
 
 			@Override
@@ -120,10 +122,11 @@ public class Controller {
 			@Override
 			public void onSuccess(List<GodtgoerelseDTO> result) {
 				// TODO Auto-generated method stub
+				eventBus.fireEvent(new GetGodtgoerelsesListSuccessfullEvent(result));
 				
 			}
 		});
-	} */
+	} 
 	
 	@EventHandler
 	public void onGetDokumenterUdkastEvent(GetDokumenterUdkastEvent e) {

@@ -1,0 +1,51 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	.overskrift {
+		padding: 5px;
+		background-color: #BDEDFF;
+	}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:VerticalPanel width="100%">
+			<g:Grid width="100%">
+				<g:row>
+					<g:customCell>
+						<g:Label text="Udgifter" styleName="{style.overskrift}"/>
+					</g:customCell>
+				</g:row>
+			</g:Grid>
+			<g:Grid width="100%">
+				<g:row>
+					<g:customCell>
+						<g:Label text="Gratis mad:" styleName="{style.overskrift}"/>
+					</g:customCell>
+				</g:row>
+			</g:Grid>
+			<g:Grid width="100%">
+				<g:row>
+					<g:customCell>
+						<g:Label text="Diverse Udgifter:" styleName="{style.overskrift}"/>
+					</g:customCell>
+				</g:row>
+			</g:Grid>
+			<g:Grid width="100%">
+				<g:row>
+					<g:customCell>
+						<g:Label text="Bilag:" styleName="{style.overskrift}"/>
+					</g:customCell>
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:Button text="Tilføj" ui:field="tilfoej"/>
+					</g:customCell>
+				</g:row>
+			</g:Grid>
+			<g:Button text="Gem og Afslut" ui:field="gemogafslut"/>
+		</g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

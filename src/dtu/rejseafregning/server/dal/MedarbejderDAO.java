@@ -34,8 +34,7 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 		getMedarbejderListStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder");
 
 		// createMedarbejder statement
-		createMedarbejderStmt = Connector.conn.prepareStatement("INSERT INTO Medarbejder (brugernavn, navn, email, adgangskode, afdeling) "
-				+ "VALUES(?, ?, ?, ?, ?)");
+		createMedarbejderStmt = Connector.conn.prepareStatement("INSERT INTO Medarbejder (brugernavn, navn, email, adgangskode, afdeling) VALUES(?, ?, ?, ?, ?)");
 
 		// updateMedarbejder statement
 		updateMedarbejderStmt = Connector.conn.prepareStatement(

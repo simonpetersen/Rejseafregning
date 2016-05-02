@@ -26,10 +26,13 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
+import dtu.rejseafregning.client.events.GetGodtgoerelseListEvent;
 import dtu.rejseafregning.client.events.GetGodtgoerelsesListSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetOpgaveListEvent;
 import dtu.rejseafregning.client.events.GetProjektListEvent;
 import dtu.rejseafregning.client.events.GetSuggestListEvent;
+import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
+import dtu.rejseafregning.client.events.UdgifterEvent;
 import dtu.rejseafregning.shared.OpgaveDTO;
 import dtu.rejseafregning.shared.ProjektDTO;
 
@@ -70,14 +73,12 @@ public class NyAlmRejseafregning extends Composite {
  		initWidget(uiBinder.createAndBindUi(this));
  		this.eventBus = eventBus;
   		eventBinder.bindEventHandlers(this, eventBus);
+  		eventBus.fireEvent(new GetGodtgoerelseListEvent());
+  		visibility();
   	}
 
 	interface NyAlmRejseafregningUiBinder extends UiBinder<Widget, NyAlmRejseafregning> {
 	}
-
-	/* public NyAlmRejseafregning() {
-		initWidget(uiBinder.createAndBindUi(this));
-	} */
 	
 	public void visibility() {
 		vPanel3.setVisible(false);
@@ -107,10 +108,8 @@ public class NyAlmRejseafregning extends Composite {
 	
 	@UiHandler("gemogneste")
  	void onButtonClick7(ClickEvent event) {
- 		//eventBus.fireEvent(//Gem og n�ste side i rejseafregningen. N�ste side ikke lavet endnu.);
- 		//Test
- 	}
- 	
+ 		eventBus.fireEvent(new UdgifterEvent());
+ 	} 	
 	
 	@EventHandler
 	public void getLandListEvent(GetGodtgoerelsesListSuccessfullEvent e){

@@ -111,33 +111,39 @@
 				</g:VerticalPanel>
 			</g:HorizontalPanel>
 			<g:Label text="Opdeling af kontostreng: " ui:field="opdKonto1" styleName="{style.overskrift}"/>
-			<g:HorizontalPanel ui:field="hPanel16">
-				<g:VerticalPanel ui:field="vPanel17">
-					<g:Label text="Projekt: " ui:field="projekt2"/>
-					<g:Label text="New Label" ui:field="projekt3"/>
-				</g:VerticalPanel>
-				<g:VerticalPanel ui:field="vPanel18">
-					<g:Label text="Opgave: " ui:field="opgave4"/>
-					<g:Label text="New Label" ui:field="opgave5"/>
-				</g:VerticalPanel>
-				<g:VerticalPanel ui:field="vPanel19">
-					<g:Label text="Udgiftsorganisation: " ui:field="udgOrg2"/>
-					<g:Label text="New Label" ui:field="udgOrg3"/>
-				</g:VerticalPanel>
-				<g:VerticalPanel ui:field="vPanel20">
-				<g:Label text="Sted: " ui:field="sted2"/>
-				<g:Label text="New Label" ui:field="sted3"/>
-			</g:VerticalPanel>
-				<g:VerticalPanel ui:field="vPanel21">
-					<g:Label text="Opdeling %: " ui:field="nyopdkonto4"/>
-					<g:Label text="New Label" ui:field="opdelingPro2"/>
-				</g:VerticalPanel>
-				<g:VerticalPanel ui:field="vPanel22">
-					<g:Label text="Opdeling kr.: " ui:field="nyopdkonto5"/>
-					<g:Label text="New Label" ui:field="opgaveDoub3"/>
-				</g:VerticalPanel>
-				<g:Button text="Slet" ui:field="slet"/>
-			</g:HorizontalPanel>
+			<g:Grid>
+				<g:row>
+					<g:customCell>
+						<g:Label text="Projekt: " ui:field="projekt2"/>
+					</g:customCell>
+					<g:customCell>
+						<g:Label text="Opgave: " ui:field="opgave4"/>
+					</g:customCell>
+					<g:customCell>
+						<g:Label text="Opdeling kr.: " ui:field="nyopdkonto5"/>
+					</g:customCell>
+					<g:customCell>
+						<g:Label text="Opdeling %: " ui:field="nyopdkonto4"/>
+					</g:customCell>
+					<g:customCell>
+						<g:Button text="Slet" ui:field="slet"/>
+					</g:customCell>
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:Label text="New Label" ui:field="projekt3"/>
+					</g:customCell>
+					<g:customCell>
+						<g:Label text="New Label" ui:field="opgave5"/>
+					</g:customCell>
+					<g:customCell>
+						<g:Label text="New Label" ui:field="opgaveDoub3"/>
+					</g:customCell>
+					<g:customCell>
+						<g:Label text="New Label" ui:field="opdelingPro2"/>
+					</g:customCell>
+				</g:row>
+			</g:Grid>
 			<g:Button text="Ny opdelign af kontostreng" ui:field="nyopdkonto"/>
 			<g:VerticalPanel ui:field="vPanel4">
 				<g:Label text="Opdeling i procenter (%) og i kroner : " ui:field="nyopdkonto2"/>
