@@ -21,7 +21,7 @@
 							<g:Label text="Land: " ui:field="land"/>
 						</g:customCell>
 						<g:customCell>
-							<g:ListBox ui:field="dropDownLand"/>
+							<g:ListBox ui:field="dropLand"/>
 						</g:customCell>
 					</g:row>
 					<g:row>
@@ -29,7 +29,7 @@
 							<g:Label text="By: " ui:field="by"/>
 						</g:customCell>
 						<g:customCell>
-							<g:ListBox ui:field="dropDownBy"/>
+							<g:TextBox ui:field="txtby"/>
 						</g:customCell>
 					</g:row>
 					<g:row>
@@ -37,8 +37,9 @@
 							<g:Label text="Rejseformål: " ui:field="rejseform"/>
 						</g:customCell>
 						<g:customCell>
-							<g:ListBox ui:field="dropDownRejseform1"/>
+							<g:TextBox ui:field="txtrejse"/>
 						</g:customCell>
+
 					</g:row>
 				</g:Grid>
 			</g:HorizontalPanel>
@@ -75,7 +76,7 @@
 								<g:Label text="Projekt:" ui:field="projekt"/>
 							</g:customCell>
 							<g:customCell>
-								<g:ListBox ui:field="dropDownPro"/>
+								<g:ListBox ui:field="dropDownProj"/>
 							</g:customCell>
 							<g:customCell>
 								<g:Button text="Søg" ui:field="seach1"/>
@@ -86,64 +87,10 @@
 								<g:Label text="Opgave: " ui:field="opgave"/>
 							</g:customCell>
 							<g:customCell>
-								<g:ListBox ui:field="dropDownOpg1"/>
+								<g:ListBox ui:field="dropDownOpga1"/>
 							</g:customCell>
 							<g:customCell>
 								<g:Button ui:field="search2">Søg</g:Button>
-							</g:customCell>
-						</g:row>
-						<g:row>
-							<g:customCell>
-								<g:Label text="Udgiftsorganisation: " ui:field="udgiftsOrg"/>
-							</g:customCell>
-							<g:customCell>
-								<g:ListBox ui:field="dropDownUdg"/>
-							</g:customCell>
-							<g:customCell>
-								<g:Button text="Søg" ui:field="search3"/>
-							</g:customCell>
-						</g:row>
-						<g:row>
-							<g:customCell>
-								<g:Label text="Underkonto: " ui:field="underkonto"/>
-							</g:customCell>
-							<g:customCell>
-								<g:ListBox ui:field="dropDownUnd"/>
-							</g:customCell>
-						</g:row>
-						<g:row>
-							<g:customCell>
-								<g:Label text="Sted: " ui:field="sted"/>
-							</g:customCell>
-							<g:customCell>
-								<g:ListBox ui:field="dropDownSted"/>
-							</g:customCell>
-						</g:row>
-						<g:row>
-							<g:customCell>
-								<g:Label text="Analyse: " ui:field="analyse"/>
-							</g:customCell>
-							<g:customCell>
-								<g:ListBox ui:field="dropDownAnalyse"/>
-							</g:customCell>
-						</g:row>
-						<g:row>
-							<g:customCell>
-								<g:Label text="Momskode" ui:field="moms"/>
-							</g:customCell>
-							<g:customCell>
-								<g:ListBox ui:field="dropDownMoms"/>
-							</g:customCell>
-						</g:row>
-						<g:row>
-							<g:customCell>
-								<g:Label text="Periode" ui:field="periode"/>
-							</g:customCell>
-							<g:customCell>
-								<g:ListBox ui:field="dropDownPer"/>
-							</g:customCell>
-							<g:customCell>
-								<g:Button ui:field="search4">Søg</g:Button>
 							</g:customCell>
 						</g:row>
 						<g:row>
@@ -158,12 +105,9 @@
 			</g:VerticalPanel>
 				<g:VerticalPanel ui:field="vPanel3">
 					<g:Label text="Søgekriterier: " ui:field="searchkriterier"/>
-					<g:Label text="Navn: " ui:field="name"/>
-					<g:TextBox ui:field="name2"/>
-					<g:Label text="Nummer: " ui:field="number"/>
-					<g:TextBox ui:field="number2"/>
 					<g:Label text="Nummer og Navn: " ui:field="numberandname"/>
-					<g:ListBox visibleItemCount="5" ui:field="numberandname2"/>
+					<g:SuggestBox ui:field="suggest"/>
+					<g:SuggestBox ui:field="suggest2"/>
 				</g:VerticalPanel>
 			</g:HorizontalPanel>
 			<g:Label text="Opdeling af kontostreng: " ui:field="opdKonto1" styleName="{style.overskrift}"/>

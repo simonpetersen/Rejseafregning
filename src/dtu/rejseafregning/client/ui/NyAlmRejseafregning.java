@@ -6,40 +6,39 @@ import java.util.List;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DoubleBox;
+import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.IntegerBox;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
+import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.SuggestBox;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DatePicker;
-import com.google.web.bindery.event.shared.Event;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
-import dtu.rejseafregning.client.events.GetMedarbejderNavnListSuccessfullEvent;
-import dtu.rejseafregning.client.events.LoginButtonEvent;
-import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
-import dtu.rejseafregning.client.events.NyKontostrengEvent;
-import dtu.rejseafregning.client.ui.LoginView.MyEventBinder;
-
-import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.ScrollPanel;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.Grid;
+import dtu.rejseafregning.client.events.GetGodtgørelsesListSuccessfullEvent;
+import dtu.rejseafregning.client.events.GetOpgaveListEvent;
+import dtu.rejseafregning.client.events.GetProjektListEvent;
+import dtu.rejseafregning.client.events.GetSuggestListEvent;
+import dtu.rejseafregning.shared.OpgaveDTO;
+import dtu.rejseafregning.shared.ProjektDTO;
 
 public class NyAlmRejseafregning extends Composite {
 
 	private static NyAlmRejseafregningUiBinder uiBinder = GWT.create(NyAlmRejseafregningUiBinder.class);
 	@UiField Label rejseform;
 	@UiField ScrollPanel scPanel1;
-	@UiField Button seach1, search2, search3, search4, nyopdkonto, addOpdeling, gemogneste;
-	@UiField ListBox dropDownLand, dropDownBy, dropDownRejseform1, dropDownPro, dropDownOpg1, dropDownUdg, dropDownUnd, dropDownSted, dropDownAnalyse, dropDownMoms, dropDownPer, numberandname2, dropDownOpg2;
+	@UiField Button seach1, search2, nyopdkonto, addOpdeling, gemogneste;
 	@UiField DatePicker datePicker1, datePicker2;
 	@UiField DoubleBox opgaveDoub2;
 	@UiField Label basis;
@@ -47,6 +46,13 @@ public class NyAlmRejseafregning extends Composite {
 	@UiField Grid grid1;
 	@UiField VerticalPanel vPanel3, vPanel4;
 	@UiField HorizontalPanel hPanel1;
+	@UiField SuggestBox suggest;
+	@UiField SuggestBox suggest2;
+	@UiField TextBox txtby;
+	@UiField TextBox txtrejse;
+	@UiField ListBox dropLand;
+	@UiField ListBox dropDownProj;
+	@UiField ListBox dropDownOpga1;
 	
 	
 	private final EventBus eventBus;
@@ -59,6 +65,8 @@ public class NyAlmRejseafregning extends Composite {
 	List<String> lande = new ArrayList<String>();
  	
  	public NyAlmRejseafregning(EventBus eventBus) {
+ 		suggest = new SuggestBox(new MultiWordSuggestOracle());
+ 		suggest2 = new SuggestBox(new MultiWordSuggestOracle());
  		initWidget(uiBinder.createAndBindUi(this));
  		this.eventBus = eventBus;
   		eventBinder.bindEventHandlers(this, eventBus);
@@ -85,14 +93,6 @@ public class NyAlmRejseafregning extends Composite {
  	void onButtonClick2(ClickEvent event) {
  		vPanel3.setVisible(true);
  	}
-	@UiHandler("search3")
- 	void onButtonClick3(ClickEvent event) {
- 		vPanel3.setVisible(true);
- 	}
-	@UiHandler("search4")
- 	void onButtonClick4(ClickEvent event) {
- 		vPanel3.setVisible(true);
- 	}
 	
 	@UiHandler("nyopdkonto")
  	void onButtonClick5(ClickEvent event) {
@@ -102,137 +102,53 @@ public class NyAlmRejseafregning extends Composite {
 	
 	@UiHandler("addOpdeling")
  	void onButtonClick6(ClickEvent event) {
- 		eventBus.fireEvent(new NyKontostrengEvent(dropDownOpg2.getItemText(0).toString(), opgaveInt2.getText(), opgaveDoub2.getValue()));
+ 		//eventBus.fireEvent(new NyKontostrengEvent(dropDownOpg2.getItemText(0).toString(), opgaveInt2.getText(), opgaveDoub2.getValue()));
  	}
 	
 	@UiHandler("gemogneste")
  	void onButtonClick7(ClickEvent event) {
- 		eventBus.fireEvent(//Gem og næste side i rejseafregningen. Næste side ikke lavet endnu.);
+ 		//eventBus.fireEvent(//Gem og næste side i rejseafregningen. Næste side ikke lavet endnu.);
  		//Test
  	}
  	
 	
 	@EventHandler
-	public void getLandListEvent(getLandListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownLand.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
+	public void getLandListEvent(GetGodtgørelsesListSuccessfullEvent e){
+		for(int i = 0; i < e.getListLand().size(); i++){
+			dropLand.addItem(e.getListLand().get(i).getLand());
 		}
 	}
 	@EventHandler
-	public void getByListEvent(getByListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownBy.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
+	public void getProListEvent(GetProjektListEvent e){
+		for(int i = 0; i < e.getProjektList().size(); i++){
+			dropDownProj.addItem(e.getProjektList().get(i).getProjektNavn());
 		}
 	}
 	@EventHandler
-	public void getRejseformListEvent(getRejseformListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownRejseform.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
+	public void getOpg1ListEvent(GetOpgaveListEvent e){
+		for(int i = 0; i < e.getOpgaveList().size(); i++){
+			dropDownOpga1.addItem(e.getOpgaveList().get(i).getOpgaveNavn());
 		}
 	}
 	@EventHandler
-	public void getProListEvent(getProListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownPro.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
+	public void getSuggestListEvent(GetSuggestListEvent e) {
+		for(int i = 0; i < e.getProjektList().size(); i++) {
+			MultiWordSuggestOracle suggestbox = (MultiWordSuggestOracle) suggest.getSuggestOracle();
+			List<ProjektDTO> suggest = e.getProjektList();
+			for(ProjektDTO pDTO: suggest) {
+				suggestbox.add(pDTO.getProjektNavn());;
+			}			
+		}
+		for(int i = 0; i < e.getOpgaveList().size(); i++) {
+			MultiWordSuggestOracle suggestbox2 = (MultiWordSuggestOracle) suggest2.getSuggestOracle();
+			List<OpgaveDTO> suggest2 = e.getOpgaveList();
+			for(OpgaveDTO oDTO: suggest2) {
+				suggestbox2.add(oDTO.getOpgaveNavn());;
+			}			
+
 		}
 	}
-	@EventHandler
-	public void getOpg1ListEvent(getOpg1ListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownOpg1.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
-		}
-	}
-	@EventHandler
-	public void getUdgListEvent(getUdgListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownUdg.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
-		}
-	}
-	@EventHandler
-	public void getUndListEvent(getUndListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownUnd.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
-		}
-	}
-	@EventHandler
-	public void getStedListEvent(getStedListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownSted.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
-		}
-	}
-	@EventHandler
-	public void getAnalyseListEvent(getAnalyseListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownAnalyse.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
-		}
-	}
-	@EventHandler
-	public void getMomsListEvent(getMomsListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownMoms.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
-		}
-	}
-	@EventHandler
-	public void getPerListEvent(getPerListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownPer.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
-		}
-	}
-	@EventHandler
-	public void getNumbername2ListEvent(getNumbername2ListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			numberandname2.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
-			// Hele listen skal være synlig.
-		}
-	}
-	@EventHandler
-	public void getOpg2ListEvent(getOpg2ListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownOpg2.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
-		}
-	}
-	@EventHandler
-	public void getOpg3ListEvent(getOpg3ListEvent e){
-		for(int i = 0; i < e.getList().size(); i++){
-			dropDownOpg3.addItem(e.getList().get(i).getLand());
-			//getList skal laves i anden klasse.
-			// getLand, skal laves som DTO.
-		}
-	}
-	@EventHandler
-	public void getname2ListEvent(getName2ListEvent e){
-			//Skal hente navne der påbegynder med det man taster ind.
-	}
-	@EventHandler
-	public void getnumber2ListEvent(getNumber2ListEvent e){
-			//Skal hente numre der påbegynder med det man taster ind.
-	}
+	
 }
 
 

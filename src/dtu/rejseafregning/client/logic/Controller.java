@@ -20,6 +20,7 @@ import dtu.rejseafregning.client.events.GetDokumenterCirkulationEvent;
 import dtu.rejseafregning.client.events.GetDokumenterUdkastEvent;
 import dtu.rejseafregning.client.events.GetGodkendelseDokumenterEvent;
 import dtu.rejseafregning.client.events.GetGodkendelseSuccessfullEvent;
+import dtu.rejseafregning.client.events.GetGodtgørelseListEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
@@ -36,7 +37,9 @@ import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
 import dtu.rejseafregning.client.services.IRejseafregningDAO;
 import dtu.rejseafregning.client.services.IRejseafregningDAOAsync;
 import dtu.rejseafregning.client.ui.MainView;
+import dtu.rejseafregning.server.dal.GodtgoerelseDAO;
 import dtu.rejseafregning.shared.GodkendelseJoinDTO;
+import dtu.rejseafregning.shared.GodtgoerelseDTO;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
@@ -52,6 +55,9 @@ public class Controller {
 	private IOpgaveDAOAsync OpgaveDAO = GWT.create(IOpgaveDAO.class);
 
 	private RejseafregningDTO rejseafregning;
+	
+	private GodtgoerelseDAO godtgoerelseDAO;
+	private GodtgoerelseDTO godtgoerelseDTO;
 
 	private IRejseafregningDAOAsync rejseafregningDAO = GWT.create(IRejseafregningDAO.class);
 	private IMedarbejderDAOAsync medarbejderDAO = GWT.create(IMedarbejderDAO.class);
@@ -101,6 +107,23 @@ public class Controller {
 
 		});
 	}
+	
+	/*@EventHandler
+	public void onGetLand(GetGodtgørelseListEvent e) {
+		godtgoerelseDAO.getGodtgoerelseList(new AsyncCallback<List<GodtgoerelseDTO>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				Window.alert("Fejl ved hentning af lande" + caught.getMessage());
+			}
+			@Override
+			public void onSuccess(List<GodtgoerelseDTO> result) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	} */
 	
 	@EventHandler
 	public void onGetDokumenterUdkastEvent(GetDokumenterUdkastEvent e) {
