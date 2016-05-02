@@ -2,10 +2,11 @@ package dtu.rejseafregning.client.events;
 
 import java.util.List;
 
-import dtu.rejseafregning.shared.OpgaveDTO;
-import dtu.rejseafregning.shared.ProjektDTO;
+import com.google.web.bindery.event.shared.binder.GenericEvent;
 
-public class GetOpgaveListEvent {
+import dtu.rejseafregning.shared.OpgaveDTO;
+
+public class GetOpgaveListEvent extends GenericEvent {
 	
 List<OpgaveDTO> opgaveDTO;
 	

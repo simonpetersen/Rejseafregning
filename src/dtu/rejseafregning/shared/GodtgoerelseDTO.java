@@ -9,6 +9,8 @@ public class GodtgoerelseDTO implements Serializable {
 	private int hotelDisposition;
 	private double dagPengeSats, timeSats;
 	
+	public GodtgoerelseDTO() {}
+	
 	public GodtgoerelseDTO(String land, int hotel, double dagPengeSats, double timeSats) {
 		setLand(land);
 		setHotelDisposition(hotel);

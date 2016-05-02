@@ -20,7 +20,6 @@ import dtu.rejseafregning.client.events.GetDokumenterCirkulationEvent;
 import dtu.rejseafregning.client.events.GetDokumenterUdkastEvent;
 import dtu.rejseafregning.client.events.GetGodkendelseDokumenterEvent;
 import dtu.rejseafregning.client.events.GetGodkendelseSuccessfullEvent;
-import dtu.rejseafregning.client.events.GetGodtgørelseListEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
@@ -30,6 +29,8 @@ import dtu.rejseafregning.client.events.SearchDokArkivEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivSuccessEvent;
 import dtu.rejseafregning.client.events.UpdateAnvisningStatusEvent;
 import dtu.rejseafregning.client.events.UpdateGodkendelseStatusEvent;
+import dtu.rejseafregning.client.services.IGodtgoerelseDAO;
+import dtu.rejseafregning.client.services.IGodtgoerelseDAOAsync;
 import dtu.rejseafregning.client.services.IMedarbejderDAO;
 import dtu.rejseafregning.client.services.IMedarbejderDAOAsync;
 import dtu.rejseafregning.client.services.IOpgaveDAO;
@@ -37,7 +38,6 @@ import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
 import dtu.rejseafregning.client.services.IRejseafregningDAO;
 import dtu.rejseafregning.client.services.IRejseafregningDAOAsync;
 import dtu.rejseafregning.client.ui.MainView;
-import dtu.rejseafregning.server.dal.GodtgoerelseDAO;
 import dtu.rejseafregning.shared.GodkendelseJoinDTO;
 import dtu.rejseafregning.shared.GodtgoerelseDTO;
 import dtu.rejseafregning.shared.MedarbejderDTO;
@@ -56,7 +56,7 @@ public class Controller {
 
 	private RejseafregningDTO rejseafregning;
 	
-	private GodtgoerelseDAO godtgoerelseDAO;
+	private IGodtgoerelseDAOAsync godtgoerelseDAO = GWT.create(IGodtgoerelseDAO.class);
 	private GodtgoerelseDTO godtgoerelseDTO;
 
 	private IRejseafregningDAOAsync rejseafregningDAO = GWT.create(IRejseafregningDAO.class);
@@ -109,7 +109,7 @@ public class Controller {
 	}
 	
 	/*@EventHandler
-	public void onGetLand(GetGodtgørelseListEvent e) {
+	public void onGetLand(GetGodtgï¿½relseListEvent e) {
 		godtgoerelseDAO.getGodtgoerelseList(new AsyncCallback<List<GodtgoerelseDTO>>() {
 
 			@Override

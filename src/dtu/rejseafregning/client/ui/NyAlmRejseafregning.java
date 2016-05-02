@@ -26,7 +26,7 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
-import dtu.rejseafregning.client.events.GetGodtgørelsesListSuccessfullEvent;
+import dtu.rejseafregning.client.events.GetGodtgoerelsesListSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetOpgaveListEvent;
 import dtu.rejseafregning.client.events.GetProjektListEvent;
 import dtu.rejseafregning.client.events.GetSuggestListEvent;
@@ -107,13 +107,13 @@ public class NyAlmRejseafregning extends Composite {
 	
 	@UiHandler("gemogneste")
  	void onButtonClick7(ClickEvent event) {
- 		//eventBus.fireEvent(//Gem og næste side i rejseafregningen. Næste side ikke lavet endnu.);
+ 		//eventBus.fireEvent(//Gem og nï¿½ste side i rejseafregningen. Nï¿½ste side ikke lavet endnu.);
  		//Test
  	}
  	
 	
 	@EventHandler
-	public void getLandListEvent(GetGodtgørelsesListSuccessfullEvent e){
+	public void getLandListEvent(GetGodtgoerelsesListSuccessfullEvent e){
 		for(int i = 0; i < e.getListLand().size(); i++){
 			dropLand.addItem(e.getListLand().get(i).getLand());
 		}
