@@ -23,7 +23,8 @@ public class BrugerautorisationDAO extends RemoteServiceServlet implements IBrug
 	public MedarbejderDTO getBruger(String brugernavn, String adgangskode) throws Exception {
 		try {
 			Bruger b = ba.hentBruger(brugernavn, adgangskode);
-			return new MedarbejderDTO(b.fornavn+" "+b.efternavn, b.brugernavn, b.adgangskode, b.email, "Studerende", false);
+			return new MedarbejderDTO(b.fornavn+" "+b.efternavn, b.brugernavn, b.adgangskode, b.email, "Studerende", false, 
+					null, null, null, null, null);
 		} catch(IllegalStateException e) {
 			throw new DALException("Bruger findes ikke");
 		}

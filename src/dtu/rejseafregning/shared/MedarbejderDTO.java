@@ -5,16 +5,23 @@ import java.io.Serializable;
 public class MedarbejderDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private String navn, brugernavn, adgangskode, nyAdgangskode, email, afdeling;
+	private String navn, brugernavn, adgangskode, nyAdgangskode, email, afdeling, postnr, vejnavn, husnr, etage, doer;
 	private boolean dtuBruger;
 	
-	public MedarbejderDTO(String navn, String brugernavn, String adgangskode, String email, String afdeling, boolean dtuBruger) {
+	public MedarbejderDTO(String navn, String brugernavn, String adgangskode, String email, String afdeling, boolean dtuBruger, String postnr, 
+			String vejnavn, String husnr, String etage, String doer) {
 		setNavn(navn);
 		setBrugernavn(brugernavn);
 		setAdgangskode(adgangskode);
+		setNyAdgangskode(adgangskode);
 		setEmail(email);
 		setAfdeling(afdeling);
 		setDtuBruger(dtuBruger);
+		setPostnr(postnr);
+		setVejnavn(vejnavn);
+		setHusnr(husnr);
+		setEtage(etage);
+		setDoer(doer);
 	}
 	
 	public MedarbejderDTO(String navn, String adgangskode, String email) {
@@ -80,6 +87,46 @@ public class MedarbejderDTO implements Serializable {
 
 	public void setAfdeling(String afdeling) {
 		this.afdeling = afdeling;
+	}
+
+	public String getPostnr() {
+		return postnr;
+	}
+
+	public void setPostnr(String postnr) {
+		this.postnr = postnr;
+	}
+
+	public String getVejnavn() {
+		return vejnavn;
+	}
+
+	public void setVejnavn(String vejnavn) {
+		this.vejnavn = vejnavn;
+	}
+
+	public String getHusnr() {
+		return husnr;
+	}
+
+	public void setHusnr(String husnr) {
+		this.husnr = husnr;
+	}
+
+	public String getEtage() {
+		return etage;
+	}
+
+	public void setEtage(String etage) {
+		this.etage = etage;
+	}
+
+	public String getDoer() {
+		return doer;
+	}
+
+	public void setDoer(String doer) {
+		this.doer = doer;
 	}
 
 

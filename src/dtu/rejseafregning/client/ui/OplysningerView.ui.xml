@@ -6,8 +6,8 @@
 		border: 1px solid #666666;
 	}
 	</ui:style>
-	<g:VerticalPanel styleName="h2">
-		<g:Label text="Mine oplysninger" styleName="h2"/>
+	<g:VerticalPanel>
+		<g:Label text="Mine oplysninger" styleName="h2" ui:field="oplysningerLabel"/>
 		<g:Grid styleName="{style.oplysningerGrid}">
 			<g:row>
 				<g:customCell>
@@ -20,7 +20,7 @@
 					<g:Label text="Postnummer: "/>
 				</g:customCell>
 				<g:customCell>
-					<g:SuggestBox ui:field="postnrTextBox"/>
+					<g:TextBox ui:field="postnrTextBox"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
@@ -39,10 +39,10 @@
 			</g:row>
 			<g:row>
 				<g:customCell>
-					<g:Label text="Email: "/>
+					<g:Label text="Afdeling: "/>
 				</g:customCell>
 				<g:customCell>
-					<g:TextBox ui:field="emailTextBox"/>
+					<g:TextBox ui:field="afdelingTextBox"/>
 				</g:customCell>
 				<g:customCell>
 					<g:Label text="Vej: "/>
@@ -52,19 +52,45 @@
 				</g:customCell>
 			</g:row>
 			<g:row>
+			<g:customCell>
+					<g:Label text="Email: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:TextBox ui:field="emailTextBox"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Husnr: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:SuggestBox ui:field="husnrTextBox"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
 				<g:customCell>
 					<g:Label text="Ny adgangskode:  "/>
 				</g:customCell>
 				<g:customCell>
 					<g:PasswordTextBox ui:field="adgangskodeTextBox"/>
 				</g:customCell>
+				<g:customCell>
+					<g:Label text="Etage: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:SuggestBox ui:field="etageTextBox"/>
+				</g:customCell>
 			</g:row>
 			<g:row>
-				<g:customCell>
+			<g:customCell>
 					<g:Label text="Gentag adgangskode:  "/>
 				</g:customCell>
 				<g:customCell>
 					<g:PasswordTextBox ui:field="adgangskode2TextBox"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Dør: "/>
+				</g:customCell>
+				<g:customCell>
+					<g:SuggestBox ui:field="doerTextBox"/>
 				</g:customCell>
 			</g:row>
 			<g:row>

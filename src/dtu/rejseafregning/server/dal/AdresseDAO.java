@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import dtu.rejseafregning.client.services.IAdresseDAO;
@@ -49,6 +50,41 @@ public class AdresseDAO extends RemoteServiceServlet implements IAdresseDAO {
 		return list;
 	}
 	
+	@Override
+	public List<String> getHusnumre(String postnr, String vejnavn) throws Exception {
+		url = "http://dawa.aws.dk/adgangsadresser?vejnavn="+vejnavn+"&postnr="+postnr;
+		List<String> list = new ArrayList<String>();
+		array = readJsonFromUrl(url);
+		for (int i = 0; i < array.length(); i++) {
+			obj = array.getJSONObject(i);
+			list.add(obj.getString("husnr"));
+		}
+		return list;
+	}
+	
+	public List<String> getEtageListe(String postnr, String husnr, String vejnavn) throws Exception {
+		url = "http://dawa.aws.dk/adresser?vejnavn="+vejnavn+"&husnr="+husnr+"&postnr="+postnr;
+		List<String> list = new ArrayList<String>();
+		array = readJsonFromUrl(url);
+		for (int i = 0; i < array.length(); i++) {
+			obj = array.getJSONObject(i);
+			String etage = obj.getString("etage"); 
+			if (etage != null) list.add(etage);
+		}
+		return list;
+	}
+	
+	public List<String> getDoerListe(String postnr, String husnr, String etage, String vejnavn) throws Exception {
+		url = "http://dawa.aws.dk/adresser?vejnavn="+vejnavn+"&husnr="+husnr+"&etage="+etage+"&postnr="+postnr;
+		List<String> list = new ArrayList<String>();
+		array = readJsonFromUrl(url);
+		for (int i = 0; i < array.length(); i++) {
+			obj = array.getJSONObject(i);
+			list.add(obj.getString("dør"));
+		}
+		return list;
+	}
+	
 	private JSONArray readJsonFromUrl(String url) throws IOException, JSONException {
 	    InputStream is = new URL(url).openStream();
 	    BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
@@ -65,6 +101,6 @@ public class AdresseDAO extends RemoteServiceServlet implements IAdresseDAO {
 	      nl = rd.readLine();
 	    }
 	    return sb.toString();
-	  }
+	}
 
 }
