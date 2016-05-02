@@ -4,8 +4,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionChangeEvent;
@@ -35,6 +35,7 @@ public class DokumenterView extends Composite {
 	@UiField VerticalPanel afsluttetPanel;
 	@UiField VerticalPanel godkendelsePanel;
 	@UiField VerticalPanel anvisningPanel;
+	@UiField Label opgaverLabel;
 	
 	DateTimeFormat fmt = DateTimeFormat.getFormat("dd/MM-yyyy");
 	private MineDokumenterCellTable cirkulationCellTable, udkastCellTable, afsluttetCellTable;
@@ -59,6 +60,7 @@ public class DokumenterView extends Composite {
 		eventBus.fireEvent(new GetAfsluttedeDokumenterEvent());
 		eventBus.fireEvent(new GetAnvisningDokumenterEvent());
 		eventBus.fireEvent(new GetGodkendelseDokumenterEvent());
+		opgaverLabel.setStyleName("h2");
 	}
 	
 	@EventHandler

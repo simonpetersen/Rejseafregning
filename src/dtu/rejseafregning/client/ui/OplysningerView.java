@@ -39,6 +39,7 @@ public class OplysningerView extends Composite {
 	@UiField TextBox navnTextBox;
 	@UiField Label brugerNavnLabel;
 	@UiField Label byLabel;
+	@UiField Label oplysningerLabel;
 	@UiField TextBox emailTextBox;
 	@UiField TextBox afdelingTextBox;
 	@UiField PasswordTextBox adgangskodeTextBox;
@@ -60,6 +61,7 @@ public class OplysningerView extends Composite {
 		etageTextBox = new SuggestBox(new MultiWordSuggestOracle());
 		doerTextBox = new SuggestBox(new MultiWordSuggestOracle());
 		initWidget(uiBinder.createAndBindUi(this));
+		oplysningerLabel.setStyleName("h2");
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
 		this.bruger = bruger;

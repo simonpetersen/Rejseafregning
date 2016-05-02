@@ -6,26 +6,29 @@
 		font-weight: bold;
 	}
 	</ui:style>
-	<g:TabLayoutPanel barHeight="32">
-		<g:tab>
-			<g:header>Udkast</g:header>
-			<g:VerticalPanel ui:field="udkastPanel" width="100%" />
-		</g:tab>
-		<g:tab>
-			<g:header>I cirkulation</g:header>
-			<g:VerticalPanel ui:field="cirkulationPanel" width="100%" />
-		</g:tab>
-		<g:tab>
-			<g:header>Afsluttet</g:header>
-			<g:VerticalPanel ui:field="afsluttetPanel" width="100%" />
-		</g:tab>
-		<g:tab>
-			<g:header>Til godkendelse</g:header>
-			<g:VerticalPanel ui:field="godkendelsePanel" width="100%" />
-		</g:tab>
-		<g:tab>
-			<g:header>Til anvisning</g:header>
-			<g:VerticalPanel ui:field="anvisningPanel" width="100%" />
-		</g:tab>
-	</g:TabLayoutPanel>
+	<g:VerticalPanel width="100%">
+		<g:Label text="Mine opgaver" ui:field="opgaverLabel"/>
+		<g:TabLayoutPanel barHeight="32">
+			<g:tab>
+				<g:header>Udkast</g:header>
+				<g:VerticalPanel ui:field="udkastPanel" width="100%" />
+			</g:tab>
+			<g:tab>
+				<g:header>I cirkulation</g:header>
+				<g:VerticalPanel ui:field="cirkulationPanel" width="100%" />
+			</g:tab>
+			<g:tab>
+				<g:header>Afsluttet</g:header>
+				<g:VerticalPanel ui:field="afsluttetPanel" width="100%" />
+			</g:tab>
+			<g:tab>
+				<g:header>Til godkendelse</g:header>
+				<g:VerticalPanel ui:field="godkendelsePanel" width="100%" />
+			</g:tab>
+			<g:tab>
+				<g:header>Til anvisning</g:header>
+				<g:VerticalPanel ui:field="anvisningPanel" width="100%" />
+			</g:tab>
+		</g:TabLayoutPanel>
+	</g:VerticalPanel>
 </ui:UiBinder> 

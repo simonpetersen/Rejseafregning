@@ -6,8 +6,8 @@
 		border: 1px solid #666666;
 	}
 	</ui:style>
-	<g:VerticalPanel styleName="h2">
-		<g:Label text="Mine oplysninger" styleName="h2"/>
+	<g:VerticalPanel>
+		<g:Label text="Mine oplysninger" styleName="h2" ui:field="oplysningerLabel"/>
 		<g:Grid styleName="{style.oplysningerGrid}">
 			<g:row>
 				<g:customCell>

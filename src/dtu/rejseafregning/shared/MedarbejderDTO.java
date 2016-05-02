@@ -13,6 +13,7 @@ public class MedarbejderDTO implements Serializable {
 		setNavn(navn);
 		setBrugernavn(brugernavn);
 		setAdgangskode(adgangskode);
+		setNyAdgangskode(adgangskode);
 		setEmail(email);
 		setAfdeling(afdeling);
 		setDtuBruger(dtuBruger);
