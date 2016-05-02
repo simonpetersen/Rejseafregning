@@ -67,7 +67,7 @@ CREATE TABLE Projekt
 
 CREATE TABLE Rejseafregning
 (
-	rejseafregning_ID int NOT NULL,
+	rejseafregning_ID int NOT NULL AUTO_INCREMENT,
 	brugernavn varchar(10) NOT NULL,
 	nameProjekt varchar(50) NOT NULL,
 	land varchar(20) NOT NULL,
@@ -84,8 +84,9 @@ CREATE TABLE Rejseafregning
 
 CREATE TABLE Rejsedag
 (
-	rejsedag_ID int NOT NULL,
+	rejsedag_ID int NOT NULL AUTO_INCREMENT,
 	rejseafregning_ID int NOT NULL,
+	dato date NOT NULL,
 	start time NOT NULL,
 	slut time NOT NULL,
 	morgenmad boolean NOT NULL,
@@ -97,13 +98,14 @@ CREATE TABLE Rejsedag
 
 CREATE TABLE Udgift
 (
-	udgift_ID int NOT NULL,
+	udgift_ID int NOT NULL AUTO_INCREMENT,
 	rejseafregning_ID int NOT NULL,
 	bilag_ID int NOT NULL,
 	udgiftType varchar(50) NOT NULL,
 	betalingsType varchar(50) NOT NULL,
 	forklaring varchar(300) NOT NULL,
 	dato date NOT NULL,
+	beloeb double(8,2) NOT NULL,
 	PRIMARY KEY (udgift_ID)
 );
 

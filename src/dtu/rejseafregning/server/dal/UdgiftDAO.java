@@ -29,7 +29,8 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 		getUdgiftListStmt = Connector.conn.prepareStatement("SELECT * FROM Udgift");
 
 		// createUdgift statement
-		createUdgiftStmt = Connector.conn.prepareStatement("INSERT INTO Udgift VALUES(?, ?, ?, ?, ?, ?)");
+		createUdgiftStmt = Connector.conn.prepareStatement("INSERT INTO Udgift (rejseafregning_ID, bilag_ID, udgiftType, betalingsType, "
+				+ "forklaring, dato, beloeb) VALUES(?, ?, ?, ?, ?, ?, ?)");
 
 		// updateUdgift statement
 		updateUdgiftStmt = Connector.conn.prepareStatement(
@@ -48,8 +49,8 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 			// rs lig kald fra database
 			rs = getUdgiftStmt.executeQuery();
 			if (rs.next())
-				return new UdgiftDTO(rs.getInt("Udgift_ID"), rs.getInt("Bilag_ID"), rs.getString("Udgifttype"),
-					rs.getString("Betalingtype"), rs.getString("forklaring"), rs.getDate("Dato"));
+				return new UdgiftDTO(rs.getInt("Udgift_ID"), rs.getInt("rejseafregning_ID"), rs.getInt("Bilag_ID"), rs.getString("Udgifttype"),
+					rs.getString("Betalingtype"), rs.getString("forklaring"), rs.getDate("Dato"), rs.getDouble("beloeb"));
 			throw new DALException("Udgift findes ikke!");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getUdgift fejlede");
@@ -66,8 +67,8 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 			rs = getUdgiftListStmt.executeQuery();
 
 			while (rs.next()) {
-				UdgiftListe.add(new UdgiftDTO(rs.getInt("Udgift_ID"), rs.getInt("Bilag_ID"), rs.getString("Udgifttype"),
-						rs.getString("Betalingtype"), rs.getString("forklaring"), rs.getDate("Dato")));
+				UdgiftListe.add(new UdgiftDTO(rs.getInt("Udgift_ID"), rs.getInt("rejseafregning_ID"), rs.getInt("Bilag_ID"), rs.getString("Udgifttype"),
+						rs.getString("Betalingtype"), rs.getString("forklaring"), rs.getDate("Dato"), rs.getDouble("beloeb")));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getUdgiftList fejlede");
@@ -86,12 +87,13 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 	public void createUdgift(UdgiftDTO udgift) throws DALException {
 		try {
 			// Argumenter til statement
-			createUdgiftStmt.setInt(1, udgift.getUdgiftID());
+			createUdgiftStmt.setInt(1, udgift.getRejseafregningID());
 			createUdgiftStmt.setInt(2, udgift.getBilagID());
 			createUdgiftStmt.setString(3, udgift.getUdgiftType());
 			createUdgiftStmt.setString(4, udgift.getBetalingType());
 			createUdgiftStmt.setString(5, udgift.getForklaring());
 			createUdgiftStmt.setDate(6, (Date) udgift.getDato());
+			createUdgiftStmt.setDouble(7, udgift.getBeloeb());
 
 			// Kald til database
 			createUdgiftStmt.executeUpdate();

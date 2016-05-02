@@ -6,17 +6,15 @@ public class MedarbejderDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private String navn, brugernavn, adgangskode, nyAdgangskode, email, afdeling, postnr, vejnavn, husnr, etage, doer;
-	private boolean dtuBruger;
 	
-	public MedarbejderDTO(String navn, String brugernavn, String adgangskode, String email, String afdeling, boolean dtuBruger, String postnr, 
-			String vejnavn, String husnr, String etage, String doer) {
+	public MedarbejderDTO(String navn, String brugernavn, String adgangskode, String email, String afdeling, String postnr, String vejnavn, 
+			String husnr, String etage, String doer) {
 		setNavn(navn);
 		setBrugernavn(brugernavn);
 		setAdgangskode(adgangskode);
 		setNyAdgangskode(adgangskode);
 		setEmail(email);
 		setAfdeling(afdeling);
-		setDtuBruger(dtuBruger);
 		setPostnr(postnr);
 		setVejnavn(vejnavn);
 		setHusnr(husnr);
@@ -62,15 +60,6 @@ public class MedarbejderDTO implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-
-	public boolean erDtuBruger() {
-		return dtuBruger;
-	}
-
-	public void setDtuBruger(boolean dtuBruger) {
-		this.dtuBruger = dtuBruger;
 	}
 
 	public String getNyAdgangskode() {

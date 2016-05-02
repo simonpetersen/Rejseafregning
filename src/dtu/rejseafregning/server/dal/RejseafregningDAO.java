@@ -88,7 +88,8 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 
 		// createRejseafregning statement
 		createRejseafregningStmt = Connector.conn
-				.prepareStatement("INSERT INTO Rejseafregning VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+				.prepareStatement("INSERT INTO Rejseafregning (brugernavn, nameProjekt, land, status, datoStart, datoSlut, city, anledning, "
+						+ "anviser, godkender) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		// updateRejseafregning statement
 		updateRejseafregningStmt = Connector.conn.prepareStatement(

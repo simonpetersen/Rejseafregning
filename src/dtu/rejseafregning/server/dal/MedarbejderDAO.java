@@ -63,7 +63,7 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 			rs = getMedarbejderStmt.executeQuery();
 			if (rs.first()) {
 				return new MedarbejderDTO(rs.getString("Navn"), rs.getString("Brugernavn"),
-					rs.getString("adgangskode"), rs.getString("Email"), rs.getString("Afdeling"), true, rs.getString("postnr"), 
+					rs.getString("adgangskode"), rs.getString("Email"), rs.getString("Afdeling"), rs.getString("postnr"), 
 					rs.getString("vejnavn"), rs.getString("husnr"), rs.getString("etage"), rs.getString("doer"));
 			}
 			throw new DALException("Medarbejder findes ikke!");
@@ -82,7 +82,7 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 
 			while (rs.next()) {
 				MedarbejderListe.add(new MedarbejderDTO(rs.getString("Navn"), rs.getString("Brugernavn"),
-						rs.getString("adgangskode"), rs.getString("Email"), rs.getString("Afdeling"), true, rs.getString("postnr"), 
+						rs.getString("adgangskode"), rs.getString("Email"), rs.getString("Afdeling"), rs.getString("postnr"), 
 						rs.getString("vejnavn"), rs.getString("husnr"), rs.getString("etage"), rs.getString("doer")));
 			}
 		} catch (SQLException e) {

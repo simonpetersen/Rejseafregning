@@ -1,24 +1,27 @@
 package dtu.rejseafregning.shared;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 
 public class RejsedagDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private boolean morgenmad, frokost, aftensmad;
-	private Date start, slut;
+	private Date dato;
+	private Time start, slut;
 	private int rejsedagID;
 	
 	public RejsedagDTO() { }
 	
-	public RejsedagDTO(int rejsedagID, boolean morgenmad, boolean frokost, boolean aftensmad, Date start, Date slut) {
+	public RejsedagDTO(int rejsedagID, boolean morgenmad, boolean frokost, boolean aftensmad, Time start, Time slut, Date dato) {
 		setRejsedagID(rejsedagID);
 		setMorgenmad(morgenmad);
 		setFrokost(frokost);
 		setAftensmad(aftensmad);
 		setStart(start);
 		setSlut(slut);
+		setDato(dato);
 	}
 
 	public int getRejsedagID(){
@@ -53,20 +56,28 @@ public class RejsedagDTO implements Serializable {
 		this.aftensmad = aftensmad;
 	}
 
-	public Date getStart() {
+	public Time getStart() {
 		return start;
 	}
 
-	public void setStart(Date start) {
+	public void setStart(Time start) {
 		this.start = start;
 	}
 
-	public Date getSlut() {
+	public Time getSlut() {
 		return slut;
 	}
 
-	public void setSlut(Date slut) {
+	public void setSlut(Time slut) {
 		this.slut = slut;
+	}
+
+	public Date getDato() {
+		return dato;
+	}
+
+	public void setDato(Date dato) {
+		this.dato = dato;
 	}
 
 }

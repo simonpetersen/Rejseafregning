@@ -6,20 +6,24 @@ import java.util.Date;
 public class UdgiftDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private int udgiftID, bilagID;
+	private int udgiftID, bilagID, rejseafregningID;
+	private double beloeb;
 	private String udgiftType, betalingType, forklaring;
 	private Date dato;
 	
 	public UdgiftDTO() {}
 	
-	public UdgiftDTO(int udgiftID, int bilagID, String udgiftType, String betalingType, String forklaring, Date dato)
+	public UdgiftDTO(int udgiftID, int rejseafregningID, int bilagID, String udgiftType, String betalingType, String forklaring, 
+			Date dato, double beloeb)
 	{
 		setUdgiftID(udgiftID);
+		setRejseafregningID(rejseafregningID);
 		setBilagID(bilagID);
 		setUdgiftType(udgiftType);
 		setBetalingType(betalingType);
 		setForklaring(forklaring);
 		setDato(dato);
+		setBeloeb(beloeb);
 	}
 	
 	public int getUdgiftID() {
@@ -65,5 +69,21 @@ public class UdgiftDTO implements Serializable {
 
 	public void setDato(Date dato) {
 		this.dato = dato;
+	}
+
+	public double getBeloeb() {
+		return beloeb;
+	}
+
+	public void setBeloeb(double beloeb) {
+		this.beloeb = beloeb;
+	}
+
+	public int getRejseafregningID() {
+		return rejseafregningID;
+	}
+
+	public void setRejseafregningID(int rejseafregningID) {
+		this.rejseafregningID = rejseafregningID;
 	}
 }

@@ -15,25 +15,34 @@
 			<g:Grid width="100%">
 				<g:row>
 					<g:customCell>
-						<g:Label text="Udgifter" styleName="{style.overskrift}"/>
+						<g:Label text="Rejsedage" styleName="{style.overskrift}"/>
 					</g:customCell>
 				</g:row>
-			</g:Grid>
-			<g:Grid width="100%">
 				<g:row>
 					<g:customCell>
-						<g:Label text="Gratis mad:" styleName="{style.overskrift}"/>
+						<g:VerticalPanel ui:field="rejsedagePanel" width="100%"/>
 					</g:customCell>
 				</g:row>
-			</g:Grid>
-			<g:Grid width="100%">
 				<g:row>
 					<g:customCell>
-						<g:Label text="Diverse Udgifter:" styleName="{style.overskrift}"/>
+						<g:Button text="Ny rejsedag" ui:field="nyRejsedag"/>
 					</g:customCell>
 				</g:row>
-			</g:Grid>
-			<g:Grid width="100%">
+				<g:row>
+					<g:customCell>
+						<g:Label text="Udgifter:" styleName="{style.overskrift}"/>
+					</g:customCell>
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:VerticalPanel ui:field="udgifterPanel" width="100%"/>
+					</g:customCell>
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:Button text="Ny udgift" ui:field="nyUdgift"/>
+					</g:customCell>
+				</g:row>
 				<g:row>
 					<g:customCell>
 						<g:Label text="Bilag:" styleName="{style.overskrift}"/>

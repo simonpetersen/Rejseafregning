@@ -103,8 +103,7 @@ public class LoginController {
 	@EventHandler
 	public void onOplysningerOpdateret(OpdaterOplysningerEvent e) {
 		MedarbejderDTO b = e.getMedarbejder();
-//		if (!b.erDtuBruger())
-			skiftAdgangskode(b.getBrugernavn(), b.getAdgangskode(), b.getNyAdgangskode());
+		skiftAdgangskode(b.getBrugernavn(), b.getAdgangskode(), b.getNyAdgangskode());
 		medarbejderDAO.updateMedarbejder(e.getMedarbejder(), new AsyncCallback<Void>() {
 			@Override
 			public void onFailure(Throwable caught) {

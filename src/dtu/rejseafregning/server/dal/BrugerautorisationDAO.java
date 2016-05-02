@@ -23,7 +23,7 @@ public class BrugerautorisationDAO extends RemoteServiceServlet implements IBrug
 	public MedarbejderDTO getBruger(String brugernavn, String adgangskode) throws Exception {
 		try {
 			Bruger b = ba.hentBruger(brugernavn, adgangskode);
-			return new MedarbejderDTO(b.fornavn+" "+b.efternavn, b.brugernavn, b.adgangskode, b.email, "Studerende", false, 
+			return new MedarbejderDTO(b.fornavn+" "+b.efternavn, b.brugernavn, b.adgangskode, b.email, "Studerende", 
 					null, null, null, null, null);
 		} catch(IllegalStateException e) {
 			throw new DALException("Bruger findes ikke");
@@ -32,7 +32,7 @@ public class BrugerautorisationDAO extends RemoteServiceServlet implements IBrug
 
 	@Override
 	public void skiftBrugerAdgangskode(String brugernavn, String adgangskode, String nyAdgangskode) throws Exception {
-		ba.ændrAdgangskode(brugernavn, adgangskode, nyAdgangskode);	
+		ba.Ã¦ndrAdgangskode(brugernavn, adgangskode, nyAdgangskode);	
 	}
 
 	@Override

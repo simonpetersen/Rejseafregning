@@ -30,7 +30,8 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 		getRejsedagListStmt = Connector.conn.prepareStatement("SELECT * FROM Rejsedag");
 
 		// createRejsedag statement
-		createRejsedagStmt = Connector.conn.prepareStatement("INSERT INTO Rejsedag VALUES (?, ?, ?, ?, ?, ?)");
+		createRejsedagStmt = Connector.conn.prepareStatement("INSERT INTO Rejsedag (rejseafregning_ID, dato, start, slut, morgenmad, frokost, "
+				+ "aftendsmad) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 		// updateRejsedag statement
 		updateRejsedagStmt = Connector.conn.prepareStatement(
@@ -49,7 +50,7 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 			rs = getRejsedagStmt.executeQuery();
 			if (rs.next())
 				return new RejsedagDTO(rs.getInt("Rejsedag_ID"), rs.getBoolean("Morgenmad"), rs.getBoolean("Frokost"),
-					rs.getBoolean("Aftensmad"), rs.getDate("Start"), rs.getDate("Slut"));
+					rs.getBoolean("Aftensmad"), rs.getTime("Start"), rs.getTime("Slut"), rs.getDate("dato"));
 			throw new DALException("Rejsedag findes ikke!");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getRejsedag fejlede");
@@ -67,7 +68,7 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 
 			while (rs.next()) {
 				RejsedagListe.add(new RejsedagDTO(rs.getInt("Rejsedag_ID"), rs.getBoolean("Morgenmad"),
-						rs.getBoolean("Frokost"), rs.getBoolean("Aftensmad"), rs.getDate("Start"), rs.getDate("Slut")));
+						rs.getBoolean("Frokost"), rs.getBoolean("Aftensmad"), rs.getTime("Start"), rs.getTime("Slut"), rs.getDate("dato")));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getRejsedgList fejlede");
@@ -89,11 +90,12 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 		try{
 			//Argumenter til statement
 			createRejsedagStmt.setInt(1, rejsedag.getRejsedagID());
-			createRejsedagStmt.setBoolean(2, rejsedag.harMorgenmad());
-			createRejsedagStmt.setBoolean(3, rejsedag.harFrokost());
-			createRejsedagStmt.setBoolean(4, rejsedag.harAftensmad());
-			createRejsedagStmt.setDate(5, (Date) rejsedag.getStart());
-			createRejsedagStmt.setDate(6, (Date) rejsedag.getSlut());
+			createRejsedagStmt.setDate(2, (Date) rejsedag.getDato());
+			createRejsedagStmt.setTime(3, rejsedag.getStart());
+			createRejsedagStmt.setTime(4, rejsedag.getSlut());
+			createRejsedagStmt.setBoolean(5, rejsedag.harMorgenmad());
+			createRejsedagStmt.setBoolean(6, rejsedag.harFrokost());
+			createRejsedagStmt.setBoolean(7, rejsedag.harAftensmad());
 			
 			//Kald til database
 			createRejsedagStmt.executeUpdate();
@@ -110,8 +112,8 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 			updateRejsedagStmt.setBoolean(1, rejsedag.harMorgenmad());
 			updateRejsedagStmt.setBoolean(2, rejsedag.harFrokost());
 			updateRejsedagStmt.setBoolean(3, rejsedag.harAftensmad());
-			updateRejsedagStmt.setDate(4, (Date) rejsedag.getStart());
-			updateRejsedagStmt.setDate(5, (Date) rejsedag.getSlut());
+			updateRejsedagStmt.setTime(4, rejsedag.getStart());
+			updateRejsedagStmt.setTime(5, rejsedag.getSlut());
 			updateRejsedagStmt.setInt(6, rejsedag.getRejsedagID());
 			
 			//Kald til database
