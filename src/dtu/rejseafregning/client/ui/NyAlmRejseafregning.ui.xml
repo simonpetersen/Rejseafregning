@@ -64,9 +64,9 @@
 				</g:Grid>
 			</g:HorizontalPanel>
 			<g:Label text="Anledning: " ui:field="anledning"/>
-			<g:TextBox ui:field="andledText"/>
+			<g:TextBox ui:field="andledtxt"/>
 			<g:Label text="Forklaring" ui:field="forklaring"/>
-			<g:TextBox ui:field="forklaringText"/>
+			<g:TextBox ui:field="forklaringtxt"/>
 			<g:Label text="Dimentioner: " ui:field="dimentioner" styleName="{style.overskrift}"/>
 			<g:HorizontalPanel ui:field="hPanel14">
 				<g:VerticalPanel ui:field="vPanel2">
@@ -98,7 +98,7 @@
 								<g:Label text="Opdeling %" ui:field="opdeling"/>
 							</g:customCell>
 							<g:customCell>
-								<g:IntegerBox ui:field="opdelingInt1" width="74px"/>
+								<g:TextBox ui:field="opdelingInt1"/>
 							</g:customCell>
 						</g:row>
 					</g:Grid>

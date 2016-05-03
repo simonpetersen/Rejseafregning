@@ -32,31 +32,26 @@ import dtu.rejseafregning.client.events.GetOpgaveListEvent;
 import dtu.rejseafregning.client.events.GetProjektListEvent;
 import dtu.rejseafregning.client.events.GetSuggestListEvent;
 import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
+import dtu.rejseafregning.client.events.NyKontostrengEvent;
 import dtu.rejseafregning.client.events.UdgifterEvent;
 import dtu.rejseafregning.shared.OpgaveDTO;
 import dtu.rejseafregning.shared.ProjektDTO;
+import com.google.gwt.user.client.ui.IntegerBox;
 
 public class NyAlmRejseafregning extends Composite {
 
 	private static NyAlmRejseafregningUiBinder uiBinder = GWT.create(NyAlmRejseafregningUiBinder.class);
-	@UiField Label rejseform;
+	@UiField Label rejseform, basis;
 	@UiField ScrollPanel scPanel1;
 	@UiField Button seach1, search2, nyopdkonto, addOpdeling, gemogneste;
 	@UiField DatePicker datePicker1, datePicker2;
 	@UiField DoubleBox opgaveDoub2;
-	@UiField Label basis;
-	@UiField TextBox opgaveInt2;
+	@UiField TextBox opgaveInt2, txtby, txtrejse, andledtxt, forklaringtxt,opdelingInt1;
 	@UiField Grid grid1;
 	@UiField VerticalPanel vPanel3, vPanel4;
 	@UiField HorizontalPanel hPanel1;
-	@UiField SuggestBox suggest;
-	@UiField SuggestBox suggest2;
-	@UiField TextBox txtby;
-	@UiField TextBox txtrejse;
-	@UiField ListBox dropLand;
-	@UiField ListBox dropDownProj;
-	@UiField ListBox dropDownOpga1;
-	
+	@UiField SuggestBox suggest, suggest2;
+	@UiField ListBox dropLand,dropDownProj, dropDownOpga1, dropDownOpg2;
 	
 	private final EventBus eventBus;
 	
@@ -103,7 +98,7 @@ public class NyAlmRejseafregning extends Composite {
 	
 	@UiHandler("addOpdeling")
  	void onButtonClick6(ClickEvent event) {
- 		//eventBus.fireEvent(new NyKontostrengEvent(dropDownOpg2.getItemText(0).toString(), opgaveInt2.getText(), opgaveDoub2.getValue()));
+		eventBus.fireEvent(new NyKontostrengEvent(dropDownOpg2.getElement().toString(), opgaveInt2.getText(), opgaveDoub2.getValue()));
  	}
 	
 	@UiHandler("gemogneste")
@@ -130,6 +125,12 @@ public class NyAlmRejseafregning extends Composite {
 		}
 	}
 	@EventHandler
+	public void getOpg2ListEvent(GetOpgaveListEvent e) {
+		for(int i = 0; i < e.getOpgaveList().size(); i++) {
+			dropDownOpg2.addItem(e.getOpgaveList().get(i).getOpgaveNavn());
+		}
+	}
+	@EventHandler
 	public void getSuggestListEvent(GetSuggestListEvent e) {
 		for(int i = 0; i < e.getProjektList().size(); i++) {
 			MultiWordSuggestOracle suggestbox = (MultiWordSuggestOracle) suggest.getSuggestOracle();
@@ -147,7 +148,18 @@ public class NyAlmRejseafregning extends Composite {
 
 		}
 	}
-	
+	public void gemBasisInfo() {
+		txtby.getText();
+		txtrejse.getText();
+		datePicker1.getValue();
+		datePicker2.getValue();
+		andledtxt.getText();
+		forklaringtxt.getText();
+		
+	}
+	public void gemDimentionerInfo() {
+		opdelingInt1.getText();
+	}
 }
 
 
