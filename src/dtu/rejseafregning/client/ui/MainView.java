@@ -15,6 +15,7 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
+import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
 import dtu.rejseafregning.client.events.UdgifterEvent;
@@ -87,6 +88,7 @@ public class MainView extends Composite {
 	@UiHandler("dokumentArkiv")
 	void onDokumentArkivClick(ClickEvent event){
 		contentPanel.showWidget(dokumentView);
+		eventBus.fireEvent(new GetMedarbejderNavnListEvent());
 	}
 	
 	@UiHandler("opgaver")

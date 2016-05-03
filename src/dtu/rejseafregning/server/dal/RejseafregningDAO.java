@@ -37,31 +37,31 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 
 		// getRejseafregning statement
 		getRejseafregningStmt = Connector.conn
-				.prepareStatement("SELECT * FROM Rejseafregning WHERE Rejseafregning_ID = ?");
+				.prepareStatement("SELECT * FROM rejseafregning WHERE Rejseafregning_ID = ?");
 
 		// getRejseafregningList statement
 		getRejseafregningListStmt = Connector.conn
-				.prepareStatement("SELECT * FROM Rejseafregning WHERE brugernavn = ?");
+				.prepareStatement("SELECT * FROM rejseafregning WHERE brugernavn = ?");
 
 		// getRejseafregningNavnList statement
 		getRejseafregningListNavnStmt = Connector.conn.prepareStatement(
 				"SELECT rejseafregning_id, navn, rejsedag_id, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
 				+ "sum, rejseafregning.anviser, rejseafregning.godkender "
-				+ "FROM medarbejder, Rejseafregning "
+				+ "FROM medarbejder, rejseafregning "
 				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND medarbejder.navn = ?");
 
 		// getRejseafregningStatList statement
 		getRejseafregningListStatStmt = Connector.conn.prepareStatement(
 				"SELECT rejseafregning_id, navn, rejsedag_id, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
 				+ "sum, rejseafregning.anviser, rejseafregning.godkender "
-				+ "FROM medarbejder, Rejseafregning "
+				+ "FROM medarbejder, rejseafregning "
 				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND status = ?");
 
 		// getRejseafregningNavnStatList statement
 		getRejseafregningListNavnStatStmt = Connector.conn.prepareStatement(
 				"SELECT rejseafregning_id, navn, rejsedag_id, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
 				+ "sum, rejseafregning.anviser, rejseafregning.godkender "
-				+ "FROM medarbejder, Rejseafregning "
+				+ "FROM medarbejder, rejseafregning "
 				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND rejseafregning.brugernavn = ? AND status = ?");
 		
 		// getRejseafregningAnvisningJoinList
@@ -76,31 +76,31 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 		
 		// getRejseafregningsUdkastList statement
 		getRejseafregningUdkastListStmt = Connector.conn
-				.prepareStatement("SELECT * FROM Rejseafregning WHERE brugernavn = ? AND status = 'Udkast'");
+				.prepareStatement("SELECT * FROM rejseafregning WHERE brugernavn = ? AND status = 'Udkast'");
 
 		// getRejseafregningsCirkulationList statement
 		getRejseafregningCirkulationListStmt = Connector.conn
-				.prepareStatement("SELECT * FROM Rejseafregning WHERE brugernavn = ? "
+				.prepareStatement("SELECT * FROM rejseafregning WHERE brugernavn = ? "
 						+ "AND status != 'Udkast' AND status != 'Overført til Oracle'");
 
 		getRejseafregningAfsluttedeListStmt = Connector.conn.prepareStatement(
-				"SELECT * FROM Rejseafregning WHERE brugernavn = ? " + "AND status = 'Overført til Oracle'");
+				"SELECT * FROM rejseafregning WHERE brugernavn = ? " + "AND status = 'Overført til Oracle'");
 
 		// createRejseafregning statement
 		createRejseafregningStmt = Connector.conn
-				.prepareStatement("INSERT INTO Rejseafregning (brugernavn, nameProjekt, land, status, datoStart, datoSlut, city, anledning, "
+				.prepareStatement("INSERT INTO rejseafregning (brugernavn, nameProjekt, land, status, datoStart, datoSlut, city, anledning, "
 						+ "anviser, godkender) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		// updateRejseafregning statement
 		updateRejseafregningStmt = Connector.conn.prepareStatement(
-				"UPDATE Rejseafregning SET Medarbejdernavn = ?, Godkendernavn = ?, Anvisernavn = ?, Land = ?, By = ?, Startdato = ?, "
+				"UPDATE rejseafregning SET Medarbejdernavn = ?, Godkendernavn = ?, Anvisernavn = ?, Land = ?, By = ?, Startdato = ?, "
 				+ "Slutdato = ? WHERE Rejseafregning_ID = ?");
 
-		updateStatusStmt = Connector.conn.prepareStatement("UPDATE Rejseafregning SET status = ? WHERE rejseafregning_ID = ?");
+		updateStatusStmt = Connector.conn.prepareStatement("UPDATE rejseafregning SET status = ? WHERE rejseafregning_ID = ?");
 		
 		// deleteRejseafregning statement
 		deleteRejseafregningStmt = Connector.conn
-				.prepareStatement("DELETE FROM Rejseafregning WHERE Rejseafregning_ID = ?");
+				.prepareStatement("DELETE FROM rejseafregning WHERE Rejseafregning_ID = ?");
 	}
 
 	@Override

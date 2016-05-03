@@ -28,24 +28,24 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 		new Connector();
 
 		// getMedarbejder statement
-		getMedarbejderStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder WHERE Brugernavn = ?");
+		getMedarbejderStmt = Connector.conn.prepareStatement("SELECT * FROM medarbejder WHERE Brugernavn = ?");
 
 		// getMedarbejderList statement
-		getMedarbejderListStmt = Connector.conn.prepareStatement("SELECT * FROM Medarbejder");
+		getMedarbejderListStmt = Connector.conn.prepareStatement("SELECT * FROM medarbejder");
 
 		// createMedarbejder statement
-		createMedarbejderStmt = Connector.conn.prepareStatement("INSERT INTO Medarbejder (brugernavn, navn, email, adgangskode, afdeling) VALUES(?, ?, ?, ?, ?)");
+		createMedarbejderStmt = Connector.conn.prepareStatement("INSERT INTO medarbejder (brugernavn, navn, email, adgangskode, afdeling) VALUES(?, ?, ?, ?, ?)");
 
 		// updateMedarbejder statement
 		updateMedarbejderStmt = Connector.conn.prepareStatement(
-				"UPDATE Medarbejder SET Navn = ?, Adgangskode = ?, Email = ?, Postnr = ?, Vejnavn = ?, Husnr = ?, Etage = ?, Doer = ? "
+				"UPDATE medarbejder SET Navn = ?, Adgangskode = ?, Email = ?, Postnr = ?, Vejnavn = ?, Husnr = ?, Etage = ?, Doer = ? "
 				+ "WHERE Brugernavn = ?");
 		
 		updateMedarbejderBrugerStmt = Connector.conn.prepareStatement(
-				"UPDATE Medarbejder SET Navn = ?, Adgangskode = ?, Email = ? WHERE Brugernavn = ?");
+				"UPDATE medarbejder SET Navn = ?, Adgangskode = ?, Email = ? WHERE Brugernavn = ?");
 
 		// deleteMedarbejder statement
-		deleteMedarbejderStmt = Connector.conn.prepareStatement("DELETE FROM Medarbejder WHERE Brugernavn = ?");
+		deleteMedarbejderStmt = Connector.conn.prepareStatement("DELETE FROM medarbejder WHERE Brugernavn = ?");
 	}
 	
 	@Override

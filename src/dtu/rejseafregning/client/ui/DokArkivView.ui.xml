@@ -15,12 +15,6 @@
 				<g:customCell>
 					<g:Label text="Status:"/>
 				</g:customCell>
-				<g:customCell>
-					<g:Label text="Startdato:"/>
-				</g:customCell>
-				<g:customCell>
-					<g:Label text="Slutdato:"/>
-				</g:customCell>
 			</g:row>
 			<g:row>
 				<g:customCell>
@@ -28,12 +22,6 @@
 				</g:customCell>
 				<g:customCell>
 					<g:ListBox visibleItemCount="1" ui:field="dropboxStatus"/>
-				</g:customCell>
-				<g:customCell>
-					<p1:DateBox ui:field="startDato"/>
-				</g:customCell>
-				<g:customCell>
-					<p1:DateBox ui:field="slutDato"/>
 				</g:customCell>
 			</g:row>
 			<g:row>

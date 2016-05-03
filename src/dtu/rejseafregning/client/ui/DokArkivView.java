@@ -38,10 +38,6 @@ public class DokArkivView extends Composite {
 	@UiField
 	ListBox dropboxStatus;
 	@UiField
-	DateBox startDato;
-	@UiField
-	DateBox slutDato;
-	@UiField
 	Button searchKnap;
 	@UiField 
 	VerticalPanel searchResult;
@@ -66,10 +62,10 @@ public class DokArkivView extends Composite {
 	public DokArkivView(EventBus eventBus) {
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
-		eventBus.fireEvent(new GetMedarbejderNavnListEvent());
+//		eventBus.fireEvent(new GetMedarbejderNavnListEvent());
 
 		initWidget(uiBinder.createAndBindUi(this));
-		dropboxNavn.addItem("");
+		
 		medarbejdere.add("");
 		
 		for (int i = 0; i < status.length; i++) {
@@ -79,6 +75,8 @@ public class DokArkivView extends Composite {
 	
 	@EventHandler
 	public void onGetMedarbejderNavnListSuccessEvent(GetMedarbejderNavnListSuccessfullEvent e){
+		dropboxNavn.clear();
+		dropboxNavn.addItem("");
 		for(int i = 0; i < e.getList().size(); i++){
 			medarbejdere.add(e.getList().get(i).getNavn());
 			dropboxNavn.addItem(e.getList().get(i).getNavn());
@@ -88,7 +86,7 @@ public class DokArkivView extends Composite {
 	@UiHandler("searchKnap")
 	void onSearchKnapKlik(ClickEvent event) {
 		eventBus.fireEvent(new SearchDokArkivEvent(medarbejdere.get(dropboxNavn.getSelectedIndex()),
-				status[dropboxStatus.getSelectedIndex()]));
+			status[dropboxStatus.getSelectedIndex()]));
 	}
 	
 	@EventHandler
