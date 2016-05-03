@@ -114,7 +114,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			if (rs.next())
 				return new RejseafregningDTO(rs.getInt("Rejseafregning_ID"), rs.getString("Medarbejdernavn"),
 						rs.getString("Godkendernavn"), rs.getString("Anvisernavn"), rs.getString("Land"),
-						rs.getString("By"), rs.getString("Anledning"), rs.getString("Status"), rs.getDate("Startdato"),
+						rs.getString("By"), rs.getString("Anledning"), rs.getString("Forklaring"), rs.getString("Status"), rs.getDate("Startdato"),
 						rs.getDate("Slutdato"), rs.getInt("Sum"));
 			throw new DALException("Rejseafregning findes ikke!");
 		} catch (SQLException e) {
@@ -134,7 +134,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			while (rs.next()) {
 				RejseafregningListe.add(new RejseafregningDTO(rs.getInt("Rejseafregning_ID"),
 						rs.getString("brugernavn"), rs.getString("Godkender"), rs.getString("Anviser"),
-						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Status"),
+						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Forklaring"), rs.getString("Status"),
 						rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getInt("Sum")));
 			}
 		} catch (SQLException e) {
@@ -225,7 +225,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			while (rs.next()) {
 				rejseafregningListe.add(new RejseafregningDTO(rs.getInt("Rejseafregning_ID"),
 						rs.getString("brugernavn"), rs.getString("Godkender"), rs.getString("Anviser"),
-						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Status"),
+						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Forklaring"), rs.getString("Status"),
 						rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getInt("Sum")));
 			}
 		} catch (SQLException e) {
@@ -253,7 +253,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			while (rs.next()) {
 				rejseafregningListe.add(new RejseafregningDTO(rs.getInt("Rejseafregning_ID"),
 						rs.getString("brugernavn"), rs.getString("Godkender"), rs.getString("Anviser"),
-						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Status"),
+						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Forklaring"), rs.getString("Status"),
 						rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getInt("Sum")));
 			}
 		} catch (SQLException e) {
@@ -281,7 +281,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			while (rs.next()) {
 				rejseafregningListe.add(new RejseafregningDTO(rs.getInt("Rejseafregning_ID"),
 						rs.getString("brugernavn"), rs.getString("Godkender"), rs.getString("Anviser"),
-						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Status"),
+						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Forklaring"), rs.getString("Status"),
 						rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getInt("Sum")));
 			}
 		} catch (SQLException e) {
@@ -309,7 +309,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			while (rs.next()) {
 				RejseafregningListe.add(new RejseafregningDTO(rs.getInt("Rejseafregning_ID"),
 						rs.getString("navn"), rs.getString("Godkender"), rs.getString("Anviser"),
-						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Status"),
+						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Forklaring"), rs.getString("Status"),
 						rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getInt("Sum")));
 			}
 		} catch (SQLException e) {
@@ -337,7 +337,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			while (rs.next()) {
 				RejseafregningListe.add(new RejseafregningDTO(rs.getInt("Rejseafregning_ID"),
 						rs.getString("navn"), rs.getString("Godkender"), rs.getString("Anviser"),
-						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Status"),
+						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Forklaring"), rs.getString("Status"),
 						rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getInt("Sum")));
 			}
 		} catch (SQLException e) {
@@ -366,7 +366,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			while (rs.next()) {
 				RejseafregningListe.add(new RejseafregningDTO(rs.getInt("Rejseafregning_ID"),
 						rs.getString("navn"), rs.getString("Godkender"), rs.getString("Anviser"),
-						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Status"),
+						rs.getString("Land"), rs.getString("City"), rs.getString("Anledning"), rs.getString("Forklaring"), rs.getString("Status"),
 						rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getInt("Sum")));
 			}
 		} catch (SQLException e) {

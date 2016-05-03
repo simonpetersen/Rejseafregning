@@ -6,14 +6,14 @@ import java.util.Date;
 public class RejseafregningDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private String medarbejderNavn, godkenderNavn, anviserNavn, anledning, land, by, status;
+	private String medarbejderNavn, godkenderNavn, anviserNavn, anledning, land, by, status, forklaring;
 	private Date startDato, slutDato;
 	private int rejseafregningID, sum;
 	
 	public RejseafregningDTO() { }
 	
 	public RejseafregningDTO(int rejseafregningID, String medarbejderNavn, String godkenderNavn, String anviserNavn, String land, 
-			String by, String anledning, String status, Date startDato, Date slutDato, int sum) {
+			String by, String anledning, String forklaring, String status, Date startDato, Date slutDato, int sum) {
 		super();
 		setRejseafregningID(rejseafregningID);
 		setMedarbejderNavn(medarbejderNavn);
@@ -22,6 +22,7 @@ public class RejseafregningDTO implements Serializable {
 		setLand(land);
 		setBy(by);
 		setAnledning(anledning);
+		setForklaring(forklaring);
 		setStatus(status);
 		setStartDato(startDato);
 		setSlutDato(slutDato);
@@ -66,6 +67,14 @@ public class RejseafregningDTO implements Serializable {
 
 	public void setAnledning(String anledning) {
 		this.anledning = anledning;
+	}
+	
+	public String getForklaring() {
+		return forklaring;
+	}
+	
+	public void setForklaring(String forklaring) {
+		this.forklaring = forklaring;
 	}
 
 	public String getLand() {

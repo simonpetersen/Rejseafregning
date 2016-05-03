@@ -41,17 +41,18 @@ import com.google.gwt.user.client.ui.IntegerBox;
 public class NyAlmRejseafregning extends Composite {
 
 	private static NyAlmRejseafregningUiBinder uiBinder = GWT.create(NyAlmRejseafregningUiBinder.class);
-	@UiField Label rejseform, basis;
+	@UiField Label basis;
 	@UiField ScrollPanel scPanel1;
 	@UiField Button seach1, search2, nyopdkonto, addOpdeling, gemogneste;
 	@UiField DatePicker datePicker1, datePicker2;
 	@UiField DoubleBox opgaveDoub2;
-	@UiField TextBox opgaveInt2, txtby, txtrejse, andledtxt, forklaringtxt,opdelingInt1;
+	@UiField TextBox opgaveInt2, txtby, andledtxt, forklaringtxt,opdelingInt1;
 	@UiField Grid grid1;
 	@UiField VerticalPanel vPanel3, vPanel4;
 	@UiField HorizontalPanel hPanel1;
 	@UiField SuggestBox suggest, suggest2;
 	@UiField ListBox dropLand,dropDownProj, dropDownOpga1, dropDownOpg2;
+	@UiField Label projekt33;
 	
 	private final EventBus eventBus;
 	
@@ -150,7 +151,6 @@ public class NyAlmRejseafregning extends Composite {
 	}
 	public void gemBasisInfo() {
 		txtby.getText();
-		txtrejse.getText();
 		datePicker1.getValue();
 		datePicker2.getValue();
 		andledtxt.getText();

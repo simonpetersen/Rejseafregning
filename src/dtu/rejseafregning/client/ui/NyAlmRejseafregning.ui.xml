@@ -32,15 +32,6 @@
 							<g:TextBox ui:field="txtby"/>
 						</g:customCell>
 					</g:row>
-					<g:row>
-						<g:customCell>
-							<g:Label text="Rejseformål: " ui:field="rejseform"/>
-						</g:customCell>
-						<g:customCell>
-							<g:TextBox ui:field="txtrejse"/>
-						</g:customCell>
-
-					</g:row>
 				</g:Grid>
 			</g:HorizontalPanel>
 			<g:HorizontalPanel ui:field="hPanel4">
@@ -131,7 +122,7 @@
 				</g:row>
 				<g:row>
 					<g:customCell>
-						<g:Label text="New Label" ui:field="projekt3"/>
+						<g:Label text="New Label" ui:field="projekt33"/>
 					</g:customCell>
 					<g:customCell>
 						<g:Label text="New Label" ui:field="opgave5"/>

@@ -1,0 +1,139 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.overskrift {
+			padding: 5px;
+			background-color: #BDEDFF;
+		}
+	</ui:style>
+	<g:HTMLPanel width="100%" height="100%">
+		<g:VerticalPanel width="100%">
+			<g:Label text="Om Projektet:" styleName="{style.overskrift}"/>
+			<g:Grid width="100%">
+			<g:row/>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Projekt:" ui:field="projekt"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="projekt1"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="ID:" ui:field="id"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="id1"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Opgave:" ui:field="opgave"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="opgave1"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Dato start:" ui:field="dstart"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="dstart1"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Dato slut:" ui:field="dslut"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="dslut1"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Medarbjeder:" ui:field="medarbejder"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="medarbejder1"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Status: " ui:field="status"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="status1"/>
+				</g:customCell>
+			</g:row>
+			<g:row/>
+		</g:Grid>
+			<g:Label text="Specifikationer:" styleName="{style.overskrift}"/>
+			<g:Grid width="100%">
+			<g:row>
+				<g:customCell>
+					<g:Label text="Land:"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="land1"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="By:"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="by1"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Anledning:"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="anledning1"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Forklaring:"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="forklaring1"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Opdeling af kontostreng:"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="opdeling1"/>
+				</g:customCell>
+			</g:row>
+		</g:Grid>
+			<g:Label text="Udgifter og Bilag:" styleName="{style.overskrift}"/>
+			<g:Grid width="100%">
+			<g:row/>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Udgifter:"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="udgifter1"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Bilag:"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="New Label" ui:field="bilag1"/>
+				</g:customCell>
+			</g:row>
+		</g:Grid>
+		</g:VerticalPanel>
+	
+	</g:HTMLPanel>
+</ui:UiBinder> 
