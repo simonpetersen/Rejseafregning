@@ -30,7 +30,7 @@ public class GodtgoerelseDAO extends RemoteServiceServlet implements IGodtgoerel
 			getGodtgoerelseStmt.setString(1, land);
 			rs = getGodtgoerelseStmt.executeQuery();
 			if (rs.first()) {
-				return new GodtgoerelseDTO(rs.getString("land"), rs.getInt("Hoteldiposition"), rs.getDouble("Dagpengesats"), 
+				return new GodtgoerelseDTO(rs.getString("land"), rs.getInt("Hoteldisposition"), rs.getDouble("Dagpengesats"), 
 						rs.getDouble("Timepengesats"));
 			}
 			throw new DALException("Medarbejder findes ikke!");
@@ -46,7 +46,7 @@ public class GodtgoerelseDAO extends RemoteServiceServlet implements IGodtgoerel
 		try {
 			list = new ArrayList<GodtgoerelseDTO>();
 			rs = getGodtgoerelseListStmt.executeQuery();
-			while (rs.next()) list.add(new GodtgoerelseDTO(rs.getString("land"), rs.getInt("Hoteldiposition"), rs.getDouble("Dagpengesats"), 
+			while (rs.next()) list.add(new GodtgoerelseDTO(rs.getString("land"), rs.getInt("Hoteldisposition"), rs.getDouble("Dagpengesats"), 
 						rs.getDouble("Timepengesats")));
 			return list;
 		} catch(SQLException e) {
