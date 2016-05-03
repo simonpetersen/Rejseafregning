@@ -42,7 +42,7 @@ public class AdresseController {
 		adresseDAO.getByNavn(e.getPostnr(), new AsyncCallback<String>() {
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Fejl: "+caught.getMessage());
+				Window.alert("Fejl i getByNavn: "+caught.getMessage());
 			}
 
 			@Override
@@ -59,7 +59,7 @@ public class AdresseController {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Fejl: "+caught.getMessage());
+				Window.alert("Fejl getVejNavne: "+caught.getMessage());
 				
 			}
 
@@ -76,7 +76,7 @@ public class AdresseController {
 		adresseDAO.getHusnumre(e.getVejnavn(), e.getPostnr(), new AsyncCallback<List<String>>() {
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert("Fejl: "+caught.getMessage());
+					Window.alert("Fejl i getHusnumre: "+caught.getMessage());
 				}
 
 				@Override
@@ -92,7 +92,7 @@ public class AdresseController {
 		adresseDAO.getEtageListe(e.getPostnr(), e.getHusnr(), e.getVejnavn(), new AsyncCallback<List<String>>() {
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert("Fejl: "+caught.getMessage());
+					Window.alert("Fejl i getEtageListe: "+caught.getMessage());
 				}
 
 				@Override
@@ -108,7 +108,7 @@ public class AdresseController {
 		adresseDAO.getDoerListe(e.getPostnr(), e.getHusnr(), e.getEtage(), e.getVej(), new AsyncCallback<List<String>>() {
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert("Fejl: "+caught.getMessage());
+					Window.alert("Fejl getDoerListe: "+caught.getMessage());
 				}
 
 				@Override

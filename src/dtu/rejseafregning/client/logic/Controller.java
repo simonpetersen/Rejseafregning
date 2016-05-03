@@ -240,7 +240,7 @@ public class Controller {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Fejl: " + caught.getMessage());
+						Window.alert("Fejl getRejseafregningAnvisningList: " + caught.getMessage());
 
 					}
 
@@ -258,7 +258,7 @@ public class Controller {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Fejl: " + caught.getMessage());
+						Window.alert("Fejl getRejseafregningGodkendelseList: " + caught.getMessage());
 					}
 
 					@Override
@@ -274,7 +274,7 @@ public class Controller {
 				new AsyncCallback<Void>() {
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Fejl: " + caught.getMessage());
+						Window.alert("Fejl updateRejseafregningStatus: " + caught.getMessage());
 					}
 
 					@Override
@@ -289,7 +289,7 @@ public class Controller {
 		rejseafregningDAO.updateRejseafregningStatus(e.getRejseafregningID(), "Anvist", new AsyncCallback<Void>() {
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Fejl: " + caught.getMessage());
+				Window.alert("Fejl updateRejseafregningStatus: " + caught.getMessage());
 			}
 
 			@Override
