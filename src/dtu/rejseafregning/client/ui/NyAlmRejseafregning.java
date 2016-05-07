@@ -104,7 +104,8 @@ public class NyAlmRejseafregning extends Composite {
 	
 	@UiHandler("gemogneste")
  	void onButtonClick7(ClickEvent event) {
- 		eventBus.fireEvent(new UdgifterEvent());
+		// Ikke færdig, skal gemmes i databasen.
+ 		eventBus.fireEvent(new UdgifterEvent(dropLand.getElement().toString(),txtby.getText(),andledtxt.getText(), forklaringtxt.getText(), dropDownProj.getElement().toString(), dropDownOpga1.getElement().toString(), opdelingInt1.getText()  ));
  	} 	
 	
 	@EventHandler
