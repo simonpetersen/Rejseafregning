@@ -47,7 +47,7 @@ public class DokumentArkivCellTable extends Composite {
 			};
 			cellTable.addColumn(idColumn, "Dokument");
 
-			//Tilføjet Navn-celle
+			//Tilfï¿½jet Navn-celle
 			final TextCell navnCell = new TextCell();
 			Column<RejseafregningDTO, String> navnColumn = new Column<RejseafregningDTO, String>(navnCell){
 				@Override
@@ -122,7 +122,8 @@ public class DokumentArkivCellTable extends Composite {
 			Column<RejseafregningDTO, String> sumColumn = new Column<RejseafregningDTO, String>(sumCell) {
 				@Override
 				public String getValue(RejseafregningDTO object) {
-					return String.valueOf(object.getSum());
+//					return String.valueOf(object.getSum());
+					return "0";
 				}
 			};
 			cellTable.addColumn(sumColumn, "Sum");

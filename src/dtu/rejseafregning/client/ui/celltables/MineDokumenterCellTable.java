@@ -117,7 +117,8 @@ public class MineDokumenterCellTable extends Composite {
 		Column<RejseafregningDTO, String> sumColumn = new Column<RejseafregningDTO, String>(sumCell) {
 			@Override
 			public String getValue(RejseafregningDTO object) {
-				return String.valueOf(object.getSum());
+//				return String.valueOf(object.getSum());
+				return "0";
 			}
 		};
 		cellTable.addColumn(sumColumn, "Sum");

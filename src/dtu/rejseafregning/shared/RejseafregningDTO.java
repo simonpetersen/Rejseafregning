@@ -6,14 +6,14 @@ import java.util.Date;
 public class RejseafregningDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private String medarbejderNavn, godkenderNavn, anviserNavn, anledning, land, by, status, forklaring;
+	private String medarbejderNavn, godkenderNavn, anviserNavn, anledning, land, by, status, forklaring, projektNavn;
 	private Date startDato, slutDato;
-	private int rejseafregningID, sum;
+	private int rejseafregningID;
 	
 	public RejseafregningDTO() { }
 	
 	public RejseafregningDTO(int rejseafregningID, String medarbejderNavn, String godkenderNavn, String anviserNavn, String land, 
-			String by, String anledning, String forklaring, String status, Date startDato, Date slutDato, int sum) {
+			String by, String anledning, String forklaring, String status, Date startDato, Date slutDato) {
 		super();
 		setRejseafregningID(rejseafregningID);
 		setMedarbejderNavn(medarbejderNavn);
@@ -26,7 +26,6 @@ public class RejseafregningDTO implements Serializable {
 		setStatus(status);
 		setStartDato(startDato);
 		setSlutDato(slutDato);
-		setSum(sum);
 	}
 
 	public int getRejseafregningID(){
@@ -109,20 +108,20 @@ public class RejseafregningDTO implements Serializable {
 		this.slutDato = slutDato;
 	}
 
-	public int getSum() {
-		return sum;
-	}
-
-	public void setSum(int sum) {
-		this.sum = sum;
-	}
-
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getProjektNavn() {
+		return projektNavn;
+	}
+
+	public void setProjektNavn(String projektNavn) {
+		this.projektNavn = projektNavn;
 	}
 
 }

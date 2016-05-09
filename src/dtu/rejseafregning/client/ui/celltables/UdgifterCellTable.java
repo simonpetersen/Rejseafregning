@@ -15,6 +15,8 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.view.client.AsyncDataProvider;
+import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.ProvidesKey;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
@@ -116,8 +118,33 @@ public class UdgifterCellTable extends Composite {
 		      }
 		    });
 		
+		final AsyncDataProvider<UdgiftDTO> provider = new AsyncDataProvider<UdgiftDTO>() {
+		      @Override
+		      // Called when a display changes its range of interest.
+		      protected void onRangeChanged(HasData<UdgiftDTO> display) {
+		        // Get the start index of the range
+		        final int start = display.getVisibleRange().getStart();
+		        // Get the length of the range. 
+		        int length = display.getVisibleRange().getLength();
+		        // Define callback handler
+		        AsyncCallback<List<UdgiftDTO>> callback = new AsyncCallback<List<UdgiftDTO>>() {
+		          @Override
+		          public void onFailure(Throwable caught) {
+		            Window.alert(caught.getMessage());
+		          }
+		          @Override
+		          public void onSuccess(List<UdgiftDTO> result) {
+		            // Update the display of the new data
+		            updateRowData(start, result);
+		          }
+		        };
+		        // Remote service call, that gets a list of contacts
+//		        dao.getContacts(start, length, callback);
+		      }
+		    };
+		
 		cellTable.setRowCount(udgifter.size(), true);
-		cellTable.setRowData(0, udgifter);
+//		cellTable.setRowData(0, udgifter);
 	}
 	
 	private void saveUdgift(UdgiftDTO udgift) {
