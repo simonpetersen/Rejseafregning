@@ -2,21 +2,21 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
-DROP TABLE IF EXISTS Udgift;
-DROP TABLE IF EXISTS Bilag;
-DROP TABLE IF EXISTS Rejsedag;
-DROP TABLE IF EXISTS Rejseafregning;
-DROP TABLE IF EXISTS Godtgoerelse;
-DROP TABLE IF EXISTS Medarbejder;
-DROP TABLE IF EXISTS Projekt;
-DROP TABLE IF EXISTS Opgave;
+DROP TABLE IF EXISTS udgift;
+DROP TABLE IF EXISTS bilag;
+DROP TABLE IF EXISTS rejsedag;
+DROP TABLE IF EXISTS rejseafregning;
+DROP TABLE IF EXISTS godtgoerelse;
+DROP TABLE IF EXISTS medarbejder;
+DROP TABLE IF EXISTS projekt;
+DROP TABLE IF EXISTS opgave;
 
 
 
 
 /* Create Tables */
 
-CREATE TABLE Bilag
+CREATE TABLE bilag
 (
 	bilag_ID int NOT NULL,
 	billede blob NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE Bilag
 );
 
 
-CREATE TABLE Godtgoerelse
+CREATE TABLE godtgoerelse
 (
 	Land varchar(20) NOT NULL,
 	Dagpengesats double(5,2) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE Godtgoerelse
 );
 
 
-CREATE TABLE Medarbejder
+CREATE TABLE medarbejder
 (
 	brugernavn varchar(10) NOT NULL,
 	navn varchar(50) NOT NULL,
@@ -50,14 +50,14 @@ CREATE TABLE Medarbejder
 );
 
 
-CREATE TABLE Opgave
+CREATE TABLE opgave
 (
 	nameOp varchar(50) NOT NULL,
 	PRIMARY KEY (nameOp)
 );
 
 
-CREATE TABLE Projekt
+CREATE TABLE projekt
 (
 	nameProjekt varchar(50) NOT NULL,
 	nameOp varchar(50) NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE Projekt
 );
 
 
-CREATE TABLE Rejseafregning
+CREATE TABLE rejseafregning
 (
 	rejseafregning_ID int NOT NULL AUTO_INCREMENT,
 	brugernavn varchar(10) NOT NULL,
@@ -78,11 +78,12 @@ CREATE TABLE Rejseafregning
 	anledning varchar(100) NOT NULL,
 	anviser varchar(35) NOT NULL,
 	godkender varchar(35) NOT NULL,
+	forklaring varchar(1000),
 	PRIMARY KEY (rejseafregning_ID)
 );
 
 
-CREATE TABLE Rejsedag
+CREATE TABLE rejsedag
 (
 	rejsedag_ID int NOT NULL AUTO_INCREMENT,
 	rejseafregning_ID int NOT NULL,
@@ -96,7 +97,7 @@ CREATE TABLE Rejsedag
 );
 
 
-CREATE TABLE Udgift
+CREATE TABLE udgift
 (
 	udgift_ID int NOT NULL AUTO_INCREMENT,
 	rejseafregning_ID int NOT NULL,
@@ -113,57 +114,57 @@ CREATE TABLE Udgift
 
 /* Create Foreign Keys */
 
-ALTER TABLE Udgift
+ALTER TABLE udgift
 	ADD FOREIGN KEY (bilag_ID)
-	REFERENCES Bilag (bilag_ID)
+	REFERENCES bilag (bilag_ID)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
-ALTER TABLE Rejseafregning
+ALTER TABLE rejseafregning
 	ADD FOREIGN KEY (land)
-	REFERENCES Godtgoerelse (Land)
+	REFERENCES godtgoerelse (Land)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
-ALTER TABLE Rejseafregning
+ALTER TABLE rejseafregning
 	ADD FOREIGN KEY (brugernavn)
-	REFERENCES Medarbejder (brugernavn)
+	REFERENCES medarbejder (brugernavn)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
-ALTER TABLE Projekt
+ALTER TABLE projekt
 	ADD FOREIGN KEY (nameOp)
-	REFERENCES Opgave (nameOp)
+	REFERENCES opgave (nameOp)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
-ALTER TABLE Rejseafregning
+ALTER TABLE rejseafregning
 	ADD FOREIGN KEY (nameProjekt)
-	REFERENCES Projekt (nameProjekt)
+	REFERENCES projekt (nameProjekt)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
-ALTER TABLE Rejsedag
+ALTER TABLE rejsedag
 	ADD FOREIGN KEY (rejseafregning_ID)
-	REFERENCES Rejseafregning (rejseafregning_ID)
+	REFERENCES rejseafregning (rejseafregning_ID)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
-ALTER TABLE Udgift
+ALTER TABLE udgift
 	ADD FOREIGN KEY (rejseafregning_ID)
-	REFERENCES Rejseafregning (rejseafregning_ID)
+	REFERENCES rejseafregning (rejseafregning_ID)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
