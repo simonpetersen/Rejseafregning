@@ -12,6 +12,7 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
+import dtu.rejseafregning.client.events.AfslutRejseafregningEventSuccess;
 import dtu.rejseafregning.client.events.GetBilagInfoSuccessEvent;
 import dtu.rejseafregning.client.events.GetGodtgoerelseListEvent;
 import dtu.rejseafregning.client.events.GetGodtgoerelsesListSuccessfullEvent;
@@ -70,9 +71,12 @@ public class VisRejseafregning extends Composite {
 		udgifter1.setText(String.valueOf(e.getInfoUdgift().getUdgiftID()));
 		
 	}
+	@EventHandler
+	public void getAfslutEvent(AfslutRejseafregningEventSuccess e) {
+		rejseafregningDTO = e.getResult();
+	}
 	
 	public void hentGemteRejseafregninger() {
-		List<RejseafregningDTO> rejseDTO;
 		id1.setText(String.valueOf(((rejseafregningDTO.getRejseafregningID()))));
 		dstart1.setText(String.valueOf(rejseafregningDTO.getStartDato()));
 		dslut1.setText(String.valueOf(rejseafregningDTO.getSlutDato()));

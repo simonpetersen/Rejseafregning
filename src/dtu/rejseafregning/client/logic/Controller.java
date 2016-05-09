@@ -54,6 +54,7 @@ import dtu.rejseafregning.shared.MedarbejderDTO;
 import dtu.rejseafregning.shared.OpgaveDTO;
 import dtu.rejseafregning.shared.ProjektDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
+import javafx.event.Event;
 
 public class Controller {
 
@@ -360,6 +361,22 @@ public class Controller {
 		});
 		Window.alert("Rejseafregningen er gemt.");
 
+	}
+	@EventHandler
+	public void onAfslut(AfslutRejseafregningEventSuccess e) {
+		rejseafregningDAO.getRejseafregning(rejseafregning.getRejseafregningID(), new AsyncCallback<RejseafregningDTO>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl kunne ikke hentes: " + caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(RejseafregningDTO result) {
+				eventBus.fireEvent(new AfslutRejseafregningEventSuccess(result));				
+			}
+		});
 	}
 
 	@EventHandler
