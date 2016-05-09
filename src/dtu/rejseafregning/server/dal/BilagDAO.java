@@ -31,19 +31,19 @@ public class BilagDAO extends RemoteServiceServlet implements IBilagDAO {
 			new Connector();
 
 			// GetBilag Statement
-			getBilagStmt = Connector.conn.prepareStatement("SELECT * FROM Bilag WHERE Bilag_ID = ?");
+			getBilagStmt = Connector.conn.prepareStatement("SELECT * FROM bilag WHERE bilag_ID = ?");
 
 			// GetBilagList Statement
-			getBilagListStmt = Connector.conn.prepareStatement("SELECT * FROM Bilag");
+			getBilagListStmt = Connector.conn.prepareStatement("SELECT * FROM bilag");
 
 			// createBilag Statement
-			createBilagStmt = Connector.conn.prepareStatement("INSERT INTO Bilag VALUES (?, ?)");
+			createBilagStmt = Connector.conn.prepareStatement("INSERT INTO bilag VALUES (?, ?)");
 
 			// updateBilag Statement
-			updateBilagStmt = Connector.conn.prepareStatement("UPDATE Bilag SET billede = ? WHERE Bilag_ID = ?");
+			updateBilagStmt = Connector.conn.prepareStatement("UPDATE bilag SET billede = ? WHERE bilag_ID = ?");
 
 			// deleteBilag Statement
-			deleteBilagStmt = Connector.conn.prepareStatement("DELETE FROM Bilag WHERE Bilag_ID = ?");
+			deleteBilagStmt = Connector.conn.prepareStatement("DELETE FROM bilag WHERE bilag_ID = ?");
 		} catch (SQLException e) {
 			throw new DALException("Problemer med forbindelsen til databasen.");
 		}
@@ -66,12 +66,12 @@ public class BilagDAO extends RemoteServiceServlet implements IBilagDAO {
 				fos.close();
 				throw new DALException("Bilag findes ikke");
 			}
-			InputStream is = (InputStream) rs.getBinaryStream("Billed");
+			InputStream is = (InputStream) rs.getBinaryStream("billed");
 			while (is.read(buffer) > 0) {
 				fos.write(buffer);
 			}
 			fos.close();
-			return new BilagDTO(rs.getInt("Bilag_ID"), image);
+			return new BilagDTO(rs.getInt("bilag_ID"), image);
 		} catch (SQLException e) {
 			throw new DALException("Kaldet: getBilag fejlede");
 		}
@@ -89,12 +89,12 @@ public class BilagDAO extends RemoteServiceServlet implements IBilagDAO {
 				FileOutputStream fos = new FileOutputStream(image);
 
 				byte[] buffer = new byte[1];
-				InputStream is = (InputStream) rs.getBinaryStream("Billed");
+				InputStream is = (InputStream) rs.getBinaryStream("billed");
 				while (is.read(buffer) > 0) {
 					fos.write(buffer);
 				}
 				fos.close();
-				BilagListe.add(new BilagDTO(rs.getInt("Bilag_ID"), image));
+				BilagListe.add(new BilagDTO(rs.getInt("bilag_ID"), image));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet: getBilagListe fejlede.");
