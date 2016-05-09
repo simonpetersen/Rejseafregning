@@ -27,7 +27,7 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 		getRejsedagStmt = Connector.conn.prepareStatement("SELECT * FROM rejsedag WHERE rejsedag_ID = ?");
 
 		// getRejsedagList statement
-		getRejsedagListStmt = Connector.conn.prepareStatement("SELECT * FROM rejsedag");
+		getRejsedagListStmt = Connector.conn.prepareStatement("SELECT * FROM rejsedag WHERE rejseafregning_ID = ?");
 
 		// createRejsedag statement
 		createRejsedagStmt = Connector.conn.prepareStatement("INSERT INTO rejsedag (rejseafregning_ID, dato, start, slut, morgenmad, frokost, "
@@ -58,12 +58,12 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 	}
 
 	@Override
-	public List<RejsedagDTO> getRejsedagList() throws DALException {
+	public List<RejsedagDTO> getRejsedagList(int rejseafregningID) throws DALException {
 		List<RejsedagDTO> RejsedagListe = null;
 		ResultSet rs = null;
 		try {
 			RejsedagListe = new ArrayList<RejsedagDTO>();
-
+			getRejsedagListStmt.setInt(1, rejseafregningID);
 			rs = getRejsedagListStmt.executeQuery();
 
 			while (rs.next()) {

@@ -11,7 +11,7 @@ import dtu.rejseafregning.shared.RejsedagDTO;
 @RemoteServiceRelativePath("rejsedagservice")
 public interface IRejsedagDAO extends RemoteService{
 	RejsedagDTO getRejsedag(int rejsedagID) throws DALException;
-	List<RejsedagDTO> getRejsedagList() throws DALException;
+	List<RejsedagDTO> getRejsedagList(int rejseafregningID) throws DALException;
 	void createRejsedag(RejsedagDTO rejsedag) throws DALException;
 	void updateRejsedag(RejsedagDTO rejsedag) throws DALException;
 	void deleteRejsedag(RejsedagDTO rejsedag) throws DALException;

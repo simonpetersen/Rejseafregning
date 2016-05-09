@@ -49,13 +49,14 @@ public class UdgifterView extends Composite {
 
 	@UiHandler("nyRejsedag")
 	void onNyRejsedagClick(ClickEvent event) {
-		udgifterTable.addNyUdgift();
+		rejsedageTable.addNyRejsedag();
 	}
 	
 	@UiHandler("nyUdgift")
 	void onNyUdgiftClick(ClickEvent event) {
-		rejsedageTable.addNyRejsedag();
+		udgifterTable.addNyUdgift();
 	}
+	
 	@UiHandler("afslut")
 	void onAfslutClick(ClickEvent event) {
 		eventBus.fireEvent(new AfslutRejseafregningEvent());

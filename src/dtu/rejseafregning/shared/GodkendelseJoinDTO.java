@@ -9,11 +9,12 @@ public class GodkendelseJoinDTO implements Serializable {
 	private String navn, projektNavn, land, by, anledning, anviser;
 	private int rejseafregningID;
 	private Date start, slut;
+	private double sum, refunderes;
 	
 	public GodkendelseJoinDTO() {}
 	
 	public GodkendelseJoinDTO(String navn, int rejseafregningID, String projektNavn, Date start, Date slut, String land, String by, 
-			String anledning) {
+			String anledning, double sum, double refunderes) {
 		setNavn(navn);
 		setRejseafregningID(rejseafregningID);
 		setProjektNavn(projektNavn);
@@ -22,6 +23,8 @@ public class GodkendelseJoinDTO implements Serializable {
 		setLand(land);
 		setBy(by);
 		setAnledning(anledning);
+		setSum(sum);
+		setRefunderes(refunderes);
 	}
 
 	public String getNavn() {
@@ -94,6 +97,22 @@ public class GodkendelseJoinDTO implements Serializable {
 
 	public void setSlut(Date slut) {
 		this.slut = slut;
+	}
+
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
+	public double getRefunderes() {
+		return refunderes;
+	}
+
+	public void setRefunderes(double refunderes) {
+		this.refunderes = refunderes;
 	}
 
 }
