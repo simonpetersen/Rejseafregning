@@ -50,6 +50,9 @@ public class NyAlmRejseafregning extends Composite {
 	@UiField SuggestBox suggest, suggest2;
 	@UiField ListBox dropLand,dropDownProj, dropDownOpga1;
 	
+	List<ProjektDTO> projektDTO;
+	List<OpgaveDTO> opgaveDTO;
+	
 	private final EventBus eventBus;
 	
 	interface MyEventBinder extends EventBinder<NyAlmRejseafregning> {
@@ -68,6 +71,7 @@ public class NyAlmRejseafregning extends Composite {
   		eventBus.fireEvent(new GetGodtgoerelseListEvent());
   		eventBus.fireEvent(new GetProjektListEvent());
   		eventBus.fireEvent(new GetOpgaveListEvent());
+  		eventBus.fireEvent(new GetSuggestListEvent(opgaveDTO, projektDTO));
   		visibility();
   	}
 

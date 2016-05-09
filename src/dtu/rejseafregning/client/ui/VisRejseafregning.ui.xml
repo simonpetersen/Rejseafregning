@@ -10,13 +10,13 @@
 	<g:HTMLPanel width="100%" height="100%">
 		<g:VerticalPanel width="100%">
 			<g:Label text="Om Projektet:" styleName="{style.overskrift}"/>
-			<g:Grid width="100%">
+			<g:Grid width="70%">
 			<g:row>
 				<g:customCell>
-					<g:Label text="Projekt:" ui:field="projekt"/>
+					<g:Label text="Projekt:" ui:field="projekt" width="243"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="projekt1"/>
+					<g:Label text="New Label" ui:field="projekt1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
@@ -24,7 +24,7 @@
 					<g:Label text="ID:" ui:field="id"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="id1"/>
+					<g:Label text="New Label" ui:field="id1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
@@ -32,7 +32,7 @@
 					<g:Label text="Opgave:" ui:field="opgave"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="opgave1"/>
+					<g:Label text="New Label" ui:field="opgave1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
@@ -40,7 +40,7 @@
 					<g:Label text="Dato start:" ui:field="dstart"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="dstart1"/>
+					<g:Label text="New Label" ui:field="dstart1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
@@ -48,7 +48,7 @@
 					<g:Label text="Dato slut:" ui:field="dslut"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="dslut1"/>
+					<g:Label text="New Label" ui:field="dslut1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
@@ -56,7 +56,7 @@
 					<g:Label text="Medarbjeder:" ui:field="medarbejder"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="medarbejder1"/>
+					<g:Label text="New Label" ui:field="medarbejder1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
@@ -64,18 +64,18 @@
 					<g:Label text="Status: " ui:field="status"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="status1"/>
+					<g:Label text="New Label" ui:field="status1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 		</g:Grid>
 			<g:Label text="Specifikationer:" styleName="{style.overskrift}"/>
-			<g:Grid width="100%">
+			<g:Grid width="70%">
 			<g:row>
 				<g:customCell>
 					<g:Label text="Land:"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="land1"/>
+					<g:Label text="New Label" ui:field="land1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
@@ -83,7 +83,7 @@
 					<g:Label text="By:"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="by1"/>
+					<g:Label text="New Label" ui:field="by1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
@@ -91,26 +91,26 @@
 					<g:Label text="Anledning:"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="anledning1"/>
+					<g:Label text="New Label" ui:field="anledning1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
 				<g:customCell>
-					<g:Label text="Forklaring:"/>
+					<g:Label text="Forklaring:    "/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="forklaring1"/>
+					<g:Label text="New Label" ui:field="forklaring1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 		</g:Grid>
 			<g:Label text="Udgifter og Bilag:" styleName="{style.overskrift}"/>
-			<g:Grid width="100%">
+			<g:Grid width="70%">
 			<g:row>
 				<g:customCell>
 					<g:Label text="Udgifter:"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="udgifter1"/>
+					<g:Label text="New Label" ui:field="udgifter1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
@@ -118,7 +118,7 @@
 					<g:Label text="Bilag:"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="bilag1"/>
+					<g:Label text="New Label" ui:field="bilag1" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 		</g:Grid>
