@@ -12,6 +12,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 
+import dtu.rejseafregning.client.events.AfslutRejseafregningEvent;
+import dtu.rejseafregning.client.events.GetGemOgNaesteEvent;
 import dtu.rejseafregning.client.ui.celltables.RejsedageCellTable;
 import dtu.rejseafregning.client.ui.celltables.UdgifterCellTable;
 
@@ -22,7 +24,7 @@ public class UdgifterView extends Composite {
 	
 	private static UdgifterViewUiBinder uiBinder = GWT.create(UdgifterViewUiBinder.class);
 	
-	@UiField Button gemogafslut;
+	@UiField Button afslut;
 	@UiField Button tilfoej;
 	@UiField VerticalPanel rejsedagePanel, udgifterPanel;
 
@@ -53,5 +55,9 @@ public class UdgifterView extends Composite {
 	@UiHandler("nyUdgift")
 	void onNyUdgiftClick(ClickEvent event) {
 		rejsedageTable.addNyRejsedag();
+	}
+	@UiHandler("afslut")
+	void onAfslutClick(ClickEvent event) {
+		eventBus.fireEvent(new AfslutRejseafregningEvent());
 	}
 }

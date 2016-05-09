@@ -22,6 +22,9 @@ import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
 import dtu.rejseafregning.client.events.UdgifterEvent;
 import dtu.rejseafregning.shared.MedarbejderDTO;
+import dtu.rejseafregning.shared.ProjektDTO;
+import dtu.rejseafregning.shared.RejseafregningDTO;
+
 import com.google.gwt.user.client.ui.Anchor;
 
 public class MainView extends Composite {
@@ -40,6 +43,9 @@ public class MainView extends Composite {
 	private NyAlmRejseafregning nyalmrejseafregningView;
 	private UdgifterView udgifterView;
 	private VisRejseafregning visRejseafregning;
+	
+	private ProjektDTO projektDTO;
+	private RejseafregningDTO rejseafregningDTO;
 	
 	private final EventBus eventBus;
 	
@@ -60,6 +66,7 @@ public class MainView extends Composite {
 		dokumentView = new DokArkivView(eventBus);
 		nyalmrejseafregningView = new NyAlmRejseafregning(eventBus);
 		udgifterView = new UdgifterView(eventBus);
+		visRejseafregning = new VisRejseafregning(eventBus, projektDTO, rejseafregningDTO);
 		contentPanel.add(velkommenView);
 		contentPanel.add(oplysningerView);
 		contentPanel.add(dokumentView);

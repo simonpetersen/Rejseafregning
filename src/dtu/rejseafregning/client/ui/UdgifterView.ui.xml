@@ -54,7 +54,7 @@
 					</g:customCell>
 				</g:row>
 			</g:Grid>
-			<g:Button text="Gem og Afslut" ui:field="gemogafslut"/>
+			<g:Button text="Afslut" ui:field="afslut"/>
 		</g:VerticalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 
