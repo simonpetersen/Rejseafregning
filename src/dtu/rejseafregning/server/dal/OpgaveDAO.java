@@ -23,19 +23,19 @@ public class OpgaveDAO extends RemoteServiceServlet implements IOpgaveDAO {
 	public OpgaveDAO() throws Exception {
 		
 		// getOpgave statement
-		getOpgaveStmt = Connector.conn.prepareStatement("SELECT * FROM Opgave WHERE Navn = ?");
+		getOpgaveStmt = Connector.conn.prepareStatement("SELECT * FROM opgave WHERE nameOp = ?");
 
 		// getOpgaveList statement
-		getOpgaveListStmt = Connector.conn.prepareStatement("SELECT * FROM Opgave");
+		getOpgaveListStmt = Connector.conn.prepareStatement("SELECT * FROM opgave");
 
 		// createOpgave statement
-		createOpgaveStmt = Connector.conn.prepareStatement("INSERT INTO Opgave VALUES (?)");
+		createOpgaveStmt = Connector.conn.prepareStatement("INSERT INTO opgave VALUES (?)");
 
 		// updateOpgave statement
-		updateOpgaveStmt = Connector.conn.prepareStatement("UPDATE Opgave SET Navn = ? WHERE Navn = ?");
+		updateOpgaveStmt = Connector.conn.prepareStatement("UPDATE opgave SET nameOp = ? WHERE nameOp = ?");
 
 		// deleteOpgave statement
-		deleteOpgaveStmt = Connector.conn.prepareStatement("DELETE FROM Opgave WHERE Navn = ?");
+		deleteOpgaveStmt = Connector.conn.prepareStatement("DELETE FROM opgave WHERE nameOp = ?");
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class OpgaveDAO extends RemoteServiceServlet implements IOpgaveDAO {
 			getOpgaveStmt.setString(1, opgaveNavn);
 			rs = getOpgaveStmt.executeQuery();
 			if (rs.next())
-				return new OpgaveDTO(rs.getString("Navn"));
+				return new OpgaveDTO(rs.getString("nameOp"));
 			throw new DALException("Opgave findes ikke!");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getOpgave fejlede");
@@ -61,7 +61,7 @@ public class OpgaveDAO extends RemoteServiceServlet implements IOpgaveDAO {
 			OpgaveListe = new ArrayList<OpgaveDTO>();
 
 			while (rs.next()) {
-				OpgaveListe.add(new OpgaveDTO(rs.getString("Navn")));
+				OpgaveListe.add(new OpgaveDTO(rs.getString("nameOp")));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getOpgaveList fejlede");

@@ -28,24 +28,24 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 		new Connector();
 
 		// getMedarbejder statement
-		getMedarbejderStmt = Connector.conn.prepareStatement("SELECT * FROM medarbejder WHERE Brugernavn = ?");
+		getMedarbejderStmt = Connector.conn.prepareStatement("SELECT * FROM medarbejder WHERE brugernavn = ?");
 
 		// getMedarbejderList statement
 		getMedarbejderListStmt = Connector.conn.prepareStatement("SELECT * FROM medarbejder");
 
 		// createMedarbejder statement
-		createMedarbejderStmt = Connector.conn.prepareStatement("INSERT INTO medarbejder (brugernavn, navn, email, adgangskode, afdeling) VALUES(?, ?, ?, ?, ?)");
+		createMedarbejderStmt = Connector.conn.prepareStatement("INSERT INTO medarbejder (brugernavn, navn, email, adgangskode, afdeling, postnr, vejnavn, husnr, etage, doer) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		// updateMedarbejder statement
 		updateMedarbejderStmt = Connector.conn.prepareStatement(
-				"UPDATE medarbejder SET Navn = ?, Adgangskode = ?, Email = ?, Postnr = ?, Vejnavn = ?, Husnr = ?, Etage = ?, Doer = ? "
-				+ "WHERE Brugernavn = ?");
+				"UPDATE medarbejder SET navn = ?, email = ?, adgangskode = ?, afdeling = ?, postnr = ?, vejnavn = ?, husnr = ?, etage = ?, doer = ? "
+				+ "WHERE brugernavn = ?");
 		
 		updateMedarbejderBrugerStmt = Connector.conn.prepareStatement(
-				"UPDATE medarbejder SET Navn = ?, Adgangskode = ?, Email = ? WHERE Brugernavn = ?");
+				"UPDATE medarbejder SET navn = ?, adgangskode = ?, email = ? WHERE brugernavn = ?");
 
 		// deleteMedarbejder statement
-		deleteMedarbejderStmt = Connector.conn.prepareStatement("DELETE FROM medarbejder WHERE Brugernavn = ?");
+		deleteMedarbejderStmt = Connector.conn.prepareStatement("DELETE FROM medarbejder WHERE brugernavn = ?");
 	}
 	
 	@Override
@@ -62,8 +62,8 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 			getMedarbejderStmt.setString(1, Brugernavn);
 			rs = getMedarbejderStmt.executeQuery();
 			if (rs.first()) {
-				return new MedarbejderDTO(rs.getString("Navn"), rs.getString("Brugernavn"),
-					rs.getString("adgangskode"), rs.getString("Email"), rs.getString("Afdeling"), rs.getString("postnr"), 
+				return new MedarbejderDTO(rs.getString("navn"), rs.getString("brugernavn"),
+					rs.getString("adgangskode"), rs.getString("Email"), rs.getString("afdeling"), rs.getString("postnr"), 
 					rs.getString("vejnavn"), rs.getString("husnr"), rs.getString("etage"), rs.getString("doer"));
 			}
 			throw new DALException("Medarbejder findes ikke!");
@@ -81,8 +81,8 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 			rs = getMedarbejderListStmt.executeQuery();
 
 			while (rs.next()) {
-				MedarbejderListe.add(new MedarbejderDTO(rs.getString("Navn"), rs.getString("Brugernavn"),
-						rs.getString("adgangskode"), rs.getString("Email"), rs.getString("Afdeling"), rs.getString("postnr"), 
+				MedarbejderListe.add(new MedarbejderDTO(rs.getString("navn"), rs.getString("brugernavn"),
+						rs.getString("adgangskode"), rs.getString("email"), rs.getString("afdeling"), rs.getString("postnr"), 
 						rs.getString("vejnavn"), rs.getString("husnr"), rs.getString("etage"), rs.getString("doer")));
 			}
 		} catch (SQLException e) {
@@ -107,6 +107,11 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 			createMedarbejderStmt.setString(3, medarbejder.getEmail());
 			createMedarbejderStmt.setString(4, medarbejder.getAdgangskode());
 			createMedarbejderStmt.setString(5, medarbejder.getAfdeling());
+			createMedarbejderStmt.setString(6, medarbejder.getPostnr());
+			createMedarbejderStmt.setString(7, medarbejder.getVejnavn());
+			createMedarbejderStmt.setString(8, medarbejder.getHusnr());
+			createMedarbejderStmt.setString(9, medarbejder.getEtage());
+			createMedarbejderStmt.setString(10, medarbejder.getDoer());
 
 			//Kald til databasen
 			createMedarbejderStmt.executeUpdate();
@@ -122,12 +127,13 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 			updateMedarbejderStmt.setString(1, medarbejder.getNavn());
 			updateMedarbejderStmt.setString(2, medarbejder.getNyAdgangskode());
 			updateMedarbejderStmt.setString(3, medarbejder.getEmail());
-			updateMedarbejderStmt.setString(4, medarbejder.getPostnr());
-			updateMedarbejderStmt.setString(5, medarbejder.getVejnavn());
-			updateMedarbejderStmt.setString(6, medarbejder.getHusnr());
-			updateMedarbejderStmt.setString(7, medarbejder.getEtage());
-			updateMedarbejderStmt.setString(8, medarbejder.getDoer());
-			updateMedarbejderStmt.setString(9, medarbejder.getBrugernavn());
+			updateMedarbejderStmt.setString(4, medarbejder.getAfdeling());
+			updateMedarbejderStmt.setString(5, medarbejder.getPostnr());
+			updateMedarbejderStmt.setString(6, medarbejder.getVejnavn());
+			updateMedarbejderStmt.setString(7, medarbejder.getHusnr());
+			updateMedarbejderStmt.setString(8, medarbejder.getEtage());
+			updateMedarbejderStmt.setString(9, medarbejder.getDoer());
+			updateMedarbejderStmt.setString(10, medarbejder.getBrugernavn());
 
 			// Kald til databasen
 			updateMedarbejderStmt.executeUpdate();

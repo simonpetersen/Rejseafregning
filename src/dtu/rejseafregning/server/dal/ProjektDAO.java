@@ -23,20 +23,20 @@ public class ProjektDAO extends RemoteServiceServlet implements IProjektDAO {
 	public ProjektDAO() throws Exception {
 
 		// getProjekt statement
-		getProjektStmt = Connector.conn.prepareStatement("SELECT * FROM Projekt WHERE Navn = ?");
+		getProjektStmt = Connector.conn.prepareStatement("SELECT * FROM projekt WHERE nameProjekt = ?");
 
 		// getProjektList statement
-		getProjektListStmt = Connector.conn.prepareStatement("SELECT * FROM Projekt");
+		getProjektListStmt = Connector.conn.prepareStatement("SELECT * FROM projekt");
 
 		// createProjekt statement
-		createProjektStmt = Connector.conn.prepareStatement("INSERT INTO Projekt VALUES ( ?, ?)");
+		createProjektStmt = Connector.conn.prepareStatement("INSERT INTO projekt VALUES ( ?, ?)");
 
 		// updateProjekt statement
 		updateProjektStmt = Connector.conn
-				.prepareStatement("UPDATE Projekt SET OpgaveNavn = ? WHERE Navn = ?");
+				.prepareStatement("UPDATE Projekt SET nameOp = ? WHERE nameProjekt = ?");
 
 		// deleteProjekt statement
-		deleteProjektStmt = Connector.conn.prepareStatement("DELETE FROM Projekt WHERE Navn = ?");
+		deleteProjektStmt = Connector.conn.prepareStatement("DELETE FROM Projekt WHERE nameProjekt = ?");
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class ProjektDAO extends RemoteServiceServlet implements IProjektDAO {
 			getProjektStmt.setString(1, Navn);
 			rs = getProjektStmt.executeQuery();
 			if (rs.next())
-				return new ProjektDTO(rs.getString("Navn"), rs.getString("OpgaveNavn"));
+				return new ProjektDTO(rs.getString("nameProjekt"), rs.getString("nameOp"));
 			throw new DALException("Projekt findes ikke!");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getProjekt fejlede");
@@ -63,7 +63,7 @@ public class ProjektDAO extends RemoteServiceServlet implements IProjektDAO {
 
 			while (rs.next()) {
 				ProjektListe
-						.add(new ProjektDTO(rs.getString("Navn"), rs.getString("OpgaveNavn")));
+						.add(new ProjektDTO(rs.getString("nameProjekt"), rs.getString("nameOp")));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getProjektList fejlede");

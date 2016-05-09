@@ -13,7 +13,7 @@ public class RejseafregningDTO implements Serializable {
 	public RejseafregningDTO() { }
 	
 	public RejseafregningDTO(int rejseafregningID, String medarbejderNavn, String godkenderNavn, String anviserNavn, String land, 
-			String by, String anledning, String forklaring, String status, Date startDato, Date slutDato) {
+			String by, String anledning, String forklaring, String status, Date startDato, Date slutDato, String projektNavn) {
 		super();
 		setRejseafregningID(rejseafregningID);
 		setMedarbejderNavn(medarbejderNavn);
@@ -26,6 +26,7 @@ public class RejseafregningDTO implements Serializable {
 		setStatus(status);
 		setStartDato(startDato);
 		setSlutDato(slutDato);
+		setProjektNavn(projektNavn);
 	}
 
 	public int getRejseafregningID(){
