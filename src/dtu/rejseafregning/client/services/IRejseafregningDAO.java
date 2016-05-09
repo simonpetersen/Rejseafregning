@@ -1,6 +1,6 @@
 package dtu.rejseafregning.client.services;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.RemoteService;

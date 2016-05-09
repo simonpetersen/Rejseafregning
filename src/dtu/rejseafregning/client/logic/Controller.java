@@ -11,6 +11,7 @@ import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
+import dtu.rejseafregning.client.events.AfslutRejseafregningEventSuccess;
 import dtu.rejseafregning.client.events.GetAfsluttedeDokumenterEvent;
 import dtu.rejseafregning.client.events.GetAfsluttedeSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetAnvisningDokumenterEvent;
@@ -70,7 +71,7 @@ public class Controller {
 
 	private IGodtgoerelseDAOAsync godtgoerelseDAO = GWT.create(IGodtgoerelseDAO.class);
 	private GodtgoerelseDTO godtgoerelseDTO;
-	
+
 	private IProjektDAOAsync projektDAO = GWT.create(IProjektDAO.class);
 	private ProjektDTO projektDTO;
 
@@ -127,12 +128,13 @@ public class Controller {
 				//Tilfældet hvor der søges på både navn og status.
 				rejseafregningDAO.getRejseafregningListNavnStat(e.getMedarbejder(), e.getStatus(),
 						new AsyncCallback<List<RejseafregningDTO>>() {
-							@Override
-							public void onFailure(Throwable caught) {
-								Window.alert("Fejl i getRejseafregningListNavnStat " + caught.getMessage());
-							}
 
-							@Override
+	@Override
+	public void onFailure(Throwable caught) {
+		Window.alert("Fejl i getRejseafregningListNavnStat " + caught.getMessage());
+	}
+
+	@Override
 							public void onSuccess(List<RejseafregningDTO> result) {
 								eventBus.fireEvent(new SearchDokArkivSuccessEvent(result));
 							}
@@ -152,11 +154,12 @@ public class Controller {
 					eventBus.fireEvent(new SearchDokArkivSuccessEvent(result));
 				}
 			});
-		}
-		else{
-			//Tilfældet hvor der ikke søges på noget.
-			Window.alert("For at søge, skal der vælges mindst et navn eller en status.");
-		}
+		}else
+
+	{
+		// Tilfældet hvor der ikke søges på noget.
+		Window.alert("For at søge, skal der vælges mindst et navn eller en status.");
+	}
 
 	}
 
@@ -298,8 +301,8 @@ public class Controller {
 	}
 
 	@EventHandler
-	public void onUpdateAnvisningEvent(UpdateAnvisningStatusEvent e) {		
-		
+	public void onUpdateAnvisningEvent(UpdateAnvisningStatusEvent e) {
+
 		rejseafregningDAO.updateRejseafregningStatus(e.getRejseafregningID(), "Anvist", new AsyncCallback<Void>() {
 			@Override
 			public void onFailure(Throwable caught) {
@@ -312,9 +315,10 @@ public class Controller {
 			}
 		});
 	}
+
 	@EventHandler
 	public void onGemOgNaesteEvent(GetGemOgNaesteEvent e) {
-		
+
 		rejseafregning.setLand(e.getLand());
 		rejseafregning.setBy(e.getBy());
 		rejseafregning.setAnledning(e.getAndledning());
@@ -323,23 +327,44 @@ public class Controller {
 		rejseafregning.setStartDato(e.getStartDato());
 		rejseafregning.setSlutDato(e.getSlutDato());
 
-		
-		rejseafregningDAO.createRejseafregning(rejseafregning, new AsyncCallback<Void>(){
-			
+		rejseafregningDAO.createRejseafregning(rejseafregning, new AsyncCallback<Void>() {
+
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Fejl createRejseafregning: " + caught.getMessage());	
+				Window.alert("Fejl createRejseafregning: " + caught.getMessage());
 			}
+
 			@Override
 			public void onSuccess(Void result) {
-				Window.alert("Rejseafregningen er gemt.");
-				
+
+				rejseafregningDAO.getRejseafregningID(bruger.getBrugernavn(), rejseafregning.getProjektNavn(),
+						rejseafregning.getLand(), rejseafregning.getStartDato(), rejseafregning.getSlutDato(),
+						rejseafregning.getBy(), rejseafregning.getAnledning(), new AsyncCallback<Integer>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Fejl kunne ikke hente ID'et: " + caught.getMessage());
+
+					}
+
+					@Override
+					public void onSuccess(Integer result) {
+						rejseafregning.setRejseafregningID(result);
+					}
+
+				});
+				rejseafregning.getRejseafregningID();
+				Window.alert("ID'et er hentet.");
 			}
+
 		});
+		Window.alert("Rejseafregningen er gemt.");
+
 	}
+
 	@EventHandler
 	public void onProjektEvent(GetProjektListEvent e) {
-		projektDAO.getProjektList(new AsyncCallback<List<ProjektDTO>>(){
+		projektDAO.getProjektList(new AsyncCallback<List<ProjektDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -350,17 +375,18 @@ public class Controller {
 			public void onSuccess(List<ProjektDTO> result) {
 				eventBus.fireEvent(new GetProjektListEventSuccess(result));
 			}
-			
+
 		});
 	}
+
 	@EventHandler
 	public void onOpgaveEvent(GetOpgaveListEvent e) {
-		OpgaveDAO.getOpgaveList(new AsyncCallback<List<OpgaveDTO>>(){
+		OpgaveDAO.getOpgaveList(new AsyncCallback<List<OpgaveDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Fejl ved hentning af opgaver" + caught.getMessage());
-				
+
 			}
 
 			@Override
@@ -368,6 +394,6 @@ public class Controller {
 				eventBus.fireEvent(new GetOpgaveListEventSuccess(result));
 			}
 		});
-		
+
 	}
 }

@@ -1,6 +1,6 @@
 package dtu.rejseafregning.server.dal;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -398,8 +398,8 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			createRejseafregningStmt.setString(2, rejseafregning.getProjektNavn());
 			createRejseafregningStmt.setString(3, rejseafregning.getLand());
 			createRejseafregningStmt.setString(4, rejseafregning.getStatus());
-			createRejseafregningStmt.setDate(5, (Date) rejseafregning.getStartDato());
-			createRejseafregningStmt.setDate(6, (Date) rejseafregning.getSlutDato());
+			createRejseafregningStmt.setDate(5, new java.sql.Date(rejseafregning.getStartDato().getTime()));
+			createRejseafregningStmt.setDate(6, new java.sql.Date(rejseafregning.getSlutDato().getTime()));
 			createRejseafregningStmt.setString(7, rejseafregning.getBy());
 			createRejseafregningStmt.setString(8, rejseafregning.getAnledning());
 			createRejseafregningStmt.setString(9, rejseafregning.getAnviserNavn());
@@ -421,8 +421,8 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			updateRejseafregningStmt.setString(2, rejseafregning.getProjektNavn());
 			updateRejseafregningStmt.setString(3, rejseafregning.getLand());
 			updateRejseafregningStmt.setString(4, rejseafregning.getStatus());
-			updateRejseafregningStmt.setDate(5, (Date) rejseafregning.getStartDato());
-			updateRejseafregningStmt.setDate(6, (Date) rejseafregning.getSlutDato());
+			updateRejseafregningStmt.setDate(5, new java.sql.Date(rejseafregning.getStartDato().getTime()));
+			updateRejseafregningStmt.setDate(6, new java.sql.Date(rejseafregning.getSlutDato().getTime()));
 			updateRejseafregningStmt.setString(7, rejseafregning.getBy());
 			updateRejseafregningStmt.setString(8, rejseafregning.getAnledning());
 			updateRejseafregningStmt.setString(9, rejseafregning.getAnviserNavn());
