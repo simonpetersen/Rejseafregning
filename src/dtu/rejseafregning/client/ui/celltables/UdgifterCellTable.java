@@ -147,7 +147,7 @@ public class UdgifterCellTable extends Composite {
 		};
 
 		provider.addDataDisplay(cellTable);
-		Window.alert("addDataDisplay");
+		updateTable();
 
 		cellTable.setRowCount(udgifter.size(), true);
 		// cellTable.setRowData(0, udgifter);

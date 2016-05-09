@@ -97,10 +97,20 @@ public class TilGodkendelseCellTable extends Composite {
 		Column<GodkendelseJoinDTO, String> sumColumn = new Column<GodkendelseJoinDTO, String>(sumCell) {
 			@Override
 			public String getValue(GodkendelseJoinDTO object) {
-				return null;
+				return String.valueOf(object.getSum());
 			}
 		};
 		cellTable.addColumn(sumColumn, "Sum");
+
+		// Sum-kolonne
+		final TextCell refunderCell = new TextCell();
+		Column<GodkendelseJoinDTO, String> refunderColumn = new Column<GodkendelseJoinDTO, String>(refunderCell) {
+			@Override
+			public String getValue(GodkendelseJoinDTO object) {
+				return String.valueOf(object.getRefunderes());
+			}
+		};
+		cellTable.addColumn(refunderColumn, "Sum");
 
 		// Person-kolonne
 		final TextCell anledningCell = new TextCell();
@@ -114,17 +124,18 @@ public class TilGodkendelseCellTable extends Composite {
 
 		cellTable.setRowCount(dokumenter.size(), true);
 		cellTable.setRowData(0, dokumenter);
-		
-//		final SingleSelectionModel<GodkendelseJoinDTO> selectionModel 
-//	      = new SingleSelectionModel<GodkendelseJoinDTO>();
-//	      cellTable.setSelectionModel(selectionModel);
-//	      selectionModel.addSelectionChangeHandler(
-	     
+
+		// final SingleSelectionModel<GodkendelseJoinDTO> selectionModel
+		// = new SingleSelectionModel<GodkendelseJoinDTO>();
+		// cellTable.setSelectionModel(selectionModel);
+		// selectionModel.addSelectionChangeHandler(
+
 	}
-	
-	public void setSelectiongChangeHandler(SingleSelectionModel<GodkendelseJoinDTO> selectionModel, SelectionChangeEvent.Handler handler) {
-	    cellTable.setSelectionModel(selectionModel);
-	    selectionModel.addSelectionChangeHandler(handler);
+
+	public void setSelectiongChangeHandler(SingleSelectionModel<GodkendelseJoinDTO> selectionModel,
+			SelectionChangeEvent.Handler handler) {
+		cellTable.setSelectionModel(selectionModel);
+		selectionModel.addSelectionChangeHandler(handler);
 	}
 
 }

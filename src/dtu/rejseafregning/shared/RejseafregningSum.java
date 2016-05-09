@@ -4,23 +4,13 @@ import java.util.List;
 
 public class RejseafregningSum {
 	
-	private RejseafregningDTO rejseafregning;
-	private List<RejsedagDTO> rejsedage;
-	private List<UdgiftDTO> udgifter;
-	private GodtgoerelseDTO godtgoerelse;
 	private double sum, refunderes;
 	
-	public RejseafregningSum(RejseafregningDTO rejseafregning, List<RejsedagDTO> rejsedage, List<UdgiftDTO> udgifter, 
-			GodtgoerelseDTO godtgoerelse) {
-		this.rejseafregning = rejseafregning;
-		this.rejsedage = rejsedage;
-		this.udgifter = udgifter;
-		this.godtgoerelse = godtgoerelse;
+	public RejseafregningSum() {}
+	
+	public void beregnSum(RejseafregningDTO rejseafregning, List<RejsedagDTO> rejsedage, List<UdgiftDTO> udgifter, GodtgoerelseDTO godtgoerelse) {
 		sum = 0;
 		refunderes = 0;
-	}
-	
-	public void beregnSum() {
 		for (RejsedagDTO r : rejsedage) {
 			double dag = godtgoerelse.getDagPengeSats();
 			if (r.harMorgenmad()) dag -= godtgoerelse.getDagPengeSats()*0.15;
@@ -37,14 +27,7 @@ public class RejseafregningSum {
 				else refunderes += godtgoerelse.getHotelDisposition();
 			}
 		}
+		rejseafregning.setSum(sum);
+		rejseafregning.setRefunderes(refunderes);
 	}
-	
-	public double getSum() {
-		return sum;
-	}
-	
-	public double getRefunderes() {
-		return refunderes;
-	}
-
 }

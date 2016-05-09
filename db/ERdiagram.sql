@@ -26,11 +26,11 @@ CREATE TABLE bilag
 
 CREATE TABLE godtgoerelse
 (
-	Land varchar(20) NOT NULL,
-	Dagpengesats double(5,2) NOT NULL,
-	Timepengesats double(5,2) NOT NULL,
-	Hoteldisposition int NOT NULL,
-	PRIMARY KEY (Land)
+	land varchar(20) NOT NULL,
+	dagpengesats double(5,2) NOT NULL,
+	timepengesats double(5,2) NOT NULL,
+	hoteldisposition int NOT NULL,
+	PRIMARY KEY (land)
 );
 
 
@@ -79,6 +79,8 @@ CREATE TABLE rejseafregning
 	anviser varchar(35) NOT NULL,
 	godkender varchar(35) NOT NULL,
 	forklaring varchar(1000),
+	sum double(9,2) NOT NULL,
+	refunderes double(9,2) NOT NULL,
 	PRIMARY KEY (rejseafregning_ID)
 );
 
@@ -124,7 +126,7 @@ ALTER TABLE udgift
 
 ALTER TABLE rejseafregning
 	ADD FOREIGN KEY (land)
-	REFERENCES godtgoerelse (Land)
+	REFERENCES godtgoerelse (land)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;

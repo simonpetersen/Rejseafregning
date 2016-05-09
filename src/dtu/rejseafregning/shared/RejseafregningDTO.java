@@ -9,11 +9,13 @@ public class RejseafregningDTO implements Serializable {
 	private String medarbejderNavn, godkenderNavn, anviserNavn, anledning, land, by, status, forklaring, projektNavn;
 	private Date startDato, slutDato;
 	private int rejseafregningID;
+	private double sum, refunderes;
 	
 	public RejseafregningDTO() { }
 	
 	public RejseafregningDTO(int rejseafregningID, String medarbejderNavn, String godkenderNavn, String anviserNavn, String land, 
-			String by, String anledning, String forklaring, String status, Date startDato, Date slutDato, String projektNavn) {
+			String by, String anledning, String forklaring, String status, Date startDato, Date slutDato, String projektNavn, 
+			double sum, double refunderes) {
 		super();
 		setRejseafregningID(rejseafregningID);
 		setMedarbejderNavn(medarbejderNavn);
@@ -27,6 +29,8 @@ public class RejseafregningDTO implements Serializable {
 		setStartDato(startDato);
 		setSlutDato(slutDato);
 		setProjektNavn(projektNavn);
+		setSum(sum);
+		setRefunderes(refunderes);
 	}
 
 	public int getRejseafregningID(){
@@ -123,6 +127,22 @@ public class RejseafregningDTO implements Serializable {
 
 	public void setProjektNavn(String projektNavn) {
 		this.projektNavn = projektNavn;
+	}
+
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
+	public double getRefunderes() {
+		return refunderes;
+	}
+
+	public void setRefunderes(double refunderes) {
+		this.refunderes = refunderes;
 	}
 
 }

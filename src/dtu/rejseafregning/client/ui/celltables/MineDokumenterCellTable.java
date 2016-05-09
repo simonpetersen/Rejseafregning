@@ -117,11 +117,19 @@ public class MineDokumenterCellTable extends Composite {
 		Column<RejseafregningDTO, String> sumColumn = new Column<RejseafregningDTO, String>(sumCell) {
 			@Override
 			public String getValue(RejseafregningDTO object) {
-//				return String.valueOf(object.getSum());
-				return "0";
+				return String.valueOf(object.getSum());
 			}
 		};
 		cellTable.addColumn(sumColumn, "Sum");
+		
+		final TextCell refunderCell = new TextCell();
+		Column<RejseafregningDTO, String> refunderColumn = new Column<RejseafregningDTO, String>(refunderCell) {
+			@Override
+			public String getValue(RejseafregningDTO object) {
+				return String.valueOf(object.getSum());
+			}
+		};
+		cellTable.addColumn(refunderColumn, "Sum");
 		
 		cellTable.setRowCount(dokumenter.size(), true);
 		cellTable.setRowData(0, dokumenter);
