@@ -6,7 +6,20 @@ import java.util.List;
 import com.google.web.bindery.event.shared.binder.GenericEvent;
 
 public class GetGemOgNaesteEvent extends GenericEvent {
-	String land, by, andledning, forklaring, projekt, opgave;
+	String land, by, andledning, forklaring, projekt, opgave, godkender, anviser;
+	
+	public String getGodkender() {
+		return godkender;
+	}
+	public void setGodkender(String godkender) {
+		this.godkender = godkender;
+	}
+	public String getAnviser() {
+		return anviser;
+	}
+	public void setAnviser(String anviser) {
+		this.anviser = anviser;
+	}
 	Date startDato, slutDato;
 	
 	
@@ -60,7 +73,7 @@ public class GetGemOgNaesteEvent extends GenericEvent {
 	}
 	List<String> alt;
 	
-	public GetGemOgNaesteEvent(String land, String by, Date startDato, Date slutDato, String andledning, String forklaring, String projekt, String opgave) {
+	public GetGemOgNaesteEvent(String land, String by, String godkender, String anviser, Date startDato, Date slutDato, String andledning, String forklaring, String projekt, String opgave) {
 		this.land = land;
 		this.by = by;
 		this.startDato = startDato;
@@ -69,5 +82,7 @@ public class GetGemOgNaesteEvent extends GenericEvent {
 		this.forklaring = forklaring;
 		this.projekt = projekt;
 		this.opgave = opgave;
+		this.godkender = godkender;
+		this.anviser = anviser;
 	}
 }

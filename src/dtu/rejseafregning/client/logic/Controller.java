@@ -1,5 +1,6 @@
 package dtu.rejseafregning.client.logic;
 
+import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
@@ -68,7 +69,7 @@ public class Controller {
 	private IOpgaveDAOAsync OpgaveDAO = GWT.create(IOpgaveDAO.class);
 	private OpgaveDTO opgaveDTO;
 
-	private RejseafregningDTO rejseafregning;
+	
 
 	private IGodtgoerelseDAOAsync godtgoerelseDAO = GWT.create(IGodtgoerelseDAO.class);
 	private GodtgoerelseDTO godtgoerelseDTO;
@@ -78,6 +79,8 @@ public class Controller {
 
 	private IRejseafregningDAOAsync rejseafregningDAO = GWT.create(IRejseafregningDAO.class);
 	private IMedarbejderDAOAsync medarbejderDAO = GWT.create(IMedarbejderDAO.class);
+	
+	private RejseafregningDTO rejseafregning;
 
 	interface MyEventBinder extends EventBinder<Controller> {
 	}
@@ -319,15 +322,8 @@ public class Controller {
 
 	@EventHandler
 	public void onGemOgNaesteEvent(GetGemOgNaesteEvent e) {
-
-		rejseafregning.setLand(e.getLand());
-		rejseafregning.setBy(e.getBy());
-		rejseafregning.setAnledning(e.getAndledning());
-		rejseafregning.setForklaring(e.getForklaring());
-		rejseafregning.setProjektNavn(e.getProjekt());
-		rejseafregning.setStartDato(e.getStartDato());
-		rejseafregning.setSlutDato(e.getSlutDato());
-
+		
+		rejseafregning = new RejseafregningDTO(0, bruger.getBrugernavn(),e.getGodkender(),e.getAnviser(), e.getLand(), e.getBy(), e.getAndledning(), e.getForklaring(), "Til godkendelse", e.getStartDato(), e.getSlutDato(), e.getProjekt());			
 		rejseafregningDAO.createRejseafregning(rejseafregning, new AsyncCallback<Void>() {
 
 			@Override
@@ -341,23 +337,19 @@ public class Controller {
 				rejseafregningDAO.getRejseafregningID(bruger.getBrugernavn(), rejseafregning.getProjektNavn(),
 						rejseafregning.getLand(), rejseafregning.getStartDato(), rejseafregning.getSlutDato(),
 						rejseafregning.getBy(), rejseafregning.getAnledning(), new AsyncCallback<Integer>() {
-
+					
 					@Override
 					public void onFailure(Throwable caught) {
 						Window.alert("Fejl kunne ikke hente ID'et: " + caught.getMessage());
-
 					}
-
 					@Override
 					public void onSuccess(Integer result) {
 						rejseafregning.setRejseafregningID(result);
 					}
-
 				});
 				rejseafregning.getRejseafregningID();
 				Window.alert("ID'et er hentet.");
 			}
-
 		});
 		Window.alert("Rejseafregningen er gemt.");
 

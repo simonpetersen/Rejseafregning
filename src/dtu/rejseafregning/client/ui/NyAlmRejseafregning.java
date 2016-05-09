@@ -26,6 +26,7 @@ import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.GetGemOgNaesteEvent;
+import dtu.rejseafregning.client.events.GetMedarbejderListEventSuccess;
 import dtu.rejseafregning.client.events.GetGodtgoerelseListEvent;
 import dtu.rejseafregning.client.events.GetGodtgoerelsesListSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetOpgaveListEvent;
@@ -49,6 +50,8 @@ public class NyAlmRejseafregning extends Composite {
 	@UiField HorizontalPanel hPanel1;
 	@UiField SuggestBox suggest, suggest2;
 	@UiField ListBox dropLand,dropDownProj, dropDownOpga1;
+	@UiField ListBox anviser;
+	@UiField ListBox godkender;
 	
 	List<ProjektDTO> projektDTO;
 	List<OpgaveDTO> opgaveDTO;
@@ -93,8 +96,7 @@ public class NyAlmRejseafregning extends Composite {
 	
 	@UiHandler("gemogneste")
  	void onButtonClick7(ClickEvent event) {
-		eventBus.fireEvent(new GetGemOgNaesteEvent(dropLand.getElement().toString(),txtby.getText(),datePicker1.getValue(), datePicker2.getValue(), andledtxt.getText(), forklaringtxt.getText(), dropDownProj.getElement().toString(), dropDownOpga1.getElement().toString()));
-		
+		eventBus.fireEvent(new GetGemOgNaesteEvent(dropLand.getElement().toString(),txtby.getText(), godkender.getElement().toString(), anviser.getElement().toString(), datePicker1.getValue(), datePicker2.getValue(), andledtxt.getText(), forklaringtxt.getText(), dropDownProj.getElement().toString(), dropDownOpga1.getElement().toString()));		
  	} 	
 	
 	@EventHandler
@@ -113,6 +115,18 @@ public class NyAlmRejseafregning extends Composite {
 	public void getOpg1ListEvent(GetOpgaveListEventSuccess e){
 		for(int i = 0; i < e.getOpgaveList().size(); i++){
 			dropDownOpga1.addItem(e.getOpgaveList().get(i).getOpgaveNavn());
+		}
+	}
+	@EventHandler
+	public void getGodkender(GetMedarbejderListEventSuccess e) {
+		for(int i = 0; i < e.getMedarbejderDTO().size(); i++) {
+			godkender.addItem(e.getMedarbejderDTO().get(i).getNavn());
+		}
+	}
+	@EventHandler
+	public void getAnviser(GetMedarbejderListEventSuccess e) {
+		for(int i = 0; i < e.getMedarbejderDTO().size(); i++) {
+			anviser.addItem(e.getMedarbejderDTO().get(i).getNavn());
 		}
 	}
 	@EventHandler

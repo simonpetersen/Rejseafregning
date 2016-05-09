@@ -93,6 +93,25 @@
 					<g:SuggestBox ui:field="suggest2"/>
 				</g:VerticalPanel>
 			</g:HorizontalPanel>
+			<g:Label text="Personale:" styleName="{style.overskrift}"/>
+			<g:Grid>
+				<g:row>
+					<g:customCell>
+						<g:Label text="Godkender:"/>
+					</g:customCell>
+					<g:customCell>
+						<g:ListBox ui:field="godkender"/>
+					</g:customCell>
+				</g:row>
+				<g:row>
+					<g:customCell>
+						<g:Label text="Anviser:"/>
+					</g:customCell>
+					<g:customCell>
+						<g:ListBox ui:field="anviser"/>
+					</g:customCell>
+				</g:row>
+			</g:Grid>
 			<g:Button text="Gem og næste" ui:field="gemogneste"/>
 		</g:VerticalPanel>
 		</g:ScrollPanel>
