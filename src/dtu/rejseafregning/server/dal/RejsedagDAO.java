@@ -49,7 +49,7 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 
 			rs = getRejsedagStmt.executeQuery();
 			if (rs.next())
-				return new RejsedagDTO(rs.getInt("rejsedag_ID"), rs.getBoolean("morgenmad"), rs.getBoolean("frokost"),
+				return new RejsedagDTO(rs.getInt("rejsedag_ID"), rs.getInt("rejseafregning_ID"), rs.getBoolean("morgenmad"), rs.getBoolean("frokost"),
 					rs.getBoolean("aftensmad"), rs.getTime("start"), rs.getTime("slut"), rs.getDate("dato"));
 			throw new DALException("Rejsedag findes ikke!");
 		} catch (SQLException e) {
@@ -67,8 +67,8 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 			rs = getRejsedagListStmt.executeQuery();
 
 			while (rs.next()) {
-				RejsedagListe.add(new RejsedagDTO(rs.getInt("Rejsedag_ID"), rs.getBoolean("Morgenmad"),
-						rs.getBoolean("Frokost"), rs.getBoolean("Aftensmad"), rs.getTime("Start"), rs.getTime("Slut"), rs.getDate("dato")));
+				RejsedagListe.add(new RejsedagDTO(rs.getInt("rejsedag_ID"), rs.getInt("rejseafregning_ID"), rs.getBoolean("morgenmad"),
+						rs.getBoolean("frokost"), rs.getBoolean("aftensmad"), rs.getTime("start"), rs.getTime("slut"), rs.getDate("dato")));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getRejsedgList fejlede");
@@ -89,7 +89,7 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 	public void createRejsedag(RejsedagDTO rejsedag) throws DALException {
 		try{
 			//Argumenter til statement
-			createRejsedagStmt.setInt(1, rejsedag.getRejsedagID());
+			createRejsedagStmt.setInt(1, rejsedag.getRejseafregningID());
 			createRejsedagStmt.setDate(2, (Date) rejsedag.getDato());
 			createRejsedagStmt.setTime(3, rejsedag.getStart());
 			createRejsedagStmt.setTime(4, rejsedag.getSlut());
