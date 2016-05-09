@@ -70,11 +70,6 @@ public class VisRejseafregning extends Composite {
 		udgifter1.setText(String.valueOf(e.getInfoUdgift().getUdgiftID()));
 		
 	}
-	@EventHandler
-	public void getBilafInfoEvent(GetBilagInfoSuccessEvent e) {
-		bilag1.setText(String.valueOf(e.getBilag().getBillede()));
-		
-	}
 	
 	public void hentGemteRejseafregninger() {
 		List<RejseafregningDTO> rejseDTO;
