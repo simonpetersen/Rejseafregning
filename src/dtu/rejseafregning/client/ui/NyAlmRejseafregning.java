@@ -1,10 +1,12 @@
 package dtu.rejseafregning.client.ui;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -26,13 +28,13 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
+import dtu.rejseafregning.client.events.GetGemOgNaesteEvent;
 import dtu.rejseafregning.client.events.GetGodtgoerelseListEvent;
 import dtu.rejseafregning.client.events.GetGodtgoerelsesListSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetOpgaveListEvent;
 import dtu.rejseafregning.client.events.GetProjektListEvent;
 import dtu.rejseafregning.client.events.GetSuggestListEvent;
 import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
-import dtu.rejseafregning.client.events.NyKontostrengEvent;
 import dtu.rejseafregning.client.events.UdgifterEvent;
 import dtu.rejseafregning.shared.OpgaveDTO;
 import dtu.rejseafregning.shared.ProjektDTO;
@@ -43,16 +45,14 @@ public class NyAlmRejseafregning extends Composite {
 	private static NyAlmRejseafregningUiBinder uiBinder = GWT.create(NyAlmRejseafregningUiBinder.class);
 	@UiField Label basis;
 	@UiField ScrollPanel scPanel1;
-	@UiField Button seach1, search2, nyopdkonto, addOpdeling, gemogneste;
+	@UiField Button seach1, search2, gemogneste;
 	@UiField DatePicker datePicker1, datePicker2;
-	@UiField DoubleBox opgaveDoub2;
-	@UiField TextBox opgaveInt2, txtby, andledtxt, forklaringtxt,opdelingInt1;
+	@UiField TextBox txtby, andledtxt, forklaringtxt;
 	@UiField Grid grid1;
-	@UiField VerticalPanel vPanel3, vPanel4;
+	@UiField VerticalPanel vPanel3;
 	@UiField HorizontalPanel hPanel1;
 	@UiField SuggestBox suggest, suggest2;
-	@UiField ListBox dropLand,dropDownProj, dropDownOpga1, dropDownOpg2;
-	@UiField Label projekt33;
+	@UiField ListBox dropLand,dropDownProj, dropDownOpga1;
 	
 	private final EventBus eventBus;
 	
@@ -78,8 +78,6 @@ public class NyAlmRejseafregning extends Composite {
 	
 	public void visibility() {
 		vPanel3.setVisible(false);
-		vPanel4.setVisible(false);
-		addOpdeling.setVisible(false);
 	}
 	
 	@UiHandler("seach1")
@@ -91,21 +89,10 @@ public class NyAlmRejseafregning extends Composite {
  		vPanel3.setVisible(true);
  	}
 	
-	@UiHandler("nyopdkonto")
- 	void onButtonClick5(ClickEvent event) {
- 		vPanel4.setVisible(true);
- 		addOpdeling.setVisible(true);
- 	}
-	
-	@UiHandler("addOpdeling")
- 	void onButtonClick6(ClickEvent event) {
-		eventBus.fireEvent(new NyKontostrengEvent(dropDownOpg2.getElement().toString(), opgaveInt2.getText(), opgaveDoub2.getValue()));
- 	}
-	
 	@UiHandler("gemogneste")
  	void onButtonClick7(ClickEvent event) {
 		// Ikke færdig, skal gemmes i databasen.
- 		eventBus.fireEvent(new UdgifterEvent(dropLand.getElement().toString(),txtby.getText(),andledtxt.getText(), forklaringtxt.getText(), dropDownProj.getElement().toString(), dropDownOpga1.getElement().toString(), opdelingInt1.getText()  ));
+		eventBus.fireEvent(new GetGemOgNaesteEvent(dropLand.getElement().toString(),txtby.getText(),datePicker1.getValue(), datePicker2.getValue(), andledtxt.getText(), forklaringtxt.getText(), dropDownProj.getElement().toString(), dropDownOpga1.getElement().toString()));
  	} 	
 	
 	@EventHandler
@@ -127,12 +114,6 @@ public class NyAlmRejseafregning extends Composite {
 		}
 	}
 	@EventHandler
-	public void getOpg2ListEvent(GetOpgaveListEvent e) {
-		for(int i = 0; i < e.getOpgaveList().size(); i++) {
-			dropDownOpg2.addItem(e.getOpgaveList().get(i).getOpgaveNavn());
-		}
-	}
-	@EventHandler
 	public void getSuggestListEvent(GetSuggestListEvent e) {
 		for(int i = 0; i < e.getProjektList().size(); i++) {
 			MultiWordSuggestOracle suggestbox = (MultiWordSuggestOracle) suggest.getSuggestOracle();
@@ -149,17 +130,6 @@ public class NyAlmRejseafregning extends Composite {
 			}			
 
 		}
-	}
-	public void gemBasisInfo() {
-		txtby.getText();
-		datePicker1.getValue();
-		datePicker2.getValue();
-		andledtxt.getText();
-		forklaringtxt.getText();
-		
-	}
-	public void gemDimentionerInfo() {
-		opdelingInt1.getText();
 	}
 }
 

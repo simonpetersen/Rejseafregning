@@ -104,14 +104,6 @@
 					<g:Label text="New Label" ui:field="forklaring1"/>
 				</g:customCell>
 			</g:row>
-			<g:row>
-				<g:customCell>
-					<g:Label text="Opdeling af kontostreng:"/>
-				</g:customCell>
-				<g:customCell>
-					<g:Label text="New Label" ui:field="opdeling1"/>
-				</g:customCell>
-			</g:row>
 		</g:Grid>
 			<g:Label text="Udgifter og Bilag:" styleName="{style.overskrift}"/>
 			<g:Grid width="100%">

@@ -84,14 +84,6 @@
 								<g:Button ui:field="search2">Søg</g:Button>
 							</g:customCell>
 						</g:row>
-						<g:row>
-							<g:customCell>
-								<g:Label text="Opdeling %" ui:field="opdeling"/>
-							</g:customCell>
-							<g:customCell>
-								<g:TextBox ui:field="opdelingInt1"/>
-							</g:customCell>
-						</g:row>
 					</g:Grid>
 			</g:VerticalPanel>
 				<g:VerticalPanel ui:field="vPanel3">
@@ -101,51 +93,6 @@
 					<g:SuggestBox ui:field="suggest2"/>
 				</g:VerticalPanel>
 			</g:HorizontalPanel>
-			<g:Label text="Opdeling af kontostreng: " ui:field="opdKonto1" styleName="{style.overskrift}"/>
-			<g:Grid>
-				<g:row>
-					<g:customCell>
-						<g:Label text="Projekt: " ui:field="projekt2"/>
-					</g:customCell>
-					<g:customCell>
-						<g:Label text="Opgave: " ui:field="opgave4"/>
-					</g:customCell>
-					<g:customCell>
-						<g:Label text="Opdeling kr.: " ui:field="nyopdkonto5"/>
-					</g:customCell>
-					<g:customCell>
-						<g:Label text="Opdeling %: " ui:field="nyopdkonto4"/>
-					</g:customCell>
-					<g:customCell>
-						<g:Button text="Slet" ui:field="slet"/>
-					</g:customCell>
-				</g:row>
-				<g:row>
-					<g:customCell>
-						<g:Label text="New Label" ui:field="projekt33"/>
-					</g:customCell>
-					<g:customCell>
-						<g:Label text="New Label" ui:field="opgave5"/>
-					</g:customCell>
-					<g:customCell>
-						<g:Label text="New Label" ui:field="opgaveDoub3"/>
-					</g:customCell>
-					<g:customCell>
-						<g:Label text="New Label" ui:field="opdelingPro2"/>
-					</g:customCell>
-				</g:row>
-			</g:Grid>
-			<g:Button text="Ny opdelign af kontostreng" ui:field="nyopdkonto"/>
-			<g:VerticalPanel ui:field="vPanel4">
-				<g:Label text="Opdeling i procenter (%) og i kroner : " ui:field="nyopdkonto2"/>
-				<g:Label text="Opgave: " ui:field="opgave2"/>
-				<g:ListBox ui:field="dropDownOpg2"/>
-				<g:Label text="Opdeling %" direction="LTR" ui:field="opdelingPro"/>
-				<g:TextBox ui:field="opgaveInt2"/>
-				<g:Label text="Opdeling kr." ui:field="opdelingKr"/>
-				<g:DoubleBox ui:field="opgaveDoub2"/>
-				<g:Button text="Tilføj" ui:field="addOpdeling"/>
-			</g:VerticalPanel>
 			<g:Button text="Gem og næste" ui:field="gemogneste"/>
 		</g:VerticalPanel>
 		</g:ScrollPanel>

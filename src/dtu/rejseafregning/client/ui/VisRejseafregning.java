@@ -34,7 +34,6 @@ public class VisRejseafregning extends Composite {
 	@UiField Label by1;
 	@UiField Label anledning1;
 	@UiField Label forklaring1;
-	@UiField Label opdeling1;
 	@UiField Label udgifter1;
 	@UiField Label bilag1;
 	

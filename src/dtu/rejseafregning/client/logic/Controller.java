@@ -18,6 +18,7 @@ import dtu.rejseafregning.client.events.GetAnvisningerSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetCirkulationSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetDokumenterCirkulationEvent;
 import dtu.rejseafregning.client.events.GetDokumenterUdkastEvent;
+import dtu.rejseafregning.client.events.GetGemOgNaesteEvent;
 import dtu.rejseafregning.client.events.GetGodkendelseDokumenterEvent;
 import dtu.rejseafregning.client.events.GetGodkendelseSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetGodtgoerelseListEvent;
@@ -285,7 +286,8 @@ public class Controller {
 	}
 
 	@EventHandler
-	public void onUpdateAnvisningEvent(UpdateAnvisningStatusEvent e) {
+	public void onUpdateAnvisningEvent(UpdateAnvisningStatusEvent e) {		
+		
 		rejseafregningDAO.updateRejseafregningStatus(e.getRejseafregningID(), "Anvist", new AsyncCallback<Void>() {
 			@Override
 			public void onFailure(Throwable caught) {
@@ -295,6 +297,31 @@ public class Controller {
 			@Override
 			public void onSuccess(Void result) {
 				Window.alert("Rejseafregning er anvist!");
+			}
+		});
+	}
+	@EventHandler
+	public void onGemOgNaesteEvent(GetGemOgNaesteEvent e) {
+		
+		rejseafregning.setLand(e.getLand());
+		rejseafregning.setBy(e.getBy());
+		rejseafregning.setAnledning(e.getAndledning());
+		rejseafregning.setForklaring(e.getForklaring());
+		rejseafregning.setProjektNavn(e.getProjekt());
+		rejseafregning.setStartDato(e.getStartDato());
+		rejseafregning.setSlutDato(e.getSlutDato());
+
+		
+		rejseafregningDAO.createRejseafregning(rejseafregning, new AsyncCallback<Void>(){
+			
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl createRejseafregning: " + caught.getMessage());	
+			}
+			@Override
+			public void onSuccess(Void result) {
+				Window.alert("Rejseafregningen er gemt.");
+				
 			}
 		});
 	}
