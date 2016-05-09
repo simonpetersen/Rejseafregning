@@ -5,8 +5,6 @@ import java.util.List;
 
 import com.google.web.bindery.event.shared.binder.GenericEvent;
 
-import dtu.rejseafregning.shared.OpgaveDTO;
-
 public class GetGemOgNaesteEvent extends GenericEvent {
 	String land, by, andledning, forklaring, projekt, opgave;
 	Date startDato, slutDato;
@@ -67,14 +65,6 @@ public class GetGemOgNaesteEvent extends GenericEvent {
 		this.by = by;
 		this.startDato = startDato;
 		this.slutDato = slutDato;
-		this.andledning = andledning;
-		this.forklaring = forklaring;
-		this.projekt = projekt;
-		this.opgave = opgave;
-	}
-	public GetGemOgNaesteEvent(String land, String by, String andledning, String forklaring, String projekt, String opgave, String opdeling) {
-		this.land = land;
-		this.by = by;
 		this.andledning = andledning;
 		this.forklaring = forklaring;
 		this.projekt = projekt;

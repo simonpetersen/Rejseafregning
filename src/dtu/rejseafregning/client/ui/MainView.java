@@ -15,6 +15,8 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
+import dtu.rejseafregning.client.events.AfslutRejseafregningEvent;
+import dtu.rejseafregning.client.events.GetGemOgNaesteEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
@@ -37,6 +39,7 @@ public class MainView extends Composite {
 	private DokumenterView dokView;
 	private NyAlmRejseafregning nyalmrejseafregningView;
 	private UdgifterView udgifterView;
+	private VisRejseafregning visRejseafregning;
 	
 	private final EventBus eventBus;
 	
@@ -63,6 +66,7 @@ public class MainView extends Composite {
 		contentPanel.showWidget(velkommenView);
 		contentPanel.add(nyalmrejseafregningView);
 		contentPanel.add(udgifterView);
+		contentPanel.add(visRejseafregning);
 		
 	}
 	
@@ -102,8 +106,11 @@ public class MainView extends Composite {
 		contentPanel.showWidget(nyalmrejseafregningView);
 	}
 	@EventHandler
-	public void getUdgifterEvent(UdgifterEvent e) {
+	public void getUdgifterEvent(GetGemOgNaesteEvent e) {
 		contentPanel.showWidget(udgifterView);
 	}
-	
+	@EventHandler
+	public void getVisRejseafregning(AfslutRejseafregningEvent e) {
+		contentPanel.showWidget(visRejseafregning);
+	}
 }

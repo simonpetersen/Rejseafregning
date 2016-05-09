@@ -8,14 +8,6 @@ import dtu.rejseafregning.shared.OpgaveDTO;
 
 public class GetOpgaveListEvent extends GenericEvent {
 	
-List<OpgaveDTO> opgaveDTO;
-	
-	public GetOpgaveListEvent(List<OpgaveDTO> opgaveDTO) {
-		this.opgaveDTO = opgaveDTO;
-	}
-	
-	public List<OpgaveDTO> getOpgaveList() {
-		return opgaveDTO;
-	}
+
 
 }

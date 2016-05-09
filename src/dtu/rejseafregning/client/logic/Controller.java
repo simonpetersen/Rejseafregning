@@ -25,6 +25,10 @@ import dtu.rejseafregning.client.events.GetGodtgoerelseListEvent;
 import dtu.rejseafregning.client.events.GetGodtgoerelsesListSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListSuccessfullEvent;
+import dtu.rejseafregning.client.events.GetOpgaveListEvent;
+import dtu.rejseafregning.client.events.GetOpgaveListEventSuccess;
+import dtu.rejseafregning.client.events.GetProjektListEvent;
+import dtu.rejseafregning.client.events.GetProjektListEventSuccess;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
 import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
@@ -38,12 +42,16 @@ import dtu.rejseafregning.client.services.IMedarbejderDAO;
 import dtu.rejseafregning.client.services.IMedarbejderDAOAsync;
 import dtu.rejseafregning.client.services.IOpgaveDAO;
 import dtu.rejseafregning.client.services.IOpgaveDAOAsync;
+import dtu.rejseafregning.client.services.IProjektDAO;
+import dtu.rejseafregning.client.services.IProjektDAOAsync;
 import dtu.rejseafregning.client.services.IRejseafregningDAO;
 import dtu.rejseafregning.client.services.IRejseafregningDAOAsync;
 import dtu.rejseafregning.client.ui.MainView;
 import dtu.rejseafregning.shared.GodkendelseJoinDTO;
 import dtu.rejseafregning.shared.GodtgoerelseDTO;
 import dtu.rejseafregning.shared.MedarbejderDTO;
+import dtu.rejseafregning.shared.OpgaveDTO;
+import dtu.rejseafregning.shared.ProjektDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
 public class Controller {
@@ -56,11 +64,15 @@ public class Controller {
 	private MedarbejderDTO bruger;
 
 	private IOpgaveDAOAsync OpgaveDAO = GWT.create(IOpgaveDAO.class);
+	private OpgaveDTO opgaveDTO;
 
 	private RejseafregningDTO rejseafregning;
 
 	private IGodtgoerelseDAOAsync godtgoerelseDAO = GWT.create(IGodtgoerelseDAO.class);
 	private GodtgoerelseDTO godtgoerelseDTO;
+	
+	private IProjektDAOAsync projektDAO = GWT.create(IProjektDAO.class);
+	private ProjektDTO projektDTO;
 
 	private IRejseafregningDAOAsync rejseafregningDAO = GWT.create(IRejseafregningDAO.class);
 	private IMedarbejderDAOAsync medarbejderDAO = GWT.create(IMedarbejderDAO.class);
@@ -324,5 +336,38 @@ public class Controller {
 				
 			}
 		});
+	}
+	@EventHandler
+	public void onProjektEvent(GetProjektListEvent e) {
+		projektDAO.getProjektList(new AsyncCallback<List<ProjektDTO>>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl ved hentning af projekter" + caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(List<ProjektDTO> result) {
+				eventBus.fireEvent(new GetProjektListEventSuccess(result));
+			}
+			
+		});
+	}
+	@EventHandler
+	public void onOpgaveEvent(GetOpgaveListEvent e) {
+		OpgaveDAO.getOpgaveList(new AsyncCallback<List<OpgaveDTO>>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl ved hentning af opgaver" + caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(List<OpgaveDTO> result) {
+				eventBus.fireEvent(new GetOpgaveListEventSuccess(result));
+			}
+		});
+		
 	}
 }

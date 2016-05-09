@@ -97,7 +97,7 @@ public class TilGodkendelseCellTable extends Composite {
 		Column<GodkendelseJoinDTO, String> sumColumn = new Column<GodkendelseJoinDTO, String>(sumCell) {
 			@Override
 			public String getValue(GodkendelseJoinDTO object) {
-				return Double.toString(object.getSum());
+				return null;
 			}
 		};
 		cellTable.addColumn(sumColumn, "Sum");

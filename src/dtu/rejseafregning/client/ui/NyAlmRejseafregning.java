@@ -1,18 +1,15 @@
 package dtu.rejseafregning.client.ui;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DoubleBox;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -32,13 +29,12 @@ import dtu.rejseafregning.client.events.GetGemOgNaesteEvent;
 import dtu.rejseafregning.client.events.GetGodtgoerelseListEvent;
 import dtu.rejseafregning.client.events.GetGodtgoerelsesListSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetOpgaveListEvent;
+import dtu.rejseafregning.client.events.GetOpgaveListEventSuccess;
 import dtu.rejseafregning.client.events.GetProjektListEvent;
+import dtu.rejseafregning.client.events.GetProjektListEventSuccess;
 import dtu.rejseafregning.client.events.GetSuggestListEvent;
-import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
-import dtu.rejseafregning.client.events.UdgifterEvent;
 import dtu.rejseafregning.shared.OpgaveDTO;
 import dtu.rejseafregning.shared.ProjektDTO;
-import com.google.gwt.user.client.ui.IntegerBox;
 
 public class NyAlmRejseafregning extends Composite {
 
@@ -70,6 +66,8 @@ public class NyAlmRejseafregning extends Composite {
  		this.eventBus = eventBus;
   		eventBinder.bindEventHandlers(this, eventBus);
   		eventBus.fireEvent(new GetGodtgoerelseListEvent());
+  		eventBus.fireEvent(new GetProjektListEvent());
+  		eventBus.fireEvent(new GetOpgaveListEvent());
   		visibility();
   	}
 
@@ -91,8 +89,8 @@ public class NyAlmRejseafregning extends Composite {
 	
 	@UiHandler("gemogneste")
  	void onButtonClick7(ClickEvent event) {
-		// Ikke færdig, skal gemmes i databasen.
 		eventBus.fireEvent(new GetGemOgNaesteEvent(dropLand.getElement().toString(),txtby.getText(),datePicker1.getValue(), datePicker2.getValue(), andledtxt.getText(), forklaringtxt.getText(), dropDownProj.getElement().toString(), dropDownOpga1.getElement().toString()));
+		
  	} 	
 	
 	@EventHandler
@@ -102,13 +100,13 @@ public class NyAlmRejseafregning extends Composite {
 		}
 	}
 	@EventHandler
-	public void getProListEvent(GetProjektListEvent e){
+	public void getProListEvent(GetProjektListEventSuccess e){
 		for(int i = 0; i < e.getProjektList().size(); i++){
 			dropDownProj.addItem(e.getProjektList().get(i).getProjektNavn());
 		}
 	}
 	@EventHandler
-	public void getOpg1ListEvent(GetOpgaveListEvent e){
+	public void getOpg1ListEvent(GetOpgaveListEventSuccess e){
 		for(int i = 0; i < e.getOpgaveList().size(); i++){
 			dropDownOpga1.addItem(e.getOpgaveList().get(i).getOpgaveNavn());
 		}
