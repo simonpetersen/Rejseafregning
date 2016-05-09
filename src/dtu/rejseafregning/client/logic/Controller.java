@@ -323,14 +323,13 @@ public class Controller {
 	@EventHandler
 	public void onGemOgNaesteEvent(GetGemOgNaesteEvent e) {
 		
-		rejseafregning = new RejseafregningDTO(0, bruger.getBrugernavn(),e.getGodkender(),e.getAnviser(), e.getLand(), e.getBy(), e.getAndledning(), e.getForklaring(), "Til godkendelse", e.getStartDato(), e.getSlutDato(), e.getProjekt());			
+		rejseafregning = new RejseafregningDTO(0, bruger.getBrugernavn(),e.getGodkender(),e.getAnviser(), e.getLand(), e.getBy(), e.getAndledning(), e.getForklaring(), "Til godkendelse", e.getStartDato(), e.getSlutDato(), e.getProjekt(), 0, 0);			
 		rejseafregningDAO.createRejseafregning(rejseafregning, new AsyncCallback<Void>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Fejl createRejseafregning: " + caught.getMessage());
 			}
-
 			@Override
 			public void onSuccess(Void result) {
 
@@ -360,10 +359,8 @@ public class Controller {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Fejl kunne ikke hentes: " + caught.getMessage());
-				
+				Window.alert("Fejl kunne ikke hentes: " + caught.getMessage());	
 			}
-
 			@Override
 			public void onSuccess(RejseafregningDTO result) {
 				eventBus.fireEvent(new AfslutRejseafregningEventSuccess(result));				
@@ -379,15 +376,12 @@ public class Controller {
 			public void onFailure(Throwable caught) {
 				Window.alert("Fejl ved hentning af projekter" + caught.getMessage());
 			}
-
 			@Override
 			public void onSuccess(List<ProjektDTO> result) {
 				eventBus.fireEvent(new GetProjektListEventSuccess(result));
 			}
-
 		});
 	}
-
 	@EventHandler
 	public void onOpgaveEvent(GetOpgaveListEvent e) {
 		OpgaveDAO.getOpgaveList(new AsyncCallback<List<OpgaveDTO>>() {
@@ -395,14 +389,11 @@ public class Controller {
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Fejl ved hentning af opgaver" + caught.getMessage());
-
 			}
-
 			@Override
 			public void onSuccess(List<OpgaveDTO> result) {
 				eventBus.fireEvent(new GetOpgaveListEventSuccess(result));
 			}
 		});
-
 	}
 }
