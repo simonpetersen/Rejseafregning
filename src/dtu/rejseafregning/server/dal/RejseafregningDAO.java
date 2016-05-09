@@ -45,24 +45,24 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 
 		// getRejseafregningNavnList statement
 		getRejseafregningListNavnStmt = Connector.conn.prepareStatement(
-				"SELECT rejseafregning_id, navn, rejsedag_id, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
-				+ "sum, rejseafregning.anviser, rejseafregning.godkender "
+				"SELECT rejseafregning_ID, navn, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
+				+ "rejseafregning.anviser, rejseafregning.godkender "
 				+ "FROM medarbejder, rejseafregning "
 				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND medarbejder.navn = ?");
 
 		// getRejseafregningStatList statement
 		getRejseafregningListStatStmt = Connector.conn.prepareStatement(
-				"SELECT rejseafregning_id, navn, rejsedag_id, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
-				+ "sum, rejseafregning.anviser, rejseafregning.godkender "
+				"SELECT rejseafregning_ID, navn, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
+				+ "rejseafregning.anviser, rejseafregning.godkender "
 				+ "FROM medarbejder, rejseafregning "
 				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND status = ?");
 
 		// getRejseafregningNavnStatList statement
 		getRejseafregningListNavnStatStmt = Connector.conn.prepareStatement(
-				"SELECT rejseafregning_id, navn, rejsedag_id, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
-				+ "sum, rejseafregning.anviser, rejseafregning.godkender "
+				"SELECT rejseafregning_ID, navn, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
+				+ "rejseafregning.anviser, rejseafregning.godkender "
 				+ "FROM medarbejder, rejseafregning "
-				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND rejseafregning.brugernavn = ? AND status = ?");
+				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND medarbejder.navn = ? AND status = ?");
 		
 		// getRejseafregningAnvisningJoinList
 		getRejseafregningAnvisningJoinListStmt = Connector.conn.prepareStatement("SELECT medarbejder.navn, rejseafregning.* "
@@ -148,76 +148,6 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			}
 		}
 		return RejseafregningListe;
-	}
-
-	@Override
-	public void createRejseafregning(RejseafregningDTO rejseafregning) throws DALException {
-		try {
-			// Argumenter ins�ttes
-			createRejseafregningStmt.setString(1, rejseafregning.getMedarbejderNavn());
-			createRejseafregningStmt.setString(2, rejseafregning.getProjektNavn());
-			createRejseafregningStmt.setString(3, rejseafregning.getLand());
-			createRejseafregningStmt.setString(4, rejseafregning.getStatus());
-			createRejseafregningStmt.setDate(5, (Date) rejseafregning.getStartDato());
-			createRejseafregningStmt.setDate(6, (Date) rejseafregning.getSlutDato());
-			createRejseafregningStmt.setString(7, rejseafregning.getBy());
-			createRejseafregningStmt.setString(8, rejseafregning.getAnledning());
-			createRejseafregningStmt.setString(9, rejseafregning.getAnviserNavn());
-			createRejseafregningStmt.setString(10, rejseafregning.getGodkenderNavn());
-			createRejseafregningStmt.setString(11, rejseafregning.getForklaring());
-
-			// Kald til database
-			createRejseafregningStmt.executeUpdate();
-		} catch (SQLException e) {
-			throw new DALException("Kaldet createRejseafregning fejlede");
-		}
-	}
-
-	@Override
-	public void updateRejseafregning(RejseafregningDTO rejseafregning) throws DALException {
-		try {
-			// Argumenter til statement
-			updateRejseafregningStmt.setString(1, rejseafregning.getMedarbejderNavn());
-			updateRejseafregningStmt.setString(2, rejseafregning.getProjektNavn());
-			updateRejseafregningStmt.setString(3, rejseafregning.getLand());
-			updateRejseafregningStmt.setString(4, rejseafregning.getStatus());
-			updateRejseafregningStmt.setDate(5, (Date) rejseafregning.getStartDato());
-			updateRejseafregningStmt.setDate(6, (Date) rejseafregning.getSlutDato());
-			updateRejseafregningStmt.setString(7, rejseafregning.getBy());
-			updateRejseafregningStmt.setString(8, rejseafregning.getAnledning());
-			updateRejseafregningStmt.setString(9, rejseafregning.getAnviserNavn());
-			updateRejseafregningStmt.setString(10, rejseafregning.getGodkenderNavn());
-			updateRejseafregningStmt.setString(11, rejseafregning.getForklaring());
-			updateRejseafregningStmt.setInt(12, rejseafregning.getRejseafregningID());
-			
-			// Kald til database
-			updateRejseafregningStmt.executeUpdate();
-		} catch (SQLException e) {
-			throw new DALException("Kaldet updateRejseafregning fejlede");
-		}
-	}
-
-	@Override
-	public void deleteRejseafregning(RejseafregningDTO rejseafregning) throws DALException {
-		try {
-			// Argumenter til statement
-			deleteRejseafregningStmt.setInt(1, rejseafregning.getRejseafregningID());
-
-			// Kald til database
-			deleteRejseafregningStmt.executeUpdate();
-		} catch (SQLException e) {
-			throw new DALException("Kaldet deleteRejseafregning fejlede");
-		}
-
-	}
-
-	// close the database connection
-	public void close() {
-		try {
-			Connector.conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override
@@ -315,12 +245,12 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 
 			while (rs.next()) {
 				RejseafregningListe.add(new RejseafregningDTO(rs.getInt("rejseafregning_ID"),
-						rs.getString("brugernavn"), rs.getString("godkender"), rs.getString("anviser"),
-						rs.getString("land"), rs.getString("city"), rs.getString("anledning"), rs.getString("forklaring"), rs.getString("status"),
+						rs.getString("navn"), rs.getString("godkender"), rs.getString("anviser"),
+						rs.getString("land"), rs.getString("city"), rs.getString("anledning"), "", rs.getString("status"),
 						rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getString("nameProjekt")));
 			}
 		} catch (SQLException e) {
-			throw new DALException("Kaldet getRejseafregningList fejlede");
+			throw new DALException("Kaldet getRejseafregningListNavn fejlede");
 		} finally {
 			try {
 				rs.close();
@@ -343,8 +273,8 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 
 			while (rs.next()) {
 				RejseafregningListe.add(new RejseafregningDTO(rs.getInt("rejseafregning_ID"),
-						rs.getString("brugernavn"), rs.getString("godkender"), rs.getString("anviser"),
-						rs.getString("land"), rs.getString("city"), rs.getString("anledning"), rs.getString("forklaring"), rs.getString("Status"),
+						rs.getString("navn"), rs.getString("godkender"), rs.getString("anviser"),
+						rs.getString("land"), rs.getString("city"), rs.getString("anledning"), "", rs.getString("status"),
 						rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getString("nameProjekt")));
 			}
 		} catch (SQLException e) {
@@ -372,8 +302,8 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 
 			while (rs.next()) {
 				RejseafregningListe.add(new RejseafregningDTO(rs.getInt("rejseafregning_ID"),
-						rs.getString("brugernavn"), rs.getString("godkender"), rs.getString("anviser"),
-						rs.getString("land"), rs.getString("city"), rs.getString("anledning"), rs.getString("forklaring"), rs.getString("status"),
+						rs.getString("navn"), rs.getString("godkender"), rs.getString("anviser"),
+						rs.getString("land"), rs.getString("city"), rs.getString("anledning"), "", rs.getString("status"),
 						rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getString("nameProjekt")));
 			}
 		} catch (SQLException e) {
@@ -455,4 +385,75 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			throw new DALException("Kaldet updateStatus fejlede");
 		}
 	}
+
+	@Override
+	public void createRejseafregning(RejseafregningDTO rejseafregning) throws DALException {
+		try {
+			// Argumenter ins�ttes
+			createRejseafregningStmt.setString(1, rejseafregning.getMedarbejderNavn());
+			createRejseafregningStmt.setString(2, rejseafregning.getProjektNavn());
+			createRejseafregningStmt.setString(3, rejseafregning.getLand());
+			createRejseafregningStmt.setString(4, rejseafregning.getStatus());
+			createRejseafregningStmt.setDate(5, (Date) rejseafregning.getStartDato());
+			createRejseafregningStmt.setDate(6, (Date) rejseafregning.getSlutDato());
+			createRejseafregningStmt.setString(7, rejseafregning.getBy());
+			createRejseafregningStmt.setString(8, rejseafregning.getAnledning());
+			createRejseafregningStmt.setString(9, rejseafregning.getAnviserNavn());
+			createRejseafregningStmt.setString(10, rejseafregning.getGodkenderNavn());
+			createRejseafregningStmt.setString(11, rejseafregning.getForklaring());
+
+			// Kald til database
+			createRejseafregningStmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException("Kaldet createRejseafregning fejlede");
+		}
+	}
+
+	@Override
+	public void updateRejseafregning(RejseafregningDTO rejseafregning) throws DALException {
+		try {
+			// Argumenter til statement
+			updateRejseafregningStmt.setString(1, rejseafregning.getMedarbejderNavn());
+			updateRejseafregningStmt.setString(2, rejseafregning.getProjektNavn());
+			updateRejseafregningStmt.setString(3, rejseafregning.getLand());
+			updateRejseafregningStmt.setString(4, rejseafregning.getStatus());
+			updateRejseafregningStmt.setDate(5, (Date) rejseafregning.getStartDato());
+			updateRejseafregningStmt.setDate(6, (Date) rejseafregning.getSlutDato());
+			updateRejseafregningStmt.setString(7, rejseafregning.getBy());
+			updateRejseafregningStmt.setString(8, rejseafregning.getAnledning());
+			updateRejseafregningStmt.setString(9, rejseafregning.getAnviserNavn());
+			updateRejseafregningStmt.setString(10, rejseafregning.getGodkenderNavn());
+			updateRejseafregningStmt.setString(11, rejseafregning.getForklaring());
+			updateRejseafregningStmt.setInt(12, rejseafregning.getRejseafregningID());
+			
+			// Kald til database
+			updateRejseafregningStmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException("Kaldet updateRejseafregning fejlede");
+		}
+	}
+
+	@Override
+	public void deleteRejseafregning(RejseafregningDTO rejseafregning) throws DALException {
+		try {
+			// Argumenter til statement
+			deleteRejseafregningStmt.setInt(1, rejseafregning.getRejseafregningID());
+
+			// Kald til database
+			deleteRejseafregningStmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException("Kaldet deleteRejseafregning fejlede");
+		}
+
+	}
+
+	// close the database connection
+	public void close() {
+		try {
+			Connector.conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
