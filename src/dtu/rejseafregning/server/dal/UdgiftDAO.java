@@ -23,21 +23,21 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 
 	public UdgiftDAO() throws Exception {
 		// getUdgift statement
-		getUdgiftStmt = Connector.conn.prepareStatement("SELECT * FROM Udgift WHERE Udgift_ID = ?");
+		getUdgiftStmt = Connector.conn.prepareStatement("SELECT * FROM udgift WHERE udgift_ID = ?");
 
 		// getUdgiftList statement
-		getUdgiftListStmt = Connector.conn.prepareStatement("SELECT * FROM Udgift");
+		getUdgiftListStmt = Connector.conn.prepareStatement("SELECT * FROM udgift WHERE rejseafregning_ID = ?");
 
 		// createUdgift statement
-		createUdgiftStmt = Connector.conn.prepareStatement("INSERT INTO Udgift (rejseafregning_ID, bilag_ID, udgiftType, betalingsType, "
+		createUdgiftStmt = Connector.conn.prepareStatement("INSERT INTO udgift (rejseafregning_ID, bilag_ID, udgiftType, betalingsType, "
 				+ "forklaring, dato, beloeb) VALUES(?, ?, ?, ?, ?, ?, ?)");
 
 		// updateUdgift statement
 		updateUdgiftStmt = Connector.conn.prepareStatement(
-				"UPDATE Udgift SET Bilag_ID = ?, Udgifttype = ?, Betalingtype = ?, Forklaring = ?, Dato = ? WHERE Udgift_ID = ?");
+				"UPDATE udgift SET rejseafregning_ID = ?, bilag_ID = ?, udgiftType = ?, betalingsType = ?, forklaring = ?, dato = ? WHERE udgift_ID = ?");
 
 		// deleteUdgift statement
-		deleteUdgiftStmt = Connector.conn.prepareStatement("DELETE FROM Udgift WHERE Udgift_ID = ?");
+		deleteUdgiftStmt = Connector.conn.prepareStatement("DELETE FROM udgift WHERE udgift_ID = ?");
 	}
 
 	@Override
@@ -49,8 +49,8 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 			// rs lig kald fra database
 			rs = getUdgiftStmt.executeQuery();
 			if (rs.next())
-				return new UdgiftDTO(rs.getInt("Udgift_ID"), rs.getInt("rejseafregning_ID"), rs.getInt("Bilag_ID"), rs.getString("Udgifttype"),
-					rs.getString("Betalingtype"), rs.getString("forklaring"), rs.getDate("Dato"), rs.getDouble("beloeb"));
+				return new UdgiftDTO(rs.getInt("udgift_ID"), rs.getInt("rejseafregning_ID"), rs.getInt("bilag_ID"), rs.getString("udgiftType"),
+					rs.getString("betalingsType"), rs.getString("forklaring"), rs.getDate("dato"), rs.getDouble("beloeb"));
 			throw new DALException("Udgift findes ikke!");
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getUdgift fejlede");
@@ -58,17 +58,18 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 	}
 
 	@Override
-	public List<UdgiftDTO> getUdgiftList() throws DALException {
+	public List<UdgiftDTO> getUdgiftList(int rejseafregningID) throws DALException {
 		List<UdgiftDTO> UdgiftListe = null;
 		ResultSet rs = null;
 		try {
 			UdgiftListe = new ArrayList<UdgiftDTO>();
-
+			getUdgiftListStmt.setInt(1, rejseafregningID);
 			rs = getUdgiftListStmt.executeQuery();
 
 			while (rs.next()) {
-				UdgiftListe.add(new UdgiftDTO(rs.getInt("Udgift_ID"), rs.getInt("rejseafregning_ID"), rs.getInt("Bilag_ID"), rs.getString("Udgifttype"),
-						rs.getString("Betalingtype"), rs.getString("forklaring"), rs.getDate("Dato"), rs.getDouble("beloeb")));
+				UdgiftListe.add(new UdgiftDTO(rs.getInt("udgift_ID"), rs.getInt("rejseafregning_ID"), rs.getInt("bilag_ID"), 
+						rs.getString("udgiftType"), rs.getString("betalingsType"), rs.getString("forklaring"), rs.getDate("dato"), 
+						rs.getDouble("beloeb")));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getUdgiftList fejlede");
@@ -107,12 +108,13 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 		try {
 
 			// Argumenter til statement
-			updateUdgiftStmt.setInt(1, udgift.getBilagID());
-			updateUdgiftStmt.setString(2, udgift.getUdgiftType());
-			updateUdgiftStmt.setString(3, udgift.getBetalingType());
-			updateUdgiftStmt.setString(4, udgift.getForklaring());
-			updateUdgiftStmt.setDate(5, (Date) udgift.getDato());
-			updateUdgiftStmt.setInt(6, udgift.getUdgiftID());
+			updateUdgiftStmt.setInt(1, udgift.getRejseafregningID());
+			updateUdgiftStmt.setInt(2, udgift.getBilagID());
+			updateUdgiftStmt.setString(3, udgift.getUdgiftType());
+			updateUdgiftStmt.setString(4, udgift.getBetalingType());
+			updateUdgiftStmt.setString(5, udgift.getForklaring());
+			updateUdgiftStmt.setDate(6, (Date) udgift.getDato());
+			updateUdgiftStmt.setInt(7, udgift.getUdgiftID());
 
 			// Kald til database
 			updateUdgiftStmt.executeUpdate();
