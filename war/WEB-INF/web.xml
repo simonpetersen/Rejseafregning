@@ -87,9 +87,22 @@
     <url-pattern>/__rejseafregning/brugerautorisationservice</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  <servlet-name>Jersey Web Application</servlet-name>
+  <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+  <init-param>
+  <param-name>jersey.config.server.provider.packages</param-name>
+  <param-value>RESTFul</param-value>
+  </init-param>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>Jersey Web Application</servlet-name>
+  <url-pattern>/api/*</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>1_Rejseafregning.html</welcome-file>
+    <welcome-file>Rejseafregning.html</welcome-file>
   </welcome-file-list>
 
 </web-app>
