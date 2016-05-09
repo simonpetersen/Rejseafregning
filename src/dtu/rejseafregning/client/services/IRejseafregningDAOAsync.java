@@ -1,15 +1,17 @@
 package dtu.rejseafregning.client.services;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import dtu.rejseafregning.shared.DALException;
 import dtu.rejseafregning.shared.GodkendelseJoinDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
 
 public interface IRejseafregningDAOAsync {
 	void getRejseafregning(int rejseafregningID, AsyncCallback<RejseafregningDTO> callback);
+	void getRejseafregningID(String brugernavn, String nameProjekt, String land, Date datoStart, Date datoSlut, String city, 
+			String anledning, AsyncCallback<Integer> callback);
 	void getRejseafregningList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
 	void getRejseafregningListNavn(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
 	void getRejseafregningListStat(String status, AsyncCallback<List<RejseafregningDTO>> callback);

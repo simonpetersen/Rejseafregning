@@ -17,6 +17,7 @@ import dtu.rejseafregning.shared.RejseafregningDTO;
 public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafregningDAO {
 
 	private PreparedStatement getRejseafregningStmt = null;
+	private PreparedStatement getRejseafregningIDStmt = null;
 	private PreparedStatement getRejseafregningListStmt = null;
 	private PreparedStatement getRejseafregningListNavnStmt = null;
 	private PreparedStatement getRejseafregningListStatStmt = null;
@@ -90,6 +91,9 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 		createRejseafregningStmt = Connector.conn
 				.prepareStatement("INSERT INTO rejseafregning (brugernavn, nameProjekt, land, status, datoStart, datoSlut, city, anledning, "
 						+ "anviser, godkender, forklaring) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		
+		getRejseafregningIDStmt = Connector.conn.prepareStatement("SELECT rejseafregning_ID FROM rejseafregning WHERE brugernavn = ?, nameProjekt = ?, "
+				+ "land = ?, datoStart = ?, datoSlut = ?, city = ?, anledning = ?");
 
 		// updateRejseafregning statement
 		updateRejseafregningStmt = Connector.conn.prepareStatement(
@@ -453,6 +457,26 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			Connector.conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public int getRejseafregningID(String brugernavn, String nameProjekt, String land, Date datoStart, Date datoSlut, String city, 
+			String anledning) throws DALException {
+		// SELECT * FROM rejseafregning WHERE brugernavn = ?, nameProjekt = ?, land = ?, datoStart = ?, datoSlut = ?, city = ?, anledning = ?
+		try {
+			getRejseafregningIDStmt.setString(1, brugernavn);
+			getRejseafregningIDStmt.setString(2, nameProjekt);
+			getRejseafregningIDStmt.setString(3, land);
+			getRejseafregningIDStmt.setDate(4, new java.sql.Date(datoStart.getTime()));
+			getRejseafregningIDStmt.setDate(5, new java.sql.Date(datoSlut.getTime()));
+			getRejseafregningIDStmt.setString(6, city);
+			getRejseafregningIDStmt.setString(7, anledning);
+			ResultSet rs = getRejseafregningIDStmt.executeQuery();
+			if (rs.last()) return rs.getInt("rejseafregning_ID");
+			throw new DALException("getRejseafregningID fejlede: Rejseafregning findes ikke!");
+		} catch (SQLException e) {
+			throw new DALException(e.getMessage());
 		}
 	}
 

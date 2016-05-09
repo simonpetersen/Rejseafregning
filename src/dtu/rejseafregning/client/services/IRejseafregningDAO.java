@@ -1,5 +1,6 @@
 package dtu.rejseafregning.client.services;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -12,6 +13,8 @@ import dtu.rejseafregning.shared.RejseafregningDTO;
 @RemoteServiceRelativePath("rejseafregningservice")
 public interface IRejseafregningDAO extends RemoteService{
 	RejseafregningDTO getRejseafregning(int rejseafregningID) throws DALException;
+	int getRejseafregningID(String brugernavn, String nameProjekt, String land, Date datoStart, Date datoSlut, 
+			String city, String anledning) throws DALException;
 	List<RejseafregningDTO> getRejseafregningList(String navn) throws DALException;
 	List<RejseafregningDTO> getRejseafregningListNavn(String navn) throws DALException;
 	List<RejseafregningDTO> getRejseafregningListStat(String status) throws DALException;

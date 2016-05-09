@@ -93,13 +93,13 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 			createUdgiftStmt.setString(3, udgift.getUdgiftType());
 			createUdgiftStmt.setString(4, udgift.getBetalingType());
 			createUdgiftStmt.setString(5, udgift.getForklaring());
-			createUdgiftStmt.setDate(6, (Date) udgift.getDato());
+			createUdgiftStmt.setDate(6, new Date(udgift.getDato().getTime()));
 			createUdgiftStmt.setDouble(7, udgift.getBeloeb());
 
 			// Kald til database
 			createUdgiftStmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Kaldet createUdgift fejlede");
+			throw new DALException("Kaldet createUdgift fejlede: "+e.getMessage());
 		}
 	}
 
@@ -113,7 +113,7 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 			updateUdgiftStmt.setString(3, udgift.getUdgiftType());
 			updateUdgiftStmt.setString(4, udgift.getBetalingType());
 			updateUdgiftStmt.setString(5, udgift.getForklaring());
-			updateUdgiftStmt.setDate(6, (Date) udgift.getDato());
+			updateUdgiftStmt.setDate(6, new Date(udgift.getDato().getTime()));
 			updateUdgiftStmt.setInt(7, udgift.getUdgiftID());
 
 			// Kald til database
