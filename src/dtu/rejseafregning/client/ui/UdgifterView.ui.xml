@@ -15,7 +15,7 @@
 			<g:Grid width="100%">
 				<g:row>
 					<g:customCell>
-						<g:Label text="Rejsedage" styleName="{style.overskrift}"/>
+						<g:Label text="Rejsedage     - Kryds af ved gratis måltid." styleName="{style.overskrift}"/>
 					</g:customCell>
 				</g:row>
 				<g:row>

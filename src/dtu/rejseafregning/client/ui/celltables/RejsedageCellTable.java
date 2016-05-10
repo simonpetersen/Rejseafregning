@@ -147,7 +147,6 @@ public class RejsedageCellTable extends Composite {
 
 			@Override
 			public void onSuccess(Void result) {
-				Window.alert("Rejsedag gemt");
 			}
 		});
 	}
@@ -163,7 +162,6 @@ public class RejsedageCellTable extends Composite {
 			@Override
 			public void onSuccess(Integer result) {
 				r.setRejsedagID(result);
-				Window.alert("Rejsedag gemt");
 			}
 		});
 	}
