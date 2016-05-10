@@ -85,24 +85,29 @@ public class NyAlmRejseafregning extends Composite {
 	
 	@EventHandler
 	public void getLandListEvent(GetGodtgoerelsesListSuccessfullEvent e){
+		dropLand.clear();
 		for(int i = 0; i < e.getListLand().size(); i++){
 			dropLand.addItem(e.getListLand().get(i).getLand());
 		}
 	}
 	@EventHandler
 	public void getProListEvent(GetProjektListEventSuccess e){
+		dropDownProj.clear();
 		for(int i = 0; i < e.getProjektList().size(); i++){
 			dropDownProj.addItem(e.getProjektList().get(i).getProjektNavn());
 		}
 	}
 	@EventHandler
 	public void getOpg1ListEvent(GetOpgaveListEventSuccess e){
+		dropDownOpga1.clear();
 		for(int i = 0; i < e.getOpgaveList().size(); i++){
 			dropDownOpga1.addItem(e.getOpgaveList().get(i).getOpgaveNavn());
 		}
 	}
 	@EventHandler
 	public void getGodkender(GetMedarbejderNavnListSuccessfullEvent e) {
+		godkender.clear();
+		anviser.clear();
 		for(int i = 0; i < e.getList().size(); i++) {
 			godkender.addItem(e.getList().get(i).getNavn());
 		}
