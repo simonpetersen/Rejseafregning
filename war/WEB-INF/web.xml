@@ -87,6 +87,15 @@
     <url-pattern>/__rejseafregning/brugerautorisationservice</url-pattern>
   </servlet-mapping>
   
+     <servlet>
+    <servlet-name>rejsedagServlet</servlet-name>
+    <servlet-class>dtu.rejseafregning.server.dal.RejsedagDAO</servlet-class>
+  </servlet> 
+  <servlet-mapping>
+    <servlet-name>rejsedagServlet</servlet-name>
+    <url-pattern>/__rejseafregning/rejsedagservice</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
   <servlet-name>Jersey Web Application</servlet-name>
   <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>

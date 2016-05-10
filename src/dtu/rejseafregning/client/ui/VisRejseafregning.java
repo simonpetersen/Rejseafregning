@@ -13,7 +13,6 @@ import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.GetGodtgoerelseListEvent;
 import dtu.rejseafregning.client.events.GetInfoSuccessEvent;
-import dtu.rejseafregning.client.events.GetUdgiftInfoSuccessEvent;
 import dtu.rejseafregning.client.events.OpdateretRejseafregningEvent;
 import dtu.rejseafregning.shared.ProjektDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
@@ -63,11 +62,7 @@ public class VisRejseafregning extends Composite {
 	public void getProjketInfoEvent(GetInfoSuccessEvent e){
 			opgave1.setText(e.getInfoProjekt().getOpgaveNavn());
 	}
-	@EventHandler
-	public void getUdgiftInfoEvent(GetUdgiftInfoSuccessEvent e) {
-//		udgifter1.setText(String.valueOf(e.getInfoUdgift().getUdgiftID()));
-		
-	}
+	
 	@EventHandler
 	public void getOpdateretEvent(OpdateretRejseafregningEvent e) {
 		rejseafregningDTO = e.getRejseafregning();

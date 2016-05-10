@@ -31,7 +31,7 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 
 		// createRejsedag statement
 		createRejsedagStmt = Connector.conn.prepareStatement("INSERT INTO rejsedag (rejseafregning_ID, dato, start, slut, morgenmad, frokost, "
-				+ "aftendsmad) VALUES (?, ?, ?, ?, ?, ?, ?)");
+				+ "aftensmad) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 		// updateRejsedag statement
 		updateRejsedagStmt = Connector.conn.prepareStatement(
@@ -90,7 +90,7 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 		try{
 			//Argumenter til statement
 			createRejsedagStmt.setInt(1, rejsedag.getRejseafregningID());
-			createRejsedagStmt.setDate(2, (Date) rejsedag.getDato());
+			createRejsedagStmt.setDate(2, new Date(rejsedag.getDato().getTime()));
 			createRejsedagStmt.setTime(3, rejsedag.getStart());
 			createRejsedagStmt.setTime(4, rejsedag.getSlut());
 			createRejsedagStmt.setBoolean(5, rejsedag.harMorgenmad());
@@ -101,7 +101,7 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 			createRejsedagStmt.executeUpdate();
 		}
 		catch(SQLException e){
-			throw new DALException("Kaldet createRejsedag fejlede");
+			throw new DALException("Kaldet createRejsedag fejlede "+e.getMessage());
 		}
 	}
 

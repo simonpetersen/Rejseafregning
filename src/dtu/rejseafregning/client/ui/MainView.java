@@ -72,11 +72,10 @@ public class MainView extends Composite {
 		contentPanel.add(velkommenView);
 		contentPanel.add(oplysningerView);
 		contentPanel.add(dokumentView);
-		contentPanel.showWidget(velkommenView);
 		contentPanel.add(nyalmrejseafregningView);
 		contentPanel.add(udgifterView);
 		contentPanel.add(visRejseafregning);
-		
+		contentPanel.showWidget(velkommenView);
 	}
 	
 	public void setNavLabels(String navn, String afdeling) {

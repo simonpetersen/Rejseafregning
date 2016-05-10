@@ -15,6 +15,7 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.ProvidesKey;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
@@ -28,10 +29,12 @@ public class RejsedageCellTable extends Composite {
 	DateTimeFormat fmt = DateTimeFormat.getFormat("dd/MM-yyyy");
 	private CellTable<RejsedagDTO> cellTable;
 	private List<RejsedagDTO> rejsedage;
-
+	
 	private IRejsedagDAOAsync dao;
 	private int rejseafregningID;
 	private final EventBus eventBus;
+	
+	private ListDataProvider<RejsedagDTO> dataProvider;
 
 	interface MyEventBinder extends EventBinder<RejsedageCellTable> {
 	}
@@ -55,6 +58,8 @@ public class RejsedageCellTable extends Composite {
 		dao = GWT.create(IRejsedagDAO.class);
 		rejsedage = new ArrayList<RejsedagDTO>();
 		rejseafregningID = 3;
+		dataProvider = new ListDataProvider<RejsedagDTO>();
+		dataProvider.addDataDisplay(cellTable);
 
 		Column<RejsedagDTO, Date> dateColumn = new Column<RejsedagDTO, Date>(new DatePickerCell(fmt)) {
 			@Override
@@ -62,7 +67,6 @@ public class RejsedageCellTable extends Composite {
 				return object.getDato();
 			}
 		};
-		cellTable.addColumn(dateColumn, "Dato");
 
 		dateColumn.setFieldUpdater(new FieldUpdater<RejsedagDTO, Date>() {
 
@@ -92,7 +96,6 @@ public class RejsedageCellTable extends Composite {
 				object.setMorgenmad(value);
 			}
 		});
-		cellTable.addColumn(morgenmadColumn);
 
 		Column<RejsedagDTO, Boolean> frokostColumn = new Column<RejsedagDTO, Boolean>(new CheckboxCell()) {
 			@Override
@@ -106,10 +109,25 @@ public class RejsedageCellTable extends Composite {
 				object.setFrokost(value);
 			}
 		});
-		cellTable.addColumn(frokostColumn);
 		
-		cellTable.setRowCount(rejsedage.size(), true);
-		cellTable.setRowData(0, rejsedage);
+		Column<RejsedagDTO, Boolean> aftensmadColumn = new Column<RejsedagDTO, Boolean>(new CheckboxCell()) {
+			@Override
+			public Boolean getValue(RejsedagDTO object) {
+				return object.harAftensmad();
+			}
+		};
+
+		frokostColumn.setFieldUpdater(new FieldUpdater<RejsedagDTO, Boolean>() {
+			public void update(int index, RejsedagDTO object, Boolean value) {
+				object.setAftensmad(value);
+			}
+		});
+		
+		cellTable.addColumn(dateColumn, "Dato");
+		cellTable.addColumn(morgenmadColumn, "Morgenmad");
+		cellTable.addColumn(frokostColumn, "Frokost");
+		cellTable.addColumn(aftensmadColumn, "Aftensmad");
+		
 	}
 	
 	public void setRejseafregningID(int id) {
@@ -130,11 +148,45 @@ public class RejsedageCellTable extends Composite {
 		});
 	}
 	
-	// Ny rejsedag skal gemmes i DB.
+	public void createRejsedag(RejsedagDTO r) {
+		dao.createRejsedag(r, new AsyncCallback<Void>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				Window.alert(caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				Window.alert("Rejsedag gemt");
+			}
+		});
+	}
+	
+	public void getRejsedageList() {
+		dao.getRejsedagList(rejseafregningID, new AsyncCallback<List<RejsedagDTO>>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				Window.alert(caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(List<RejsedagDTO> result) {
+				rejsedage = result;
+				dataProvider.refresh();
+				Window.alert("Tabel opdateret!");
+			}
+			
+		});
+	}
 	
 	public void addNyRejsedag() {
-//		rejsedage.add(new RejsedagDTO((int) Math.random()*1000, false, false, false, new Time(8, 0,0), new Time(12, 0, 0), new Date()));
-		rejsedage.add(new RejsedagDTO());
+		@SuppressWarnings("deprecation")
+		RejsedagDTO r = new RejsedagDTO(0, rejseafregningID, false, false, false, new Time(8, 0,0), new Time(12, 0, 0), new Date());
+		dataProvider.getList().add(r);
+		createRejsedag(r);
+		rejsedage.add(r);
 		cellTable.redraw();
 	}
 

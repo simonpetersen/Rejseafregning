@@ -52,10 +52,10 @@ public class DokumenterView extends Composite {
  	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
 	
 	public DokumenterView(EventBus eventBus) {
-		initWidget(uiBinder.createAndBindUi(this));
-		
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
+		
+		initWidget(uiBinder.createAndBindUi(this));
 		opgaverLabel.setStyleName("h2");
 	}
 	
@@ -69,13 +69,14 @@ public class DokumenterView extends Composite {
 	
 	@EventHandler
 	public void onGetUdkastSuccessfullEvent(GetUdkastSuccessfullEvent e) {
-//		Window.alert("UdkastSuccessfullEvent "+e.getList().get(0).getLand());
+		Window.alert("UdkastSuccessfullEvent "+e.getList().get(0).getLand());
 		udkastCellTable = new MineDokumenterCellTable(eventBus, e.getList());
 		udkastPanel.add(udkastCellTable);
 	}
 	
 	@EventHandler
 	public void onGetCirkulationSuccessfullEvent(GetCirkulationSuccessfullEvent e) {
+		Window.alert("CirkulationSuccessfullEvent "+e.getList().size());
 		cirkulationCellTable = new MineDokumenterCellTable(eventBus, e.getList());
 		cirkulationPanel.add(cirkulationCellTable);
 	}
