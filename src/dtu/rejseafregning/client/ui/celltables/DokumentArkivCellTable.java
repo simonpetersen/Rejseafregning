@@ -19,7 +19,7 @@ import dtu.rejseafregning.shared.RejseafregningDTO;
 public class DokumentArkivCellTable extends Composite {
 
 	DateTimeFormat fmt = DateTimeFormat.getFormat("dd/MM-yyyy");
-	private CellTable<RejseafregningDTO> cellTable;
+	public CellTable<RejseafregningDTO> cellTable;
 	private List<RejseafregningDTO> dokumenter;
 
 	private ListDataProvider<RejseafregningDTO> dataprovider;
@@ -41,6 +41,7 @@ public class DokumentArkivCellTable extends Composite {
 			cellTable.setPageSize(10);
 			dataprovider = new ListDataProvider<RejseafregningDTO>();
 			dataprovider.addDataDisplay(cellTable);
+			dataprovider.setList(dokumenter);
 
 			this.eventBus = eventBus;
 			eventBinder.bindEventHandlers(this, eventBus);
@@ -135,10 +136,5 @@ public class DokumentArkivCellTable extends Composite {
 			};
 			cellTable.addColumn(sumColumn, "Sum");
 			
-			SimplePager pager = new SimplePager();
-			pager.setDisplay(cellTable);
-			
-			cellTable.setRowCount(dokumenter.size(), true);
-			//cellTable.setRowData(0, dokumenter);
 		}
 }

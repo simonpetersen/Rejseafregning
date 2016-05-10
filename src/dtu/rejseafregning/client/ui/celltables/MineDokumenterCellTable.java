@@ -19,7 +19,7 @@ import dtu.rejseafregning.shared.UdgiftDTO;
 public class MineDokumenterCellTable extends Composite {
 
 	DateTimeFormat fmt = DateTimeFormat.getFormat("dd/MM-yyyy");
-	private CellTable<RejseafregningDTO> cellTable;
+	public CellTable<RejseafregningDTO> cellTable;
 	private List<RejseafregningDTO> dokumenter;
 
 	private final EventBus eventBus;
@@ -41,6 +41,7 @@ public class MineDokumenterCellTable extends Composite {
 		cellTable = new CellTable<RejseafregningDTO>(KEY_PROVIDER);
 		cellTable.setWidth("100%");
 		initWidget(cellTable);
+		cellTable.setPageSize(10);
 		
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);

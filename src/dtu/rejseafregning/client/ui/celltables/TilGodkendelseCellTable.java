@@ -26,7 +26,7 @@ import dtu.rejseafregning.shared.GodkendelseJoinDTO;
 public class TilGodkendelseCellTable extends Composite {
 
 	DateTimeFormat fmt = DateTimeFormat.getFormat("dd/MM-yyyy");
-	private CellTable<GodkendelseJoinDTO> cellTable;
+	public CellTable<GodkendelseJoinDTO> cellTable;
 	private List<GodkendelseJoinDTO> dokumenter;
 
 	private final EventBus eventBus;
@@ -51,6 +51,7 @@ public class TilGodkendelseCellTable extends Composite {
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
 		this.dokumenter = dokumenter;
+		cellTable.setPageSize(10);
 
 		// Dokument-ID
 		final TextCell idCell = new TextCell();

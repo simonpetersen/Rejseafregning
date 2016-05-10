@@ -9,6 +9,7 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
@@ -87,7 +88,10 @@ public class OplysningerView extends Composite {
 		if (!navnTextBox.getText().isEmpty()) bruger.setNavn(navnTextBox.getText());
 		if (!emailTextBox.getText().isEmpty()) bruger.setEmail(emailTextBox.getText());
 		if (!adgangskodeTextBox.getText().isEmpty()) {
+			if(adgangskodeTextBox.getText().equals(adgangskode2TextBox.getText()))
 			bruger.setNyAdgangskode(adgangskodeTextBox.getText());
+			else
+				Window.alert("De to adgangskoder er ikke ens");
 		}
 		if (!afdelingTextBox.getText().isEmpty()) bruger.setAfdeling(afdelingTextBox.getText());
 		if (!postnrTextBox.getText().isEmpty()) bruger.setPostnr(postnrTextBox.getText());

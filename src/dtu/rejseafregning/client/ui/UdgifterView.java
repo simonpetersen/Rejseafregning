@@ -48,6 +48,8 @@ public class UdgifterView extends Composite {
 	public void addTables() {
 		udgifterTable = new UdgifterCellTable(eventBus);
 		rejsedageTable = new RejsedageCellTable(eventBus);
+		udgifterPanel.clear();
+		rejsedagePanel.clear();
 		udgifterPanel.add(udgifterTable);
 		rejsedagePanel.add(rejsedageTable);
 	}

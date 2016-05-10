@@ -35,7 +35,7 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 
 		// updateUdgift statement
 		updateUdgiftStmt = Connector.conn.prepareStatement(
-				"UPDATE udgift SET rejseafregning_ID = ?, bilag_ID = ?, udgiftType = ?, betalingsType = ?, forklaring = ?, dato = ? WHERE udgift_ID = ?");
+				"UPDATE udgift SET rejseafregning_ID = ?, bilag_ID = ?, udgiftType = ?, betalingsType = ?, forklaring = ?, dato = ?, beloeb = ? WHERE udgift_ID = ?");
 
 		// deleteUdgift statement
 		deleteUdgiftStmt = Connector.conn.prepareStatement("DELETE FROM udgift WHERE udgift_ID = ?");
@@ -149,7 +149,8 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 			updateUdgiftStmt.setString(4, udgift.getBetalingType());
 			updateUdgiftStmt.setString(5, udgift.getForklaring());
 			updateUdgiftStmt.setDate(6, new Date(udgift.getDato().getTime()));
-			updateUdgiftStmt.setInt(7, udgift.getUdgiftID());
+			updateUdgiftStmt.setDouble(7, udgift.getBeloeb());
+			updateUdgiftStmt.setInt(8, udgift.getUdgiftID());
 
 			// Kald til database
 			updateUdgiftStmt.executeUpdate();
