@@ -6,6 +6,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DeckLayoutPanel;
@@ -18,13 +19,11 @@ import com.google.web.bindery.event.shared.binder.EventHandler;
 import dtu.rejseafregning.client.events.AfslutRejseafregningEvent;
 import dtu.rejseafregning.client.events.GetGemOgNaesteEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
-import dtu.rejseafregning.client.events.GetRejseafregningIDSuccessfullEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 import dtu.rejseafregning.shared.ProjektDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
-import com.google.gwt.user.client.ui.Anchor;
 
 public class MainView extends Composite {
 
@@ -121,13 +120,6 @@ public class MainView extends Composite {
 		nyalmrejseafregningView.fireEvents();
 		contentPanel.showWidget(nyalmrejseafregningView);
 	}
-	
-//	@EventHandler
-//	public void getRejseafregningIDEvent(GetRejseafregningIDSuccessfullEvent e) {
-//		Window.alert("GetRejseafregningIDSuccessfullEvent");
-//		udgifterView.addTables();
-//		contentPanel.showWidget(udgifterView);
-//	}
 	
 	@EventHandler
 	public void getGemOgGetEvent(GetGemOgNaesteEvent e) {

@@ -31,7 +31,6 @@ import dtu.rejseafregning.client.events.GetOpgaveListEvent;
 import dtu.rejseafregning.client.events.GetOpgaveListEventSuccess;
 import dtu.rejseafregning.client.events.GetProjektListEvent;
 import dtu.rejseafregning.client.events.GetProjektListEventSuccess;
-import dtu.rejseafregning.client.events.GetRejseafregningIDSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
 import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
@@ -346,7 +345,6 @@ public class Controller {
 					public void onSuccess(Integer result) {
 						rejseafregning.setRejseafregningID(result);
 						eventBus.fireEvent(new OpdateretRejseafregningEvent(rejseafregning));
-						eventBus.fireEvent(new GetRejseafregningIDSuccessfullEvent());
 					}
 				});
 	}

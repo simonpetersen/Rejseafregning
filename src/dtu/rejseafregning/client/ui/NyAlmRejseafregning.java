@@ -35,8 +35,6 @@ import dtu.rejseafregning.shared.ProjektDTO;
 public class NyAlmRejseafregning extends Composite {
 
 	private static NyAlmRejseafregningUiBinder uiBinder = GWT.create(NyAlmRejseafregningUiBinder.class);
-//	@UiField Label basis;
-//	@UiField ScrollPanel scPanel1;
 	@UiField Button gemognaeste;
 	@UiField DatePicker datePicker1, datePicker2;
 	@UiField TextBox txtby, andledtxt, forklaringtxt;
@@ -45,8 +43,6 @@ public class NyAlmRejseafregning extends Composite {
 	@UiField ListBox anviser;
 	@UiField ListBox godkender;
 	
-	List<ProjektDTO> projektDTO;
-	List<OpgaveDTO> opgaveDTO;
 	
 	private final EventBus eventBus;
 	
