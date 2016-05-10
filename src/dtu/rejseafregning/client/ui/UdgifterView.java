@@ -14,6 +14,7 @@ import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.AfslutRejseafregningEvent;
+import dtu.rejseafregning.client.events.GemRejseafregningEvent;
 import dtu.rejseafregning.client.events.OpdateretRejseafregningEvent;
 import dtu.rejseafregning.client.ui.celltables.RejsedageCellTable;
 import dtu.rejseafregning.client.ui.celltables.UdgifterCellTable;
@@ -63,7 +64,7 @@ public class UdgifterView extends Composite {
 	
 	@UiHandler("afslut")
 	void onAfslutClick(ClickEvent event) {
-		eventBus.fireEvent(new AfslutRejseafregningEvent());
+		eventBus.fireEvent(new GemRejseafregningEvent());
 	}
 	
 	@EventHandler

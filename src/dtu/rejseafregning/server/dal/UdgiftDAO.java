@@ -86,7 +86,7 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 				close();
 			}
 		}
-		return null;
+		return UdgiftListe;
 	}
 
 	@Override
@@ -120,6 +120,7 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 			getUdgiftIDStmt.setDouble(7, udgift.getBeloeb());
 			
 			rs = getUdgiftIDStmt.executeQuery();
+			ids = new ArrayList<Integer>();
 			
 			while(rs.next()){
 				ids.add(rs.getInt("udgift_ID"));

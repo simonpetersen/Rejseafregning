@@ -75,10 +75,8 @@ public class RejsedageCellTable extends Composite {
 
 				// Push the changes into the Contact.
 				object.setDato(value);
-
 				// Asynchronous request to the server to update the database.
 				saveRejsedag(object);
-
 				// Redraw the table with the name changed.
 				cellTable.redraw();
 			}
@@ -94,6 +92,8 @@ public class RejsedageCellTable extends Composite {
 		morgenmadColumn.setFieldUpdater(new FieldUpdater<RejsedagDTO, Boolean>() {
 			public void update(int index, RejsedagDTO object, Boolean value) {
 				object.setMorgenmad(value);
+				saveRejsedag(object);
+				cellTable.redraw();
 			}
 		});
 
@@ -107,6 +107,8 @@ public class RejsedageCellTable extends Composite {
 		frokostColumn.setFieldUpdater(new FieldUpdater<RejsedagDTO, Boolean>() {
 			public void update(int index, RejsedagDTO object, Boolean value) {
 				object.setFrokost(value);
+				saveRejsedag(object);
+				cellTable.redraw();
 			}
 		});
 		
@@ -117,9 +119,11 @@ public class RejsedageCellTable extends Composite {
 			}
 		};
 
-		frokostColumn.setFieldUpdater(new FieldUpdater<RejsedagDTO, Boolean>() {
+		aftensmadColumn.setFieldUpdater(new FieldUpdater<RejsedagDTO, Boolean>() {
 			public void update(int index, RejsedagDTO object, Boolean value) {
 				object.setAftensmad(value);
+				saveRejsedag(object);
+				cellTable.redraw();
 			}
 		});
 		
@@ -163,23 +167,23 @@ public class RejsedageCellTable extends Composite {
 		});
 	}
 	
-	public void getRejsedageList() {
-		dao.getRejsedagList(rejseafregningID, new AsyncCallback<List<RejsedagDTO>>() {
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
-				Window.alert(caught.getMessage());
-			}
-
-			@Override
-			public void onSuccess(List<RejsedagDTO> result) {
-				rejsedage = result;
-				dataProvider.refresh();
-				Window.alert("Tabel opdateret!");
-			}
-			
-		});
-	}
+//	public void getRejsedageList() {
+//		dao.getRejsedagList(rejseafregningID, new AsyncCallback<List<RejsedagDTO>>() {
+//			@Override
+//			public void onFailure(Throwable caught) {
+//				// TODO Auto-generated method stub
+//				Window.alert(caught.getMessage());
+//			}
+//
+//			@Override
+//			public void onSuccess(List<RejsedagDTO> result) {
+//				rejsedage = result;
+////				dataProvider.refresh();
+//				Window.alert("Tabel opdateret!");
+//			}
+//			
+//		});
+//	}
 	
 	public void addNyRejsedag() {
 		@SuppressWarnings("deprecation")

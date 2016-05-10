@@ -11,6 +11,8 @@ import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
+import dtu.rejseafregning.client.events.AfslutRejseafregningEvent;
+import dtu.rejseafregning.client.events.GemRejseafregningEvent;
 import dtu.rejseafregning.client.events.GetAfsluttedeDokumenterEvent;
 import dtu.rejseafregning.client.events.GetAfsluttedeSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetAnvisningDokumenterEvent;
@@ -391,6 +393,22 @@ public class Controller {
 			@Override
 			public void onSuccess(List<OpgaveDTO> result) {
 				eventBus.fireEvent(new GetOpgaveListEventSuccess(result));
+			}
+		});
+	}
+	
+	@EventHandler
+	public void onOpgaveEvent(GemRejseafregningEvent e) {
+		rejseafregningDAO.updateRejseafregning(rejseafregning, new AsyncCallback<Void>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl opdatering af rejseafregning: " + caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				eventBus.fireEvent(new AfslutRejseafregningEvent());
 			}
 		});
 	}

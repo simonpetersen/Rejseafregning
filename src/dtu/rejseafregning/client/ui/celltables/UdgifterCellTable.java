@@ -179,15 +179,16 @@ public class UdgifterCellTable extends Composite {
 		rejseafregningID = id;
 	}
 
-	private void saveUdgift(UdgiftDTO udgift) {
-		dao.createUdgift(udgift, new AsyncCallback<Void>() {
+	private void saveUdgift(final UdgiftDTO udgift) {
+		dao.createUdgift(udgift, new AsyncCallback<List<Integer>>() {
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Fejl: " + caught.getMessage());
 			}
 
 			@Override
-			public void onSuccess(Void result) {
+			public void onSuccess(List<Integer> result) {
+				udgift.setUdgiftID(result.get(result.size()-1));
 				updateTable();
 				Window.alert("Udgift blev gemt");
 			}
@@ -213,7 +214,7 @@ public class UdgifterCellTable extends Composite {
 
 	public void addNyUdgift() {
 		UdgiftDTO u = new UdgiftDTO((int) Math.random() * 1000, rejseafregningID, 1, udgiftstyper.get(0), betalingstyper.get(0),
-				"Forklaring", new Date(), 0.0);
+				"", new Date(), 0.0);
 		dataProvider.getList().add(u);
 		saveUdgift(u);
 	}
