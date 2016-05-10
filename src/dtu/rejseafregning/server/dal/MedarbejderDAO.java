@@ -125,8 +125,8 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 		try {
 			// Argumenter inds�ttes i statement
 			updateMedarbejderStmt.setString(1, medarbejder.getNavn());
-			updateMedarbejderStmt.setString(2, medarbejder.getNyAdgangskode());
-			updateMedarbejderStmt.setString(3, medarbejder.getEmail());
+			updateMedarbejderStmt.setString(2, medarbejder.getEmail());
+			updateMedarbejderStmt.setString(3, medarbejder.getNyAdgangskode());
 			updateMedarbejderStmt.setString(4, medarbejder.getAfdeling());
 			updateMedarbejderStmt.setString(5, medarbejder.getPostnr());
 			updateMedarbejderStmt.setString(6, medarbejder.getVejnavn());
