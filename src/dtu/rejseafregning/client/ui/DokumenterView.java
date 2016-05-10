@@ -69,27 +69,29 @@ public class DokumenterView extends Composite {
 	
 	@EventHandler
 	public void onGetUdkastSuccessfullEvent(GetUdkastSuccessfullEvent e) {
-		Window.alert("UdkastSuccessfullEvent "+e.getList().get(0).getLand());
 		udkastCellTable = new MineDokumenterCellTable(eventBus, e.getList());
+		udkastPanel.clear();
 		udkastPanel.add(udkastCellTable);
 	}
 	
 	@EventHandler
 	public void onGetCirkulationSuccessfullEvent(GetCirkulationSuccessfullEvent e) {
-		Window.alert("CirkulationSuccessfullEvent "+e.getList().size());
 		cirkulationCellTable = new MineDokumenterCellTable(eventBus, e.getList());
+		cirkulationPanel.clear();
 		cirkulationPanel.add(cirkulationCellTable);
 	}
 	
 	@EventHandler
 	public void onGetAfsluttedeSuccessfullEvent(GetAfsluttedeSuccessfullEvent e) {
 		afsluttetCellTable = new MineDokumenterCellTable(eventBus, e.getList());
+		afsluttetPanel.clear();
 		afsluttetPanel.add(afsluttetCellTable);
 	}
 	
 	@EventHandler
 	public void onGetAnivsningerSuccessfullEvent(GetAnvisningerSuccessfullEvent e) {
 		anvisningCellTable = new TilGodkendelseCellTable(eventBus, e.getListe());
+		anvisningPanel.clear();
 		anvisningPanel.add(anvisningCellTable);
 		final SingleSelectionModel<GodkendelseJoinDTO> selectionModel = new SingleSelectionModel<GodkendelseJoinDTO>();
 		anvisningCellTable.setSelectiongChangeHandler(selectionModel, new SelectionChangeEvent.Handler() {
@@ -106,6 +108,7 @@ public class DokumenterView extends Composite {
 	@EventHandler
 	public void onGetGodkendelseSuccessfullEvent(GetGodkendelseSuccessfullEvent e) {
 		godkendelseCellTable = new TilGodkendelseCellTable(eventBus, e.getListe());
+		godkendelsePanel.clear();
 		godkendelsePanel.add(godkendelseCellTable);
 		final SingleSelectionModel<GodkendelseJoinDTO> selectionModel = new SingleSelectionModel<GodkendelseJoinDTO>();
 		godkendelseCellTable.setSelectiongChangeHandler(selectionModel, new SelectionChangeEvent.Handler() {

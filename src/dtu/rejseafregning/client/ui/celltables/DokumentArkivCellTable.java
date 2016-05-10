@@ -40,7 +40,6 @@ public class DokumentArkivCellTable extends Composite {
 			initWidget(cellTable);
 			cellTable.setPageSize(10);
 			dataprovider = new ListDataProvider<RejseafregningDTO>();
-			dataprovider.addDataDisplay(cellTable);
 
 			this.eventBus = eventBus;
 			eventBinder.bindEventHandlers(this, eventBus);
@@ -134,11 +133,15 @@ public class DokumentArkivCellTable extends Composite {
 				}
 			};
 			cellTable.addColumn(sumColumn, "Sum");
+		    
+
 			
 			SimplePager pager = new SimplePager();
 			pager.setDisplay(cellTable);
 			
-			cellTable.setRowCount(dokumenter.size(), true);
+//			cellTable.setRowCount(dokumenter.size(), true);
+
+			dataprovider.addDataDisplay(cellTable);
 			//cellTable.setRowData(0, dokumenter);
 		}
 }
