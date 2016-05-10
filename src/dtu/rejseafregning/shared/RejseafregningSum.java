@@ -1,5 +1,6 @@
 package dtu.rejseafregning.shared;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RejseafregningSum {
@@ -11,6 +12,8 @@ public class RejseafregningSum {
 	public void beregnSum(RejseafregningDTO rejseafregning, List<RejsedagDTO> rejsedage, List<UdgiftDTO> udgifter, GodtgoerelseDTO godtgoerelse) {
 		sum = 0;
 		refunderes = 0;
+		if (rejsedage == null) rejsedage = new ArrayList<RejsedagDTO>();
+		if (udgifter == null) udgifter = new ArrayList<UdgiftDTO>();
 		for (RejsedagDTO r : rejsedage) {
 			double dag = godtgoerelse.getDagPengeSats();
 			if (r.harMorgenmad()) dag -= godtgoerelse.getDagPengeSats()*0.15;

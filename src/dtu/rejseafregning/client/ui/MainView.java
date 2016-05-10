@@ -5,10 +5,10 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DeckLayoutPanel;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
@@ -20,12 +20,9 @@ import dtu.rejseafregning.client.events.GetGemOgNaesteEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
-import dtu.rejseafregning.client.events.UdgifterEvent;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 import dtu.rejseafregning.shared.ProjektDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
-
-import com.google.gwt.user.client.ui.Anchor;
 
 public class MainView extends Composite {
 
@@ -60,6 +57,9 @@ public class MainView extends Composite {
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this,eventBus);
 		
+		rejseafregningDTO = new RejseafregningDTO();
+		projektDTO = new ProjektDTO();
+		
 		this.bruger = bruger;
 		oplysningerView = new OplysningerView(eventBus, bruger);
 		velkommenView = new VelkommenView(eventBus);
@@ -67,6 +67,8 @@ public class MainView extends Composite {
 		nyalmrejseafregningView = new NyAlmRejseafregning(eventBus);
 		udgifterView = new UdgifterView(eventBus);
 		visRejseafregning = new VisRejseafregning(eventBus, projektDTO, rejseafregningDTO);
+		dokView = new DokumenterView(eventBus);
+		contentPanel.add(dokView);
 		contentPanel.add(velkommenView);
 		contentPanel.add(oplysningerView);
 		contentPanel.add(dokumentView);
@@ -104,16 +106,17 @@ public class MainView extends Composite {
 	
 	@UiHandler("opgaver")
 	void onOpgaverClick(ClickEvent event) {
-		dokView = new DokumenterView(eventBus);
-		contentPanel.add(dokView);
+		dokView.hentDokumenter();
 		contentPanel.showWidget(dokView);
 	}
 	@EventHandler
 	public void getNyAlmRejseafregningEvent(NyAlmRejseafregningEvent e) {
+		nyalmrejseafregningView.fireEvents();
 		contentPanel.showWidget(nyalmrejseafregningView);
 	}
 	@EventHandler
 	public void getUdgifterEvent(GetGemOgNaesteEvent e) {
+		udgifterView.addTables();
 		contentPanel.showWidget(udgifterView);
 	}
 	@EventHandler

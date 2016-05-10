@@ -17,6 +17,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.view.client.AsyncDataProvider;
 import com.google.gwt.view.client.HasData;
+import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.ProvidesKey;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
@@ -31,6 +32,7 @@ public class UdgifterCellTable extends Composite {
 	private CellTable<UdgiftDTO> cellTable;
 	private List<UdgiftDTO> udgifter;
 	private int rejseafregningID;
+	private ListDataProvider<UdgiftDTO> dataProvider;
 
 	private IUdgiftDAOAsync dao;
 
@@ -58,6 +60,9 @@ public class UdgifterCellTable extends Composite {
 		dao = GWT.create(IUdgiftDAO.class);
 		udgifter = new ArrayList<UdgiftDTO>();
 		rejseafregningID = 3;
+		
+		dataProvider = new ListDataProvider<UdgiftDTO>();
+		dataProvider.addDataDisplay(cellTable);
 
 		final TextCell typeCell = new TextCell();
 		Column<UdgiftDTO, String> typeColumn = new Column<UdgiftDTO, String>(typeCell) {
@@ -202,7 +207,7 @@ public class UdgifterCellTable extends Composite {
 	}
 
 	public void addNyUdgift() {
-		UdgiftDTO u = new UdgiftDTO((int) Math.random() * 1000, rejseafregningID, 3, "Personale", "Dankort", "Forklaring", new Date(),
+		UdgiftDTO u = new UdgiftDTO((int) Math.random() * 1000, rejseafregningID, 1, "Personale", "Dankort", "Forklaring", new Date(),
 				0.0);
 		saveUdgift(u);
 		cellTable.redraw();

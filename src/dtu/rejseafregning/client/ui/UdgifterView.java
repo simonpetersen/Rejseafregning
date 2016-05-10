@@ -38,11 +38,14 @@ public class UdgifterView extends Composite {
 	private final MyEventBinder eventBinder = GWT.create(MyEventBinder.class);
 
 	public UdgifterView(EventBus eventBus) {
-		udgifterTable = new UdgifterCellTable(eventBus);
-		rejsedageTable = new RejsedageCellTable(eventBus);
 		initWidget(uiBinder.createAndBindUi(this));
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
+	}
+	
+	public void addTables() {
+		udgifterTable = new UdgifterCellTable(eventBus);
+		rejsedageTable = new RejsedageCellTable(eventBus);
 		udgifterPanel.add(udgifterTable);
 		rejsedagePanel.add(rejsedageTable);
 	}

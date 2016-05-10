@@ -46,11 +46,12 @@ public class GodtgoerelseDAO extends RemoteServiceServlet implements IGodtgoerel
 		try {
 			list = new ArrayList<GodtgoerelseDTO>();
 			rs = getGodtgoerelseListStmt.executeQuery();
-			while (rs.next()) list.add(new GodtgoerelseDTO(rs.getString("land"), rs.getInt("hoteldisposition"), rs.getDouble("dagpengesats"), 
+			while (rs.next()) 
+				list.add(new GodtgoerelseDTO(rs.getString("land"), rs.getInt("hoteldisposition"), rs.getDouble("dagpengesats"), 
 						rs.getDouble("timepengesats")));
 			return list;
 		} catch(SQLException e) {
-			throw new DALException(e.getMessage());
+			throw new DALException("getGodtgoerelseList fejlede "+e.getMessage());
 		}
 	}
 

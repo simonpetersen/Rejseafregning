@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -55,16 +56,20 @@ public class DokumenterView extends Composite {
 		
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
+		opgaverLabel.setStyleName("h2");
+	}
+	
+	public void hentDokumenter() {
 		eventBus.fireEvent(new GetDokumenterUdkastEvent());
 		eventBus.fireEvent(new GetDokumenterCirkulationEvent());
 		eventBus.fireEvent(new GetAfsluttedeDokumenterEvent());
 		eventBus.fireEvent(new GetAnvisningDokumenterEvent());
 		eventBus.fireEvent(new GetGodkendelseDokumenterEvent());
-		opgaverLabel.setStyleName("h2");
 	}
 	
 	@EventHandler
 	public void onGetUdkastSuccessfullEvent(GetUdkastSuccessfullEvent e) {
+//		Window.alert("UdkastSuccessfullEvent "+e.getList().get(0).getLand());
 		udkastCellTable = new MineDokumenterCellTable(eventBus, e.getList());
 		udkastPanel.add(udkastCellTable);
 	}

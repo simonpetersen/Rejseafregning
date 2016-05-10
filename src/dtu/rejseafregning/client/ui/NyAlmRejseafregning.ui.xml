@@ -69,9 +69,6 @@
 							<g:customCell>
 								<g:ListBox ui:field="dropDownProj"/>
 							</g:customCell>
-							<g:customCell>
-								<g:Button text="Søg" ui:field="seach1"/>
-							</g:customCell>
 						</g:row>
 						<g:row>
 							<g:customCell>
@@ -80,18 +77,9 @@
 							<g:customCell>
 								<g:ListBox ui:field="dropDownOpga1"/>
 							</g:customCell>
-							<g:customCell>
-								<g:Button ui:field="search2">Søg</g:Button>
-							</g:customCell>
 						</g:row>
 					</g:Grid>
 			</g:VerticalPanel>
-				<g:VerticalPanel ui:field="vPanel3">
-					<g:Label text="Søgekriterier: " ui:field="searchkriterier"/>
-					<g:Label text="Nummer og Navn: " ui:field="numberandname"/>
-					<g:SuggestBox ui:field="suggest"/>
-					<g:SuggestBox ui:field="suggest2"/>
-				</g:VerticalPanel>
 			</g:HorizontalPanel>
 			<g:Label text="Personale:" styleName="{style.overskrift}"/>
 			<g:Grid>
@@ -112,7 +100,7 @@
 					</g:customCell>
 				</g:row>
 			</g:Grid>
-			<g:Button text="Gem og næste" ui:field="gemogneste"/>
+			<g:Button text="Gem og næste" ui:field="gemognaeste"/>
 		</g:VerticalPanel>
 		</g:ScrollPanel>
 	</g:HTMLPanel>

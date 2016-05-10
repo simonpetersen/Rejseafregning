@@ -8,17 +8,20 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.ProvidesKey;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 
 import dtu.rejseafregning.shared.RejseafregningDTO;
+import dtu.rejseafregning.shared.UdgiftDTO;
 
 public class MineDokumenterCellTable extends Composite {
 
 	DateTimeFormat fmt = DateTimeFormat.getFormat("dd/MM-yyyy");
 	private CellTable<RejseafregningDTO> cellTable;
 	private List<RejseafregningDTO> dokumenter;
+	private ListDataProvider<RejseafregningDTO> dataProvider;
 
 	private final EventBus eventBus;
 
@@ -40,6 +43,9 @@ public class MineDokumenterCellTable extends Composite {
 		cellTable.setWidth("100%");
 		initWidget(cellTable);
 
+		dataProvider = new ListDataProvider<RejseafregningDTO>();
+		dataProvider.addDataDisplay(cellTable);
+		
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);
 

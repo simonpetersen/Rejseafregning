@@ -106,8 +106,8 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 				.prepareStatement("INSERT INTO rejseafregning (brugernavn, nameProjekt, land, status, datoStart, datoSlut, city, anledning, "
 						+ "anviser, godkender, forklaring, sum, refunderes) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		
-		getRejseafregningIDStmt = Connector.conn.prepareStatement("SELECT rejseafregning_ID FROM rejseafregning WHERE brugernavn = ?, nameProjekt = ?, "
-				+ "land = ?, datoStart = ?, datoSlut = ?, city = ?, anledning = ?");
+		getRejseafregningIDStmt = Connector.conn.prepareStatement("SELECT rejseafregning_ID FROM rejseafregning WHERE brugernavn = ? AND "
+				+ "nameProjekt = ? AND land = ? AND datoStart = ? AND datoSlut = ? AND city = ? AND anledning = ?");
 
 		// updateRejseafregning statement
 		updateRejseafregningStmt = Connector.conn.prepareStatement(

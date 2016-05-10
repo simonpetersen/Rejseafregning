@@ -55,7 +55,6 @@ import dtu.rejseafregning.shared.MedarbejderDTO;
 import dtu.rejseafregning.shared.OpgaveDTO;
 import dtu.rejseafregning.shared.ProjektDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
-import javafx.event.Event;
 
 public class Controller {
 
@@ -67,19 +66,11 @@ public class Controller {
 	private MedarbejderDTO bruger;
 
 	private IOpgaveDAOAsync OpgaveDAO = GWT.create(IOpgaveDAO.class);
-	private OpgaveDTO opgaveDTO;
-
-	
-
 	private IGodtgoerelseDAOAsync godtgoerelseDAO = GWT.create(IGodtgoerelseDAO.class);
-	private GodtgoerelseDTO godtgoerelseDTO;
-
 	private IProjektDAOAsync projektDAO = GWT.create(IProjektDAO.class);
-	private ProjektDTO projektDTO;
-
 	private IRejseafregningDAOAsync rejseafregningDAO = GWT.create(IRejseafregningDAO.class);
 	private IMedarbejderDAOAsync medarbejderDAO = GWT.create(IMedarbejderDAO.class);
-	
+
 	private RejseafregningDTO rejseafregning;
 
 	interface MyEventBinder extends EventBinder<Controller> {
@@ -113,7 +104,7 @@ public class Controller {
 	public void onSearchDokArkivEvent(SearchDokArkivEvent e) {
 		if (!e.getMedarbejder().equals("")) {
 			if (e.getStatus().equals("")) {
-				//Tilfældet hvor der kun søges på navn.
+				// Tilfï¿½ldet hvor der kun sï¿½ges pï¿½ navn.
 				rejseafregningDAO.getRejseafregningListNavn(e.getMedarbejder(),
 						new AsyncCallback<List<RejseafregningDTO>>() {
 							@Override
@@ -129,23 +120,23 @@ public class Controller {
 
 						});
 			} else {
-				//Tilfældet hvor der søges på både navn og status.
+				// Tilfï¿½ldet hvor der sï¿½ges pï¿½ bï¿½de navn og status.
 				rejseafregningDAO.getRejseafregningListNavnStat(e.getMedarbejder(), e.getStatus(),
 						new AsyncCallback<List<RejseafregningDTO>>() {
 
-	@Override
-	public void onFailure(Throwable caught) {
-		Window.alert("Fejl i getRejseafregningListNavnStat " + caught.getMessage());
-	}
+							@Override
+							public void onFailure(Throwable caught) {
+								Window.alert("Fejl i getRejseafregningListNavnStat " + caught.getMessage());
+							}
 
-	@Override
+							@Override
 							public void onSuccess(List<RejseafregningDTO> result) {
 								eventBus.fireEvent(new SearchDokArkivSuccessEvent(result));
 							}
 						});
 			}
 		} else if (!e.getStatus().equals("")) {
-			//Tilfældet hvor der kun søges på status.
+			// Tilfï¿½ldet hvor der kun sï¿½ges pï¿½ status.
 			rejseafregningDAO.getRejseafregningListStat(e.getStatus(), new AsyncCallback<List<RejseafregningDTO>>() {
 
 				@Override
@@ -158,12 +149,12 @@ public class Controller {
 					eventBus.fireEvent(new SearchDokArkivSuccessEvent(result));
 				}
 			});
-		}else
+		} else
 
-	{
-		// Tilfældet hvor der ikke søges på noget.
-		Window.alert("For at søge, skal der vælges mindst et navn eller en status.");
-	}
+		{
+			// Tilfï¿½ldet hvor der ikke sï¿½ges pï¿½ noget.
+			Window.alert("For at sï¿½ge, skal der vï¿½lges mindst et navn eller en status.");
+		}
 
 	}
 
@@ -174,7 +165,7 @@ public class Controller {
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
-				Window.alert("Fejl ved hentning af lande" + caught.getMessage());
+				Window.alert("Fejl ved hentning af lande: " + caught.getMessage());
 			}
 
 			@Override
@@ -322,51 +313,55 @@ public class Controller {
 
 	@EventHandler
 	public void onGemOgNaesteEvent(GetGemOgNaesteEvent e) {
-		
-		rejseafregning = new RejseafregningDTO(0, bruger.getBrugernavn(),e.getGodkender(),e.getAnviser(), e.getLand(), e.getBy(), e.getAndledning(), e.getForklaring(), "Til godkendelse", e.getStartDato(), e.getSlutDato(), e.getProjekt(), 0, 0);			
+		rejseafregning = new RejseafregningDTO(0, bruger.getBrugernavn(), e.getGodkender(), e.getAnviser(), e.getLand(),
+				e.getBy(), e.getAndledning(), e.getForklaring(), "Til godkendelse", e.getStartDato(), e.getSlutDato(),
+				e.getProjekt(), 0, 0);
 		rejseafregningDAO.createRejseafregning(rejseafregning, new AsyncCallback<Void>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Fejl createRejseafregning: " + caught.getMessage());
 			}
+
 			@Override
 			public void onSuccess(Void result) {
+				getRejseafregningID();
+			}
+		});
+	}
 
-				rejseafregningDAO.getRejseafregningID(bruger.getBrugernavn(), rejseafregning.getProjektNavn(),
-						rejseafregning.getLand(), rejseafregning.getStartDato(), rejseafregning.getSlutDato(),
-						rejseafregning.getBy(), rejseafregning.getAnledning(), new AsyncCallback<Integer>() {
-					
+	private void getRejseafregningID() {
+		rejseafregningDAO.getRejseafregningID(bruger.getBrugernavn(), rejseafregning.getProjektNavn(),
+				rejseafregning.getLand(), rejseafregning.getStartDato(), rejseafregning.getSlutDato(),
+				rejseafregning.getBy(), rejseafregning.getAnledning(), new AsyncCallback<Integer>() {
+
 					@Override
 					public void onFailure(Throwable caught) {
 						Window.alert("Fejl kunne ikke hente ID'et: " + caught.getMessage());
 					}
+
 					@Override
 					public void onSuccess(Integer result) {
 						rejseafregning.setRejseafregningID(result);
+						Window.alert("ID'et er hentet.");
 					}
 				});
-				rejseafregning.getRejseafregningID();
-				Window.alert("ID'et er hentet.");
-			}
-		});
-		Window.alert("Rejseafregningen er gemt.");
-
 	}
-	@EventHandler
-	public void onAfslut(AfslutRejseafregningEventSuccess e) {
-		rejseafregningDAO.getRejseafregning(rejseafregning.getRejseafregningID(), new AsyncCallback<RejseafregningDTO>() {
 
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Fejl kunne ikke hentes: " + caught.getMessage());	
-			}
-			@Override
-			public void onSuccess(RejseafregningDTO result) {
-				eventBus.fireEvent(new AfslutRejseafregningEventSuccess(result));				
-			}
-		});
-	}
+//	@EventHandler
+//	public void onAfslut(AfslutRejseafregningEventSuccess e) {
+//		rejseafregningDAO.getRejseafregning(rejseafregning.getRejseafregningID(), new AsyncCallback<RejseafregningDTO>() {
+//					@Override
+//					public void onFailure(Throwable caught) {
+//						Window.alert("Fejl kunne ikke hentes: " + caught.getMessage());
+//					}
+//
+//					@Override
+//					public void onSuccess(RejseafregningDTO result) {
+//						eventBus.fireEvent(new AfslutRejseafregningEventSuccess(result));
+//					}
+//				});
+//	}
 
 	@EventHandler
 	public void onProjektEvent(GetProjektListEvent e) {
@@ -376,12 +371,14 @@ public class Controller {
 			public void onFailure(Throwable caught) {
 				Window.alert("Fejl ved hentning af projekter" + caught.getMessage());
 			}
+
 			@Override
 			public void onSuccess(List<ProjektDTO> result) {
 				eventBus.fireEvent(new GetProjektListEventSuccess(result));
 			}
 		});
 	}
+
 	@EventHandler
 	public void onOpgaveEvent(GetOpgaveListEvent e) {
 		OpgaveDAO.getOpgaveList(new AsyncCallback<List<OpgaveDTO>>() {
@@ -390,6 +387,7 @@ public class Controller {
 			public void onFailure(Throwable caught) {
 				Window.alert("Fejl ved hentning af opgaver" + caught.getMessage());
 			}
+
 			@Override
 			public void onSuccess(List<OpgaveDTO> result) {
 				eventBus.fireEvent(new GetOpgaveListEventSuccess(result));
