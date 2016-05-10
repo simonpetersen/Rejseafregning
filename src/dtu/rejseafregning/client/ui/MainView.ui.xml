@@ -46,11 +46,11 @@
 					<g:Anchor text="Velkommen" ui:field="velkommen" styleName="{style.anchor}"/>
 					<g:Anchor text="Mine opgaver" ui:field="opgaver" styleName="{style.anchor}"/>
 					<g:Anchor text="Dokumentarkiv" ui:field="dokumentArkiv" styleName="{style.anchor}"/>
-					<g:Anchor text="Rapporter"  styleName="{style.anchor}"/>
+					<g:Anchor text="Rapporter"  styleName="{style.anchor}" ui:field="anchor"/>
 					<g:Anchor text="Mine oplysninger" ui:field="oplysninger" styleName="{style.anchor}"/>
-					<g:Anchor text="Indstillinger" styleName="{style.anchor}"/>
-					<g:Anchor text="Intranet link" styleName="{style.anchor}"/>
-					<g:Anchor text="Hjælp" styleName="{style.anchor}"/>
+					<g:Anchor text="Indstillinger" styleName="{style.anchor}" ui:field="anchor_1"/>
+					<g:Anchor text="Intranet link" styleName="{style.anchor}" ui:field="anchor_2"/>
+					<g:Anchor text="Hjælp" styleName="{style.anchor}" ui:field="anchor_3"/>
 				</g:VerticalPanel>
 			</g:west>
 		</g:DockLayoutPanel>

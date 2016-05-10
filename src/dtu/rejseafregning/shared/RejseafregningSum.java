@@ -24,13 +24,11 @@ public class RejseafregningSum {
 		}
 		
 		for (UdgiftDTO u : udgifter) {
-			if (u.getUdgiftType().equals("Hotel pr. nat")) {
-				sum += u.getBeloeb();
+			if (u.getUdgiftType().equals("Hotel")) {
 				if (u.getBeloeb() > godtgoerelse.getHotelDisposition()) refunderes += godtgoerelse.getHotelDisposition();
 				else refunderes += u.getBeloeb();
-			} else {
-				sum += u.getBeloeb();
 			}
+			sum += u.getBeloeb();
 		}
 		rejseafregning.setSum(sum);
 		rejseafregning.setRefunderes(refunderes);

@@ -24,6 +24,7 @@ import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 import dtu.rejseafregning.shared.ProjektDTO;
 import dtu.rejseafregning.shared.RejseafregningDTO;
+import com.google.gwt.user.client.ui.Anchor;
 
 public class MainView extends Composite {
 
@@ -32,6 +33,10 @@ public class MainView extends Composite {
 	@UiField DeckLayoutPanel contentPanel;
 	@UiField Label navnLabel;
 	@UiField Label afdelingLabel;
+	@UiField Anchor anchor;
+	@UiField Anchor anchor_1;
+	@UiField Anchor anchor_2;
+	@UiField Anchor anchor_3;
 	
 	private MedarbejderDTO bruger;
 	private OplysningerView oplysningerView;
@@ -133,5 +138,24 @@ public class MainView extends Composite {
 	@EventHandler
 	public void getVisRejseafregning(AfslutRejseafregningEvent e) {
 		contentPanel.showWidget(visRejseafregning);
+	}
+	@UiHandler("anchor")
+	void onAnchorClick(ClickEvent event) {
+		Window.alert("Denne funktion er desværre ikke understøttet i beta-versionen");
+	}
+	
+	@UiHandler("anchor_1")
+	void onAnchor_1Click(ClickEvent event) {
+		Window.alert("Denne funktion er desværre ikke understøttet i beta-versionen");
+	}
+	
+	@UiHandler("anchor_2")
+	void onAnchor_2Click(ClickEvent event) {
+		Window.alert("Denne funktion er desværre ikke understøttet i beta-versionen");
+	}
+	
+	@UiHandler("anchor_3")
+	void onAnchor_3Click(ClickEvent event) {
+		Window.alert("Denne funktion er desværre ikke understøttet i beta-versionen");
 	}
 }

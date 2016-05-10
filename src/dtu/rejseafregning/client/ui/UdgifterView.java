@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -13,7 +14,6 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
-import dtu.rejseafregning.client.events.AfslutRejseafregningEvent;
 import dtu.rejseafregning.client.events.GemRejseafregningEvent;
 import dtu.rejseafregning.client.events.OpdateretRejseafregningEvent;
 import dtu.rejseafregning.client.ui.celltables.RejsedageCellTable;
@@ -73,5 +73,10 @@ public class UdgifterView extends Composite {
 	public void onGetOpdateretRejseafregning(OpdateretRejseafregningEvent e) {
 		udgifterTable.setRejseafregningID(e.getRejseafregning().getRejseafregningID());
 		rejsedageTable.setRejseafregningID(e.getRejseafregning().getRejseafregningID());
+	}
+	
+	@UiHandler("tilfoej")
+	void onTilfoejClick(ClickEvent event) {
+		Window.alert("Denne funktion er desværre ikke understøttet i beta-versionen");
 	}
 }
