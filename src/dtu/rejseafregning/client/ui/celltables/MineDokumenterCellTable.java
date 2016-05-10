@@ -21,7 +21,6 @@ public class MineDokumenterCellTable extends Composite {
 	DateTimeFormat fmt = DateTimeFormat.getFormat("dd/MM-yyyy");
 	private CellTable<RejseafregningDTO> cellTable;
 	private List<RejseafregningDTO> dokumenter;
-	private ListDataProvider<RejseafregningDTO> dataProvider;
 
 	private final EventBus eventBus;
 
@@ -42,9 +41,6 @@ public class MineDokumenterCellTable extends Composite {
 		cellTable = new CellTable<RejseafregningDTO>(KEY_PROVIDER);
 		cellTable.setWidth("100%");
 		initWidget(cellTable);
-
-		dataProvider = new ListDataProvider<RejseafregningDTO>();
-		dataProvider.addDataDisplay(cellTable);
 		
 		this.eventBus = eventBus;
 		eventBinder.bindEventHandlers(this, eventBus);

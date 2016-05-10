@@ -8,7 +8,7 @@
 	</ui:style>
 	<g:VerticalPanel width="100%">
 		<g:Label text="Mine opgaver" ui:field="opgaverLabel"/>
-		<g:TabLayoutPanel barHeight="32">
+		<g:TabLayoutPanel barHeight="32" height="400px">
 			<g:tab>
 				<g:header>Udkast</g:header>
 				<g:VerticalPanel ui:field="udkastPanel" width="100%" />

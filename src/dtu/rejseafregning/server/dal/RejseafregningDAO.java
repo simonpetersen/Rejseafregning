@@ -61,33 +61,33 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 		// getRejseafregningNavnList statement
 		getRejseafregningListNavnStmt = Connector.conn.prepareStatement(
 				"SELECT rejseafregning_ID, navn, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
-				+ "rejseafregning.anviser, rejseafregning.godkender "
+				+ "rejseafregning.anviser, rejseafregning.godkender, sum, refunderes "
 				+ "FROM medarbejder, rejseafregning "
 				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND medarbejder.navn = ?");
 
 		// getRejseafregningStatList statement
 		getRejseafregningListStatStmt = Connector.conn.prepareStatement(
 				"SELECT rejseafregning_ID, navn, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
-				+ "rejseafregning.anviser, rejseafregning.godkender "
+				+ "rejseafregning.anviser, rejseafregning.godkender, sum, refunderes "
 				+ "FROM medarbejder, rejseafregning "
 				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND status = ?");
 
 		// getRejseafregningNavnStatList statement
 		getRejseafregningListNavnStatStmt = Connector.conn.prepareStatement(
 				"SELECT rejseafregning_ID, navn, nameProjekt, status, datoStart, datoSlut, land, city, anledning, "
-				+ "rejseafregning.anviser, rejseafregning.godkender "
+				+ "rejseafregning.anviser, rejseafregning.godkender, sum, refunderes "
 				+ "FROM medarbejder, rejseafregning "
 				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND medarbejder.navn = ? AND status = ?");
 		
 		// getRejseafregningAnvisningJoinList
 		getRejseafregningAnvisningJoinListStmt = Connector.conn.prepareStatement("SELECT medarbejder.navn, rejseafregning.* "
 				+ "FROM medarbejder, rejseafregning "
-				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND anviser = ? AND status = 'Til Anvisning'");
+				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND anviser = ? AND status = 'Til anvisning'");
 		
-		// getRejseafregningAnvisningJoinList
+		// getRejseafregningGodkendelseJoinList
 		getRejseafregningGodkendelseJoinListStmt = Connector.conn.prepareStatement("SELECT medarbejder.navn, rejseafregning.* "
 				+ "FROM medarbejder, rejseafregning "
-				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND godkender = ? AND status = 'Til Godkendelse'");
+				+ "WHERE medarbejder.brugernavn = rejseafregning.brugernavn AND godkender = ? AND status = 'Til godkendelse'");
 		
 		// getRejseafregningsUdkastList statement
 		getRejseafregningUdkastListStmt = Connector.conn
@@ -96,10 +96,10 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 		// getRejseafregningsCirkulationList statement
 		getRejseafregningCirkulationListStmt = Connector.conn
 				.prepareStatement("SELECT * FROM rejseafregning WHERE brugernavn = ? "
-						+ "AND status != 'Udkast' AND status != 'Overført til Oracle'");
+						+ "AND status != 'Udkast' AND status != 'Sendt til Oracle'");
 
 		getRejseafregningAfsluttedeListStmt = Connector.conn.prepareStatement(
-				"SELECT * FROM rejseafregning WHERE brugernavn = ? " + "AND status = 'Overført til Oracle'");
+				"SELECT * FROM rejseafregning WHERE brugernavn = ? " + "AND status = 'Sendt til Oracle'");
 
 		// createRejseafregning statement
 		createRejseafregningStmt = Connector.conn
@@ -318,14 +318,14 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			RejseafregningListe = new ArrayList<RejseafregningDTO>();
 			getRejseafregningListNavnStatStmt.setString(1, navn);
 			getRejseafregningListNavnStatStmt.setString(2, status);
-			rs = getRejseafregningListStatStmt.executeQuery();
+			rs = getRejseafregningListNavnStatStmt.executeQuery();
 
 			while (rs.next()) {
 				RejseafregningListe.add(new RejseafregningDTO(rs.getInt("rejseafregning_ID"),
 						rs.getString("navn"), rs.getString("godkender"), rs.getString("anviser"),
 						rs.getString("land"), rs.getString("city"), rs.getString("anledning"), "", rs.getString("status"),
-						rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getString("nameProjekt"), rs.getDouble("sum"), 
-						rs.getDouble("refunderes")));
+						rs.getDate("datoStart"), rs.getDate("datoSlut"), rs.getString("nameProjekt"), 
+						rs.getDouble("sum"), rs.getDouble("refunderes")));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getRejseafregningList fejlede");
