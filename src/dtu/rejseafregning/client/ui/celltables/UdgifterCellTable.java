@@ -170,7 +170,6 @@ public class UdgifterCellTable extends Composite {
 			@Override
 			public void onSuccess(Void result) {
 				updateTable();
-				Window.alert("Udgift blev opdateret");
 			}
 		});
 	}
@@ -190,7 +189,6 @@ public class UdgifterCellTable extends Composite {
 			public void onSuccess(List<Integer> result) {
 				udgift.setUdgiftID(result.get(result.size()-1));
 				updateTable();
-				Window.alert("Udgift blev gemt");
 			}
 		});
 	}
