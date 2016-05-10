@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -16,6 +17,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
+import com.google.gwt.view.client.HasRows;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
@@ -95,6 +97,7 @@ public class DokArkivView extends Composite {
 		dokArkivCellTable = new DokumentArkivCellTable(eventBus, result);
 		searchResult.clear();
 		searchResult.add(dokArkivCellTable);
+		
 	}
 
 }

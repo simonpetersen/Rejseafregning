@@ -12,7 +12,7 @@ import dtu.rejseafregning.shared.UdgiftDTO;
 public interface IUdgiftDAO extends RemoteService{
 	UdgiftDTO getUdgift(int udgiftID) throws DALException;
 	List<UdgiftDTO> getUdgiftList(int rejseafregningID) throws DALException;
-	void createUdgift(UdgiftDTO udgift) throws DALException;
+	List<Integer> createUdgift(UdgiftDTO udgift) throws DALException;
 	void updateUdgift(UdgiftDTO udgift) throws DALException;
 	void deleteUdgift(UdgiftDTO udgift) throws DALException;
 }

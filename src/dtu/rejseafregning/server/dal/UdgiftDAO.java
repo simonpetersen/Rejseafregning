@@ -20,6 +20,7 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 	private PreparedStatement createUdgiftStmt = null;
 	private PreparedStatement updateUdgiftStmt = null;
 	private PreparedStatement deleteUdgiftStmt = null;
+	private PreparedStatement getUdgiftIDStmt = null;
 
 	public UdgiftDAO() throws Exception {
 		// getUdgift statement
@@ -38,6 +39,10 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 
 		// deleteUdgift statement
 		deleteUdgiftStmt = Connector.conn.prepareStatement("DELETE FROM udgift WHERE udgift_ID = ?");
+		
+		// getUdgiftID statement
+		getUdgiftIDStmt = Connector.conn.prepareStatement("SELECT udgift_ID FROM udgift WHERE rejseafregning_ID = ? AND bilag_ID = ? AND udgiftType = ? AND "
+				+ " betalingsType = ? AND forklaring = ? AND dato = ? AND beloeb = ?");
 	}
 
 	@Override
@@ -85,7 +90,7 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 	}
 
 	@Override
-	public void createUdgift(UdgiftDTO udgift) throws DALException {
+	public List<Integer> createUdgift(UdgiftDTO udgift) throws DALException {
 		try {
 			// Argumenter til statement
 			createUdgiftStmt.setInt(1, udgift.getRejseafregningID());
@@ -101,6 +106,35 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 		} catch (SQLException e) {
 			throw new DALException("Kaldet createUdgift fejlede: "+e.getMessage());
 		}
+		
+		ResultSet rs = null;
+		List<Integer> ids = null;
+		try{
+			//Argumenter til getID stmt
+			getUdgiftIDStmt.setInt(1, udgift.getRejseafregningID());
+			getUdgiftIDStmt.setInt(2, udgift.getBilagID());
+			getUdgiftIDStmt.setString(3, udgift.getUdgiftType());
+			getUdgiftIDStmt.setString(4, udgift.getBetalingType());
+			getUdgiftIDStmt.setString(5, udgift.getForklaring());
+			getUdgiftIDStmt.setDate(6, new Date(udgift.getDato().getTime()));
+			getUdgiftIDStmt.setDouble(7, udgift.getBeloeb());
+			
+			rs = getUdgiftIDStmt.executeQuery();
+			
+			while(rs.next()){
+				ids.add(rs.getInt("udgift_ID"));
+			}
+		} catch(SQLException e){
+			throw new DALException("Kaldet getUdgiftID fejlede: " + e.getMessage());
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				close();
+			}
+		}
+		return ids;
 	}
 
 	@Override
@@ -135,7 +169,7 @@ public class UdgiftDAO extends RemoteServiceServlet implements IUdgiftDAO {
 			throw new DALException("Kaldet deleteUdgift fejlede");
 		}
 	}
-
+	
 	// close the database connection
 	public void close() {
 		try {

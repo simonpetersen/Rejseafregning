@@ -7,7 +7,9 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
+import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.ProvidesKey;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
@@ -20,6 +22,8 @@ public class DokumentArkivCellTable extends Composite {
 	private CellTable<RejseafregningDTO> cellTable;
 	private List<RejseafregningDTO> dokumenter;
 
+	private ListDataProvider<RejseafregningDTO> dataprovider;
+	
 	private final EventBus eventBus;
 
 	interface MyEventBinder extends EventBinder<DokumentArkivCellTable> {
@@ -34,6 +38,9 @@ public class DokumentArkivCellTable extends Composite {
 			cellTable = new CellTable<RejseafregningDTO>(KEY_PROVIDER);
 			cellTable.setWidth("100%");
 			initWidget(cellTable);
+			cellTable.setPageSize(10);
+			dataprovider = new ListDataProvider<RejseafregningDTO>();
+			dataprovider.addDataDisplay(cellTable);
 
 			this.eventBus = eventBus;
 			eventBinder.bindEventHandlers(this, eventBus);
@@ -128,7 +135,10 @@ public class DokumentArkivCellTable extends Composite {
 			};
 			cellTable.addColumn(sumColumn, "Sum");
 			
+			SimplePager pager = new SimplePager();
+			pager.setDisplay(cellTable);
+			
 			cellTable.setRowCount(dokumenter.size(), true);
-			cellTable.setRowData(0, dokumenter);
+			//cellTable.setRowData(0, dokumenter);
 		}
 }
