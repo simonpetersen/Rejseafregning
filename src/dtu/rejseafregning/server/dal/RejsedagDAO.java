@@ -17,6 +17,7 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 
 	private PreparedStatement getRejsedagStmt = null;
 	private PreparedStatement getRejsedagListStmt = null;
+	private PreparedStatement getRejsedagIDStmt = null;
 	private PreparedStatement createRejsedagStmt = null;
 	private PreparedStatement updateRejsedagStmt = null;
 	private PreparedStatement deleteRejsedagStmt = null;
@@ -39,6 +40,9 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 
 		// deleteRejsedag statement
 		deleteRejsedagStmt = Connector.conn.prepareStatement("DELETE FROM rejsedag WHERE rejsedag_ID = ?");
+		
+		getRejsedagIDStmt = Connector.conn.prepareStatement("SELECT rejsedag_ID FROM rejsedag WHERE rejseafregning_ID = ? AND dato = ? "
+				+ "AND start = ? AND slut = ? AND morgenmad = ? AND frokost = ? AND aftensmad = ?");
 	}
 
 	@Override
@@ -86,7 +90,7 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 	}
 
 	@Override
-	public void createRejsedag(RejsedagDTO rejsedag) throws DALException {
+	public int createRejsedag(RejsedagDTO rejsedag) throws DALException {
 		try{
 			//Argumenter til statement
 			createRejsedagStmt.setInt(1, rejsedag.getRejseafregningID());
@@ -102,6 +106,22 @@ public class RejsedagDAO extends RemoteServiceServlet implements IRejsedagDAO {
 		}
 		catch(SQLException e){
 			throw new DALException("Kaldet createRejsedag fejlede "+e.getMessage());
+		}
+		
+		ResultSet rs = null;
+		try {
+			getRejsedagIDStmt.setInt(1, rejsedag.getRejseafregningID());
+			getRejsedagIDStmt.setDate(2, new Date(rejsedag.getDato().getTime()));
+			getRejsedagIDStmt.setTime(3, rejsedag.getStart());
+			getRejsedagIDStmt.setTime(4, rejsedag.getSlut());
+			getRejsedagIDStmt.setBoolean(5, rejsedag.harMorgenmad());
+			getRejsedagIDStmt.setBoolean(6, rejsedag.harFrokost());
+			getRejsedagIDStmt.setBoolean(7, rejsedag.harAftensmad());
+			rs = getRejsedagIDStmt.executeQuery();
+			if (rs.last()) return rs.getInt("rejsedag_ID");
+			throw new DALException("Ingen rejsedage fundet!");
+		} catch (SQLException e) {
+			throw new DALException("Fejl i createRejsedag: "+e.getMessage());
 		}
 	}
 

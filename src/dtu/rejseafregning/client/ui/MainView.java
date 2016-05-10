@@ -18,6 +18,7 @@ import com.google.web.bindery.event.shared.binder.EventHandler;
 import dtu.rejseafregning.client.events.AfslutRejseafregningEvent;
 import dtu.rejseafregning.client.events.GetGemOgNaesteEvent;
 import dtu.rejseafregning.client.events.GetMedarbejderNavnListEvent;
+import dtu.rejseafregning.client.events.GetRejseafregningIDSuccessfullEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
 import dtu.rejseafregning.client.events.NyAlmRejseafregningEvent;
 import dtu.rejseafregning.shared.MedarbejderDTO;
@@ -92,6 +93,7 @@ public class MainView extends Composite {
 	void onOplysningerClick(ClickEvent event) {
 		contentPanel.showWidget(oplysningerView);
 	}
+	
 	@UiHandler("velkommen")
 	void onVelkommenClick(ClickEvent event) {
 		contentPanel.showWidget(velkommenView);
@@ -108,16 +110,26 @@ public class MainView extends Composite {
 		dokView.hentDokumenter();
 		contentPanel.showWidget(dokView);
 	}
+	
 	@EventHandler
 	public void getNyAlmRejseafregningEvent(NyAlmRejseafregningEvent e) {
 		nyalmrejseafregningView.fireEvents();
 		contentPanel.showWidget(nyalmrejseafregningView);
 	}
+	
+//	@EventHandler
+//	public void getRejseafregningIDEvent(GetRejseafregningIDSuccessfullEvent e) {
+//		Window.alert("GetRejseafregningIDSuccessfullEvent");
+//		udgifterView.addTables();
+//		contentPanel.showWidget(udgifterView);
+//	}
+	
 	@EventHandler
-	public void getUdgifterEvent(GetGemOgNaesteEvent e) {
+	public void getGemOgGetEvent(GetGemOgNaesteEvent e) {
 		udgifterView.addTables();
 		contentPanel.showWidget(udgifterView);
 	}
+	
 	@EventHandler
 	public void getVisRejseafregning(AfslutRejseafregningEvent e) {
 		contentPanel.showWidget(visRejseafregning);

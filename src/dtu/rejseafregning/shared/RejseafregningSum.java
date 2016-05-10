@@ -28,6 +28,8 @@ public class RejseafregningSum {
 				sum += u.getBeloeb();
 				if (u.getBeloeb() > godtgoerelse.getHotelDisposition()) refunderes += godtgoerelse.getHotelDisposition();
 				else refunderes += u.getBeloeb();
+			} else {
+				sum += u.getBeloeb();
 			}
 		}
 		rejseafregning.setSum(sum);

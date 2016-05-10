@@ -58,7 +58,7 @@
 			<g:TextBox ui:field="andledtxt"/>
 			<g:Label text="Forklaring" ui:field="forklaring"/>
 			<g:TextBox ui:field="forklaringtxt"/>
-			<g:Label text="Dimentioner: " ui:field="dimentioner" styleName="{style.overskrift}"/>
+			<g:Label text="Dimensioner: " ui:field="dimensioner" styleName="{style.overskrift}"/>
 			<g:HorizontalPanel ui:field="hPanel14">
 				<g:VerticalPanel ui:field="vPanel2">
 					<g:Grid>

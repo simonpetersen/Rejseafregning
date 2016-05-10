@@ -152,8 +152,8 @@ public class RejsedageCellTable extends Composite {
 		});
 	}
 	
-	public void createRejsedag(RejsedagDTO r) {
-		dao.createRejsedag(r, new AsyncCallback<Void>() {
+	public void createRejsedag(final RejsedagDTO r) {
+		dao.createRejsedag(r, new AsyncCallback<Integer>() {
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
@@ -161,7 +161,8 @@ public class RejsedageCellTable extends Composite {
 			}
 
 			@Override
-			public void onSuccess(Void result) {
+			public void onSuccess(Integer result) {
+				r.setRejsedagID(result);
 				Window.alert("Rejsedag gemt");
 			}
 		});

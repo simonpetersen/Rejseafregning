@@ -76,8 +76,11 @@ public class NyAlmRejseafregning extends Composite {
 	
 	@UiHandler("gemognaeste")
  	void onGemButtonClickEvent(ClickEvent event) {
-//		Window.alert(dropLand.getValue(dropLand.getSelectedIndex())+" "+forklaringtxt.getText()+" "+dropDownProj.getValue(dropLand.getSelectedIndex()));
-		eventBus.fireEvent(new GetGemOgNaesteEvent(dropLand.getValue(dropLand.getSelectedIndex()),txtby.getText(), 
+		if (txtby.getText().isEmpty()) Window.alert("Skriv en by");
+		else if (datePicker1.getValue() == null) Window.alert("Vælg en startdato");
+		else if (datePicker2.getValue() == null) Window.alert("Vælg en slutdato");
+		else
+			eventBus.fireEvent(new GetGemOgNaesteEvent(dropLand.getValue(dropLand.getSelectedIndex()),txtby.getText(), 
 				godkender.getValue(dropLand.getSelectedIndex()), anviser.getValue(dropLand.getSelectedIndex()), datePicker1.getValue(), 
 				datePicker2.getValue(), andledtxt.getText(), forklaringtxt.getText(), dropDownProj.getValue(dropLand.getSelectedIndex()), 
 				dropDownOpga1.getValue(dropLand.getSelectedIndex())));		

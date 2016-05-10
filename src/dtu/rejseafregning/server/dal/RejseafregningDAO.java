@@ -112,7 +112,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 		// updateRejseafregning statement
 		updateRejseafregningStmt = Connector.conn.prepareStatement(
 				"UPDATE rejseafregning SET brugernavn = ?, nameProjekt = ?, land = ?, status = ?, datoStart = ?, "
-				+ "datoSlut = ?, by = ?, anledning = ?, anviser = ?, godkender = ?, forklaring = ?, sum = ?, refunderes = ? "
+				+ "datoSlut = ?, city = ?, anledning = ?, anviser = ?, godkender = ?, forklaring = ?, sum = ?, refunderes = ? "
 				+ "WHERE rejseafregning_ID = ?");
 
 		updateStatusStmt = Connector.conn.prepareStatement("UPDATE rejseafregning SET status = ? WHERE rejseafregning_ID = ?");
@@ -131,13 +131,13 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			// rs s�ttes fra databasen
 			rs = getRejseafregningStmt.executeQuery();
 			if (rs.next())
-				return new RejseafregningDTO(rs.getInt("rejseafregning_ID"), rs.getString("medarbejdernavn"),
-						rs.getString("godkendernavn"), rs.getString("anvisernavn"), rs.getString("land"),
-						rs.getString("by"), rs.getString("anledning"), rs.getString("forklaring"), rs.getString("status"), rs.getDate("datoStart"),
+				return new RejseafregningDTO(rs.getInt("rejseafregning_ID"), rs.getString("brugernavn"),
+						rs.getString("godkender"), rs.getString("anviser"), rs.getString("land"),
+						rs.getString("city"), rs.getString("anledning"), rs.getString("forklaring"), rs.getString("status"), rs.getDate("datoStart"),
 						rs.getDate("datoSlut"), rs.getString("nameProjekt"), rs.getDouble("sum"), rs.getDouble("refunderes"));
 			throw new DALException("Rejseafregning findes ikke!");
 		} catch (SQLException e) {
-			throw new DALException("Kaldet getRejseafregning fejlede");
+			throw new DALException("Kaldet getRejseafregning fejlede: "+e.getMessage());
 		}
 	}
 
@@ -455,7 +455,7 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 			// Kald til database
 			updateRejseafregningStmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Kaldet updateRejseafregning fejlede");
+			throw new DALException("Kaldet updateRejseafregning fejlede: "+e.getMessage());
 		}
 	}
 

@@ -31,6 +31,7 @@ import dtu.rejseafregning.client.events.GetOpgaveListEvent;
 import dtu.rejseafregning.client.events.GetOpgaveListEventSuccess;
 import dtu.rejseafregning.client.events.GetProjektListEvent;
 import dtu.rejseafregning.client.events.GetProjektListEventSuccess;
+import dtu.rejseafregning.client.events.GetRejseafregningIDSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
 import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
@@ -345,25 +346,10 @@ public class Controller {
 					public void onSuccess(Integer result) {
 						rejseafregning.setRejseafregningID(result);
 						eventBus.fireEvent(new OpdateretRejseafregningEvent(rejseafregning));
-						Window.alert("ID'et er hentet.");
+						eventBus.fireEvent(new GetRejseafregningIDSuccessfullEvent());
 					}
 				});
 	}
-
-//	@EventHandler
-//	public void onAfslut(AfslutRejseafregningEventSuccess e) {
-//		rejseafregningDAO.getRejseafregning(rejseafregning.getRejseafregningID(), new AsyncCallback<RejseafregningDTO>() {
-//					@Override
-//					public void onFailure(Throwable caught) {
-//						Window.alert("Fejl kunne ikke hentes: " + caught.getMessage());
-//					}
-//
-//					@Override
-//					public void onSuccess(RejseafregningDTO result) {
-//						eventBus.fireEvent(new AfslutRejseafregningEventSuccess(result));
-//					}
-//				});
-//	}
 
 	@EventHandler
 	public void onProjektEvent(GetProjektListEvent e) {
@@ -408,6 +394,23 @@ public class Controller {
 
 			@Override
 			public void onSuccess(Void result) {
+				getRejseafregning();
+			}
+		});
+	}
+	
+	private void getRejseafregning() {
+		rejseafregningDAO.getRejseafregning(rejseafregning.getRejseafregningID(), new AsyncCallback<RejseafregningDTO>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fejl i getRejseafregning: "+caught.getMessage());
+			}
+
+			@Override
+			public void onSuccess(RejseafregningDTO result) {
+				rejseafregning = result;
+				eventBus.fireEvent(new OpdateretRejseafregningEvent(rejseafregning));
 				eventBus.fireEvent(new AfslutRejseafregningEvent());
 			}
 		});
