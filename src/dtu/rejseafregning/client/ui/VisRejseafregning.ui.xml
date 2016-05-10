@@ -103,22 +103,22 @@
 				</g:customCell>
 			</g:row>
 		</g:Grid>
-			<g:Label text="Udgifter og Bilag:" styleName="{style.overskrift}"/>
+			<g:Label text="Udgifter:" styleName="{style.overskrift}"/>
 			<g:Grid width="70%">
 			<g:row>
 				<g:customCell>
-					<g:Label text="Udgifter:"/>
+					<g:Label text="Sum:"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="udgifter1" horizontalAlignment="ALIGN_RIGHT"/>
+					<g:Label text="New Label" ui:field="sum" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 			<g:row>
 				<g:customCell>
-					<g:Label text="Bilag:"/>
+					<g:Label text="Refunderes:"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text="New Label" ui:field="bilag1" horizontalAlignment="ALIGN_RIGHT"/>
+					<g:Label text="New Label" ui:field="refunderes" horizontalAlignment="ALIGN_RIGHT"/>
 				</g:customCell>
 			</g:row>
 		</g:Grid>

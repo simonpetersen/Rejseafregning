@@ -1,6 +1,5 @@
 package dtu.rejseafregning.client.logic;
 
-import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
@@ -12,7 +11,6 @@ import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 
-import dtu.rejseafregning.client.events.AfslutRejseafregningEventSuccess;
 import dtu.rejseafregning.client.events.GetAfsluttedeDokumenterEvent;
 import dtu.rejseafregning.client.events.GetAfsluttedeSuccessfullEvent;
 import dtu.rejseafregning.client.events.GetAnvisningDokumenterEvent;
@@ -34,6 +32,7 @@ import dtu.rejseafregning.client.events.GetProjektListEventSuccess;
 import dtu.rejseafregning.client.events.GetUdkastSuccessfullEvent;
 import dtu.rejseafregning.client.events.LoginSuccessfullEvent;
 import dtu.rejseafregning.client.events.LogudButtonEvent;
+import dtu.rejseafregning.client.events.OpdateretRejseafregningEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivEvent;
 import dtu.rejseafregning.client.events.SearchDokArkivSuccessEvent;
 import dtu.rejseafregning.client.events.UpdateAnvisningStatusEvent;
@@ -343,6 +342,7 @@ public class Controller {
 					@Override
 					public void onSuccess(Integer result) {
 						rejseafregning.setRejseafregningID(result);
+						eventBus.fireEvent(new OpdateretRejseafregningEvent(rejseafregning));
 						Window.alert("ID'et er hentet.");
 					}
 				});

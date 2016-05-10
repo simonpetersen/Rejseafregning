@@ -30,7 +30,7 @@ public class RejsedageCellTable extends Composite {
 	private List<RejsedagDTO> rejsedage;
 
 	private IRejsedagDAOAsync dao;
-
+	private int rejseafregningID;
 	private final EventBus eventBus;
 
 	interface MyEventBinder extends EventBinder<RejsedageCellTable> {
@@ -54,6 +54,7 @@ public class RejsedageCellTable extends Composite {
 		eventBinder.bindEventHandlers(this, eventBus);
 		dao = GWT.create(IRejsedagDAO.class);
 		rejsedage = new ArrayList<RejsedagDTO>();
+		rejseafregningID = 3;
 
 		Column<RejsedagDTO, Date> dateColumn = new Column<RejsedagDTO, Date>(new DatePickerCell(fmt)) {
 			@Override
@@ -109,6 +110,10 @@ public class RejsedageCellTable extends Composite {
 		
 		cellTable.setRowCount(rejsedage.size(), true);
 		cellTable.setRowData(0, rejsedage);
+	}
+	
+	public void setRejseafregningID(int id) {
+		rejseafregningID = id;
 	}
 
 	public void saveRejsedag(RejsedagDTO rejsedag) {

@@ -27,7 +27,7 @@ public class RejseafregningSum {
 			if (u.getUdgiftType().equals("Hotel pr. nat")) {
 				sum += u.getBeloeb();
 				if (u.getBeloeb() > godtgoerelse.getHotelDisposition()) refunderes += godtgoerelse.getHotelDisposition();
-				else refunderes += godtgoerelse.getHotelDisposition();
+				else refunderes += u.getBeloeb();
 			}
 		}
 		rejseafregning.setSum(sum);

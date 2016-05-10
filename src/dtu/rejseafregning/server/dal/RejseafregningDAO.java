@@ -411,7 +411,6 @@ public class RejseafregningDAO extends RemoteServiceServlet implements IRejseafr
 	public void createRejseafregning(RejseafregningDTO rejseafregning) throws DALException {
 		try {
 			// Argumenter ins�ttes
-			calcSumRefunderes(rejseafregning);
 			createRejseafregningStmt.setString(1, rejseafregning.getMedarbejderNavn());
 			createRejseafregningStmt.setString(2, rejseafregning.getProjektNavn());
 			createRejseafregningStmt.setString(3, rejseafregning.getLand());

@@ -173,6 +173,10 @@ public class UdgifterCellTable extends Composite {
 		});
 	}
 	
+	public void setRejseafregningID(int id) {
+		rejseafregningID = id;
+	}
+	
 	private void saveUdgift(UdgiftDTO udgift) {
 		dao.createUdgift(udgift, new AsyncCallback<Void>() {
 			@Override

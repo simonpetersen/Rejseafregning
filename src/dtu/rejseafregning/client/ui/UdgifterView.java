@@ -11,9 +11,10 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
+import com.google.web.bindery.event.shared.binder.EventHandler;
 
 import dtu.rejseafregning.client.events.AfslutRejseafregningEvent;
-import dtu.rejseafregning.client.events.GetGemOgNaesteEvent;
+import dtu.rejseafregning.client.events.OpdateretRejseafregningEvent;
 import dtu.rejseafregning.client.ui.celltables.RejsedageCellTable;
 import dtu.rejseafregning.client.ui.celltables.UdgifterCellTable;
 
@@ -63,5 +64,11 @@ public class UdgifterView extends Composite {
 	@UiHandler("afslut")
 	void onAfslutClick(ClickEvent event) {
 		eventBus.fireEvent(new AfslutRejseafregningEvent());
+	}
+	
+	@EventHandler
+	public void onGetOpdateretRejseafregning(OpdateretRejseafregningEvent e) {
+		udgifterTable.setRejseafregningID(e.getRejseafregning().getRejseafregningID());
+		rejsedageTable.setRejseafregningID(e.getRejseafregning().getRejseafregningID());
 	}
 }
