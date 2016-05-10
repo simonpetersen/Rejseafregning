@@ -97,7 +97,9 @@ public class DokArkivView extends Composite {
 		dokArkivCellTable = new DokumentArkivCellTable(eventBus, result);
 		searchResult.clear();
 		searchResult.add(dokArkivCellTable);
-		
+		SimplePager pager = new SimplePager();
+		pager.setDisplay(dokArkivCellTable.cellTable);
+		searchResult.add(pager);
 	}
 
 }
