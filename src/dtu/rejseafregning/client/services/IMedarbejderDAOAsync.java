@@ -12,6 +12,7 @@ public interface IMedarbejderDAOAsync {
 	void login(String Brugernavn, String adgangskode, AsyncCallback<MedarbejderDTO> callback);
 	void getMedarbejder(String Brugernavn, AsyncCallback<MedarbejderDTO> callback);
 	void getMedarbejderList(AsyncCallback<List<MedarbejderDTO>> callback);
+	void getMedarbejderSum(AsyncCallback<Integer> callback);
 	void createMedarbejder(MedarbejderDTO medarbejder, AsyncCallback<Void> callback);
 	void updateMedarbejder(MedarbejderDTO medarbejder, AsyncCallback<Void> callback);
 	void updateMedarbejderBruger(MedarbejderDTO medarbejder, AsyncCallback<Void> callback);

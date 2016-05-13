@@ -21,6 +21,7 @@ public interface IRejseafregningDAOAsync {
 	void getRejseafregningAfsluttedeList(String navn, AsyncCallback<List<RejseafregningDTO>> callback);
 	void getRejseafregningAnvisningList(String navn, AsyncCallback<List<GodkendelseJoinDTO>> callback);
 	void getRejseafregningGodkendelseList(String navn, AsyncCallback<List<GodkendelseJoinDTO>> callback);
+	void getRejseafregningCount(AsyncCallback<Integer> callback);
 	void createRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);
 	void updateRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);
 	void deleteRejseafregning(RejseafregningDTO rejseafregning, AsyncCallback<Void> callback);

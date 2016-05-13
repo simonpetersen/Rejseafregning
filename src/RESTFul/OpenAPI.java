@@ -7,36 +7,57 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import dtu.rejseafregning.server.dal.MedarbejderDAO;
+import dtu.rejseafregning.server.dal.RejseafregningDAO;
 import dtu.rejseafregning.shared.MedarbejderDTO;
 
-@Path("/antal")
+@Path("/info")
 public class OpenAPI {
 
 	@GET
-	@Produces("application/xml")
+	@Produces(MediaType.TEXT_PLAIN)
 	public String getMedarbejderAntal(){
-		Double fahrenheit;
-		Double celsius = 36.8;
-		fahrenheit = ((celsius * 9) / 5) + 32;
- 
-		String result = "@Produces(\"application/xml\") Output: \n\nC to F Converter Output: \n\n" + fahrenheit;
-		return "<ctofservice>" + "<celsius>" + celsius + "</celsius>" + "<ctofoutput>" + result + "</ctofoutput>" + "<infoTilSimon>" + "Simon har en langsom computer" + "</infoTilSimon>" + "</ctofservice>";
+		String antal = "";
+		try{
+		MedarbejderDAO medarbejder = new MedarbejderDAO();
+		RejseafregningDAO rejseafregning = new RejseafregningDAO();
+		antal = "Antallet af medarbejdere er: " + medarbejder.getMedarbejderSum() + "\n" + 
+				"Antallet af rejseafregninger er: " + rejseafregning.getRejseafregningCount();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return antal;
 	}
 	
 	@Path("{c}")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getTal(@PathParam("c") String studienr){
+	public String getTal(@PathParam("c") String brugernavn){
 		String navn = "";
+		String postnr = "";
+		String adresse = ""; 
+		String afdeling = "";
+		String email = "";
 		try {
 			MedarbejderDAO medarbejder = new MedarbejderDAO();
-			navn = medarbejder.getMedarbejder(studienr).getNavn();
+			navn = medarbejder.getMedarbejder(brugernavn).getNavn();
+			postnr = medarbejder.getMedarbejder(brugernavn).getPostnr();
+			adresse = medarbejder.getMedarbejder(brugernavn).getVejnavn() + " " + medarbejder.getMedarbejder(brugernavn).getHusnr();
+			afdeling = medarbejder.getMedarbejder(brugernavn).getAfdeling();
+			email = medarbejder.getMedarbejder(brugernavn).getEmail();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return "Du har valgt denne studerende: " + studienr + "\n" + "Personen hedder: " + navn;
+		if(!navn.equals(""))
+			return "Du har valgt denne medarbejder: " + brugernavn + "\n" 
+				+ "Personen hedder: " + navn + "\n"
+				+ "Arbejder i afdelingen: " + afdeling + "\n"
+				+ "Email: " + email + "\n"
+				+ "Adressen er: " + "\n" 
+				+ adresse + "\n" 
+				+ postnr;
+		else
+			return "Der findes ingen medarbejder med brugernavnet: " + brugernavn;
 	}
 	
 }

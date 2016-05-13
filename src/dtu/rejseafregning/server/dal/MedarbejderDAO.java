@@ -15,16 +15,17 @@ import dtu.rejseafregning.shared.MedarbejderDTO;
 public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejderDAO {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private PreparedStatement getMedarbejderStmt = null;
 	private PreparedStatement getMedarbejderListStmt = null;
+	private PreparedStatement getMedarbejderSumStmt = null;
 	private PreparedStatement createMedarbejderStmt = null;
 	private PreparedStatement updateMedarbejderStmt = null;
 	private PreparedStatement updateMedarbejderBrugerStmt = null;
 	private PreparedStatement deleteMedarbejderStmt = null;
 
 	public MedarbejderDAO() throws Exception {
-		
+
 		new Connector();
 
 		// getMedarbejder statement
@@ -33,25 +34,30 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 		// getMedarbejderList statement
 		getMedarbejderListStmt = Connector.conn.prepareStatement("SELECT * FROM medarbejder");
 
+		// getMedarbejderSum statement
+		getMedarbejderSumStmt = Connector.conn.prepareStatement("SELECT COUNT(brugernavn) AS 'antal' FROM medarbejder");
+
 		// createMedarbejder statement
-		createMedarbejderStmt = Connector.conn.prepareStatement("INSERT INTO medarbejder (brugernavn, navn, email, adgangskode, afdeling, postnr, vejnavn, husnr, etage, doer) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		createMedarbejderStmt = Connector.conn.prepareStatement(
+				"INSERT INTO medarbejder (brugernavn, navn, email, adgangskode, afdeling, postnr, vejnavn, husnr, etage, doer) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		// updateMedarbejder statement
 		updateMedarbejderStmt = Connector.conn.prepareStatement(
 				"UPDATE medarbejder SET navn = ?, email = ?, adgangskode = ?, afdeling = ?, postnr = ?, vejnavn = ?, husnr = ?, etage = ?, doer = ? "
-				+ "WHERE brugernavn = ?");
-		
-		updateMedarbejderBrugerStmt = Connector.conn.prepareStatement(
-				"UPDATE medarbejder SET navn = ?, adgangskode = ?, email = ? WHERE brugernavn = ?");
+						+ "WHERE brugernavn = ?");
+
+		updateMedarbejderBrugerStmt = Connector.conn
+				.prepareStatement("UPDATE medarbejder SET navn = ?, adgangskode = ?, email = ? WHERE brugernavn = ?");
 
 		// deleteMedarbejder statement
 		deleteMedarbejderStmt = Connector.conn.prepareStatement("DELETE FROM medarbejder WHERE brugernavn = ?");
 	}
-	
+
 	@Override
 	public MedarbejderDTO login(String brugernavn, String adgangskode) throws DALException {
 		MedarbejderDTO bruger = getMedarbejder(brugernavn);
-		if (!bruger.getAdgangskode().equals(adgangskode)) throw new DALException("Forkert adgangskode");
+		if (!bruger.getAdgangskode().equals(adgangskode))
+			throw new DALException("Forkert adgangskode");
 		return bruger;
 	}
 
@@ -62,9 +68,9 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 			getMedarbejderStmt.setString(1, Brugernavn);
 			rs = getMedarbejderStmt.executeQuery();
 			if (rs.first()) {
-				return new MedarbejderDTO(rs.getString("navn"), rs.getString("brugernavn"),
-					rs.getString("adgangskode"), rs.getString("Email"), rs.getString("afdeling"), rs.getString("postnr"), 
-					rs.getString("vejnavn"), rs.getString("husnr"), rs.getString("etage"), rs.getString("doer"));
+				return new MedarbejderDTO(rs.getString("navn"), rs.getString("brugernavn"), rs.getString("adgangskode"),
+						rs.getString("Email"), rs.getString("afdeling"), rs.getString("postnr"),
+						rs.getString("vejnavn"), rs.getString("husnr"), rs.getString("etage"), rs.getString("doer"));
 			}
 			throw new DALException("Medarbejder findes ikke!");
 		} catch (SQLException e) {
@@ -82,8 +88,9 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 
 			while (rs.next()) {
 				MedarbejderListe.add(new MedarbejderDTO(rs.getString("navn"), rs.getString("brugernavn"),
-						rs.getString("adgangskode"), rs.getString("email"), rs.getString("afdeling"), rs.getString("postnr"), 
-						rs.getString("vejnavn"), rs.getString("husnr"), rs.getString("etage"), rs.getString("doer")));
+						rs.getString("adgangskode"), rs.getString("email"), rs.getString("afdeling"),
+						rs.getString("postnr"), rs.getString("vejnavn"), rs.getString("husnr"), rs.getString("etage"),
+						rs.getString("doer")));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Kaldet getMedarbejderList fejlede" + e);
@@ -99,9 +106,32 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 	}
 
 	@Override
+	public int getMedarbejderSum() throws DALException {
+		ResultSet rs = null;
+		int antal = 0;
+		try {
+			rs = getMedarbejderSumStmt.executeQuery();
+
+			if (rs.first())
+				antal = rs.getInt("antal");
+		} catch (SQLException e) {
+			throw new DALException("Kaldet getMedarbejderSum fejlede " + e);
+		} finally {
+			try {
+				rs.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				close();
+			}
+		}
+		return antal;
+	}
+
+	@Override
 	public void createMedarbejder(MedarbejderDTO medarbejder) throws DALException {
 		try {
-			//Argumenter inds�ttes i statement
+			// Argumenter inds�ttes i statement
 			createMedarbejderStmt.setString(1, medarbejder.getBrugernavn());
 			createMedarbejderStmt.setString(2, medarbejder.getNavn());
 			createMedarbejderStmt.setString(3, medarbejder.getEmail());
@@ -113,10 +143,10 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 			createMedarbejderStmt.setString(9, medarbejder.getEtage());
 			createMedarbejderStmt.setString(10, medarbejder.getDoer());
 
-			//Kald til databasen
+			// Kald til databasen
 			createMedarbejderStmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Kaldet createMedarbejder fejlede: "+ e);
+			throw new DALException("Kaldet createMedarbejder fejlede: " + e);
 		}
 	}
 
@@ -138,7 +168,7 @@ public class MedarbejderDAO extends RemoteServiceServlet implements IMedarbejder
 			// Kald til databasen
 			updateMedarbejderStmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Kaldet updateMedarbejder fejlede: "+e.getMessage());
+			throw new DALException("Kaldet updateMedarbejder fejlede: " + e.getMessage());
 		}
 
 	}
