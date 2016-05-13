@@ -5,7 +5,7 @@ public class Constant {
 		server	 = "rejseafregningdb.cdkqdugmixv4.us-west-2.rds.amazonaws.com",			//Database serveren
 		database = "RejseafregningDB",	//Database navnet
 		username = "Rejseafregning",		//Brugernavn
-		password = "rejseafregning";		//Password
+		password = "Tqk5Mdn9sjk34ssh5";		//Password
 	
 //	server	 = "localhost",			//Database serveren
 //	database = "rejseafregning",	//Database navnet
