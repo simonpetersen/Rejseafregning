@@ -46,8 +46,10 @@ public class GetInfo {
 			MedarbejderDAO medarbejder = new MedarbejderDAO();
 			navn = medarbejder.getMedarbejder(brugernavn).getNavn();
 			postnr = medarbejder.getMedarbejder(brugernavn).getPostnr();
-			adresse = medarbejder.getMedarbejder(brugernavn).getVejnavn() + " "
-					+ medarbejder.getMedarbejder(brugernavn).getHusnr();
+			adresse = medarbejder.getMedarbejder(brugernavn).getVejnavn() + ", "
+					+ medarbejder.getMedarbejder(brugernavn).getHusnr() + ", "
+					+ medarbejder.getMedarbejder(brugernavn).getEtage() + ", " 
+					+ medarbejder.getMedarbejder(brugernavn).getDoer();
 			afdeling = medarbejder.getMedarbejder(brugernavn).getAfdeling();
 			email = medarbejder.getMedarbejder(brugernavn).getEmail();
 		} catch (Exception e) {
