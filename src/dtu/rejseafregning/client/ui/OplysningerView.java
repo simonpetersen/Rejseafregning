@@ -111,6 +111,8 @@ public class OplysningerView extends Composite {
 	void onPostnrTextBoxKeyDown(KeyUpEvent event) {
 		if (postnrTextBox.getText().length() == 4) {
 			eventBus.fireEvent(new GetByEvent(postnrTextBox.getText()));
+		} else {
+			byLabel.setText("");
 		}
 	}
 	

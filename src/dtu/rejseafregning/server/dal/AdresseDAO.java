@@ -13,7 +13,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import dtu.rejseafregning.client.services.IAdresseDAO;
@@ -32,11 +31,12 @@ public class AdresseDAO extends RemoteServiceServlet implements IAdresseDAO {
 		array = readJsonFromUrl(url);
 		if (array.length() > 0) {
 			obj = array.getJSONObject(0);
-			return new JSONObject(obj.getString("postnummer")).getString("navn");
+			return obj.getJSONObject("postnummer").getString("navn");
 		}
 		return null;
 	}
 
+	
 	@Override
 	public List<String> getVejNavne(String postnr, String indtast) throws Exception {
 		url = "http://dawa.aws.dk/vejnavne/autocomplete?q="+indtast+"&postnr="+postnr;
@@ -66,7 +66,7 @@ public class AdresseDAO extends RemoteServiceServlet implements IAdresseDAO {
 		url = "http://dawa.aws.dk/adresser?vejnavn="+vejnavn+"&husnr="+husnr+"&postnr="+postnr;
 		List<String> list = new ArrayList<String>();
 		array = readJsonFromUrl(url);
-		for (int i = 0; i < array.length(); i++) {
+		for (int i = 1; i < array.length(); i++) {
 			obj = array.getJSONObject(i);
 			String etage = obj.getString("etage"); 
 			if (etage != null) list.add(etage);
@@ -85,14 +85,6 @@ public class AdresseDAO extends RemoteServiceServlet implements IAdresseDAO {
 		return list;
 	}
 	
-	private JSONArray readJsonFromUrl(String url) throws IOException, JSONException {
-	    InputStream is = new URL(url).openStream();
-	    BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-	    String jsonText = readAll(rd);
-	    JSONArray array = new JSONArray(jsonText);
-	    return array;
-	  }
-	
 	private static String readAll(BufferedReader rd) throws IOException {
 	    StringBuilder sb = new StringBuilder();
 	    String nl = rd.readLine();
@@ -102,5 +94,13 @@ public class AdresseDAO extends RemoteServiceServlet implements IAdresseDAO {
 	    }
 	    return sb.toString();
 	}
+	
+	private JSONArray readJsonFromUrl(String url) throws IOException, JSONException {
+	    InputStream is = new URL(url).openStream();
+	    BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+	    String jsonText = readAll(rd);
+	    JSONArray array = new JSONArray(jsonText);
+	    return array;
+	  }
 
 }
