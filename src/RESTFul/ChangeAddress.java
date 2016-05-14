@@ -47,7 +47,7 @@ public class ChangeAddress {
 					+ "\n" + "\n" + "Adressen er nu: " + vejnavn + " " + husnr + " " + etage + " " + doer + "\n"
 					+ postnr;
 		} catch (DALException e) {
-			resultat = "Der kunne ikke logges ind på brugeren. Tjek at oplysningerne er korrekte og prøv igen.";
+			resultat = "Der kunne ikke logges ind pï¿½ brugeren. Tjek at oplysningerne er korrekte og prï¿½v igen.";
 		}
 		return resultat;
 	}
@@ -62,7 +62,7 @@ public class ChangeAddress {
 			MedarbejderDTO dto = dao.login(user, pass);
 			resultat = "Koden er korrekt. Velkommen "  + dto.getNavn();
 		} catch (DALException e) {
-			resultat = "Koden er forkert. Prøv igen.";
+			resultat = "Koden er forkert. Prï¿½v igen.";
 		}
 		return resultat;
 	}
