@@ -77,9 +77,9 @@ public class NyAlmRejseafregning extends Composite {
 		else if (datePicker2.getValue() == null) Window.alert("Vælg en slutdato");
 		else
 			eventBus.fireEvent(new GetGemOgNaesteEvent(dropLand.getValue(dropLand.getSelectedIndex()),txtby.getText(), 
-				godkender.getValue(dropLand.getSelectedIndex()), anviser.getValue(dropLand.getSelectedIndex()), datePicker1.getValue(), 
-				datePicker2.getValue(), andledtxt.getText(), forklaringtxt.getText(), dropDownProj.getValue(dropLand.getSelectedIndex()), 
-				dropDownOpga1.getValue(dropLand.getSelectedIndex())));		
+				godkender.getValue(godkender.getSelectedIndex()), anviser.getValue(anviser.getSelectedIndex()), datePicker1.getValue(), 
+				datePicker2.getValue(), andledtxt.getText(), forklaringtxt.getText(), dropDownProj.getValue(dropDownProj.getSelectedIndex()), 
+				dropDownOpga1.getValue(dropDownOpga1.getSelectedIndex())));		
  	} 	
 	
 	@EventHandler
