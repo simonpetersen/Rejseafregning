@@ -67,38 +67,4 @@ public class ChangeAddress {
 		return resultat;
 	}
 	
-	public String putUrl(String url, String urlParameters) throws IOException 
-	{
-		String resp = null;
-
-		URL newURL = new URL(url);
-
-		HttpURLConnection conn = (HttpURLConnection) newURL.openConnection();
-		conn.setReadTimeout(10000);
-		conn.setConnectTimeout(15000);
-		conn.setRequestMethod("PUT");
-		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-		conn.setDoInput(true);
-		conn.setDoOutput(true);
-
-		String requestBody = urlParameters.toString();
-		byte[] outputBytes = requestBody.getBytes();
-		OutputStream os = conn.getOutputStream();
-		os.write(outputBytes);
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		String line = "";
-		StringBuilder responseOutput = new StringBuilder();
-
-		while((line = br.readLine()) != null)
-		{
-			responseOutput.append(line);
-		}
-
-		resp = responseOutput.toString();
-
-		os.close();
-
-		return resp;
-	}
 }
