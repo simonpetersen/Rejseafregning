@@ -31,7 +31,7 @@ public class PostOpgave {
 		} catch (DALException e) {
 			return e.getMessage();
 		}
-		return "Opgave er oprettet!";
+		return "Opgave er oprettet";
 	}
 
 }
