@@ -52,34 +52,7 @@ public class ChangeAddress {
 		return resultat;
 	}
 	
-	@PUT
-	@Path("{user}/{pass}/{postnr}/{vejnavn}/{husnr}")
-	@Consumes("application/x-www-form-urlencoded")
-	@Produces("text/plain")
-	public String UpdateAddress(@PathParam("user") final String user, @PathParam("pass") String pass,
-			@PathParam("postnr") final String postnr, @PathParam("vejnavn") final String vejnavn,
-			@PathParam("husnr") final String husnr) throws Exception {
-
-		try {
-			MedarbejderDAO medarbejderDAO = new MedarbejderDAO();
-			MedarbejderDTO medarbejder = medarbejderDAO.login(user, pass);
-			String gammelAdresse = medarbejder.getVejnavn() + " " + medarbejder.getHusnr() + " "
-					+ medarbejder.getEtage() + " " + medarbejder.getDoer() + "\n" + medarbejder.getPostnr();
-			medarbejder.setPostnr(postnr);
-			medarbejder.setVejnavn(vejnavn);
-			medarbejder.setHusnr(husnr);
-			medarbejder.setEtage("");
-			medarbejder.setDoer("");
-
-			medarbejderDAO.updateMedarbejder(medarbejder);
-			resultat = "Medarbejderen: " + user + " blev opdateret." + "\n" + "Den gamle adresse var: " + gammelAdresse
-					+ "\n" + "\n" + "Adressen er nu: " + vejnavn + " " + husnr + "\n"
-					+ postnr;
-		} catch (DALException e) {
-			resultat = "Der kunne ikke logges ind p� brugeren. Tjek at oplysningerne er korrekte og pr�v igen.";
-		}
-		return resultat;
-	}
+	
 	
 	@PUT
 	@Path("{user}/{pass}/{postnr}/{vejnavn}/{husnr}/{etage}")
@@ -109,14 +82,14 @@ public class ChangeAddress {
 		}
 		return resultat;
 	}
-	
+
 	@PUT
-	@Path("{user}/{pass}/{postnr}/{vejnavn}/{husnr}/{doer}")
+	@Path("{user}/{pass}/{postnr}/{vejnavn}/{husnr}")
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces("text/plain")
-	public String UpdateAddressDoor(@PathParam("user") final String user, @PathParam("pass") String pass,
+	public String UpdateAddress(@PathParam("user") final String user, @PathParam("pass") String pass,
 			@PathParam("postnr") final String postnr, @PathParam("vejnavn") final String vejnavn,
-			@PathParam("husnr") final String husnr,@PathParam("doer") final String doer) throws Exception {
+			@PathParam("husnr") final String husnr) throws Exception {
 
 		try {
 			MedarbejderDAO medarbejderDAO = new MedarbejderDAO();
@@ -127,18 +100,18 @@ public class ChangeAddress {
 			medarbejder.setVejnavn(vejnavn);
 			medarbejder.setHusnr(husnr);
 			medarbejder.setEtage("");
-			medarbejder.setDoer(doer);
+			medarbejder.setDoer("");
 
 			medarbejderDAO.updateMedarbejder(medarbejder);
 			resultat = "Medarbejderen: " + user + " blev opdateret." + "\n" + "Den gamle adresse var: " + gammelAdresse
-					+ "\n" + "\n" + "Adressen er nu: " + vejnavn + " " + husnr + " " + doer + "\n"
+					+ "\n" + "\n" + "Adressen er nu: " + vejnavn + " " + husnr + "\n"
 					+ postnr;
 		} catch (DALException e) {
 			resultat = "Der kunne ikke logges ind p� brugeren. Tjek at oplysningerne er korrekte og pr�v igen.";
 		}
 		return resultat;
 	}
-
+	
 	@GET
 	@Path("{user}/{pass}")
 	@Produces("text/plain")
